@@ -27,11 +27,13 @@ public class Pl3xCore {
     public static final String name = "Pl3xCore";
     public static final String version = "1.0.2";
 
-    private static final Pl3xScheduler pl3xScheduler = new Pl3xScheduler();
     @Mod.Instance(modId)
     public static Pl3xCore instance;
+
     @SidedProxy(serverSide = "net.pl3x.forge.core.proxy.CommonProxy", clientSide = "net.pl3x.forge.core.proxy.ClientProxy")
     public static CommonProxy proxy;
+
+    private static final Pl3xScheduler pl3xScheduler = new Pl3xScheduler();
 
     public static Pl3xScheduler getScheduler() {
         return pl3xScheduler;
