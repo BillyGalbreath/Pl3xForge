@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import net.pl3x.forge.core.CapabilityHandler;
 import net.pl3x.forge.core.EventHandler;
 import net.pl3x.forge.core.command.CmdBack;
+import net.pl3x.forge.core.command.CmdCountdown;
 import net.pl3x.forge.core.command.CmdDelHome;
 import net.pl3x.forge.core.command.CmdHome;
 import net.pl3x.forge.core.command.CmdHomes;
@@ -30,6 +31,7 @@ public class CommonProxy {
 
     public void serverStarting(FMLServerStartingEvent event) {
         event.registerServerCommand(new CmdBack());
+        event.registerServerCommand(new CmdCountdown());
         event.registerServerCommand(new CmdDelHome());
         event.registerServerCommand(new CmdSetHome());
         event.registerServerCommand(new CmdHome());

@@ -27,6 +27,11 @@ public class Location implements Cloneable {
         this.yaw = yaw;
     }
 
+    public static int floor(double v) {
+        final int floor = (int) v;
+        return floor == v ? floor : floor - (int) (Double.doubleToRawLongBits(v) >>> 63);
+    }
+
     public World getWorld() {
         return world;
     }
@@ -98,10 +103,5 @@ public class Location implements Cloneable {
         } catch (CloneNotSupportedException e) {
             throw new Error(e);
         }
-    }
-
-    public static int floor(double v) {
-        final int floor = (int) v;
-        return floor == v ? floor : floor - (int) (Double.doubleToRawLongBits(v) >>> 63);
     }
 }
