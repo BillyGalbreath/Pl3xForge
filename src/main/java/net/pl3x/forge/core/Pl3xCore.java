@@ -25,7 +25,7 @@ import net.pl3x.forge.core.world.ModWorldGen;
 public class Pl3xCore {
     public static final String modId = "pl3x";
     public static final String name = "Pl3xCore";
-    public static final String version = "1.0.2";
+    public static final String version = "@VERSION@";
 
     @Mod.Instance(modId)
     public static Pl3xCore instance;

@@ -13,9 +13,10 @@ import net.pl3x.forge.core.command.CmdDelHome;
 import net.pl3x.forge.core.command.CmdHome;
 import net.pl3x.forge.core.command.CmdHomes;
 import net.pl3x.forge.core.command.CmdSetHome;
+import net.pl3x.forge.core.command.CmdSpawn;
 import net.pl3x.forge.core.command.CmdTop;
-import net.pl3x.forge.core.data.IPlayerData;
 import net.pl3x.forge.core.data.PlayerData;
+import net.pl3x.forge.core.data.PlayerDataImpl;
 import net.pl3x.forge.core.data.PlayerDataStorage;
 
 public class CommonProxy {
@@ -23,7 +24,7 @@ public class CommonProxy {
     }
 
     public void registerCapabilities() {
-        CapabilityManager.INSTANCE.register(IPlayerData.class, new PlayerDataStorage(), PlayerData.class);
+        CapabilityManager.INSTANCE.register(PlayerData.class, new PlayerDataStorage(), PlayerDataImpl.class);
 
         MinecraftForge.EVENT_BUS.register(new CapabilityHandler());
         MinecraftForge.EVENT_BUS.register(new EventHandler());
@@ -33,9 +34,10 @@ public class CommonProxy {
         event.registerServerCommand(new CmdBack());
         event.registerServerCommand(new CmdCountdown());
         event.registerServerCommand(new CmdDelHome());
-        event.registerServerCommand(new CmdSetHome());
         event.registerServerCommand(new CmdHome());
         event.registerServerCommand(new CmdHomes());
+        event.registerServerCommand(new CmdSetHome());
+        event.registerServerCommand(new CmdSpawn());
         event.registerServerCommand(new CmdTop());
     }
 

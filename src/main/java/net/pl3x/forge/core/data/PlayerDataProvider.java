@@ -10,10 +10,10 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class PlayerDataProvider implements ICapabilitySerializable<NBTBase> {
-    @CapabilityInject(IPlayerData.class)
-    public static final Capability<IPlayerData> PLAYER_DATA_CAPABILITY = null;
+    @CapabilityInject(PlayerData.class)
+    public static final Capability<PlayerData> PLAYER_DATA_CAPABILITY = null;
 
-    private IPlayerData instance = PLAYER_DATA_CAPABILITY.getDefaultInstance();
+    private PlayerData instance = PLAYER_DATA_CAPABILITY.getDefaultInstance();
 
     @Override
     public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {

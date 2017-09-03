@@ -30,10 +30,8 @@ public class EventHandler {
             Field footer = packet.getClass().getDeclaredField("field_179702_b");
             header.setAccessible(true);
             footer.setAccessible(true);
-            header.set(packet, new TextComponentString("\n&6&o&lPl3xCraft\n    &cWebsite&e: &7&opl3x.net\n&9&m-----------------"
-                    .replaceAll("(?i)&([a-f0-9k-or])", "\u00a7$1")));
-            footer.set(packet, new TextComponentString("&9&m-----------------\n&cMap&e: &7&opl3x.net/dynmap\n  &cVoice&e: &7&opl3x.net/discord  \n"
-                    .replaceAll("(?i)&([a-f0-9k-or])", "\u00a7$1")));
+            header.set(packet, new TextComponentString(Lang.colorize("\n&6&o&lPl3xCraft\n    &cWebsite&e: &7&opl3x.net\n&9&m-----------------")));
+            footer.set(packet, new TextComponentString(Lang.colorize("&9&m-----------------\n&cMap&e: &7&opl3x.net/dynmap\n  &cVoice&e: &7&opl3x.net/discord  \n")));
             player.connection.sendPacket(packet);
         } catch (Exception ignore) {
             ignore.printStackTrace();
@@ -51,7 +49,6 @@ public class EventHandler {
     }
 
     @SubscribeEvent
-
     public void onPlayerClone(PlayerEvent.Clone event) {
         event.getEntityPlayer().getCapability(PlayerDataProvider.PLAYER_DATA_CAPABILITY, null)
                 .setMap(event.getOriginal().getCapability(PlayerDataProvider.PLAYER_DATA_CAPABILITY, null)

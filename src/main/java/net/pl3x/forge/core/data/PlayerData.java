@@ -1,82 +1,25 @@
 package net.pl3x.forge.core.data;
 
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraftforge.common.DimensionManager;
 import net.pl3x.forge.core.Location;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Map;
 import java.util.TreeMap;
 
-public class PlayerData implements IPlayerData {
-    private TreeMap<String, Location> homes = new TreeMap<>();
+public interface PlayerData {
+    void addHome(String name, Location location);
 
-    @Override
-    public void addHome(String name, Location location) {
-        homes.put(name, location);
-    }
+    void removeHome(String name);
 
-    @Override
-    public void removeHome(String name) {
-        homes.remove(name);
-    }
+    Location getHome(String name);
 
-    @Override
-    public Location getHome(String name) {
-        return homes.get(name);
-    }
+    ArrayList<String> getHomeNames();
 
-    @Override
-    public ArrayList<String> getHomeNames() {
-        ArrayList<String> list = new ArrayList<>(homes.keySet());
-        Collections.sort(list);
-        return list;
-    }
+    TreeMap<String, Location> getMap();
 
-    @Override
-    public TreeMap<String, Location> getMap() {
-        return homes;
-    }
+    void setMap(TreeMap<String, Location> homes);
 
-    @Override
-    public void setMap(TreeMap<String, Location> homes) {
-        this.homes = homes;
-    }
+    NBTTagCompound getDataAsNBT();
 
-    @Override
-    public NBTTagCompound getDataAsNBT() {
-        NBTTagList nbtTagList = new NBTTagList();
-        for (Map.Entry<String, Location> entry : homes.entrySet()) {
-            NBTTagCompound compound = new NBTTagCompound();
-            compound.setString("name", entry.getKey());
-            compound.setInteger("dimension", entry.getValue().getDimension());
-            compound.setDouble("x", entry.getValue().getX());
-            compound.setDouble("y", entry.getValue().getY());
-            compound.setDouble("z", entry.getValue().getZ());
-            compound.setDouble("pitch", entry.getValue().getPitch());
-            compound.setDouble("yaw", entry.getValue().getYaw());
-            nbtTagList.appendTag(compound);
-        }
-        NBTTagCompound nbt = new NBTTagCompound();
-        nbt.setTag("homes", nbtTagList);
-        return nbt;
-    }
-
-    @Override
-    public void setDataFromNBT(NBTTagCompound nbt) {
-        NBTTagList nbtTagList = nbt.getTagList("homes", 10);
-        for (int i = 0; i < nbtTagList.tagCount(); i++) {
-            NBTTagCompound compound = nbtTagList.getCompoundTagAt(i);
-            homes.put(compound.getString("name"), new Location(
-                    DimensionManager.getWorld(compound.getInteger("dimension")),
-                    compound.getInteger("dimension"),
-                    compound.getDouble("x"),
-                    compound.getDouble("y"),
-                    compound.getDouble("z"),
-                    compound.getDouble("pitch"),
-                    compound.getDouble("yaw")));
-        }
-    }
+    void setDataFromNBT(NBTTagCompound nbt);
 }

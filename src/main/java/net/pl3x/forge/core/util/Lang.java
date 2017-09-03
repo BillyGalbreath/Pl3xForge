@@ -16,10 +16,15 @@ public class Lang {
     public static String HOME_DELETED = "&aHome removed";
     public static String HOME_TELEPORTED = "&aTeleported home";
     public static String HOME_LIST = "&aList of homes&e:\n&d{homes}";
+    public static String SPAWN_TELEPORT = "&aTeleported to server spawn";
 
     public static void send(EntityPlayerMP player, String message) {
         for (String part : message.split("\n")) {
-            player.sendMessage(new TextComponentString(part.replaceAll("(?i)&([a-f0-9k-or])", "\u00a7$1")));
+            player.sendMessage(new TextComponentString(colorize(part)));
         }
+    }
+
+    public static String colorize(String string) {
+        return string.replaceAll("(?i)&([a-f0-9k-or])", "\u00a7$1");
     }
 }

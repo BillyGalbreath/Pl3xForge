@@ -1,47 +1,15 @@
 package net.pl3x.forge.core.command;
 
-import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.math.BlockPos;
 import net.pl3x.forge.core.scheduler.Pl3xRunnable;
 import net.pl3x.forge.core.util.Lang;
 
-import javax.annotation.Nullable;
-import java.util.Collections;
-import java.util.List;
-
 public class CmdCountdown extends CommandBase {
-    @Override
-    public String getName() {
-        return "countdown";
-    }
-
-    @Override
-    public List<String> getAliases() {
-        return Collections.emptyList();
-    }
-
-    @Override
-    public String getUsage(ICommandSender sender) {
-        return "/countdown: Counts down";
-    }
-
-    @Override
-    public int getRequiredPermissionLevel() {
-        return 2;
-    }
-
-    @Override
-    public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
-        return true;
-    }
-
-    @Override
-    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos) {
-        return Collections.emptyList();
+    public CmdCountdown() {
+        super("countdown", "Counts down");
     }
 
     @Override
@@ -74,11 +42,11 @@ public class CmdCountdown extends CommandBase {
                 .runTaskTimer(20, 20);
     }
 
-    public class Countdown extends Pl3xRunnable {
+    private class Countdown extends Pl3xRunnable {
         private EntityPlayerMP player;
         private int counter;
 
-        public Countdown(EntityPlayerMP player, int counter) {
+        private Countdown(EntityPlayerMP player, int counter) {
             this.player = player;
             this.counter = counter;
         }

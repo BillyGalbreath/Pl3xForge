@@ -17,6 +17,10 @@ public class Location implements Cloneable {
         this(player.world, player.dimension, player.posX, player.posY, player.posZ, player.rotationPitch, player.rotationYaw);
     }
 
+    public Location(World world, BlockPos pos) {
+        this(world, 0, pos.getX(), pos.getY(), pos.getZ(), 0, 0);
+    }
+
     public Location(World world, int dimension, double x, double y, double z, double pitch, double yaw) {
         this.world = world;
         this.dimension = dimension;

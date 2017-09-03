@@ -8,9 +8,9 @@ import net.pl3x.forge.core.Location;
 import net.pl3x.forge.core.util.Lang;
 import net.pl3x.forge.core.util.Teleport;
 
-public class CmdBack extends CommandBase {
-    public CmdBack() {
-        super("back", "Teleport to your last location");
+public class CmdSpawn extends CommandBase {
+    public CmdSpawn() {
+        super("spawn", "Go to server spawn");
     }
 
     @Override
@@ -21,13 +21,7 @@ public class CmdBack extends CommandBase {
 
         EntityPlayerMP player = getCommandSenderAsPlayer(sender);
 
-        Location backLoc = Teleport.BACK_DB.get(player.getUniqueID());
-        if (backLoc == null) {
-            Lang.send(player, Lang.BACK_NO_LOCATION);
-            return;
-        }
-
-        Teleport.teleport(player, backLoc, true);
-        Lang.send(player, Lang.BACK_TO_PREVIOUS);
+        Teleport.teleport(player, new Location(player.world, player.world.getSpawnPoint()), true);
+        Lang.send(player, Lang.SPAWN_TELEPORT);
     }
 }
