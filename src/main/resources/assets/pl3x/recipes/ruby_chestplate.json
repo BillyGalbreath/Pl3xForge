@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "R R",
+    "RRR",
+    "RRR"
+  ],
+  "key": {
+    "R": {
+      "type": "forge:ore_dict",
+      "ore": "ruby"
+    }
+  },
+  "result": {
+    "item": "pl3x:ruby_chestplate"
+  }
+}

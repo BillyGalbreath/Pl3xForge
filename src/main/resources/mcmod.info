@@ -1,0 +1,14 @@
+[{
+  "modid": "pl3x",
+  "name": "Pl3xCore",
+  "description": "Pl3xCraft Core Forge Mod",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "pl3x.net",
+  "updateJSON": "pl3x.net/core/versions.json",
+  "authorList": ["BillyGalbreath"],
+  "credits": "",
+  "logoFile": "assets/logo.png",
+  "screenshots": [],
+  "dependencies": []
+}]

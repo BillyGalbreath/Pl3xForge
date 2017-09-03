@@ -1,0 +1,57 @@
+# Items
+item.ruby.name=Ruby
+item.ruby_sword.name=Ruby Sword
+item.ruby_pickaxe.name=Ruby Pickaxe
+item.ruby_axe.name=Ruby Axe
+item.ruby_shovel.name=Ruby Shovel
+item.ruby_hoe.name=Ruby Hoe
+item.ruby_helmet.name=Ruby Helmet
+item.ruby_chestplate.name=Ruby Chestplate
+item.ruby_leggings.name=Ruby Leggings
+item.ruby_boots.name=Ruby Boots
+item.emerald_sword.name=Emerald Sword
+item.emerald_pickaxe.name=Emerald Pickaxe
+item.emerald_axe.name=Emerald Axe
+item.emerald_shovel.name=Emerald Shovel
+item.emerald_hoe.name=Emerald Hoe
+item.emerald_helmet.name=Emerald Helmet
+item.emerald_chestplate.name=Emerald Chestplate
+item.emerald_leggings.name=Emerald Leggings
+item.emerald_boots.name=Emerald Boots
+
+item.hat_afro.name=Afro
+item.hat_bighead_billygalbreath.name=BillyGalbreath Big Head
+item.hat_cake.name=Cake Hat
+item.hat_cloak.name=Cloak
+item.hat_cowboy.name=Cowboy Hat
+item.hat_eye_band.name=Eye Band
+item.hat_fez.name=Fez
+item.hat_hardhat_off.name=HardHat Off
+item.hat_hardhat_on.name=HardHat On
+item.hat_headphones_cat_ears.name=Headphones with Cat Ears
+item.hat_highhat.name=High Hat
+item.hat_mullet.name=Mullet
+item.hat_ocelot.name=Ocelot
+item.hat_ocelot_siamese.name=Ocelot Siamese
+item.hat_ocelot_tabby.name=Ocelot Tabby
+item.hat_ocelot_tux.name=Ocelot Tux
+item.hat_santa.name=Santa Hat
+item.hat_sombrero.name=Sombrero
+item.hat_squid.name=Squid Hat
+item.hat_tophat_black_blue.name=TopHat Black with Blue trim
+item.hat_tophat_black_gray.name=TopHat Black with Gray trim
+item.hat_tophat_black_red.name=TopHat Black with Red trim
+item.hat_tophat_black_white.name=TopHat Black with White trim
+item.hat_tophat_black_yellow.name=TopHat Black with Yellow trim
+item.hat_tophat_round_black_white.name=Round TopHat Black with White trim
+item.hat_tophat_round_white_black.name=Round TopHat White with Black trim
+item.hat_tophat_white_red.name=TopHat White with Red trim
+item.hat_wizard.name=Wizard Hat
+item.hat_wizard2.name=Wizard Hat 2
+
+# Blocks
+tile.ore_ruby.name=Ruby Ore
+tile.block_ruby.name=Block of Ruby
+
+# Creative Tabs
+itemGroup.Hats=Hats

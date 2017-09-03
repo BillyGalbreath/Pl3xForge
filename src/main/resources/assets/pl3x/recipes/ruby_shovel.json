@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "R",
+    "S",
+    "S"
+  ],
+  "key": {
+    "R": {
+      "type": "forge:ore_dict",
+      "ore": "ruby"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "pl3x:ruby_shovel"
+  }
+}
