@@ -16,7 +16,7 @@ public class ModWorldGen implements IWorldGenerator {
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         // Overworld (0)
         if (world.provider.getDimension() == 0) {
-            runGenerator(world, random, chunkX, chunkZ, ModBlocks.oreRuby.getDefaultState(), 1, 5, 0, 10);
+            runGenerator(world, random, chunkX, chunkZ, ModBlocks.oreRuby.getDefaultState(), 1, 6, 0, 11);
         }
     }
 
