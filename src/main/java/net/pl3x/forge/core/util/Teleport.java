@@ -11,6 +11,7 @@ import java.util.UUID;
 
 public class Teleport {
     public static final Map<UUID, Location> BACK_DB = new HashMap<>();
+    public static final Map<UUID, TeleportRequest> TELEPORT_REQUESTS = new HashMap<>();
 
     public static void teleport(EntityPlayerMP player, Location loc) {
         teleport(player, loc, false);

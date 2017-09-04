@@ -12,6 +12,7 @@ import java.util.TreeMap;
 
 public class PlayerDataImpl implements PlayerData {
     private TreeMap<String, Location> homes = new TreeMap<>();
+    private boolean denyTeleports = false;
 
     @Override
     public void addHome(String name, Location location) {
@@ -36,13 +37,23 @@ public class PlayerDataImpl implements PlayerData {
     }
 
     @Override
-    public TreeMap<String, Location> getMap() {
+    public TreeMap<String, Location> getHomes() {
         return homes;
     }
 
     @Override
-    public void setMap(TreeMap<String, Location> homes) {
+    public void setHomes(TreeMap<String, Location> homes) {
         this.homes = homes;
+    }
+
+    @Override
+    public boolean denyTeleports() {
+        return this.denyTeleports;
+    }
+
+    @Override
+    public void denyTeleports(boolean denyTeleports) {
+        this.denyTeleports = denyTeleports;
     }
 
     @Override
@@ -61,11 +72,13 @@ public class PlayerDataImpl implements PlayerData {
         }
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setTag("homes", nbtTagList);
+        nbt.setBoolean("denyteleports", denyTeleports);
         return nbt;
     }
 
     @Override
     public void setDataFromNBT(NBTTagCompound nbt) {
+        denyTeleports = nbt.getBoolean("denyteleports");
         NBTTagList nbtTagList = nbt.getTagList("homes", 10);
         for (int i = 0; i < nbtTagList.tagCount(); i++) {
             NBTTagCompound compound = nbtTagList.getCompoundTagAt(i);

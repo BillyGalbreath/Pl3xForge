@@ -13,6 +13,11 @@ public abstract class Pl3xRunnable implements Runnable {
         return id;
     }
 
+    public Pl3xTask runTaskLater(long delay) {
+        checkState();
+        return setupId(Pl3xCore.getScheduler().runTaskLater(this, delay));
+    }
+
     public Pl3xTask runTaskTimer(long delay, long period) throws IllegalArgumentException, IllegalStateException {
         checkState();
         return setupId(Pl3xCore.getScheduler().runTaskTimer(this, delay, period));

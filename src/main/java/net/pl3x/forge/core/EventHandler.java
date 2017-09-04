@@ -10,8 +10,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.pl3x.forge.core.data.PlayerDataProvider;
 import net.pl3x.forge.core.util.Lang;
 import net.pl3x.forge.core.util.Teleport;
+import net.pl3x.forge.core.util.TeleportRequest;
 
 import java.lang.reflect.Field;
+import java.util.Iterator;
 
 public class EventHandler {
     @SubscribeEvent
@@ -51,7 +53,20 @@ public class EventHandler {
     @SubscribeEvent
     public void onPlayerClone(PlayerEvent.Clone event) {
         event.getEntityPlayer().getCapability(PlayerDataProvider.PLAYER_DATA_CAPABILITY, null)
-                .setMap(event.getOriginal().getCapability(PlayerDataProvider.PLAYER_DATA_CAPABILITY, null)
-                        .getMap());
+                .setHomes(event.getOriginal().getCapability(PlayerDataProvider.PLAYER_DATA_CAPABILITY, null)
+                        .getHomes());
+    }
+
+    @SubscribeEvent
+    public void onPlayerQuit(net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent event) {
+        Iterator<TeleportRequest> iter = Teleport.TELEPORT_REQUESTS.values().iterator();
+        while (iter.hasNext()) {
+            TeleportRequest request = iter.next();
+            if (request.getRequester().equals(event.player) ||
+                    request.getTarget().equals(event.player)) {
+                request.cancel();
+                iter.remove();
+            }
+        }
     }
 }

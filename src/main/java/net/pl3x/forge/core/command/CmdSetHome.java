@@ -24,7 +24,7 @@ public class CmdSetHome extends CommandBase {
         EntityPlayerMP player = getCommandSenderAsPlayer(sender);
         PlayerData playerData = getPlayerData(player);
 
-        if (playerData.getMap().size() >= 5) {
+        if (playerData.getHomes().size() >= 5) {
             Lang.send(player, Lang.HOME_LIMIT_REACHED);
             return;
         }

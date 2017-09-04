@@ -14,6 +14,11 @@ import net.pl3x.forge.core.command.CmdHome;
 import net.pl3x.forge.core.command.CmdHomes;
 import net.pl3x.forge.core.command.CmdSetHome;
 import net.pl3x.forge.core.command.CmdSpawn;
+import net.pl3x.forge.core.command.CmdTPA;
+import net.pl3x.forge.core.command.CmdTPAHere;
+import net.pl3x.forge.core.command.CmdTPAccept;
+import net.pl3x.forge.core.command.CmdTPDeny;
+import net.pl3x.forge.core.command.CmdTPToggle;
 import net.pl3x.forge.core.command.CmdTop;
 import net.pl3x.forge.core.data.PlayerData;
 import net.pl3x.forge.core.data.PlayerDataImpl;
@@ -39,6 +44,11 @@ public class CommonProxy {
         event.registerServerCommand(new CmdSetHome());
         event.registerServerCommand(new CmdSpawn());
         event.registerServerCommand(new CmdTop());
+        event.registerServerCommand(new CmdTPA());
+        event.registerServerCommand(new CmdTPAccept());
+        event.registerServerCommand(new CmdTPAHere());
+        event.registerServerCommand(new CmdTPDeny());
+        event.registerServerCommand(new CmdTPToggle());
     }
 
     public void serverStopping(FMLServerStoppingEvent event) {

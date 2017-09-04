@@ -15,9 +15,13 @@ public interface PlayerData {
 
     ArrayList<String> getHomeNames();
 
-    TreeMap<String, Location> getMap();
+    TreeMap<String, Location> getHomes();
 
-    void setMap(TreeMap<String, Location> homes);
+    void setHomes(TreeMap<String, Location> homes);
+
+    boolean denyTeleports();
+
+    void denyTeleports(boolean denyTeleports);
 
     NBTTagCompound getDataAsNBT();
 
