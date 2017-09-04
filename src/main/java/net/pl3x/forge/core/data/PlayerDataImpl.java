@@ -13,6 +13,8 @@ import java.util.TreeMap;
 public class PlayerDataImpl implements PlayerData {
     private TreeMap<String, Location> homes = new TreeMap<>();
     private boolean denyTeleports = false;
+    private boolean flyEnabled = false;
+    private float flySpeed = 0.1F;
 
     @Override
     public void addHome(String name, Location location) {
@@ -56,6 +58,22 @@ public class PlayerDataImpl implements PlayerData {
         this.denyTeleports = denyTeleports;
     }
 
+    public boolean flyEnabled() {
+        return flyEnabled;
+    }
+
+    public void flyEnabled(boolean flyEnabled) {
+        this.flyEnabled = flyEnabled;
+    }
+
+    public float flySpeed() {
+        return flySpeed;
+    }
+
+    public void flySpeed(float flySpeed) {
+        this.flySpeed = flySpeed;
+    }
+
     @Override
     public NBTTagCompound getDataAsNBT() {
         NBTTagList nbtTagList = new NBTTagList();
@@ -73,12 +91,16 @@ public class PlayerDataImpl implements PlayerData {
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setTag("homes", nbtTagList);
         nbt.setBoolean("denyteleports", denyTeleports);
+        nbt.setBoolean("flyenabled", flyEnabled);
+        nbt.setFloat("flyspeed", flySpeed);
         return nbt;
     }
 
     @Override
     public void setDataFromNBT(NBTTagCompound nbt) {
         denyTeleports = nbt.getBoolean("denyteleports");
+        flyEnabled = nbt.getBoolean("flyenabled");
+        flySpeed = nbt.getFloat("flyspeed");
         NBTTagList nbtTagList = nbt.getTagList("homes", 10);
         for (int i = 0; i < nbtTagList.tagCount(); i++) {
             NBTTagCompound compound = nbtTagList.getCompoundTagAt(i);

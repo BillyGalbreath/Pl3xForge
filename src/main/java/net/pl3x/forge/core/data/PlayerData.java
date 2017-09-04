@@ -23,6 +23,14 @@ public interface PlayerData {
 
     void denyTeleports(boolean denyTeleports);
 
+    boolean flyEnabled();
+
+    void flyEnabled(boolean flyEnabled);
+
+    float flySpeed();
+
+    void flySpeed(float flySpeed);
+
     NBTTagCompound getDataAsNBT();
 
     void setDataFromNBT(NBTTagCompound nbt);

@@ -7,19 +7,17 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.pl3x.forge.core.block.ModBlocks;
 import net.pl3x.forge.core.item.ModItems;
-import net.pl3x.forge.core.proxy.CommonProxy;
-import net.pl3x.forge.core.recipe.ModRecipes;
+import net.pl3x.forge.core.proxy.ServerProxy;
 import net.pl3x.forge.core.scheduler.Pl3xScheduler;
-import net.pl3x.forge.core.world.ModWorldGen;
 
 @Mod(modid = Pl3xCore.modId, name = Pl3xCore.name, version = Pl3xCore.version)
 public class Pl3xCore {
@@ -30,13 +28,28 @@ public class Pl3xCore {
     @Mod.Instance(modId)
     public static Pl3xCore instance;
 
-    @SidedProxy(serverSide = "net.pl3x.forge.core.proxy.CommonProxy", clientSide = "net.pl3x.forge.core.proxy.ClientProxy")
-    public static CommonProxy proxy;
+    @SidedProxy(serverSide = "net.pl3x.forge.core.proxy.ServerProxy", clientSide = "net.pl3x.forge.core.proxy.ClientProxy")
+    public static ServerProxy proxy;
 
     private static final Pl3xScheduler pl3xScheduler = new Pl3xScheduler();
 
     public static Pl3xScheduler getScheduler() {
         return pl3xScheduler;
+    }
+
+    @Mod.EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
+        proxy.preInit(event);
+    }
+
+    @Mod.EventHandler
+    public void init(FMLInitializationEvent event) {
+        proxy.init(event);
+    }
+
+    @Mod.EventHandler
+    public void postInit(FMLPostInitializationEvent event) {
+        proxy.postInit(event);
     }
 
     @Mod.EventHandler
@@ -47,17 +60,6 @@ public class Pl3xCore {
     @Mod.EventHandler
     public void serverStopping(FMLServerStoppingEvent event) {
         proxy.serverStopping(event);
-    }
-
-    @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-        GameRegistry.registerWorldGenerator(new ModWorldGen(), 0);
-    }
-
-    @Mod.EventHandler
-    public void init(FMLInitializationEvent event) {
-        ModRecipes.init();
-        proxy.registerCapabilities();
     }
 
     @Mod.EventBusSubscriber
