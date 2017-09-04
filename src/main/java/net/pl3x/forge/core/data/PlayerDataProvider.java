@@ -23,7 +23,7 @@ public class PlayerDataProvider implements ICapabilitySerializable<NBTBase> {
     @Nullable
     @Override
     public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
-        return capability == PLAYER_DATA_CAPABILITY ? PLAYER_DATA_CAPABILITY.<T>cast(this.instance) : null;
+        return capability == PLAYER_DATA_CAPABILITY ? PLAYER_DATA_CAPABILITY.cast(this.instance) : null;
     }
 
     @Override

@@ -9,13 +9,14 @@ import net.pl3x.forge.core.data.PlayerDataProvider;
 import net.pl3x.forge.core.util.Lang;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public abstract class CommandBase extends net.minecraft.command.CommandBase {
     private final String name;
     private final String usage;
-    private final List<String> aliases = Collections.emptyList();
+    private final List<String> aliases = new ArrayList<>();
 
     CommandBase(String name, String usage) {
         this.name = name;
