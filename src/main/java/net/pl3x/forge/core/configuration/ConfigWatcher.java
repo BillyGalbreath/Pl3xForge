@@ -27,32 +27,32 @@ public class ConfigWatcher implements Runnable {
             while (true) {
                 WatchKey key = watcher.take();
                 for (WatchEvent<?> event : key.pollEvents()) {
+                    String fileName = event.context().toString();
                     if (event.kind() == ENTRY_CREATE || event.kind() == ENTRY_MODIFY) {
-                        if (event.context().toString().equals(PermissionsHandler.FILE_NAME)) {
-                            Logger.warn("Detected changes in permissions file!");
-                            PermissionsHandler.reload();
-                            break;
+                        Logger.warn("Config file changed: " + fileName);
+                        if (fileName.equals(Permissions.FILE_NAME)) {
+                            Permissions.reload();
                         }
+                        break;
                     } else if (event.kind() == ENTRY_DELETE) {
-                        if (event.context().toString().equals(PermissionsHandler.FILE_NAME)) {
-                            Logger.warn("Permissions file deleted!");
-                            PermissionsHandler.reload();
-                            break;
+                        Logger.warn("Config file deleted: " + fileName);
+                        if (fileName.equals(Permissions.FILE_NAME)) {
+                            Permissions.reload();
                         }
+                        break;
                     }
                 }
                 if (!key.reset()) {
-                    Logger.error("Could not reset key!");
+                    Logger.error("Could not reset watch key!");
                     key.cancel();
                     watcher.close();
                     break;
                 }
             }
-        } catch (IOException | InterruptedException e) {
-            Logger.warn("ConfigWatcher has stopped");
-            if (!(e instanceof InterruptedException)) {
-                e.printStackTrace();
-            }
+        } catch (InterruptedException ignore) {
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        Logger.warn("ConfigWatcher has stopped");
     }
 }

@@ -28,7 +28,7 @@ import net.pl3x.forge.core.command.CmdTPDeny;
 import net.pl3x.forge.core.command.CmdTPToggle;
 import net.pl3x.forge.core.command.CmdTop;
 import net.pl3x.forge.core.configuration.ConfigWatcher;
-import net.pl3x.forge.core.configuration.PermissionsHandler;
+import net.pl3x.forge.core.configuration.Permissions;
 import net.pl3x.forge.core.data.PlayerData;
 import net.pl3x.forge.core.data.PlayerDataImpl;
 import net.pl3x.forge.core.data.PlayerDataStorage;
@@ -48,7 +48,7 @@ public class ServerProxy {
         configWatcher = new Thread(new ConfigWatcher(configDir.toPath()), "ConfigWatcher");
         configWatcher.start();
 
-        PermissionsHandler.reload(configDir);
+        Permissions.reload(configDir);
     }
 
     public void init(FMLInitializationEvent event) {
