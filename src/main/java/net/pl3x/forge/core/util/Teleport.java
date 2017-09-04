@@ -1,6 +1,8 @@
 package net.pl3x.forge.core.util;
 
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.util.SoundCategory;
 import net.pl3x.forge.core.Location;
 
 import java.util.HashMap;
@@ -15,6 +17,9 @@ public class Teleport {
     }
 
     public static void teleport(EntityPlayerMP player, Location loc, boolean center) {
+        loc.getWorld().playSound(loc.getX(), loc.getY(), loc.getZ(), SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.BLOCKS, 1F, 1F, false);
+        player.world.playSound(player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.BLOCKS, 1F, 1F, false);
+
         BACK_DB.put(player.getUniqueID(), new Location(player));
         if (loc.getDimension() != player.dimension) {
             player.changeDimension(loc.getDimension());
