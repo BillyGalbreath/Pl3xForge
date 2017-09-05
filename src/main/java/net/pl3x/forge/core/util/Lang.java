@@ -15,6 +15,8 @@ public class Lang {
 
     public static String CHAT_FORMAT = "{prefix}{sender}{suffix}&3:&r {message}";
     public static String CHAT_STAFF_FORMAT = "&7[&4S&7]&r{prefix}{sender}{suffix}&4:&r {message}";
+    public static String CHAT_ITEM_FORMAT_SINGLE = "&3[&e{item}&3]";
+    public static String CHAT_ITEM_FORMAT_MULTI = "&3[&e{item} &7\u00D7&6{amount}&3]";
 
     public static String FLY_ONLY_SURVIVAL = "&cFly only works in survival mode";
     public static String FLY_TOGGLED = "&aFly mode toggled {state}";

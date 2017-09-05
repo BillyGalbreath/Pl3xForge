@@ -1,6 +1,11 @@
 package net.pl3x.forge.core;
 
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.play.server.SPacketPlayerListHeaderFooter;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.Style;
@@ -23,6 +28,7 @@ import net.pl3x.forge.core.util.Utils;
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -114,10 +120,6 @@ public class EventHandler {
                     !Permissions.hasPermission(recipient, "command.staff"));
         }
 
-        // TODO check for [item] in message
-        //
-        //
-
         // check for color codes
         message = Permissions.hasPermission(sender, "chat.color") ?
                 message.replaceAll("(?i)&([a-f0-9r])", "\u00a7$1") :
@@ -131,21 +133,48 @@ public class EventHandler {
                         .replaceAll("(?i)\u00a7([k-or])", "");
 
         // fix up the format
-        String format = (isStaffChat ? Lang.CHAT_STAFF_FORMAT : Lang.CHAT_FORMAT)
+        String format = Lang.colorize((isStaffChat ? Lang.CHAT_STAFF_FORMAT : Lang.CHAT_FORMAT)
                 .replace("{prefix}", Permissions.getPrefix(sender))
-                .replace("{suffix}", Permissions.getSuffix(sender))
+                .replace("{suffix}", Permissions.getSuffix(sender)))
                 .replace("{message}", message);
 
         // build the components
         String[] parts = format.split("\\{sender}");
 
         TextComponentString component1 = new TextComponentString(Lang.colorize(parts[0]));
-
         TextComponentString component2 = new TextComponentString(Lang.colorize(parts[1]));
 
-        // TODO build the [item] component from component2
-        //
-        //
+        if (parts[1].contains("[item]")) {
+            ItemStack handItemStack = sender.getHeldItemMainhand().copy();
+            Item handItem = handItemStack.getItem();
+            NBTTagCompound nbt = handItemStack.serializeNBT();
+
+            // remove the pages from writable books (prevents client crash)
+            if (handItem == Items.WRITABLE_BOOK ||
+                    handItem == Items.WRITTEN_BOOK) {
+                nbt.setTag("pages", new NBTTagList());
+            }
+
+            String[] itemParts = parts[1].split("\\[item]");
+
+            TextComponentString firstItemComponents = new TextComponentString(itemParts[0]);
+            TextComponentString secondItemComponents = new TextComponentString(ChatColor.getLastColors(itemParts[0]) +
+                    String.join(" ", Arrays.copyOfRange(itemParts, 1, itemParts.length)));
+
+            TextComponentString itemComponents = new TextComponentString(
+                    Lang.colorize(handItemStack.getCount() > 1 ? Lang.CHAT_ITEM_FORMAT_MULTI
+                            .replace("{item}", handItemStack.getDisplayName())
+                            .replace("{amount}", Integer.toString(handItemStack.getCount())) :
+                            Lang.CHAT_ITEM_FORMAT_SINGLE
+                                    .replace("{item}", handItemStack.getDisplayName())));
+            itemComponents.setStyle(new Style()
+                    .setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_ITEM,
+                            new TextComponentString(nbt.toString()))));
+
+            component2 = firstItemComponents;
+            component2.appendSibling(itemComponents)
+                    .appendSibling(secondItemComponents);
+        }
 
         TextComponentString componentSender = new TextComponentString(sender.getName());
         componentSender.setStyle(new Style()
