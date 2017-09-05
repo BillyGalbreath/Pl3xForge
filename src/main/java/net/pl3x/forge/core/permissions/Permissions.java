@@ -19,10 +19,6 @@ public class Permissions {
         if (group == null) {
             return player != null && player.hasPermission(node);
         }
-        PermissionsTrack track = PermissionsConfig.getHolder().getTrack(group.getName());
-        if (track == null) {
-            return group.hasPermission(node);
-        }
         return hasPermission(group, node);
     }
 
