@@ -27,6 +27,7 @@ import net.pl3x.forge.core.command.CmdTPA;
 import net.pl3x.forge.core.command.CmdTPAHere;
 import net.pl3x.forge.core.command.CmdTPAccept;
 import net.pl3x.forge.core.command.CmdTPDeny;
+import net.pl3x.forge.core.command.CmdTPS;
 import net.pl3x.forge.core.command.CmdTPToggle;
 import net.pl3x.forge.core.command.CmdTop;
 import net.pl3x.forge.core.configuration.ConfigWatcher;
@@ -60,7 +61,7 @@ public class ServerProxy {
     }
 
     public void postInit(FMLPostInitializationEvent event) {
-
+        Pl3xCore.getTpsTracker().runTaskTimer(1, 1);
     }
 
     public void serverStarting(FMLServerStartingEvent event) {
@@ -79,6 +80,7 @@ public class ServerProxy {
         event.registerServerCommand(new CmdTPAccept());
         event.registerServerCommand(new CmdTPAHere());
         event.registerServerCommand(new CmdTPDeny());
+        event.registerServerCommand(new CmdTPS());
         event.registerServerCommand(new CmdTPToggle());
     }
 

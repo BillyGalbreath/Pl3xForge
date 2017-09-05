@@ -47,6 +47,8 @@ public class Lang {
 
     public static String TELEPORT_TOP = "&aTeleported to surface";
 
+    public static String TPS_TRACKER = "&aServer TPS is {tps}";
+
     public static void send(EntityPlayerMP player, String message) {
         for (String part : message.split("\n")) {
             player.sendMessage(new TextComponentString(colorize(part)));

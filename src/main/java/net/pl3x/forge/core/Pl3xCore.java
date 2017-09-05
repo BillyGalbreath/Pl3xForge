@@ -33,7 +33,7 @@ public class Pl3xCore {
     public static ServerProxy proxy;
 
     private static final Pl3xScheduler pl3xScheduler = new Pl3xScheduler();
-    private static TPSTracker tpsTracker;
+    private static TPSTracker tpsTracker = new TPSTracker();
 
     public static Pl3xScheduler getScheduler() {
         return pl3xScheduler;
