@@ -19,6 +19,10 @@ public class Utils {
         return Arrays.asList(playerList.getOnlinePlayerNames());
     }
 
+    public static Collection<EntityPlayerMP> getPlayers() {
+        return playerList.getPlayers();
+    }
+
     public static EntityPlayerMP getPlayer(UUID uuid) {
         return playerList.getPlayerByUUID(uuid);
     }
@@ -38,6 +42,10 @@ public class Utils {
             }
         }
         return null;
+    }
+
+    public static boolean isOp(EntityPlayerMP player) {
+        return playerList.getOppedPlayers().getEntry(player.getGameProfile()) != null;
     }
 
     public static void setFlySpeed(EntityPlayerMP player, float speed) {

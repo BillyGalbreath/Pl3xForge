@@ -4,6 +4,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.text.TextComponentString;
 
 public class Lang {
+    public static String COMMAND_NO_PERMISSION = "&cYou do not have permission to use this command";
     public static String MUST_SPECIFY_PLAYER = "&cMust specify a player";
     public static String PLAYER_NOT_ONLINE = "&cPlayer is not online";
     public static String COMMAND_ON_COOLDOWN = "&cThat command is on cooldown";
@@ -11,6 +12,9 @@ public class Lang {
     public static String BACK_ON_DEATH = "&aUse /back to teleport to where you died";
     public static String BACK_NO_LOCATION = "&cNo back location set";
     public static String BACK_TO_PREVIOUS = "&aTeleported to previous location";
+
+    public static String CHAT_FORMAT = "{prefix}{sender}{suffix}&3:&r {message}";
+    public static String CHAT_STAFF_FORMAT = "&7[&4S&7]&r{prefix}{sender}{suffix}&4:&r {message}";
 
     public static String FLY_ONLY_SURVIVAL = "&cFly only works in survival mode";
     public static String FLY_TOGGLED = "&aFly mode toggled {state}";
