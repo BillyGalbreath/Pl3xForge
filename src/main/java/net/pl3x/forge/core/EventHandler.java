@@ -3,6 +3,7 @@ package net.pl3x.forge.core;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.play.server.SPacketPlayerListHeaderFooter;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraftforge.event.CommandEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -68,5 +69,16 @@ public class EventHandler {
                 iter.remove();
             }
         }
+    }
+
+    @SubscribeEvent
+    public void onServerChatEvent(CommandEvent event) {
+        new Thread(Logger.colorizeConsole("&3Command&r")) {
+            @Override
+            public void run() {
+                Logger.info("&6" + event.getSender().getName() + " issued server command: &3/" +
+                        event.getCommand().getName() + " " + String.join(" ", event.getParameters()));
+            }
+        }.start();
     }
 }

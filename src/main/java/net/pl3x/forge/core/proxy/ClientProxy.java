@@ -8,14 +8,13 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
-import net.pl3x.forge.core.Logger;
 import net.pl3x.forge.core.Pl3xCore;
 import net.pl3x.forge.core.recipe.ModRecipes;
 
 public class ClientProxy extends ServerProxy {
     @Override
     public void preInit(FMLPreInitializationEvent event) {
-        Logger.setLogger(event.getModLog());
+        //
     }
 
     public void init(FMLInitializationEvent event) {
@@ -23,7 +22,7 @@ public class ClientProxy extends ServerProxy {
     }
 
     public void postInit(FMLPostInitializationEvent event) {
-
+        //
     }
 
     @Override

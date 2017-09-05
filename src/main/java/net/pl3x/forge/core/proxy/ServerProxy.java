@@ -44,11 +44,9 @@ public class ServerProxy {
     private Thread configWatcher;
 
     public void preInit(FMLPreInitializationEvent event) {
-        Logger.setLogger(event.getModLog());
-
         File configDir = new File(event.getModConfigurationDirectory(), Pl3xCore.name);
 
-        configWatcher = new Thread(new ConfigWatcher(configDir.toPath()), "ConfigWatcher");
+        configWatcher = new Thread(new ConfigWatcher(configDir.toPath()), Logger.colorizeConsole("&1Config&r"));
         configWatcher.start();
 
         PermissionsConfig.reload(configDir);
