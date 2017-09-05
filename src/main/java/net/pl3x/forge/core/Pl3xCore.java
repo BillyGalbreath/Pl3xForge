@@ -18,6 +18,7 @@ import net.pl3x.forge.core.block.ModBlocks;
 import net.pl3x.forge.core.item.ModItems;
 import net.pl3x.forge.core.proxy.ServerProxy;
 import net.pl3x.forge.core.scheduler.Pl3xScheduler;
+import net.pl3x.forge.core.util.TPSTracker;
 
 @Mod(modid = Pl3xCore.modId, name = Pl3xCore.name, version = Pl3xCore.version)
 public class Pl3xCore {
@@ -32,9 +33,14 @@ public class Pl3xCore {
     public static ServerProxy proxy;
 
     private static final Pl3xScheduler pl3xScheduler = new Pl3xScheduler();
+    private static TPSTracker tpsTracker;
 
     public static Pl3xScheduler getScheduler() {
         return pl3xScheduler;
+    }
+
+    public static TPSTracker getTpsTracker() {
+        return tpsTracker;
     }
 
     @Mod.EventHandler
