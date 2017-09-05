@@ -20,6 +20,7 @@ import net.pl3x.forge.core.command.CmdFly;
 import net.pl3x.forge.core.command.CmdFlySpeed;
 import net.pl3x.forge.core.command.CmdHome;
 import net.pl3x.forge.core.command.CmdHomes;
+import net.pl3x.forge.core.command.CmdRTP;
 import net.pl3x.forge.core.command.CmdSetHome;
 import net.pl3x.forge.core.command.CmdSpawn;
 import net.pl3x.forge.core.command.CmdTPA;
@@ -70,6 +71,7 @@ public class ServerProxy {
         event.registerServerCommand(new CmdFlySpeed());
         event.registerServerCommand(new CmdHome());
         event.registerServerCommand(new CmdHomes());
+        event.registerServerCommand(new CmdRTP());
         event.registerServerCommand(new CmdSetHome());
         event.registerServerCommand(new CmdSpawn());
         event.registerServerCommand(new CmdTop());

@@ -100,6 +100,10 @@ public class Location implements Cloneable {
         return floor(z);
     }
 
+    public Location add(double x, double y, double z) {
+        return x == 0.0D && y == 0.0D && z == 0.0D ? this : new Location(world, dimension, this.x + x, this.y + y, this.z + z, pitch, yaw);
+    }
+
     @Override
     public Location clone() {
         try {

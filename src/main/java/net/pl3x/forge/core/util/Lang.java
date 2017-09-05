@@ -6,6 +6,7 @@ import net.minecraft.util.text.TextComponentString;
 public class Lang {
     public static String MUST_SPECIFY_PLAYER = "&cMust specify a player";
     public static String PLAYER_NOT_ONLINE = "&cPlayer is not online";
+    public static String COMMAND_ON_COOLDOWN = "&cThat command is on cooldown";
 
     public static String BACK_ON_DEATH = "&aUse /back to teleport to where you died";
     public static String BACK_NO_LOCATION = "&cNo back location set";
@@ -25,6 +26,9 @@ public class Lang {
     public static String HOME_DELETED = "&aHome removed";
     public static String HOME_TELEPORTED = "&aTeleported home";
     public static String HOME_LIST = "&aList of homes&e:\n&d{homes}";
+
+    public static String RTP_NO_SAFE_LOCATION = "&cCould not locate a safe location";
+    public static String RTP_SUCCESS = "&aTeleported to a random location";
 
     public static String SPAWN_TELEPORT = "&aTeleported to server spawn";
 
