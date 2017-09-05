@@ -11,7 +11,11 @@ public class Lang {
     public static String BACK_NO_LOCATION = "&cNo back location set";
     public static String BACK_TO_PREVIOUS = "&aTeleported to previous location";
 
-    public static String FLY_TOGGLED = "&aFly mod toggled {state}";
+    public static String FLY_ONLY_SURVIVAL = "&cFly only works in survival mode";
+    public static String FLY_TOGGLED = "&aFly mode toggled {state}";
+
+    public static String FLY_SPEED_INVALID = "&cSpeed must be between 0 and 10";
+    public static String FLY_SPEED_SET = "&aFly speed set to {speed}";
 
     public static String HOME_NOT_FOUND = "&cHome not found";
     public static String HOME_LIMIT_REACHED = "&cYou have reached you homes limit";

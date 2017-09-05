@@ -17,6 +17,7 @@ import net.pl3x.forge.core.command.CmdBack;
 import net.pl3x.forge.core.command.CmdCountdown;
 import net.pl3x.forge.core.command.CmdDelHome;
 import net.pl3x.forge.core.command.CmdFly;
+import net.pl3x.forge.core.command.CmdFlySpeed;
 import net.pl3x.forge.core.command.CmdHome;
 import net.pl3x.forge.core.command.CmdHomes;
 import net.pl3x.forge.core.command.CmdSetHome;
@@ -28,7 +29,7 @@ import net.pl3x.forge.core.command.CmdTPDeny;
 import net.pl3x.forge.core.command.CmdTPToggle;
 import net.pl3x.forge.core.command.CmdTop;
 import net.pl3x.forge.core.configuration.ConfigWatcher;
-import net.pl3x.forge.core.configuration.Permissions;
+import net.pl3x.forge.core.configuration.PermissionsConfig;
 import net.pl3x.forge.core.data.PlayerData;
 import net.pl3x.forge.core.data.PlayerDataImpl;
 import net.pl3x.forge.core.data.PlayerDataStorage;
@@ -48,7 +49,7 @@ public class ServerProxy {
         configWatcher = new Thread(new ConfigWatcher(configDir.toPath()), "ConfigWatcher");
         configWatcher.start();
 
-        Permissions.reload(configDir);
+        PermissionsConfig.reload(configDir);
     }
 
     public void init(FMLInitializationEvent event) {
@@ -66,6 +67,7 @@ public class ServerProxy {
         event.registerServerCommand(new CmdCountdown());
         event.registerServerCommand(new CmdDelHome());
         event.registerServerCommand(new CmdFly());
+        event.registerServerCommand(new CmdFlySpeed());
         event.registerServerCommand(new CmdHome());
         event.registerServerCommand(new CmdHomes());
         event.registerServerCommand(new CmdSetHome());

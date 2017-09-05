@@ -6,6 +6,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.pl3x.forge.core.data.PlayerData;
 import net.pl3x.forge.core.data.PlayerDataProvider;
+import net.pl3x.forge.core.permissions.Permissions;
 import net.pl3x.forge.core.util.Lang;
 
 import javax.annotation.Nullable;
@@ -31,6 +32,10 @@ public abstract class CommandBase extends net.minecraft.command.CommandBase {
         return player.getCapability(PlayerDataProvider.PLAYER_DATA_CAPABILITY, null);
     }
 
+    public String getPermissionNode() {
+        return "command." + name;
+    }
+
     @Override
     public String getName() {
         return name;
@@ -53,7 +58,9 @@ public abstract class CommandBase extends net.minecraft.command.CommandBase {
 
     @Override
     public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
-        return true;
+        return sender.canUseCommand(getRequiredPermissionLevel(), getName()) ||
+                (sender instanceof EntityPlayerMP &&
+                        Permissions.hasPermission((EntityPlayerMP) sender, getPermissionNode()));
     }
 
     @Override

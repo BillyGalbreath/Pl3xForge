@@ -35,4 +35,28 @@ public class PermissionsHolder {
     public List<PermissionsPlayer> getPlayers() {
         return players;
     }
+
+    public PermissionsTrack getTrack(String group) {
+        return tracks.stream()
+                .filter(track -> track.getGroup().equalsIgnoreCase(group))
+                .findAny().orElse(null);
+    }
+
+    public PermissionsTrack getTrack(int order) {
+        return tracks.stream()
+                .filter(track -> track.getOrder() == order)
+                .findAny().orElse(null);
+    }
+
+    public PermissionsGroup getGroup(String name) {
+        return groups.stream()
+                .filter(group -> group.getName().equalsIgnoreCase(name))
+                .findAny().orElse(null);
+    }
+
+    public PermissionsPlayer getPlayer(UUID uuid) {
+        return players.stream()
+                .filter(player -> player.getUuid().equals(uuid))
+                .findAny().orElse(null);
+    }
 }

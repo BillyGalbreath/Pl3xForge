@@ -6,7 +6,7 @@ import net.pl3x.forge.core.permissions.PermissionsHolder;
 import java.io.File;
 import java.io.IOException;
 
-public class Permissions extends ConfigLoader {
+public class PermissionsConfig extends ConfigLoader {
     static final String FILE_NAME = "permissions.json";
     private static File configDir;
     private static PermissionsHolder permissionsHolder;

@@ -29,17 +29,15 @@ public class ConfigWatcher implements Runnable {
                 for (WatchEvent<?> event : key.pollEvents()) {
                     String fileName = event.context().toString();
                     if (event.kind() == ENTRY_CREATE || event.kind() == ENTRY_MODIFY) {
-                        Logger.warn("Config file changed: " + fileName);
-                        if (fileName.equals(Permissions.FILE_NAME)) {
-                            Permissions.reload();
+                        if (fileName.equals(PermissionsConfig.FILE_NAME)) {
+                            Logger.warn("Config file changed: " + fileName);
+                            PermissionsConfig.reload();
                         }
-                        break;
                     } else if (event.kind() == ENTRY_DELETE) {
-                        Logger.warn("Config file deleted: " + fileName);
-                        if (fileName.equals(Permissions.FILE_NAME)) {
-                            Permissions.reload();
+                        if (fileName.equals(PermissionsConfig.FILE_NAME)) {
+                            Logger.warn("Config file deleted: " + fileName);
+                            PermissionsConfig.reload();
                         }
-                        break;
                     }
                 }
                 if (!key.reset()) {

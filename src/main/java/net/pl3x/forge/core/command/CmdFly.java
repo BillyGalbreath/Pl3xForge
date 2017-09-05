@@ -4,13 +4,14 @@ import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
-import net.pl3x.forge.core.data.PlayerData;
+import net.minecraft.world.GameType;
 import net.pl3x.forge.core.util.Lang;
+import net.pl3x.forge.core.util.Utils;
 import org.apache.commons.lang3.BooleanUtils;
 
 public class CmdFly extends CommandBase {
     public CmdFly() {
-        super("fly", "Toggles fly mode");
+        super("fly", "Toggles survival fly mode");
     }
 
     @Override
@@ -21,20 +22,28 @@ public class CmdFly extends CommandBase {
 
         EntityPlayerMP player = getCommandSenderAsPlayer(sender);
 
-        PlayerData playerData = getPlayerData(player);
-        playerData.flyEnabled(!playerData.flyEnabled());
-
-        if (playerData.flyEnabled()) {
-            player.capabilities.allowFlying = true;
-            player.capabilities.setFlySpeed(playerData.flySpeed());
-        } else {
-            player.capabilities.setFlySpeed(0.1F);
-            player.capabilities.allowFlying = false;
-            player.capabilities.isFlying = false;
-            player.fallDistance = -256F; // prevent falling to death
+        if (player.interactionManager.getGameType() != GameType.SURVIVAL) {
+            Lang.send(player, Lang.FLY_ONLY_SURVIVAL);
+            return;
         }
 
+        player.capabilities.allowFlying = !player.capabilities.allowFlying;
+        Utils.setFlySpeed(player, 0.1F);
+
+        if (!player.capabilities.allowFlying) {
+            // drop out of sky
+            player.capabilities.isFlying = false;
+            if (!player.onGround) {
+                // but prevent fall damage
+                player.fallDistance = Integer.MIN_VALUE;
+            }
+        }
+
+        // inform the client of the changes
+        player.sendPlayerAbilities();
+
         Lang.send(player, Lang.FLY_TOGGLED
-                .replace("{state}", BooleanUtils.toStringOnOff(playerData.flyEnabled())));
+                .replace("{state}",
+                        BooleanUtils.toStringOnOff(player.capabilities.allowFlying)));
     }
 }

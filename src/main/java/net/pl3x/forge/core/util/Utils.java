@@ -1,10 +1,12 @@
 package net.pl3x.forge.core.util;
 
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.PlayerCapabilities;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.PlayerList;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.UUID;
@@ -36,5 +38,15 @@ public class Utils {
             }
         }
         return null;
+    }
+
+    public static void setFlySpeed(EntityPlayerMP player, float speed) {
+        PlayerCapabilities capabilities = player.capabilities;
+        try {
+            Field flySpeed = capabilities.getClass().getDeclaredField("field_75096_f");
+            flySpeed.setAccessible(true);
+            flySpeed.set(capabilities, speed / 2F);
+        } catch (IllegalAccessException | NoSuchFieldException ignore) {
+        }
     }
 }
