@@ -20,6 +20,11 @@ public class CmdFlySpeed extends CommandBase {
 
         EntityPlayerMP player = getCommandSenderAsPlayer(sender);
 
+        if (args.length == 0) {
+            Lang.send(player, Lang.FLY_SPEED_INVALID);
+            return;
+        }
+
         float speed;
         try {
             speed = Float.valueOf(args[0]);
