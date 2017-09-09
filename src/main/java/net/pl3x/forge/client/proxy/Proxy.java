@@ -6,6 +6,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
+import net.pl3x.forge.client.recipe.ModRecipes;
 
 public class Proxy {
     public void preInit(FMLPreInitializationEvent event) {
@@ -13,7 +14,7 @@ public class Proxy {
     }
 
     public void init(FMLInitializationEvent event) {
-        //
+        ModRecipes.init();
     }
 
     public void postInit(FMLPostInitializationEvent event) {
