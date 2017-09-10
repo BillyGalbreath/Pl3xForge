@@ -1,5 +1,5 @@
 {
-  "type": "forge:ore_shapeless",
+  "type": "crafting_shapeless",
   "ingredients": [
     {
       "item": "pl3x:block_ruby"
