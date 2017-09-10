@@ -1,10 +1,10 @@
 {
   "type": "forge:ore_shapeless",
-  "ingredients": {
-    "R": {
+  "ingredients": [
+    {
       "item": "pl3x:block_ruby"
     }
-  },
+  ],
   "result": {
     "type": "forge:ore_dict",
     "ore": "ruby",
