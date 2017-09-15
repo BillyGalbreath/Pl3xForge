@@ -6,8 +6,7 @@
     }
   ],
   "result": {
-    "type": "forge:ore_dict",
-    "ore": "ruby",
+    "item": "pl3x:ruby",
     "count": 9
   }
 }
