@@ -1,6 +1,7 @@
 package net.pl3x.forge.client;
 
 import net.minecraft.block.Block;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -13,6 +14,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.pl3x.forge.client.block.ModBlocks;
+import net.pl3x.forge.client.enchantment.ModEnchantments;
 import net.pl3x.forge.client.item.ModItems;
 import net.pl3x.forge.client.proxy.Proxy;
 
@@ -64,6 +66,11 @@ public class Pl3xForgeClient {
         @SubscribeEvent
         public static void registerBlocks(RegistryEvent.Register<Block> event) {
             ModBlocks.register(event.getRegistry());
+        }
+
+        @SubscribeEvent
+        public static void registerEnchantments(RegistryEvent.Register<Enchantment> event) {
+            ModEnchantments.register(event.getRegistry());
         }
 
         @SubscribeEvent

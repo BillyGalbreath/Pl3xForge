@@ -54,5 +54,8 @@ tile.ore_ruby.name=Ruby Ore
 tile.block_ruby.name=Block of Ruby
 tile.frosted_obsidian.name=Frosted Obsidian
 
+# Enchantments
+enchantment.lavaWalker=Lava Walker
+
 # Creative Tabs
 itemGroup.Hats=Hats
