@@ -11,7 +11,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 def build = System.getenv()['BUILD_NUMBER'] ?: "SNAPSHOT"
-version = "1.0.3-b" + build
+version = "1.0.4-b" + build
 group = "net.pl3x.forge.client" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Pl3xForgeClient"
 
