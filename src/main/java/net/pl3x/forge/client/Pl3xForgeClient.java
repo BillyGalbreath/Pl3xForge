@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.pl3x.forge.client.block.ModBlocks;
 import net.pl3x.forge.client.enchantment.ModEnchantments;
 import net.pl3x.forge.client.item.ModItems;
@@ -38,6 +39,8 @@ public class Pl3xForgeClient {
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         proxy.init(event);
+
+        NetworkRegistry.INSTANCE.registerGuiHandler(this, new ModGuiHandler());
     }
 
     @Mod.EventHandler

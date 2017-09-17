@@ -10,7 +10,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 
 def build = System.getenv()['BUILD_NUMBER'] ?: "SNAPSHOT"
-version = "1.0.4-b" + build
+version = "1.0.5-b" + build
 group = "net.pl3x.forge.client"
 archivesBaseName = "Pl3xForgeClient"
 

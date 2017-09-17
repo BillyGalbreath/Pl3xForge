@@ -53,6 +53,7 @@ item.hat_wizard2.name=Wizard Hat 2
 tile.ore_ruby.name=Ruby Ore
 tile.block_ruby.name=Block of Ruby
 tile.frosted_obsidian.name=Frosted Obsidian
+tile.enchantment_splitter.name=Enchantment Splitter
 
 # Enchantments
 enchantment.lavaWalker=Lava Walker

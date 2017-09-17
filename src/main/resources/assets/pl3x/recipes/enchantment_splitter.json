@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " B ",
+    "ROR",
+    "OOO"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:book"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "R": {
+      "type": "forge:ore_dict",
+      "ore": "ruby"
+    }
+  },
+  "result": {
+    "item": "pl3x:enchantment_splitter"
+  }
+}
