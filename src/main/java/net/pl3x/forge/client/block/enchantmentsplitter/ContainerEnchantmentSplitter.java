@@ -42,17 +42,17 @@ public class ContainerEnchantmentSplitter extends Container {
         };
 
         // splitter slots
-        addSlotToContainer(new Slot(inputSlots, 0, 71, 22) {
+        addSlotToContainer(new Slot(inputSlots, 0, 80, 22) {
             public boolean isItemValid(ItemStack stack) {
                 return stack.isItemEnchanted();
             }
         });
-        addSlotToContainer(new Slot(inputSlots, 1, 71, 47) {
+        addSlotToContainer(new Slot(inputSlots, 1, 80, 47) {
             public boolean isItemValid(ItemStack stack) {
                 return stack.getItem() == Items.BOOK;
             }
         });
-        addSlotToContainer(new Slot(resultSlotTool, 2, 124, 22) {
+        addSlotToContainer(new Slot(resultSlotTool, 2, 134, 22) {
             public boolean isItemValid(ItemStack stack) {
                 return false;
             }
@@ -84,7 +84,7 @@ public class ContainerEnchantmentSplitter extends Container {
                 return stack;
             }
         });
-        addSlotToContainer(new Slot(resultSlotBook, 3, 124, 47) {
+        addSlotToContainer(new Slot(resultSlotBook, 3, 134, 47) {
             public boolean isItemValid(ItemStack stack) {
                 return false;
             }

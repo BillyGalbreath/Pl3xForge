@@ -69,7 +69,7 @@ public class GuiEnchantmentSplitter extends GuiContainer {
 
         if (splitter.getSlot(0).getHasStack() && splitter.getSlot(1).getHasStack() &&
                 (!splitter.getSlot(2).getHasStack() || !splitter.getSlot(3).getHasStack())) {
-            drawTexturedModalRect(x + 91, y + 32, xSize, 0, 28, 21);
+            drawTexturedModalRect(x + 100, y + 32, xSize, 0, 28, 21);
         }
     }
 
