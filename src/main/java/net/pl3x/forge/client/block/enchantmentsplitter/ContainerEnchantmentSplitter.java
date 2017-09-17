@@ -20,6 +20,7 @@ import net.pl3x.forge.client.block.ModBlocks;
 
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
 
 public class ContainerEnchantmentSplitter extends Container {
     private final IInventory resultSlotTool;
@@ -27,6 +28,13 @@ public class ContainerEnchantmentSplitter extends Container {
     private final IInventory inputSlots;
     private final World world;
     public final BlockPos selfPosition;
+    public boolean BAD_INPUT_TOOL = false;
+    public boolean BAD_INPUT_BOOK = false;
+    public boolean NEW_INPUT_TOOL = false;
+
+    public enum Status {
+
+    }
 
     public ContainerEnchantmentSplitter(InventoryPlayer playerInventory, final World worldIn, final BlockPos blockPosIn) {
         this.selfPosition = blockPosIn;
@@ -62,6 +70,9 @@ public class ContainerEnchantmentSplitter extends Container {
             }
 
             public ItemStack onTake(EntityPlayer player, ItemStack stack) {
+                if (stack.isEmpty()) {
+                    return stack;
+                }
                 ItemStack resultBook = resultSlotBook.getStackInSlot(1).copy();
                 if (!resultBook.isEmpty()) {
                     if (!player.capabilities.isCreativeMode) {
@@ -94,6 +105,9 @@ public class ContainerEnchantmentSplitter extends Container {
             }
 
             public ItemStack onTake(EntityPlayer player, ItemStack stack) {
+                if (stack.isEmpty()) {
+                    return stack;
+                }
                 ItemStack resultTool = resultSlotTool.getStackInSlot(0).copy();
                 if (!resultTool.isEmpty()) {
                     if (!player.capabilities.isCreativeMode) {
@@ -108,6 +122,15 @@ public class ContainerEnchantmentSplitter extends Container {
 
                     // decrease the amount of blank books
                     inputSlots.decrStackSize(1, 1);
+
+                    NEW_INPUT_TOOL = true;
+                    new Thread(() -> {
+                        try {
+                            TimeUnit.SECONDS.sleep(5);
+                        } catch (InterruptedException ignore) {
+                        }
+                        NEW_INPUT_TOOL = false;
+                    }).start();
                 }
                 // take the enchanted book
                 return stack;
@@ -137,17 +160,23 @@ public class ContainerEnchantmentSplitter extends Container {
         ItemStack toolStack = inputSlots.getStackInSlot(0).copy();
         ItemStack bookStack = inputSlots.getStackInSlot(1).copy();
         if (toolStack.isEmpty() || bookStack.isEmpty()) {
+            NEW_INPUT_TOOL = false;
+            clearFlags();
             clearResults();
             return; // at least one input slot is empty
         }
 
         if (bookStack.isItemEnchanted() || bookStack.getItem() != Items.BOOK) {
+            clearFlags();
+            BAD_INPUT_BOOK = true;
             clearResults();
             return; // not a regular book
         }
 
         Map<Enchantment, Integer> toolEnchants = EnchantmentHelper.getEnchantments(toolStack);
         if (toolEnchants.size() < 2) {
+            clearFlags();
+            BAD_INPUT_TOOL = true;
             clearResults();
             return; // not multiple enchants
         }
@@ -167,6 +196,7 @@ public class ContainerEnchantmentSplitter extends Container {
         }
 
         if (enchantment == null || level < 0) {
+            clearFlags();
             clearResults();
             return; // something went wrong picking random enchant
         }
@@ -183,12 +213,18 @@ public class ContainerEnchantmentSplitter extends Container {
         resultSlotTool.setInventorySlotContents(0, resultTool);
         resultSlotBook.setInventorySlotContents(1, resultBook);
 
+        clearFlags();
         detectAndSendChanges();
     }
 
     private void clearResults() {
         resultSlotTool.setInventorySlotContents(0, ItemStack.EMPTY);
         resultSlotBook.setInventorySlotContents(1, ItemStack.EMPTY);
+    }
+
+    private void clearFlags() {
+        BAD_INPUT_TOOL = false;
+        BAD_INPUT_BOOK = false;
     }
 
     public void addListener(IContainerListener listener) {

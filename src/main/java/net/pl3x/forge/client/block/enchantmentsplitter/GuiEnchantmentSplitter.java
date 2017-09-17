@@ -14,6 +14,8 @@ public class GuiEnchantmentSplitter extends GuiContainer {
     private static final ResourceLocation BG_TEXTURE = new ResourceLocation(Pl3xForgeClient.modId, "textures/gui/enchantment_splitter.png");
     private final ContainerEnchantmentSplitter splitter;
     private InventoryPlayer playerInv;
+    private int animFrame = 0;
+    private boolean animbackwards = false;
 
     public GuiEnchantmentSplitter(Container container, InventoryPlayer playerInv) {
         super(container);
@@ -61,6 +63,18 @@ public class GuiEnchantmentSplitter extends GuiContainer {
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
+        if (animbackwards) {
+            animFrame--;
+            if (animFrame <= 0) {
+                animbackwards = false;
+            }
+        } else {
+            animFrame++;
+            if (animFrame >= 25) {
+                animbackwards = true;
+            }
+        }
+
         GlStateManager.color(1, 1, 1, 1);
         mc.getTextureManager().bindTexture(BG_TEXTURE);
         int x = (width - xSize) / 2;
@@ -70,6 +84,26 @@ public class GuiEnchantmentSplitter extends GuiContainer {
         if (splitter.getSlot(0).getHasStack() && splitter.getSlot(1).getHasStack() &&
                 (!splitter.getSlot(2).getHasStack() || !splitter.getSlot(3).getHasStack())) {
             drawTexturedModalRect(x + 101, y + 32, xSize, 0, 28, 21);
+        }
+
+        if (splitter.NEW_INPUT_TOOL && splitter.getSlot(0).getHasStack()) {
+            if (animFrame < 5) {
+                drawTexturedModalRect(x + 78, y + 20, xSize, 41, 20, 20);
+            } else if (animFrame < 10) {
+                drawTexturedModalRect(x + 78, y + 20, xSize, 61, 20, 20);
+            } else if (animFrame < 15) {
+                drawTexturedModalRect(x + 78, y + 20, xSize, 81, 20, 20);
+            } else if (animFrame < 20) {
+                drawTexturedModalRect(x + 78, y + 20, xSize, 101, 20, 20);
+            } else {
+                drawTexturedModalRect(x + 78, y + 20, xSize, 121, 20, 20);
+            }
+        }
+        if (splitter.BAD_INPUT_TOOL && splitter.getSlot(0).getHasStack()) {
+            drawTexturedModalRect(x + 78, y + 20, xSize, 21, 20, 20);
+        }
+        if (splitter.BAD_INPUT_BOOK && splitter.getSlot(1).getHasStack()) {
+            drawTexturedModalRect(x + 78, y + 45, xSize, 21, 20, 20);
         }
     }
 
