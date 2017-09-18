@@ -52,7 +52,7 @@ public class ContainerEnchantmentSplitter extends Container {
         // splitter slots
         addSlotToContainer(new Slot(inputSlots, 0, 80, 22) {
             public boolean isItemValid(ItemStack stack) {
-                return stack.isItemEnchanted() || stack.isItemEnchantable() || stack.getItem() == Items.ENCHANTED_BOOK;
+                return stack.getItem() != Items.BOOK && (stack.isItemEnchanted() || stack.isItemEnchantable() || stack.getItem() == Items.ENCHANTED_BOOK);
             }
         });
         addSlotToContainer(new Slot(inputSlots, 1, 80, 47) {
