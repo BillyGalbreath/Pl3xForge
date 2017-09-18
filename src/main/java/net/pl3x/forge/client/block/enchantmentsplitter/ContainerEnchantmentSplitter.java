@@ -9,7 +9,6 @@ import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.inventory.InventoryCraftResult;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemEnchantedBook;
@@ -25,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 public class ContainerEnchantmentSplitter extends Container {
     private final IInventory resultSlotTool;
     private final IInventory resultSlotBook;
-    private final IInventory inputSlots;
+    private final EnchantmentSplitterInventoryInputs inputSlots;
     private final World world;
     public final BlockPos selfPosition;
     public boolean BAD_INPUT_TOOL = false;
@@ -38,7 +37,7 @@ public class ContainerEnchantmentSplitter extends Container {
 
         resultSlotTool = new InventoryCraftResult();
         resultSlotBook = new InventoryCraftResult();
-        inputSlots = new InventoryBasic("splitter", true, 2) {
+        inputSlots = new EnchantmentSplitterInventoryInputs("splitter", true, 2) {
             public void markDirty() {
                 super.markDirty();
                 onCraftMatrixChanged(this);
@@ -66,9 +65,6 @@ public class ContainerEnchantmentSplitter extends Container {
             }
 
             public ItemStack onTake(EntityPlayer player, ItemStack stack) {
-                if (stack.isEmpty()) {
-                    return stack;
-                }
                 ItemStack resultBook = resultSlotBook.getStackInSlot(1).copy();
                 if (!resultBook.isEmpty()) {
                     if (!player.capabilities.isCreativeMode) {
@@ -82,12 +78,24 @@ public class ContainerEnchantmentSplitter extends Container {
                     resultSlotBook.setInventorySlotContents(1, ItemStack.EMPTY);
 
                     // clear the input tool
-                    inputSlots.setInventorySlotContents(0, ItemStack.EMPTY);
+                    inputSlots.setInventorySlotContents(false, 0, ItemStack.EMPTY);
 
                     // decrease the amount of blank books
-                    inputSlots.decrStackSize(1, 1);
+                    ItemStack books = inputSlots.getStackInSlot(1).copy();
+                    if (books.getCount() < 2) {
+                        inputSlots.setInventorySlotContents(false, 1, ItemStack.EMPTY);
+                    } else {
+                        books.setCount(books.getCount() - 1);
+                        inputSlots.setInventorySlotContents(false, 1, books);
+                    }
+                    new Thread(() -> {
+                        try {
+                            TimeUnit.MILLISECONDS.sleep(50);
+                        } catch (InterruptedException ignore) {
+                        }
+                        onCraftMatrixChanged(inputSlots);
+                    }).start();
                 }
-                // take the result tool
                 return stack;
             }
         });
@@ -101,9 +109,6 @@ public class ContainerEnchantmentSplitter extends Container {
             }
 
             public ItemStack onTake(EntityPlayer player, ItemStack stack) {
-                if (stack.isEmpty()) {
-                    return stack;
-                }
                 ItemStack resultTool = resultSlotTool.getStackInSlot(0).copy();
                 if (!resultTool.isEmpty()) {
                     if (!player.capabilities.isCreativeMode) {
@@ -111,13 +116,19 @@ public class ContainerEnchantmentSplitter extends Container {
                     }
 
                     // put the result tool into the tool input slot
-                    inputSlots.setInventorySlotContents(0, resultTool);
+                    inputSlots.setInventorySlotContents(false, 0, resultTool);
 
                     // set result tool to air
                     resultSlotTool.setInventorySlotContents(0, ItemStack.EMPTY);
 
                     // decrease the amount of blank books
-                    inputSlots.decrStackSize(1, 1);
+                    ItemStack books = inputSlots.getStackInSlot(1).copy();
+                    if (books.getCount() < 2) {
+                        inputSlots.setInventorySlotContents(false, 1, ItemStack.EMPTY);
+                    } else {
+                        books.setCount(books.getCount() - 1);
+                        inputSlots.setInventorySlotContents(false, 1, books);
+                    }
 
                     NEW_INPUT_TOOL = true;
                     new Thread(() -> {
@@ -127,8 +138,14 @@ public class ContainerEnchantmentSplitter extends Container {
                         }
                         NEW_INPUT_TOOL = false;
                     }).start();
+                    new Thread(() -> {
+                        try {
+                            TimeUnit.MILLISECONDS.sleep(50);
+                        } catch (InterruptedException ignore) {
+                        }
+                        onCraftMatrixChanged(inputSlots);
+                    }).start();
                 }
-                // take the enchanted book
                 return stack;
             }
         });
@@ -257,8 +274,6 @@ public class ContainerEnchantmentSplitter extends Container {
 
         ItemStack stack = slot.getStack();
         ItemStack copy = stack.copy();
-
-        slot.onTake(player, copy);
 
         // shift clicked a result slot
         if (index == 2 || index == 3) {
