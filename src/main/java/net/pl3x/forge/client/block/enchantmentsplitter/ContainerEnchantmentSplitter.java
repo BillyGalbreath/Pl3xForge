@@ -32,10 +32,6 @@ public class ContainerEnchantmentSplitter extends Container {
     public boolean BAD_INPUT_BOOK = false;
     public boolean NEW_INPUT_TOOL = false;
 
-    public enum Status {
-
-    }
-
     public ContainerEnchantmentSplitter(InventoryPlayer playerInventory, final World worldIn, final BlockPos blockPosIn) {
         this.selfPosition = blockPosIn;
         this.world = worldIn;
@@ -207,7 +203,13 @@ public class ContainerEnchantmentSplitter extends Container {
         ItemStack resultTool = toolStack.copy();
         ItemStack resultBook = new ItemStack(Items.ENCHANTED_BOOK, 1);
 
-        EnchantmentHelper.setEnchantments(toolEnchants, resultTool);
+        if (toolStack.getItem() == Items.ENCHANTED_BOOK) {
+            ItemStack newTool = new ItemStack(Items.ENCHANTED_BOOK, 1);
+            toolEnchants.forEach((k, v) -> ItemEnchantedBook.addEnchantment(newTool, new EnchantmentData(k, v)));
+            resultTool = newTool;
+        } else {
+            EnchantmentHelper.setEnchantments(toolEnchants, resultTool);
+        }
         ItemEnchantedBook.addEnchantment(resultBook, new EnchantmentData(enchantment, level));
 
         resultSlotTool.setInventorySlotContents(0, resultTool);
