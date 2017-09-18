@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "gold_ingot",
+  "ingredients": [
+    {
+      "item": "minecraft:golden_horse_armor"
+    }
+  ],
+  "result": {
+    "item": "minecraft:gold_ingot",
+    "count": 3
+  }
+}

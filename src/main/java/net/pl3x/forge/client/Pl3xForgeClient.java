@@ -3,6 +3,9 @@ package net.pl3x.forge.client;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.ShapedRecipes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -14,10 +17,13 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.registries.IForgeRegistryModifiable;
 import net.pl3x.forge.client.block.ModBlocks;
 import net.pl3x.forge.client.enchantment.ModEnchantments;
 import net.pl3x.forge.client.item.ModItems;
 import net.pl3x.forge.client.proxy.Proxy;
+
+import java.lang.reflect.Field;
 
 @Mod(modid = Pl3xForgeClient.modId, name = Pl3xForgeClient.name, version = Pl3xForgeClient.version)
 public class Pl3xForgeClient {
@@ -74,6 +80,20 @@ public class Pl3xForgeClient {
         @SubscribeEvent
         public static void registerEnchantments(RegistryEvent.Register<Enchantment> event) {
             ModEnchantments.register(event.getRegistry());
+        }
+
+        @SubscribeEvent
+        public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
+            IForgeRegistryModifiable modRegistry = (IForgeRegistryModifiable) event.getRegistry();
+            ShapedRecipes diamondRecipe = (ShapedRecipes) modRegistry.getValue(
+                    new ResourceLocation("minecraft", "diamond"));
+            try {
+                Field group = diamondRecipe.getClass().getDeclaredField("field_194137_e");
+                group.setAccessible(true);
+                group.set(diamondRecipe, "minecraft:diamond");
+            } catch (Exception ignore) {
+                ignore.printStackTrace();
+            }
         }
 
         @SubscribeEvent
