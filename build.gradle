@@ -10,7 +10,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 
 def build = System.getenv()['BUILD_NUMBER'] ?: "SNAPSHOT"
-version = "1.0.8-b" + build
+version = "1.1.0-b" + build
 group = "net.pl3x.forge.client"
 archivesBaseName = "Pl3xForgeClient"
 
@@ -20,13 +20,13 @@ compileJava {
 }
 
 minecraft {
-    version = "1.12.1-14.22.1.2480"
+    version = "1.12.2-14.23.0.2489"
     runDir = "run"
 
     replace "@VERSION@", project.version
     replaceIn "Pl3xForgeClient.java"
 
-    mappings = "snapshot_20170914"
+    mappings = "snapshot_20170919"
     makeObfSourceJar = false
 }
 
