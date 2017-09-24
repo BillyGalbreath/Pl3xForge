@@ -1,27 +1,11 @@
-package net.pl3x.forge.server.data;
+package net.pl3x.forge.client.data;
 
 import net.minecraft.nbt.NBTTagCompound;
-import net.pl3x.forge.server.Location;
-
-import java.util.ArrayList;
-import java.util.TreeMap;
 
 public interface PlayerData {
-    void addHome(String name, Location location);
+    double getBalance();
 
-    void removeHome(String name);
-
-    Location getHome(String name);
-
-    ArrayList<String> getHomeNames();
-
-    TreeMap<String, Location> getHomes();
-
-    void setHomes(TreeMap<String, Location> homes);
-
-    boolean denyTeleports();
-
-    void denyTeleports(boolean denyTeleports);
+    void setBalance(double balance);
 
     NBTTagCompound getDataAsNBT();
 

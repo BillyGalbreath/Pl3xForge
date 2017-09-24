@@ -17,11 +17,10 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.registries.IForgeRegistryModifiable;
 import net.pl3x.forge.client.block.ModBlocks;
 import net.pl3x.forge.client.enchantment.ModEnchantments;
 import net.pl3x.forge.client.item.ModItems;
-import net.pl3x.forge.client.proxy.Proxy;
+import net.pl3x.forge.client.proxy.ServerProxy;
 
 import java.lang.reflect.Field;
 
@@ -34,8 +33,8 @@ public class Pl3xForgeClient {
     @Mod.Instance(modId)
     public static Pl3xForgeClient instance;
 
-    @SidedProxy(serverSide = "net.pl3x.forge.client.proxy.Proxy", clientSide = "net.pl3x.forge.client.proxy.ClientProxy")
-    public static Proxy proxy;
+    @SidedProxy(serverSide = "net.pl3x.forge.client.proxy.ServerProxy", clientSide = "net.pl3x.forge.client.proxy.ClientProxy")
+    public static ServerProxy proxy;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -84,15 +83,14 @@ public class Pl3xForgeClient {
 
         @SubscribeEvent
         public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
-            IForgeRegistryModifiable modRegistry = (IForgeRegistryModifiable) event.getRegistry();
-            ShapedRecipes diamondRecipe = (ShapedRecipes) modRegistry.getValue(
-                    new ResourceLocation("minecraft", "diamond"));
+            // set vanilla diamond recipe group
             try {
+                ShapedRecipes diamondRecipe = (ShapedRecipes) event.getRegistry().getValue(
+                        new ResourceLocation("minecraft", "diamond"));
                 Field group = diamondRecipe.getClass().getDeclaredField("field_194137_e");
                 group.setAccessible(true);
                 group.set(diamondRecipe, "minecraft:diamond");
             } catch (Exception ignore) {
-                ignore.printStackTrace();
             }
         }
 

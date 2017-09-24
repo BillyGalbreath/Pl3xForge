@@ -1,4 +1,4 @@
-package net.pl3x.forge.server.data;
+package net.pl3x.forge.client.data;
 
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.util.EnumFacing;
