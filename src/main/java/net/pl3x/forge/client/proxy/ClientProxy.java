@@ -16,7 +16,7 @@ import net.pl3x.forge.client.block.enchantmentsplitter.TileEntityEnchantmentSpli
 import net.pl3x.forge.client.gui.TitleScreen;
 import net.pl3x.forge.client.recipe.ModRecipes;
 
-public class ClientProxy extends Proxy {
+public class ClientProxy extends ServerProxy {
     public void preInit(FMLPreInitializationEvent event) {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEnchantmentSplitter.class, new TileEntityEnchantmentSplitterRenderer());
     }

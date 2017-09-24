@@ -11,14 +11,17 @@ import net.pl3x.forge.client.Pl3xForgeClient;
 import java.io.IOException;
 
 public class TitleScreen {
+    private final static String branding = "Pl3xForge " + Pl3xForgeClient.version;
     private Minecraft mc = Minecraft.getMinecraft();
     private FontRenderer fontRenderer = mc.fontRenderer;
 
     @SubscribeEvent
     public void onRenderMainMenu(GuiScreenEvent event) throws IOException {
         if (event.getGui() instanceof GuiMainMenu) {
-            fontRenderer.drawStringWithShadow("Pl3xForge " + Pl3xForgeClient.version, 2,
-                    (new ScaledResolution(mc)).getScaledHeight() - 60, 16777215);
+            ScaledResolution scale = new ScaledResolution(mc);
+            fontRenderer.drawStringWithShadow(branding,
+                    scale.getScaledWidth() - fontRenderer.getStringWidth(branding) - 2,
+                    scale.getScaledHeight() - 20, 16777215);
         }
     }
 }
