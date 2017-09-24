@@ -2,6 +2,7 @@ package net.pl3x.forge.client.item;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.pl3x.forge.client.Pl3xForgeClient;
 
 public class ItemBase extends Item {
@@ -21,5 +22,10 @@ public class ItemBase extends Item {
     public ItemBase setCreativeTab(CreativeTabs tab) {
         super.setCreativeTab(tab);
         return this;
+    }
+
+    @Override
+    public ItemStack getDefaultInstance() {
+        return new ItemStack(this, 1);
     }
 }

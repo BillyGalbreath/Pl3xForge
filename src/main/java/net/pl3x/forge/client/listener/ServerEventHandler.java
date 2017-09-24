@@ -1,19 +1,68 @@
 package net.pl3x.forge.client.listener;
 
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+import net.pl3x.forge.client.data.PlayerData;
+import net.pl3x.forge.client.data.PlayerDataProvider;
+import net.pl3x.forge.client.item.ItemMoney;
+import net.pl3x.forge.client.item.ModItems;
+import net.pl3x.forge.client.network.PacketHandler;
 
 public class ServerEventHandler {
     @SubscribeEvent
-    public void onItemPickup(EntityItemPickupEvent event) {
-        EntityPlayer player = event.getEntityPlayer();
-        EntityItem item = event.getItem();
+    public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+        if (event.player instanceof EntityPlayerMP) {
+            PacketHandler.updateBalance((EntityPlayerMP) event.player);
+        }
     }
 
-    public void e(PlayerEvent.ItemPickupEvent event) {
+    @SubscribeEvent
+    public void onItemPickup(EntityItemPickupEvent event) {
+        // Fires when player is close enough to item
+        // whether item was actually picked up or not
 
+        EntityItem entityItem = event.getItem();
+        if (!ItemMoney.isMoney(entityItem)) {
+            return; // not money; dont care
+        }
+
+        EntityPlayerMP player = (EntityPlayerMP) event.getEntityPlayer();
+
+        player.onItemPickup(entityItem, 1);
+        entityItem.setDead();
+        event.setCanceled(true);
+
+        PlayerData capability = player.getCapability(PlayerDataProvider.PLAYER_DATA_CAPABILITY, null);
+        capability.setBalance(capability.getBalance() + 1);
+
+        player.sendStatusMessage(new TextComponentString(
+                "\u00a7a\u00a7oPicked up " + entityItem.getItem().getDisplayName()), true);
+
+        PacketHandler.updateBalance(player);
+    }
+
+    @SubscribeEvent
+    public void onEntityDeath(LivingDeathEvent event) {
+        EntityLivingBase entity = event.getEntityLiving();
+        if (entity.fromSpawner) {
+            return; // dont drop money if from a spawner
+        }
+        if (!(entity instanceof EntityMob)) {
+            return; // only care for hostiles
+        }
+        if (!(event.getSource().getTrueSource() instanceof EntityPlayerMP)) {
+            return; // was not killed by a player
+        }
+
+        entity.world.spawnEntity(new EntityItem(entity.world,
+                entity.posX, entity.posY, entity.posZ,
+                ModItems.MONEY_COIN_CREEPER.getDefaultInstance()));
     }
 }

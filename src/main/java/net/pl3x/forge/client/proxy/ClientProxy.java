@@ -14,6 +14,7 @@ import net.pl3x.forge.client.Pl3xForgeClient;
 import net.pl3x.forge.client.block.enchantmentsplitter.TileEntityEnchantmentSplitter;
 import net.pl3x.forge.client.block.enchantmentsplitter.TileEntityEnchantmentSplitterRenderer;
 import net.pl3x.forge.client.gui.TitleScreen;
+import net.pl3x.forge.client.listener.ClientEventHandler;
 import net.pl3x.forge.client.recipe.ModRecipes;
 
 public class ClientProxy extends ServerProxy {
@@ -25,6 +26,7 @@ public class ClientProxy extends ServerProxy {
         ModRecipes.init();
 
         MinecraftForge.EVENT_BUS.register(new TitleScreen());
+        MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
     }
 
     public void postInit(FMLPostInitializationEvent event) {

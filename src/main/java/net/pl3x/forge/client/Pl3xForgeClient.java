@@ -20,6 +20,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.pl3x.forge.client.block.ModBlocks;
 import net.pl3x.forge.client.enchantment.ModEnchantments;
 import net.pl3x.forge.client.item.ModItems;
+import net.pl3x.forge.client.network.PacketHandler;
 import net.pl3x.forge.client.proxy.ServerProxy;
 
 import java.lang.reflect.Field;
@@ -46,6 +47,8 @@ public class Pl3xForgeClient {
         proxy.init(event);
 
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new ModGuiHandler());
+
+        PacketHandler.init();
     }
 
     @Mod.EventHandler

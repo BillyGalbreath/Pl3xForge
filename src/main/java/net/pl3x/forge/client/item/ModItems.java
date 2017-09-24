@@ -82,6 +82,11 @@ public class ModItems {
     public static final ItemHat hatWizard = new ItemHat("hat_wizard");
     public static final ItemHat hatWizard2 = new ItemHat("hat_wizard2");
 
+    public static final ItemMoney MONEY_COIN_CREEPER = new ItemMoney("money_coin_creeper");
+    public static final ItemMoney MONEY_COIN_STEVE = new ItemMoney("money_coin_steve");
+    public static final ItemMoney MONEY_COIN_HEROBRINE = new ItemMoney("money_coin_herobrine");
+    public static final ItemMoney MONEY_DOLLAR = new ItemMoney("money_dollar");
+
     public static void register(IForgeRegistry<Item> registry) {
         registry.registerAll(
                 ruby,
@@ -134,7 +139,12 @@ public class ModItems {
                 hatTophatRoundWhiteBlack,
                 hatTophatWhiteRed,
                 hatWizard,
-                hatWizard2
+                hatWizard2,
+
+                MONEY_COIN_CREEPER,
+                MONEY_COIN_STEVE,
+                MONEY_COIN_HEROBRINE,
+                MONEY_DOLLAR
         );
     }
 
@@ -189,5 +199,10 @@ public class ModItems {
         hatTophatWhiteRed.registerItemModel();
         hatWizard.registerItemModel();
         hatWizard2.registerItemModel();
+
+        MONEY_COIN_CREEPER.registerItemModel();
+        MONEY_COIN_STEVE.registerItemModel();
+        MONEY_COIN_HEROBRINE.registerItemModel();
+        MONEY_DOLLAR.registerItemModel();
     }
 }

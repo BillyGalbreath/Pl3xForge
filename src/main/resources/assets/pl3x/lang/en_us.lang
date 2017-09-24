@@ -49,6 +49,11 @@ item.hat_tophat_white_red.name=TopHat White with Red trim
 item.hat_wizard.name=Wizard Hat
 item.hat_wizard2.name=Wizard Hat 2
 
+item.money_coin_creeper.name=Coin
+item.money_coin_steve.name=Steve Coin
+item.money_coin_herobrine.name=Herobrine Coin
+item.money_dollar.name=Dollar
+
 # Blocks
 tile.ore_ruby.name=Ruby Ore
 tile.block_ruby.name=Block of Ruby
