@@ -12,6 +12,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.pl3x.forge.client.data.PlayerData;
 import net.pl3x.forge.client.data.PlayerDataImpl;
 import net.pl3x.forge.client.data.PlayerDataStorage;
+import net.pl3x.forge.client.entity.ModEntities;
 import net.pl3x.forge.client.listener.CapabilityHandler;
 import net.pl3x.forge.client.listener.ServerEventHandler;
 import net.pl3x.forge.client.recipe.ModRecipes;
@@ -26,6 +27,7 @@ public class ServerProxy {
         CapabilityManager.INSTANCE.register(PlayerData.class, new PlayerDataStorage(), PlayerDataImpl.class);
 
         ModRecipes.init();
+        ModEntities.init();
 
         GameRegistry.registerWorldGenerator(new ModWorldGen(), 0);
 
