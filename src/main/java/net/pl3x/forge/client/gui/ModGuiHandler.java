@@ -1,4 +1,4 @@
-package net.pl3x.forge.client;
+package net.pl3x.forge.client.gui;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -30,5 +30,4 @@ public class ModGuiHandler implements IGuiHandler {
                 return null;
         }
     }
-
 }

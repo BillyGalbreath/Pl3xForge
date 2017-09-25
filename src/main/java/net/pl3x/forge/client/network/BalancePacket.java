@@ -5,7 +5,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import net.pl3x.forge.client.listener.ClientEventHandler;
+import net.pl3x.forge.client.gui.HUDBalance;
 
 public class BalancePacket implements IMessage {
     protected double balance;
@@ -32,7 +32,7 @@ public class BalancePacket implements IMessage {
         @Override
         public IMessage onMessage(BalancePacket packet, MessageContext context) {
             Minecraft.getMinecraft().addScheduledTask(() -> {
-                ClientEventHandler.balance = packet.balance;
+                HUDBalance.balance = packet.balance;
             });
             return null;
         }

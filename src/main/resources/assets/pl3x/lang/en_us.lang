@@ -65,3 +65,6 @@ enchantment.lavaWalker=Lava Walker
 
 # Creative Tabs
 itemGroup.Hats=Hats
+
+# GUI strings
+pl3x.config.title=Pl3xForge Config

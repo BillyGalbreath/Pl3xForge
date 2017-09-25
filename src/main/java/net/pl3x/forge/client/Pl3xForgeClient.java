@@ -19,6 +19,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.pl3x.forge.client.block.ModBlocks;
 import net.pl3x.forge.client.enchantment.ModEnchantments;
+import net.pl3x.forge.client.gui.ModGuiHandler;
 import net.pl3x.forge.client.item.ModItems;
 import net.pl3x.forge.client.network.PacketHandler;
 import net.pl3x.forge.client.proxy.ServerProxy;
