@@ -4,6 +4,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
@@ -49,7 +50,7 @@ public class ServerEventHandler {
     }
 
     @SubscribeEvent
-    public void onEntityDeath(LivingDeathEvent event) {
+    public void onMobDeathDropCoin(LivingDeathEvent event) {
         EntityLivingBase entity = event.getEntityLiving();
         if (entity.fromSpawner) {
             return; // dont drop money if from a spawner
@@ -64,5 +65,26 @@ public class ServerEventHandler {
         entity.world.spawnEntity(new EntityItem(entity.world,
                 entity.posX, entity.posY, entity.posZ,
                 ModItems.MONEY_COIN_CREEPER.getDefaultInstance()));
+    }
+
+    @SubscribeEvent
+    public void onPlayerDeathDropCoins(LivingDeathEvent event) {
+        EntityLivingBase entity = event.getEntityLiving();
+        if (!(entity instanceof EntityPlayerMP)) {
+            return; // only care for players
+        }
+        EntityPlayerMP player = (EntityPlayerMP) entity;
+
+        PlayerData capability = player.getCapability(PlayerDataProvider.PLAYER_DATA_CAPABILITY, null);
+
+        double balance = capability.getBalance();
+        capability.setBalance(0);
+
+        ItemStack coin = ModItems.MONEY_COIN_CREEPER.getDefaultInstance();
+        for (double i = 0; i < balance; i++) {
+            player.world.spawnEntity(new EntityItem(player.world, player.posX, player.posY, player.posZ, coin));
+        }
+
+        PacketHandler.updateBalance(player);
     }
 }
