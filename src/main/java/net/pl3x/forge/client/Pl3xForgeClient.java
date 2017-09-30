@@ -22,7 +22,7 @@ import net.pl3x.forge.client.enchantment.ModEnchantments;
 import net.pl3x.forge.client.gui.ModGuiHandler;
 import net.pl3x.forge.client.item.ModItems;
 import net.pl3x.forge.client.network.PacketHandler;
-import net.pl3x.forge.client.proxy.ServerProxy;
+import net.pl3x.forge.client.proxy.CommonProxy;
 
 import java.lang.reflect.Field;
 
@@ -36,7 +36,7 @@ public class Pl3xForgeClient {
     public static Pl3xForgeClient instance;
 
     @SidedProxy(serverSide = "net.pl3x.forge.client.proxy.ServerProxy", clientSide = "net.pl3x.forge.client.proxy.ClientProxy")
-    public static ServerProxy proxy;
+    public static CommonProxy proxy;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {

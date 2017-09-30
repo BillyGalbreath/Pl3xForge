@@ -1,4 +1,4 @@
-package net.pl3x.forge.client.entity;
+package net.pl3x.forge.client.entity.render;
 
 import net.minecraft.client.model.ModelVillager;
 import net.minecraft.client.renderer.GlStateManager;
@@ -11,6 +11,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.client.Pl3xForgeClient;
+import net.pl3x.forge.client.entity.EntityBanker;
 
 import javax.annotation.Nullable;
 

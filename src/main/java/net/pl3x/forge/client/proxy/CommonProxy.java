@@ -2,41 +2,44 @@ package net.pl3x.forge.client.proxy;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.pl3x.forge.client.listener.ServerEventHandler;
-import net.pl3x.forge.client.world.ModWorldGen;
+import net.pl3x.forge.client.data.PlayerData;
+import net.pl3x.forge.client.data.PlayerDataImpl;
+import net.pl3x.forge.client.entity.ModEntities;
+import net.pl3x.forge.client.listener.CapabilityHandler;
+import net.pl3x.forge.client.recipe.ModRecipes;
 
-public class ServerProxy extends CommonProxy {
+public class CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
-        super.preInit(event);
+        //
     }
 
     public void init(FMLInitializationEvent event) {
-        super.init(event);
+        ModRecipes.init();
+        ModEntities.init();
 
-        GameRegistry.registerWorldGenerator(new ModWorldGen(), 0);
-
-        MinecraftForge.EVENT_BUS.register(new ServerEventHandler());
+        CapabilityManager.INSTANCE.register(PlayerData.class, new PlayerDataImpl.PlayerDataStorage(), PlayerDataImpl.class);
+        MinecraftForge.EVENT_BUS.register(new CapabilityHandler());
     }
 
     public void postInit(FMLPostInitializationEvent event) {
-        super.postInit(event);
+        //
     }
 
     public void serverStarting(FMLServerStartingEvent event) {
-        super.serverStarting(event);
+        //
     }
 
     public void serverStopping(FMLServerStoppingEvent event) {
-        super.serverStopping(event);
+        //
     }
 
     public void registerItemRenderer(Item item, int meta, String id) {
-        super.registerItemRenderer(item, meta, id);
+        //
     }
 }

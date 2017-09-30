@@ -1,4 +1,4 @@
-package net.pl3x.forge.client.block.enchantmentsplitter;
+package net.pl3x.forge.client.inventory;
 
 import com.google.common.collect.Lists;
 import net.minecraft.entity.player.EntityPlayer;

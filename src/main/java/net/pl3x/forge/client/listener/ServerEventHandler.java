@@ -10,8 +10,9 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+import net.pl3x.forge.client.ChatColor;
+import net.pl3x.forge.client.data.CapabilityProvider;
 import net.pl3x.forge.client.data.PlayerData;
-import net.pl3x.forge.client.data.PlayerDataProvider;
 import net.pl3x.forge.client.item.ItemMoney;
 import net.pl3x.forge.client.item.ModItems;
 import net.pl3x.forge.client.network.PacketHandler;
@@ -20,7 +21,7 @@ public class ServerEventHandler {
     @SubscribeEvent
     public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
         if (event.player instanceof EntityPlayerMP) {
-            PacketHandler.updateBalance((EntityPlayerMP) event.player);
+            PacketHandler.updatePlayerData((EntityPlayerMP) event.player);
         }
     }
 
@@ -40,13 +41,13 @@ public class ServerEventHandler {
         entityItem.setDead();
         event.setCanceled(true);
 
-        PlayerData capability = player.getCapability(PlayerDataProvider.PLAYER_DATA_CAPABILITY, null);
-        capability.setBalance(capability.getBalance() + 1);
+        PlayerData capability = player.getCapability(CapabilityProvider.CAPABILITY, null);
+        capability.setCoins(capability.getCoins() + 1);
 
         player.sendStatusMessage(new TextComponentString(
-                "\u00a7a\u00a7oPicked up " + entityItem.getItem().getDisplayName()), true);
+                ChatColor.colorize("&a&oPicked up " + entityItem.getItem().getDisplayName())), true);
 
-        PacketHandler.updateBalance(player);
+        PacketHandler.updatePlayerData(player);
     }
 
     @SubscribeEvent
@@ -64,7 +65,7 @@ public class ServerEventHandler {
 
         entity.world.spawnEntity(new EntityItem(entity.world,
                 entity.posX, entity.posY, entity.posZ,
-                ModItems.MONEY_COIN_CREEPER.getDefaultInstance()));
+                ModItems.COIN.getDefaultInstance()));
     }
 
     @SubscribeEvent
@@ -75,16 +76,16 @@ public class ServerEventHandler {
         }
         EntityPlayerMP player = (EntityPlayerMP) entity;
 
-        PlayerData capability = player.getCapability(PlayerDataProvider.PLAYER_DATA_CAPABILITY, null);
+        PlayerData capability = player.getCapability(CapabilityProvider.CAPABILITY, null);
 
-        double balance = capability.getBalance();
-        capability.setBalance(0);
+        long balance = capability.getCoins();
+        capability.setCoins(0);
 
-        ItemStack coin = ModItems.MONEY_COIN_CREEPER.getDefaultInstance();
-        for (double i = 0; i < balance; i++) {
+        ItemStack coin = ModItems.COIN.getDefaultInstance();
+        for (long i = 0; i < balance; i++) {
             player.world.spawnEntity(new EntityItem(player.world, player.posX, player.posY, player.posZ, coin));
         }
 
-        PacketHandler.updateBalance(player);
+        PacketHandler.updatePlayerData(player);
     }
 }

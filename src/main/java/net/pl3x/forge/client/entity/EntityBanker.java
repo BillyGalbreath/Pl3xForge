@@ -10,6 +10,7 @@ import net.minecraft.entity.ai.EntityAIWatchClosest2;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -22,6 +23,9 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.pl3x.forge.client.Pl3xForgeClient;
+import net.pl3x.forge.client.gui.ModGuiHandler;
+import net.pl3x.forge.client.network.PacketHandler;
 
 public class EntityBanker extends EntityCreature implements INpc {
     public EntityBanker(World world) {
@@ -54,12 +58,8 @@ public class EntityBanker extends EntityCreature implements INpc {
                 player.addStat(StatList.TALKED_TO_VILLAGER);
             }
             if (!world.isRemote) {
-                // TODO open bank GUI
-                //player.displayVillagerTradeGui(this);
-                //
-                //
-                //
-                //
+                PacketHandler.updatePlayerData((EntityPlayerMP) player);
+                player.openGui(Pl3xForgeClient.instance, ModGuiHandler.BANKER, world, 0, 0, 0);
             }
         }
         return true;

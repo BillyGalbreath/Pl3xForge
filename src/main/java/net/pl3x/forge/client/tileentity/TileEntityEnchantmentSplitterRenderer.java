@@ -1,4 +1,4 @@
-package net.pl3x.forge.client.block.enchantmentsplitter;
+package net.pl3x.forge.client.tileentity;
 
 import net.minecraft.client.model.ModelBook;
 import net.minecraft.client.renderer.GlStateManager;

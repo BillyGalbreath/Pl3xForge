@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "pl3x:items/money_coin"
+    "layer0": "pl3x:items/coin"
   }
 }

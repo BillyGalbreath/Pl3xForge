@@ -11,11 +11,11 @@ import net.pl3x.forge.client.configuration.ModConfig;
 import java.text.DecimalFormat;
 
 public class HUDBalance {
-    public static double balance = 0;
+    public static long balance = 0;
 
     private Minecraft mc = Minecraft.getMinecraft();
     private FontRenderer fontRenderer = mc.fontRenderer;
-    private ResourceLocation texture = new ResourceLocation(Pl3xForgeClient.modId + ":textures/items/money_coin.png");
+    private ResourceLocation texture = new ResourceLocation(Pl3xForgeClient.modId + ":textures/items/coin.png");
 
     private DecimalFormat df = new DecimalFormat("#,###");
 

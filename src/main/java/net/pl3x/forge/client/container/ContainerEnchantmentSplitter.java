@@ -1,4 +1,4 @@
-package net.pl3x.forge.client.block.enchantmentsplitter;
+package net.pl3x.forge.client.container;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;
@@ -16,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.pl3x.forge.client.block.ModBlocks;
+import net.pl3x.forge.client.inventory.EnchantmentSplitterInventoryInputs;
 
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;

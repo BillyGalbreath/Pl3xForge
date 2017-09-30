@@ -1,4 +1,4 @@
-package net.pl3x.forge.client.block.enchantmentsplitter;
+package net.pl3x.forge.client.tileentity;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -12,6 +12,7 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IInteractionObject;
 import net.pl3x.forge.client.Pl3xForgeClient;
+import net.pl3x.forge.client.container.ContainerEnchantmentSplitter;
 
 import java.util.Random;
 

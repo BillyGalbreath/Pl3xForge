@@ -1,4 +1,4 @@
-package net.pl3x.forge.client.block.enchantmentsplitter;
+package net.pl3x.forge.client.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -9,6 +9,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.pl3x.forge.client.Pl3xForgeClient;
 import net.pl3x.forge.client.block.ModBlocks;
+import net.pl3x.forge.client.container.ContainerEnchantmentSplitter;
+import net.pl3x.forge.client.tileentity.TileEntityEnchantmentSplitter;
 
 public class GuiEnchantmentSplitter extends GuiContainer {
     private static final ResourceLocation BG_TEXTURE = new ResourceLocation(Pl3xForgeClient.modId, "textures/gui/enchantment_splitter.png");

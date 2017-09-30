@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 import net.pl3x.forge.client.gui.ModGuiHandler;
 import net.pl3x.forge.client.Pl3xForgeClient;
 import net.pl3x.forge.client.block.BlockTileEntity;
-import net.pl3x.forge.client.block.enchantmentsplitter.TileEntityEnchantmentSplitter;
+import net.pl3x.forge.client.tileentity.TileEntityEnchantmentSplitter;
 
 import javax.annotation.Nullable;
 
