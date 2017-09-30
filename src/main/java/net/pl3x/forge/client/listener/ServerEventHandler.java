@@ -3,16 +3,19 @@ package net.pl3x.forge.client.listener;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.pl3x.forge.client.ChatColor;
 import net.pl3x.forge.client.data.CapabilityProvider;
 import net.pl3x.forge.client.data.PlayerData;
+import net.pl3x.forge.client.entity.EntityBanker;
 import net.pl3x.forge.client.item.ItemMoney;
 import net.pl3x.forge.client.item.ModItems;
 import net.pl3x.forge.client.network.PacketHandler;
@@ -87,5 +90,14 @@ public class ServerEventHandler {
         }
 
         PacketHandler.updatePlayerData(player);
+    }
+
+    @SubscribeEvent
+    public void onTargetBanker(LivingSetAttackTargetEvent event) {
+        if (event.getTarget() instanceof EntityBanker) {
+            if (event.getEntityLiving() instanceof EntityZombie) {
+                ((EntityZombie) event.getEntityLiving()).setAttackTarget(null);
+            }
+        }
     }
 }
