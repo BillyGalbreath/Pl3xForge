@@ -21,7 +21,6 @@ public class CapabilityHandler {
             return;
         }
         event.addCapability(PLAYER_DATA_CAPABILITY, new CapabilityProvider());
-        System.out.println("Attached Capability");
     }
 
     @SubscribeEvent
@@ -29,7 +28,6 @@ public class CapabilityHandler {
         event.getEntityPlayer().getCapability(CapabilityProvider.CAPABILITY, null)
                 .setDataFromNBT(event.getOriginal().getCapability(CapabilityProvider.CAPABILITY, null)
                         .getDataAsNBT());
-        System.out.println("RE-Attached Capability");
     }
 
     @SubscribeEvent
