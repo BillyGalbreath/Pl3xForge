@@ -18,11 +18,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.client.Pl3xForgeClient;
 import net.pl3x.forge.client.gui.ModGuiHandler;
 import net.pl3x.forge.client.network.PacketHandler;
@@ -33,6 +30,7 @@ public class EntityBanker extends EntityCreature implements INpc {
         setSize(0.6F, 1.95F);
         setCanPickUpLoot(false);
         enablePersistence();
+        setEntityInvulnerable(true);
     }
 
     public void initEntityAI() {
@@ -75,33 +73,7 @@ public class EntityBanker extends EntityCreature implements INpc {
         super.readEntityFromNBT(compound);
         setCanPickUpLoot(false);
         enablePersistence();
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void handleStatusUpdate(byte id) {
-        if (id == 12) {
-            spawnParticles(EnumParticleTypes.HEART);
-        } else if (id == 13) {
-            spawnParticles(EnumParticleTypes.VILLAGER_ANGRY);
-        } else if (id == 14) {
-            spawnParticles(EnumParticleTypes.VILLAGER_HAPPY);
-        } else {
-            super.handleStatusUpdate(id);
-        }
-    }
-
-    @SideOnly(Side.CLIENT)
-    private void spawnParticles(EnumParticleTypes particleType) {
-        for (int i = 0; i < 5; ++i) {
-            double d0 = rand.nextGaussian() * 0.02D;
-            double d1 = rand.nextGaussian() * 0.02D;
-            double d2 = rand.nextGaussian() * 0.02D;
-            world.spawnParticle(particleType,
-                    posX + rand.nextFloat() * width * 2.0D - width,
-                    posY + rand.nextFloat() * height + 1.0D,
-                    posZ + rand.nextFloat() * width * 2.0D - width,
-                    d0, d1, d2);
-        }
+        setEntityInvulnerable(true);
     }
 
     @Override
@@ -122,15 +94,6 @@ public class EntityBanker extends EntityCreature implements INpc {
     @Override
     public SoundEvent getDeathSound() {
         return SoundEvents.ENTITY_VILLAGER_DEATH;
-    }
-
-    @Override
-    public void onDeath(DamageSource cause) {
-        super.onDeath(cause);
-        // TODO make invincible to damage and death
-        //
-        //
-        //
     }
 
     @Override
