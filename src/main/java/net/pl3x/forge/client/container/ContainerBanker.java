@@ -1,12 +1,14 @@
 package net.pl3x.forge.client.container;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.client.data.CapabilityProvider;
 import net.pl3x.forge.client.data.PlayerData;
 import net.pl3x.forge.client.inventory.InventoryBanker;
@@ -67,6 +69,7 @@ public class ContainerBanker extends Container {
         return playerData.getBankSlots();
     }
 
+    @SideOnly(Side.CLIENT)
     public void increaseBankSlotsFailed() {
         increaseBankSlotsFailed = true;
         new Thread(() -> {
@@ -74,8 +77,8 @@ public class ContainerBanker extends Container {
                 TimeUnit.MILLISECONDS.sleep(5000);
             } catch (InterruptedException ignore) {
             }
-            FMLCommonHandler.instance().getMinecraftServerInstance().getWorld(player.dimension)
-                    .addScheduledTask(() -> increaseBankSlotsFailed = false);
+            Minecraft.getMinecraft().addScheduledTask(
+                    () -> increaseBankSlotsFailed = false);
         }).start();
     }
 
