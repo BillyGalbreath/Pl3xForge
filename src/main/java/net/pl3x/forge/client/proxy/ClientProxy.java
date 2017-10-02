@@ -18,13 +18,17 @@ import net.pl3x.forge.client.gui.TitleScreen;
 import net.pl3x.forge.client.listener.ClientEventHandler;
 import net.pl3x.forge.client.listener.ServerEventHandler;
 import net.pl3x.forge.client.tileentity.TileEntityEnchantmentSplitter;
-import net.pl3x.forge.client.tileentity.TileEntityEnchantmentSplitterRenderer;
+import net.pl3x.forge.client.tileentity.TileEntityShop;
+import net.pl3x.forge.client.tileentity.renderer.TileEntityEnchantmentSplitterRenderer;
+import net.pl3x.forge.client.tileentity.renderer.TileEntityShopRenderer;
 
 public class ClientProxy extends CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEnchantmentSplitter.class, new TileEntityEnchantmentSplitterRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityShop.class, new TileEntityShopRenderer());
+
         RenderingRegistry.registerEntityRenderingHandler(EntityBanker.class, new RenderBanker.RenderBankerFactory());
     }
 

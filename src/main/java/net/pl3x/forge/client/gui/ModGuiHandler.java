@@ -7,7 +7,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.pl3x.forge.client.container.ContainerBanker;
 import net.pl3x.forge.client.container.ContainerEnchantmentSplitter;
+import net.pl3x.forge.client.container.ContainerShopCustomer;
+import net.pl3x.forge.client.container.ContainerShopOwner;
 import net.pl3x.forge.client.network.BankPacket;
+import net.pl3x.forge.client.tileentity.TileEntityShop;
 
 public class ModGuiHandler implements IGuiHandler {
     public static final int ENCHANTMENT_SPLITTER = 0;
@@ -16,6 +19,8 @@ public class ModGuiHandler implements IGuiHandler {
     public static final int BANKER_WITHDRAW_COIN = 3;
     public static final int BANKER_DEPOSIT_EXP = 4;
     public static final int BANKER_WITHDRAW_EXP = 5;
+    public static final int SHOP_OWNER = 6;
+    public static final int SHOP_CUSTOMER = 7;
 
     @Override
     public Container getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
@@ -24,6 +29,10 @@ public class ModGuiHandler implements IGuiHandler {
                 return new ContainerEnchantmentSplitter(player.inventory, world, new BlockPos(x, y, z));
             case BANKER:
                 return new ContainerBanker(player);
+            case SHOP_OWNER:
+                return new ContainerShopOwner(player.inventory, (TileEntityShop) world.getTileEntity(new BlockPos(x, y, z)));
+            case SHOP_CUSTOMER:
+                return new ContainerShopCustomer(player.inventory, (TileEntityShop) world.getTileEntity(new BlockPos(x, y, z)));
             default:
                 return null;
         }
@@ -44,6 +53,10 @@ public class ModGuiHandler implements IGuiHandler {
                 return new GuiBankerAction(getServerGuiElement(BANKER, player, world, x, y, z), player, BankPacket.DEPOSIT_EXP);
             case BANKER_WITHDRAW_EXP:
                 return new GuiBankerAction(getServerGuiElement(BANKER, player, world, x, y, z), player, BankPacket.WITHDRAW_EXP);
+            case SHOP_OWNER:
+                return new GuiShopOwner(getServerGuiElement(ID, player, world, x, y, z), player.inventory);
+            case SHOP_CUSTOMER:
+                return new GuiShopCustomer(getServerGuiElement(ID, player, world, x, y, z), player.inventory);
             default:
                 return null;
         }

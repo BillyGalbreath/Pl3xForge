@@ -15,6 +15,9 @@ public class PacketHandler {
         INSTANCE.registerMessage(PlayerDataPacket.Handler.class, PlayerDataPacket.class, 1, Side.CLIENT);
         INSTANCE.registerMessage(BankPacket.Handler.class, BankPacket.class, 2, Side.SERVER);
         INSTANCE.registerMessage(BankFailedPacket.Handler.class, BankFailedPacket.class, 3, Side.CLIENT);
+        INSTANCE.registerMessage(ShopChangePacket.Handler.class, ShopChangePacket.class, 4, Side.SERVER);
+        INSTANCE.registerMessage(ShopUpdateClientPacket.Handler.class, ShopUpdateClientPacket.class, 5, Side.CLIENT);
+        INSTANCE.registerMessage(ShopClientRequestPacket.Handler.class, ShopClientRequestPacket.class, 6, Side.SERVER);
     }
 
     public static void updatePlayerData(EntityPlayerMP player) {

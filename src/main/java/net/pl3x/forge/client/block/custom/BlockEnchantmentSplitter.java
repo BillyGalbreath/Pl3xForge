@@ -29,7 +29,7 @@ import net.pl3x.forge.client.tileentity.TileEntityEnchantmentSplitter;
 import javax.annotation.Nullable;
 
 public class BlockEnchantmentSplitter extends BlockTileEntity<TileEntityEnchantmentSplitter> {
-    protected static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.75D, 1.0D);
+    private static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.75D, 1.0D);
 
     public BlockEnchantmentSplitter() {
         super(Material.ROCK, "enchantment_splitter");
@@ -88,8 +88,6 @@ public class BlockEnchantmentSplitter extends BlockTileEntity<TileEntityEnchantm
     public TileEntityEnchantmentSplitter createTileEntity(World world, IBlockState state) {
         return new TileEntityEnchantmentSplitter();
     }
-
-    // Below is from BlockContainer.java
 
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
         super.breakBlock(worldIn, pos, state);

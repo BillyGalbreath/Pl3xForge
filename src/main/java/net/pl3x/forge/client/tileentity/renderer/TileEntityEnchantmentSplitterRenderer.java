@@ -1,4 +1,4 @@
-package net.pl3x.forge.client.tileentity;
+package net.pl3x.forge.client.tileentity.renderer;
 
 import net.minecraft.client.model.ModelBook;
 import net.minecraft.client.renderer.GlStateManager;
@@ -7,6 +7,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.pl3x.forge.client.tileentity.TileEntityEnchantmentSplitter;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityEnchantmentSplitterRenderer extends TileEntitySpecialRenderer<TileEntityEnchantmentSplitter> {

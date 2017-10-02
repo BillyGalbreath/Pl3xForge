@@ -54,8 +54,8 @@ public class GuiBanker extends GuiContainer {
         fontRenderer.drawString(String.valueOf(container.getExp()), 25, 90, 0x00AA00);
 
         if (container.increaseBankSlotsFailed) {
-            String failed = "Expansion Failed";
-            fontRenderer.drawString(failed, xSize - fontRenderer.getStringWidth(failed) - 8, ySize - 94, 0xAA0000);
+            String failed = "Insufficient Funds";
+            fontRenderer.drawString(failed, xSize - fontRenderer.getStringWidth(failed) - 8, ySize - 94, 0xFF0000);
         }
     }
 
