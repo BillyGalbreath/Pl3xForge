@@ -10,7 +10,8 @@
       "item": "minecraft:glass"
     },
     "S": {
-      "item": "minecraft:stone"
+      "item": "minecraft:stone",
+      "data": 0
     },
     "X": {
       "item": "minecraft:sign"
