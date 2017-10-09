@@ -6,10 +6,10 @@
     "R"
   ],
   "key": {
-    "R": {
+    "S": {
       "item": "minecraft:sea_lantern"
     },
-    "S": {
+    "R": {
       "item": "minecraft:end_rod"
     }
   },
