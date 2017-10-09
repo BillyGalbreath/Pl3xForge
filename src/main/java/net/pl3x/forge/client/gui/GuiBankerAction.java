@@ -7,33 +7,38 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
 import net.pl3x.forge.client.ExperienceManager;
-import net.pl3x.forge.client.Pl3xForgeClient;
 import net.pl3x.forge.client.data.CapabilityProvider;
 import net.pl3x.forge.client.data.PlayerData;
+import net.pl3x.forge.client.gui.element.Button;
 import net.pl3x.forge.client.network.BankPacket;
 import net.pl3x.forge.client.network.PacketHandler;
-import org.lwjgl.opengl.GL11;
+import net.pl3x.forge.client.util.GuiUtil;
+import net.pl3x.forge.client.util.Validator;
 
 import java.io.IOException;
 
 public class GuiBankerAction extends GuiContainer {
-    private static final ResourceLocation BG_TEXTURE = new ResourceLocation(Pl3xForgeClient.modId, "textures/gui/banker.png");
     private final EntityPlayer player;
-    private int parentXSize;
     private GuiTextField amountField;
-    private int action;
     private ExperienceManager expMan;
+
+    private int action;
+    private int iconX;
+    private int iconY;
+    private int textX;
+    private int textY;
+    private int x;
+    private int y;
 
     public GuiBankerAction(Container container, EntityPlayer player, int action) {
         super(container);
         this.player = player;
         this.action = action;
-        this.parentXSize = 176;
-        this.xSize = 80;
-        this.ySize = 61;
+
+        xSize = 80;
+        ySize = 61;
 
         expMan = new ExperienceManager(player);
     }
@@ -41,9 +46,17 @@ public class GuiBankerAction extends GuiContainer {
     @Override
     public void initGui() {
         super.initGui();
-        int x = (width - xSize) / 2;
-        int y = (height - ySize) / 2;
-        buttonList.add(new Button(0, x + 43, y + 45, 30, 10, "Ok"));
+
+        x = (width - xSize) / 2;
+        y = (height - ySize) / 2;
+
+        iconX = x + 6;
+        iconY = y + 6;
+        textX = x + 28;
+        textY = y + 10;
+
+        addButton(new Button(0, x + 43, y + 45, 30, 10, "Ok"));
+
         amountField = new GuiTextField(0, fontRenderer, x + 9, y + 27, 62, 12);
         amountField.setTextColor(-1);
         amountField.setDisabledTextColour(-1);
@@ -51,47 +64,39 @@ public class GuiBankerAction extends GuiContainer {
         amountField.setMaxStringLength(9);
         amountField.setCanLoseFocus(false);
         amountField.setFocused(true);
-        amountField.setValidator(input -> {
-            if (StringUtils.isNullOrEmpty(input)) {
-                return true;
-            }
-            try {
-                return Integer.valueOf(input) != null;
-            } catch (NumberFormatException e) {
-                return false;
-            }
-        });
+        amountField.setValidator(Validator::predicateInteger);
     }
 
     @Override
-    public boolean doesGuiPauseGame() {
-        return false;
+    public void updateScreen() {
+        super.updateScreen();
+
+        for (GuiButton button : buttonList) {
+            if (button instanceof Button && ((Button) button).tick()) {
+                actionPerformed(button);
+            }
+        }
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        int x = (width - xSize) / 2;
-        int y = (height - ySize) / 2;
         if (action == BankPacket.DEPOSIT_COIN || action == BankPacket.DEPOSIT_EXP) {
-            fontRenderer.drawString("Deposit", x + 28, y + 10, 0x404040);
+            fontRenderer.drawString("Deposit", textX, textY, 0x404040);
         } else {
-            fontRenderer.drawString("Withdraw", x + 28, y + 10, 0x404040);
+            fontRenderer.drawString("Withdraw", textX, textY, 0x404040);
         }
+
         amountField.drawTextBox();
     }
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-        GlStateManager.color(1, 1, 1, 1);
-        mc.getTextureManager().bindTexture(BG_TEXTURE);
-        int x = (width - xSize) / 2;
-        int y = (height - ySize) / 2;
-        drawTexturedModalRect(x, y, parentXSize, 0, xSize, ySize);
+        GuiUtil.drawBG(this, x, y, xSize, ySize);
 
         if (action == BankPacket.DEPOSIT_COIN || action == BankPacket.WITHDRAW_COIN) {
-            drawTexturedModalRect(x + 6, y + 6, parentXSize, 78, 16, 16); // coins icon
+            GuiUtil.drawTexture(this, GuiUtil.COIN, iconX, iconY, 0, 0, 16, 16, 16, 16);
         } else {
-            drawTexturedModalRect(x + 8, y + 7, parentXSize + 16, 78, 11, 15); // exp icon
+            GuiUtil.drawTexture(this, GuiUtil.EXP_BOTTLE, iconX, iconY, 0, 0, 16, 16, 16, 16);
         }
     }
 
@@ -103,6 +108,7 @@ public class GuiBankerAction extends GuiContainer {
         GlStateManager.disableBlend();
     }
 
+    // dont draw any slots at all
     private void drawScreenOverrideGuiContainer(int mouseX, int mouseY, float partialTicks) {
         drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
         drawScreenOverrideGuiScreen(mouseX, mouseY, partialTicks);
@@ -110,12 +116,12 @@ public class GuiBankerAction extends GuiContainer {
     }
 
     private void drawScreenOverrideGuiScreen(int mouseX, int mouseY, float partialTicks) {
-        for (GuiButton aButtonList : this.buttonList) {
-            aButtonList.drawButton(this.mc, mouseX, mouseY, partialTicks);
+        for (GuiButton aButtonList : buttonList) {
+            aButtonList.drawButton(mc, mouseX, mouseY, partialTicks);
         }
 
-        for (GuiLabel aLabelList : this.labelList) {
-            aLabelList.drawLabel(this.mc, mouseX, mouseY);
+        for (GuiLabel aLabelList : labelList) {
+            aLabelList.drawLabel(mc, mouseX, mouseY);
         }
     }
 

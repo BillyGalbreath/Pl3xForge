@@ -6,7 +6,7 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.pl3x.forge.client.Pl3xForgeClient;
-import net.pl3x.forge.client.gui.HUDPosition;
+import net.pl3x.forge.client.gui.HUDBalance;
 
 @Config(modid = Pl3xForgeClient.modId)
 @Config.LangKey("pl3x.config.title")
@@ -23,7 +23,7 @@ public class ModConfig {
 
         @Config.Name("Position")
         @Config.Comment("Anchor position of the HUD")
-        public HUDPosition position = HUDPosition.TOP_CENTER;
+        public HUDBalance.HUDPosition position = HUDBalance.HUDPosition.TOP_CENTER;
 
         @Config.Name("Relative X")
         @Config.Comment("X position relative to anchor")

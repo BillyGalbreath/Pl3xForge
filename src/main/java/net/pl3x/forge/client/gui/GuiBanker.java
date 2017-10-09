@@ -3,22 +3,30 @@ package net.pl3x.forge.client.gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.util.ResourceLocation;
 import net.pl3x.forge.client.Pl3xForgeClient;
 import net.pl3x.forge.client.container.ContainerBanker;
+import net.pl3x.forge.client.gui.element.Button;
+import net.pl3x.forge.client.gui.element.LockButton;
 import net.pl3x.forge.client.inventory.SlotBanker;
 import net.pl3x.forge.client.network.BankPacket;
 import net.pl3x.forge.client.network.PacketHandler;
-
-import java.util.List;
+import net.pl3x.forge.client.util.GuiUtil;
 
 public class GuiBanker extends GuiContainer {
-    private static final ResourceLocation BG_TEXTURE = new ResourceLocation(Pl3xForgeClient.modId, "textures/gui/banker.png");
     private final ContainerBanker container;
     private InventoryPlayer playerInv;
+
+    private final String failed = "Insufficient Funds";
+
+    private int failedX;
+    private int coinX;
+    private int coinY;
+    private int expX;
+    private int expY;
+    private int x;
+    private int y;
 
     public GuiBanker(Container container, InventoryPlayer playerInv) {
         super(container);
@@ -30,8 +38,16 @@ public class GuiBanker extends GuiContainer {
     @Override
     public void initGui() {
         super.initGui();
-        int x = (width - xSize) / 2;
-        int y = (height - ySize) / 2;
+
+        x = (width - xSize) / 2;
+        y = (height - ySize) / 2;
+
+        failedX = xSize - fontRenderer.getStringWidth(failed) - 8;
+        coinX = x + 6;
+        coinY = y + 35;
+        expX = x + 9;
+        expY = y + 85;
+
         buttonList.add(new Button(0, x + 8, y + 55, 30, 10, "+"));
         buttonList.add(new Button(1, x + 43, y + 55, 30, 10, "-"));
         buttonList.add(new Button(2, x + 8, y + 105, 30, 10, "+"));
@@ -47,28 +63,23 @@ public class GuiBanker extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        String invName = "Banker";
-        fontRenderer.drawString(invName, 8, 8, 0x404040);
-        fontRenderer.drawString(playerInv.getDisplayName().getUnformattedText(), 8, ySize - 94, 0x404040);
+        fontRenderer.drawString("Banker", 8, 8, 0x404040);
+        fontRenderer.drawString("Inventory", 8, 118, 0x404040);
         fontRenderer.drawString(String.valueOf(container.getCoins()), 25, 40, 0xFFAA00);
         fontRenderer.drawString(String.valueOf(container.getExp()), 25, 90, 0x00AA00);
 
         if (container.increaseBankSlotsFailed) {
-            String failed = "Insufficient Funds";
-            fontRenderer.drawString(failed, xSize - fontRenderer.getStringWidth(failed) - 8, ySize - 94, 0xFF0000);
+            fontRenderer.drawString(failed, failedX, 118, 0xFF0000);
         }
     }
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-        GlStateManager.color(1, 1, 1, 1);
-        mc.getTextureManager().bindTexture(BG_TEXTURE);
-        int x = (width - xSize) / 2;
-        int y = (height - ySize) / 2;
-        drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+        GuiUtil.drawBG(this, x, y, xSize, ySize);
+        GuiUtil.drawSlots(this, inventorySlots.inventorySlots, x, y);
 
-        drawTexturedModalRect(x + 6, y + 35, xSize, 78, 16, 16); // coins icon
-        drawTexturedModalRect(x + 9, y + 85, xSize + 16, 78, 11, 15); // exp icon
+        GuiUtil.drawTexture(this, GuiUtil.COIN, coinX, coinY, 0, 0, 16, 16, 16, 16);
+        GuiUtil.drawTexture(this, GuiUtil.EXP_BOTTLE, expX, expY, 0, 0, 16, 16, 16, 16);
     }
 
     @Override
@@ -99,87 +110,20 @@ public class GuiBanker extends GuiContainer {
             default:
                 for (int i = 0; i < 30; i++) {
                     if (button.id == i + 100 && ((SlotBanker) container.getSlot(i)).isPurchasable()) {
-                        increaseSlots();
+                        PacketHandler.INSTANCE.sendToServer(new BankPacket(1, BankPacket.SLOTS_INCREASE));
+                        return;
                     }
                 }
         }
     }
 
-    private void increaseSlots() {
-        PacketHandler.INSTANCE.sendToServer(new BankPacket(1, BankPacket.SLOTS_INCREASE));
-    }
-
     private void renderHoveredPurchasableSlot(int mouseX, int mouseY) {
-        SlotBanker hoveredSlot = getPurchasableSlotUnderMouse(mouseX, mouseY);
-        if (hoveredSlot == null) {
-            return; // not hovering a purchasable slot
-        }
-        drawLockTooltipText(hoveredSlot.getTooltipText(), mouseX, mouseY);
-    }
-
-    private void drawLockTooltipText(List<String> textLines, int x, int y) {
-        if (textLines.isEmpty()) {
-            return;
-        }
-
-        GlStateManager.disableRescaleNormal();
-        RenderHelper.disableStandardItemLighting();
-        GlStateManager.disableLighting();
-        GlStateManager.disableDepth();
-        int i = 0;
-
-        for (String s : textLines) {
-            int j = this.fontRenderer.getStringWidth(s);
-            if (j > i) {
-                i = j;
+        if (mc.player.inventory.getItemStack().isEmpty()) {
+            SlotBanker hoveredSlot = getPurchasableSlotUnderMouse(mouseX, mouseY);
+            if (hoveredSlot != null) {
+                drawHoveringText(hoveredSlot.getTooltipText(), mouseX, mouseY);
             }
         }
-
-        int l1 = x + 12;
-        int i2 = y - 12;
-        int k = 8;
-
-        if (textLines.size() > 1) {
-            k += 2 + (textLines.size() - 1) * 10;
-        }
-
-        if (l1 + i > this.width) {
-            l1 -= 28 + i;
-        }
-
-        if (i2 + k + 6 > this.height) {
-            i2 = this.height - k - 6;
-        }
-
-        this.zLevel = 300.0F;
-        this.itemRender.zLevel = 300.0F;
-        this.drawGradientRect(l1 - 3, i2 - 4, l1 + i + 3, i2 - 3, -267386864, -267386864);
-        this.drawGradientRect(l1 - 3, i2 + k + 3, l1 + i + 3, i2 + k + 4, -267386864, -267386864);
-        this.drawGradientRect(l1 - 3, i2 - 3, l1 + i + 3, i2 + k + 3, -267386864, -267386864);
-        this.drawGradientRect(l1 - 4, i2 - 3, l1 - 3, i2 + k + 3, -267386864, -267386864);
-        this.drawGradientRect(l1 + i + 3, i2 - 3, l1 + i + 4, i2 + k + 3, -267386864, -267386864);
-        this.drawGradientRect(l1 - 3, i2 - 3 + 1, l1 - 3 + 1, i2 + k + 3 - 1, 1347420415, 1344798847);
-        this.drawGradientRect(l1 + i + 2, i2 - 3 + 1, l1 + i + 3, i2 + k + 3 - 1, 1347420415, 1344798847);
-        this.drawGradientRect(l1 - 3, i2 - 3, l1 + i + 3, i2 - 3 + 1, 1347420415, 1347420415);
-        this.drawGradientRect(l1 - 3, i2 + k + 2, l1 + i + 3, i2 + k + 3, 1344798847, 1344798847);
-
-        for (int k1 = 0; k1 < textLines.size(); ++k1) {
-            String s1 = textLines.get(k1);
-            this.fontRenderer.drawStringWithShadow(s1, (float) l1, (float) i2, -1);
-
-            if (k1 == 0) {
-                i2 += 2;
-            }
-
-            i2 += 10;
-        }
-
-        this.zLevel = 0.0F;
-        this.itemRender.zLevel = 0.0F;
-        GlStateManager.enableLighting();
-        GlStateManager.enableDepth();
-        RenderHelper.enableStandardItemLighting();
-        GlStateManager.enableRescaleNormal();
     }
 
     private SlotBanker getPurchasableSlotUnderMouse(int mouseX, int mouseY) {

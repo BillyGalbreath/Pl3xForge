@@ -8,13 +8,28 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.pl3x.forge.client.data.CapabilityProvider;
+import net.pl3x.forge.client.data.PlayerData;
 import net.pl3x.forge.client.tileentity.TileEntityShop;
+import net.pl3x.forge.client.util.NumberUtil;
 
 public class ShopChangePacket implements IMessage {
-    public static final int INCREMENT_PRICE = 0;
-    public static final int DECREMENT_PRICE = 1;
-    public static final int INCREMENT_QUANTITY = 2;
-    public static final int DECREMENT_QUANTITY = 3;
+    public static final byte INCREMENT_PRICE = 0;
+    public static final byte DECREMENT_PRICE = 1;
+    public static final byte INCREMENT_QUANTITY = 2;
+    public static final byte DECREMENT_QUANTITY = 3;
+    public static final byte INCREMENT_SCALE = 4;
+    public static final byte DECREMENT_SCALE = 5;
+    public static final byte INCREMENT_Y_OFFSET = 6;
+    public static final byte DECREMENT_Y_OFFSET = 7;
+    public static final byte INCREMENT_X_ROT = 8;
+    public static final byte DECREMENT_X_ROT = 9;
+    public static final byte INCREMENT_Y_ROT = 10;
+    public static final byte DECREMENT_Y_ROT = 11;
+    public static final byte INCREMENT_Z_ROT = 12;
+    public static final byte DECREMENT_Z_ROT = 13;
+    public static final byte ADD_COIN = 14;
+    public static final byte REMOVE_COIN = 15;
 
     private BlockPos pos;
     private int packetType;
@@ -22,7 +37,7 @@ public class ShopChangePacket implements IMessage {
     public ShopChangePacket() {
     }
 
-    public ShopChangePacket(BlockPos pos, int packetType) {
+    public ShopChangePacket(BlockPos pos, byte packetType) {
         this.pos = pos;
         this.packetType = packetType;
     }
@@ -30,13 +45,13 @@ public class ShopChangePacket implements IMessage {
     @Override
     public void fromBytes(ByteBuf buf) {
         pos = BlockPos.fromLong(buf.readLong());
-        packetType = buf.readInt();
+        packetType = buf.readByte();
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
         buf.writeLong(pos.toLong());
-        buf.writeInt(packetType);
+        buf.writeByte(packetType);
     }
 
     public static class Handler implements IMessageHandler<ShopChangePacket, IMessage> {
@@ -49,6 +64,7 @@ public class ShopChangePacket implements IMessage {
             }
             TileEntityShop shop = (TileEntityShop) te;
             player.getServerWorld().addScheduledTask(() -> {
+                PlayerData capability = player.getCapability(CapabilityProvider.CAPABILITY, null);
                 switch (packet.packetType) {
                     case INCREMENT_PRICE:
                         if (shop.price < 9999) {
@@ -56,7 +72,7 @@ public class ShopChangePacket implements IMessage {
                         }
                         break;
                     case DECREMENT_PRICE:
-                        if (shop.price < 0) {
+                        if (shop.price > 0) {
                             shop.price--;
                         }
                         break;
@@ -69,6 +85,70 @@ public class ShopChangePacket implements IMessage {
                         if (shop.quantity > 0) {
                             shop.quantity--;
                         }
+                        break;
+                    case INCREMENT_SCALE:
+                        if (shop.display_scale < 1.5) {
+                            shop.display_scale = NumberUtil.round(shop.display_scale + 0.01);
+                        }
+                        break;
+                    case DECREMENT_SCALE:
+                        if (shop.display_scale > 0.0) {
+                            shop.display_scale = NumberUtil.round(shop.display_scale - 0.01);
+                        }
+                        break;
+                    case INCREMENT_Y_OFFSET:
+                        if (shop.display_yOffset < 1.5) {
+                            shop.display_yOffset = NumberUtil.round(shop.display_yOffset + 0.01);
+                        }
+                        break;
+                    case DECREMENT_Y_OFFSET:
+                        if (shop.display_yOffset > 0.0) {
+                            shop.display_yOffset = NumberUtil.round(shop.display_yOffset - 0.01);
+                        }
+                        break;
+                    case INCREMENT_X_ROT:
+                        if (shop.display_rotateX < 360) {
+                            shop.display_rotateX++;
+                        }
+                        break;
+                    case DECREMENT_X_ROT:
+                        if (shop.display_rotateX > -360) {
+                            shop.display_rotateX--;
+                        }
+                        break;
+                    case INCREMENT_Y_ROT:
+                        if (shop.display_rotateY < 360) {
+                            shop.display_rotateY++;
+                        }
+                        break;
+                    case DECREMENT_Y_ROT:
+                        if (shop.display_rotateY > -360) {
+                            shop.display_rotateY--;
+                        }
+                        break;
+                    case INCREMENT_Z_ROT:
+                        if (shop.display_rotateZ < 360) {
+                            shop.display_rotateZ++;
+                        }
+                        break;
+                    case DECREMENT_Z_ROT:
+                        if (shop.display_rotateZ > -360) {
+                            shop.display_rotateZ--;
+                        }
+                        break;
+                    case ADD_COIN:
+                        if (capability.getCoins() > 0) {
+                            capability.setCoins(capability.getCoins() - 1);
+                            shop.coins++;
+                        }
+                        PacketHandler.updatePlayerData(player);
+                        break;
+                    case REMOVE_COIN:
+                        if (shop.coins > 0) {
+                            capability.setCoins(capability.getCoins() + 1);
+                            shop.coins--;
+                        }
+                        PacketHandler.updatePlayerData(player);
                         break;
                 }
                 shop.markDirty();

@@ -14,11 +14,11 @@ import net.pl3x.forge.client.data.PlayerData;
 import net.pl3x.forge.client.gui.ModGuiHandler;
 
 public class BankPacket implements IMessage {
-    public static final int DEPOSIT_COIN = 0;
-    public static final int WITHDRAW_COIN = 1;
-    public static final int DEPOSIT_EXP = 2;
-    public static final int WITHDRAW_EXP = 3;
-    public static final int SLOTS_INCREASE = 4;
+    public static final byte DEPOSIT_COIN = 0;
+    public static final byte WITHDRAW_COIN = 1;
+    public static final byte DEPOSIT_EXP = 2;
+    public static final byte WITHDRAW_EXP = 3;
+    public static final byte SLOTS_INCREASE = 4;
 
     private int packetType;
     private long amount;
@@ -26,7 +26,7 @@ public class BankPacket implements IMessage {
     public BankPacket() {
     }
 
-    public BankPacket(long amount, int packetType) {
+    public BankPacket(long amount, byte packetType) {
         this.amount = amount;
         this.packetType = packetType;
     }
@@ -34,13 +34,13 @@ public class BankPacket implements IMessage {
     @Override
     public void fromBytes(ByteBuf buf) {
         amount = buf.readLong();
-        packetType = buf.readInt();
+        packetType = buf.readByte();
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
         buf.writeLong(amount);
-        buf.writeInt(packetType);
+        buf.writeByte(packetType);
     }
 
     public static class Handler implements IMessageHandler<BankPacket, IMessage> {

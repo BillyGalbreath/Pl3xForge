@@ -4,9 +4,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.util.ResourceLocation;
-import net.pl3x.forge.client.Pl3xForgeClient;
 import net.pl3x.forge.client.configuration.ModConfig;
+import net.pl3x.forge.client.util.GuiUtil;
 
 import java.text.DecimalFormat;
 
@@ -15,7 +14,6 @@ public class HUDBalance {
 
     private Minecraft mc = Minecraft.getMinecraft();
     private FontRenderer fontRenderer = mc.fontRenderer;
-    private ResourceLocation texture = new ResourceLocation(Pl3xForgeClient.modId + ":textures/items/coin.png");
 
     private DecimalFormat df = new DecimalFormat("#,###");
 
@@ -25,7 +23,7 @@ public class HUDBalance {
         }
 
         String balanceStr = df.format(balance);
-        mc.getTextureManager().bindTexture(texture);
+        mc.getTextureManager().bindTexture(GuiUtil.COIN);
         ScaledResolution scale = new ScaledResolution(mc);
 
         HUDPosition position = ModConfig.balanceHud.position;
@@ -75,5 +73,17 @@ public class HUDBalance {
 
         Gui.drawModalRectWithCustomSizedTexture(x, y - 5, 0, 0, 16, 16, 16, 16);
         fontRenderer.drawStringWithShadow(balanceStr, x + 18, y, 16777215);
+    }
+
+    public enum HUDPosition {
+        TOP_LEFT,
+        TOP_CENTER,
+        TOP_RIGHT,
+        BOTTOM_LEFT,
+        BOTTOM_CENTER,
+        BOTTOM_RIGHT,
+        CENTER_LEFT,
+        CENTER_CENTER,
+        CENTER_RIGHT
     }
 }

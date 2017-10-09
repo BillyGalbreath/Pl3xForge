@@ -4,11 +4,15 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
+import net.pl3x.forge.client.block.custom.BlockDepositBox;
 import net.pl3x.forge.client.block.custom.BlockEnchantmentSplitter;
 import net.pl3x.forge.client.block.custom.BlockFrostedObsidian;
+import net.pl3x.forge.client.block.custom.BlockLamp;
+import net.pl3x.forge.client.block.custom.BlockMicrowave;
 import net.pl3x.forge.client.block.custom.BlockRuby;
 import net.pl3x.forge.client.block.custom.BlockRubyOre;
 import net.pl3x.forge.client.block.custom.BlockShop;
+import net.pl3x.forge.client.block.custom.BlockTable;
 
 public class ModBlocks {
     public static final BlockRubyOre oreRuby = new BlockRubyOre();
@@ -16,6 +20,10 @@ public class ModBlocks {
     public static final BlockFrostedObsidian frostedObsidian = new BlockFrostedObsidian();
     public static final BlockEnchantmentSplitter enchantmentSplitter = new BlockEnchantmentSplitter();
     public static final BlockShop shopBlock = new BlockShop();
+    public static final BlockDepositBox depositBox = new BlockDepositBox();
+    public static final BlockMicrowave microwave = new BlockMicrowave();
+    public static final BlockLamp lamp = new BlockLamp();
+    public static final BlockTable table = new BlockTable();
 
     public static void register(IForgeRegistry<Block> registry) {
         registry.registerAll(
@@ -23,7 +31,11 @@ public class ModBlocks {
                 blockRuby,
                 frostedObsidian,
                 enchantmentSplitter,
-                shopBlock
+                shopBlock,
+                depositBox,
+                microwave,
+                lamp,
+                table
         );
 
         GameRegistry.registerTileEntity(enchantmentSplitter.getTileEntityClass(), enchantmentSplitter.getRegistryName().toString());
@@ -36,7 +48,11 @@ public class ModBlocks {
                 blockRuby.createItemBlock(),
                 frostedObsidian.createItemBlock(),
                 enchantmentSplitter.createItemBlock(),
-                shopBlock.createItemBlock()
+                shopBlock.createItemBlock(),
+                depositBox.createItemBlock(),
+                microwave.createItemBlock(),
+                lamp.createItemBlock(),
+                table.createItemBlock()
         );
     }
 
@@ -46,5 +62,9 @@ public class ModBlocks {
         frostedObsidian.registerItemModel(Item.getItemFromBlock(frostedObsidian));
         enchantmentSplitter.registerItemModel(Item.getItemFromBlock(enchantmentSplitter));
         shopBlock.registerItemModel(Item.getItemFromBlock(shopBlock));
+        depositBox.registerItemModel(Item.getItemFromBlock(depositBox));
+        microwave.registerItemModel(Item.getItemFromBlock(microwave));
+        lamp.registerItemModel(Item.getItemFromBlock(lamp));
+        table.registerItemModel(Item.getItemFromBlock(table));
     }
 }

@@ -17,10 +17,10 @@ public class ModItems {
     // ARMORS // new int[]{boots, leggings, chestplate, helmet}
     public static final net.minecraft.item.ItemArmor.ArmorMaterial emeraldArmorMaterial =
             EnumHelper.addArmorMaterial("EMERALD", Pl3xForgeClient.modId + ":emerald",
-                    35, new int[]{3, 7, 9, 3}, 25, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 3.0F);
+                    35, new int[]{3, 7, 9, 3}, 25, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 3);
     public static final net.minecraft.item.ItemArmor.ArmorMaterial rubyArmorMaterial =
             EnumHelper.addArmorMaterial("RUBY", Pl3xForgeClient.modId + ":ruby",
-                    40, new int[]{4, 7, 10, 4}, 30, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 4.0F);
+                    40, new int[]{4, 7, 10, 4}, 30, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 4);
 
     // TOOLS
     public static final Item.ToolMaterial emeraldToolMaterial =

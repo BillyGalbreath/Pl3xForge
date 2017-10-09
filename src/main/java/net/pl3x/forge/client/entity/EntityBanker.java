@@ -35,8 +35,8 @@ public class EntityBanker extends EntityCreature implements INpc {
 
     public void initEntityAI() {
         tasks.addTask(0, new EntityAISwimming(this));
-        tasks.addTask(9, new EntityAIWatchClosest2(this, EntityPlayer.class, 3.0F, 1.0F));
-        tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
+        tasks.addTask(9, new EntityAIWatchClosest2(this, EntityPlayer.class, 3, 1));
+        tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8));
     }
 
     public void applyEntityAttributes() {

@@ -4,18 +4,19 @@
     "normal": {
       "model": "pl3x:shop"
     },
-    "facing=west": {
-      "model": "pl3x:shop"
+    "facing=south": {
+      "model": "pl3x:shop",
+      "y": 0
     },
-    "facing=north": {
+    "facing=west": {
       "model": "pl3x:shop",
       "y": 90
     },
-    "facing=east": {
+    "facing=north": {
       "model": "pl3x:shop",
       "y": 180
     },
-    "facing=south": {
+    "facing=east": {
       "model": "pl3x:shop",
       "y": 270
     }

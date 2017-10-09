@@ -12,23 +12,23 @@ import net.pl3x.forge.client.ChatColor;
 import net.pl3x.forge.client.container.ContainerBanker;
 
 public class BankFailedPacket implements IMessage {
-    private int packetType;
+    private byte packetType;
 
     public BankFailedPacket() {
     }
 
-    public BankFailedPacket(int packetType) {
+    public BankFailedPacket(byte packetType) {
         this.packetType = packetType;
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        packetType = buf.readInt();
+        packetType = buf.readByte();
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
-        buf.writeInt(packetType);
+        buf.writeByte(packetType);
     }
 
     public static class Handler implements IMessageHandler<BankFailedPacket, IMessage> {

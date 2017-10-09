@@ -16,9 +16,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 public class EnchantmentSplitterInventoryInputs implements IInventory {
-    private String inventoryTitle;
     private final int slotsCount;
     private final NonNullList<ItemStack> inventoryContents;
+    private String inventoryTitle;
     /**
      * Listeners notified when any item in this inventory is changed.
      */

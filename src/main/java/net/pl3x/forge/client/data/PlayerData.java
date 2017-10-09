@@ -21,9 +21,9 @@ public interface PlayerData {
 
     void setBankSlots(int slots);
 
-    void setBankInventory(IInventory inventory);
-
     InventoryBanker getBankInventory();
+
+    void setBankInventory(IInventory inventory);
 
     NBTTagCompound getDataAsNBT();
 

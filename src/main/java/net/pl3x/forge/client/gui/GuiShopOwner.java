@@ -1,34 +1,39 @@
 package net.pl3x.forge.client.gui;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StringUtils;
-import net.minecraftforge.client.ForgeHooksClient;
+import net.minecraft.util.math.BlockPos;
 import net.pl3x.forge.client.Pl3xForgeClient;
 import net.pl3x.forge.client.container.ContainerShopOwner;
-import org.lwjgl.opengl.GL11;
+import net.pl3x.forge.client.gui.element.Button;
+import net.pl3x.forge.client.gui.element.TabButton;
+import net.pl3x.forge.client.util.GuiUtil;
+import net.pl3x.forge.client.util.Validator;
 
 public class GuiShopOwner extends GuiContainer {
-    private static final ResourceLocation BG_TEXTURE = new ResourceLocation(Pl3xForgeClient.modId, "textures/gui/shop_owner.png");
     private ContainerShopOwner container;
-    private InventoryPlayer playerInv;
     private GuiTextField priceField;
     private GuiTextField qtyField;
-    private int rotation = 0;
 
-    public GuiShopOwner(Container container, InventoryPlayer playerInv) {
+    private float itemRot = 0;
+    private int itemWidth;
+    private int itemHeight;
+    private int itemMinX;
+    private int itemMaxX;
+    private int itemMinY;
+    private int itemMaxY;
+    private int itemX;
+    private int itemY;
+    private int x;
+    private int y;
+
+    public GuiShopOwner(Container container) {
         super(container);
         this.container = (ContainerShopOwner) container;
-        this.playerInv = playerInv;
+
         xSize = 234;
         ySize = 212;
     }
@@ -36,62 +41,66 @@ public class GuiShopOwner extends GuiContainer {
     @Override
     public void initGui() {
         super.initGui();
-        int x = (width - xSize) / 2;
-        int y = (height - ySize) / 2;
-        buttonList.add(new Button(0, x + 173, y + 77, 12, 12, "+"));
-        buttonList.add(new Button(1, x + 215, y + 77, 12, 12, "-"));
-        buttonList.add(new Button(2, x + 173, y + 102, 12, 12, "+"));
-        buttonList.add(new Button(3, x + 215, y + 102, 12, 12, "-"));
+
+        x = (width - xSize) / 2;
+        y = (height - ySize) / 2;
+
+        itemWidth = 54;
+        itemHeight = 54;
+        itemMinX = x + 173;
+        itemMaxX = itemMinX + itemWidth;
+        itemMinY = y + 7;
+        itemMaxY = itemMinY + itemHeight;
+        itemX = x + 198;
+        itemY = y + 42;
+
+        addButton(new Button(0, x + 173, y + 77, 12, 12, "+"));
+        addButton(new Button(1, x + 215, y + 77, 12, 12, "-"));
+        addButton(new Button(2, x + 173, y + 102, 12, 12, "+"));
+        addButton(new Button(3, x + 215, y + 102, 12, 12, "-"));
+
+        addButton(new TabButton(4, x + xSize - 52, y - 13, 47, 16, "display"));
+        addButton(new TabButton(5, x + xSize - 95, y - 13, 40, 16, "funds"));
 
         priceField = new GuiTextField(1, fontRenderer, 186, 78, 28, 10);
         priceField.setMaxStringLength(4);
-        priceField.setValidator(input -> {
-            if (StringUtils.isNullOrEmpty(input)) {
-                return true;
-            }
-            try {
-                return Integer.valueOf(input) != null;
-            } catch (NumberFormatException e) {
-                return false;
-            }
-        });
+        priceField.setValidator(Validator::predicateInteger);
 
         qtyField = new GuiTextField(0, fontRenderer, 186, 103, 28, 10);
         qtyField.setMaxStringLength(4);
-        qtyField.setValidator(input -> {
-            if (StringUtils.isNullOrEmpty(input)) {
-                return true;
+        qtyField.setValidator(Validator::predicateInteger);
+    }
+
+    @Override
+    public void updateScreen() {
+        super.updateScreen();
+
+        priceField.setText(String.valueOf(container.shop.price));
+        qtyField.setText(String.valueOf(container.shop.quantity));
+
+        for (GuiButton button : buttonList) {
+            if (button instanceof Button && ((Button) button).tick()) {
+                actionPerformed(button);
             }
-            try {
-                return Integer.valueOf(input) != null;
-            } catch (NumberFormatException e) {
-                return false;
-            }
-        });
+        }
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        fontRenderer.drawString(playerInv.getDisplayName().getUnformattedText(), 8, ySize - 94, 0x404040);
+        fontRenderer.drawString("Inventory", 8, 118, 0x404040);
         fontRenderer.drawString("Quantity:", 173, 93, 0x404040);
         fontRenderer.drawString("Price:", 173, 68, 0x404040);
 
         priceField.drawTextBox();
         qtyField.drawTextBox();
-
-        priceField.setText(String.valueOf(container.shop.price));
-        qtyField.setText(String.valueOf(container.shop.quantity));
     }
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-        GlStateManager.color(1, 1, 1, 1);
-        mc.getTextureManager().bindTexture(BG_TEXTURE);
-        int x = (width - xSize) / 2;
-        int y = (height - ySize) / 2;
-        drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
-
-        drawItem(x + 198, y + 42);
+        GuiUtil.drawBG(this, x, y, xSize, ySize);
+        GuiUtil.drawSlots(this, inventorySlots.inventorySlots, x, y);
+        GuiUtil.drawBlackWindow(this, itemMinX, itemMinY, itemWidth, itemHeight);
+        itemRot = GuiUtil.drawItem(this, container.shop.stack, partialTicks, itemX, itemY, 70, itemRot);
     }
 
     @Override
@@ -99,6 +108,11 @@ public class GuiShopOwner extends GuiContainer {
         drawDefaultBackground();
         super.drawScreen(mouseX, mouseY, partialTicks);
         renderHoveredToolTip(mouseX, mouseY);
+        if (!container.shop.stack.isEmpty() &&
+                mouseX > itemMinX && mouseX < itemMaxX &&
+                mouseY > itemMinY && mouseY < itemMaxY) {
+            renderToolTip(container.shop.stack, mouseX, mouseY);
+        }
         GlStateManager.disableLighting();
         GlStateManager.disableBlend();
     }
@@ -113,38 +127,14 @@ public class GuiShopOwner extends GuiContainer {
             container.shop.incrementQuantity();
         } else if (button.id == 3) { // qty -
             container.shop.decrementQuantity();
+        } else if (button.id == 4) { // display tab
+            BlockPos pos = container.shop.getPos();
+            mc.player.openGui(Pl3xForgeClient.instance, ModGuiHandler.SHOP_OWNER_DISPLAY,
+                    container.shop.getWorld(), pos.getX(), pos.getY(), pos.getZ());
+        } else if (button.id == 5) { // funds tab
+            BlockPos pos = container.shop.getPos();
+            mc.player.openGui(Pl3xForgeClient.instance, ModGuiHandler.SHOP_OWNER_FUNDS,
+                    container.shop.getWorld(), pos.getX(), pos.getY(), pos.getZ());
         }
-    }
-
-    private void drawItem(int x, int y) {
-        if (container.shop.stack.isEmpty()) {
-            return;
-        }
-
-        GlStateManager.pushMatrix();
-        GlStateManager.enableRescaleNormal();
-        GlStateManager.alphaFunc(GL11.GL_GREATER, 0.1f);
-        GlStateManager.enableBlend();
-        GlStateManager.tryBlendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
-
-        GlStateManager.translate(x, y, 50.0F);
-        GlStateManager.scale(-70, 70, 70);
-        GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
-
-        IBakedModel model = Minecraft.getMinecraft().getRenderItem().getItemModelWithOverrides(container.shop.stack, container.shop.getWorld(), null);
-        model = ForgeHooksClient.handleCameraTransforms(model, ItemCameraTransforms.TransformType.GROUND, false);
-        Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-
-        if (rotation++ > 359) {
-            rotation = 1;
-        }
-        GlStateManager.rotate(rotation, 0.0F, 1.0F, 0.0F);
-        if (model.isGui3d()) {
-            GlStateManager.rotate(-15.0F, 0.5F, 0.0F, 0.0F);
-        }
-
-        Minecraft.getMinecraft().getRenderItem().renderItem(container.shop.stack, model);
-
-        GlStateManager.popMatrix();
     }
 }

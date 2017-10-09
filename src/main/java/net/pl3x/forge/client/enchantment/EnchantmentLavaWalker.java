@@ -34,6 +34,30 @@ public class EnchantmentLavaWalker extends Enchantment {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
+    private static void freezeLava(EntityLivingBase entity, World world, BlockPos pos, int level) {
+        if (!entity.onGround) {
+            return;
+        }
+        float f = (float) Math.min(16, 2 + level);
+        float f2 = f * f;
+        BlockPos.MutableBlockPos pos1 = new BlockPos.MutableBlockPos(0, 0, 0);
+        for (BlockPos.MutableBlockPos pos2 : BlockPos.getAllInBoxMutable(pos.add(-f, -1.0D, -f), pos.add(f, -1.0D, f))) {
+            if (pos2.distanceSqToCenter(entity.posX, entity.posY, entity.posZ) <= f2) {
+                pos1.setPos(pos2.getX(), pos2.getY() + 1, pos2.getZ());
+                IBlockState state = world.getBlockState(pos1);
+                if (state.getMaterial() == Material.AIR) {
+                    IBlockState state1 = world.getBlockState(pos2);
+                    if (state1.getMaterial() == Material.LAVA && state1.getValue(BlockLiquid.LEVEL) == 0 &&
+                            world.mayPlace(ModBlocks.frostedObsidian, pos2, false, EnumFacing.DOWN, null)) {
+                        world.setBlockState(pos2, ModBlocks.frostedObsidian.getDefaultState(), 2);
+                        world.scheduleUpdate(pos2.toImmutable(), ModBlocks.frostedObsidian,
+                                MathHelper.getInt(entity.getRNG(), 60, 120));
+                    }
+                }
+            }
+        }
+    }
+
     @Override
     public int getMinEnchantability(int enchantmentLevel) {
         return enchantmentLevel * 10;
@@ -82,29 +106,5 @@ public class EnchantmentLavaWalker extends Enchantment {
         playerPositionTracker.put(entity.getUniqueID(), curPos);
 
         EnchantmentLavaWalker.freezeLava(entity, entity.getEntityWorld(), entity.getPosition(), level);
-    }
-
-    private static void freezeLava(EntityLivingBase entity, World world, BlockPos pos, int level) {
-        if (!entity.onGround) {
-            return;
-        }
-        float f = (float) Math.min(16, 2 + level);
-        float f2 = f * f;
-        BlockPos.MutableBlockPos pos1 = new BlockPos.MutableBlockPos(0, 0, 0);
-        for (BlockPos.MutableBlockPos pos2 : BlockPos.getAllInBoxMutable(pos.add(-f, -1.0D, -f), pos.add(f, -1.0D, f))) {
-            if (pos2.distanceSqToCenter(entity.posX, entity.posY, entity.posZ) <= f2) {
-                pos1.setPos(pos2.getX(), pos2.getY() + 1, pos2.getZ());
-                IBlockState state = world.getBlockState(pos1);
-                if (state.getMaterial() == Material.AIR) {
-                    IBlockState state1 = world.getBlockState(pos2);
-                    if (state1.getMaterial() == Material.LAVA && state1.getValue(BlockLiquid.LEVEL) == 0 &&
-                            world.mayPlace(ModBlocks.frostedObsidian, pos2, false, EnumFacing.DOWN, null)) {
-                        world.setBlockState(pos2, ModBlocks.frostedObsidian.getDefaultState(), 2);
-                        world.scheduleUpdate(pos2.toImmutable(), ModBlocks.frostedObsidian,
-                                MathHelper.getInt(entity.getRNG(), 60, 120));
-                    }
-                }
-            }
-        }
     }
 }

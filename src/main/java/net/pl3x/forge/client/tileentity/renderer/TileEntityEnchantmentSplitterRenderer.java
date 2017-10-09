@@ -18,7 +18,7 @@ public class TileEntityEnchantmentSplitterRenderer extends TileEntitySpecialRend
         GlStateManager.pushMatrix();
         GlStateManager.translate((float) x + 0.5F, (float) y + 0.75F, (float) z + 0.5F);
         float f = (float) te.tickCount + partialTicks;
-        GlStateManager.translate(0.0F, 0.1F + MathHelper.sin(f * 0.1F) * 0.01F, 0.0F);
+        GlStateManager.translate(0, 0.1F + MathHelper.sin(f * 0.1F) * 0.01F, 0);
         float f1;
 
         for (f1 = te.bookRotation - te.bookRotationPrev; f1 >= (float) Math.PI; f1 -= ((float) Math.PI * 2F)) {
@@ -29,33 +29,33 @@ public class TileEntityEnchantmentSplitterRenderer extends TileEntitySpecialRend
         }
 
         float f2 = te.bookRotationPrev + f1 * partialTicks;
-        GlStateManager.rotate(-f2 * (180F / (float) Math.PI), 0.0F, 1.0F, 0.0F);
-        GlStateManager.rotate(80.0F, 0.0F, 0.0F, 1.0F);
+        GlStateManager.rotate(-f2 * (180F / (float) Math.PI), 0, 1, 0);
+        GlStateManager.rotate(80, 0, 0, 1);
         this.bindTexture(TEXTURE_BOOK);
         float f3 = te.pageFlipPrev + (te.pageFlip - te.pageFlipPrev) * partialTicks + 0.25F;
         float f4 = te.pageFlipPrev + (te.pageFlip - te.pageFlipPrev) * partialTicks + 0.75F;
         f3 = (f3 - (float) MathHelper.fastFloor((double) f3)) * 1.6F - 0.3F;
         f4 = (f4 - (float) MathHelper.fastFloor((double) f4)) * 1.6F - 0.3F;
 
-        if (f3 < 0.0F) {
-            f3 = 0.0F;
+        if (f3 < 0) {
+            f3 = 0;
         }
 
-        if (f4 < 0.0F) {
-            f4 = 0.0F;
+        if (f4 < 0) {
+            f4 = 0;
         }
 
-        if (f3 > 1.0F) {
-            f3 = 1.0F;
+        if (f3 > 1) {
+            f3 = 1;
         }
 
-        if (f4 > 1.0F) {
-            f4 = 1.0F;
+        if (f4 > 1) {
+            f4 = 1;
         }
 
         float f5 = te.bookSpreadPrev + (te.bookSpread - te.bookSpreadPrev) * partialTicks;
         GlStateManager.enableCull();
-        this.modelBook.render(null, f, f3, f4, f5, 0.0F, 0.0625F);
+        this.modelBook.render(null, f, f3, f4, f5, 0, 0.0625F);
         GlStateManager.popMatrix();
     }
 }

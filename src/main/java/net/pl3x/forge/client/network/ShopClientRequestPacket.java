@@ -39,7 +39,7 @@ public class ShopClientRequestPacket implements IMessage {
 
     public static class Handler implements IMessageHandler<ShopClientRequestPacket, IMessage> {
         @Override
-        public IMessage onMessage(ShopClientRequestPacket packet, MessageContext ctx) {
+        public IMessage onMessage(ShopClientRequestPacket packet, MessageContext context) {
             World world = FMLCommonHandler.instance().getMinecraftServerInstance().getWorld(packet.dimension);
             TileEntityShop te = (TileEntityShop) world.getTileEntity(packet.pos);
             if (te != null) {

@@ -1,26 +1,26 @@
 package net.pl3x.forge.client.tileentity.renderer;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.ForgeHooksClient;
-import net.pl3x.forge.client.Pl3xForgeClient;
 import net.pl3x.forge.client.tileentity.TileEntityShop;
+import net.pl3x.forge.client.util.Quat;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.vector.Quaternion;
 
 public class TileEntityShopRenderer extends TileEntitySpecialRenderer<TileEntityShop> {
-    private static final ResourceLocation COIN_TEXTURE = new ResourceLocation(Pl3xForgeClient.modId, "textures/items/coin.png");
-
     @Override
     public void render(TileEntityShop te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
         if (!te.stack.isEmpty()) {
+            if (te.model == null) {
+                te.model = Minecraft.getMinecraft().getRenderItem().getItemModelWithOverrides(te.stack, getWorld(), null);
+            }
+
             GlStateManager.enableRescaleNormal();
             GlStateManager.alphaFunc(GL11.GL_GREATER, 0.1f);
             GlStateManager.enableBlend();
@@ -28,35 +28,15 @@ public class TileEntityShopRenderer extends TileEntitySpecialRenderer<TileEntity
             GlStateManager.tryBlendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
             GlStateManager.pushMatrix();
 
-            switch (te.facing) {
-                case NORTH: // sign faces to the EAST
-                    GlStateManager.translate(x + 0.6, y + 0.7, z + 0.5);
-                    GlStateManager.rotate(-90, 0, 1F, 0);
-                    GlStateManager.rotate(90, 1F, 0, 0);
-                    break;
-                case SOUTH: // sign faces to the WEST
-                    GlStateManager.translate(x + 0.4, y + 0.7, z + 0.5);
-                    GlStateManager.rotate(90, 0, 1F, 0);
-                    GlStateManager.rotate(90, 1F, 0, 0);
-                    break;
-                case WEST: // sign faces to the NORTH
-                    GlStateManager.translate(x + 0.5, y + 0.7, z + 0.4);
-                    GlStateManager.rotate(90, 1F, 0, 0);
-                    break;
-                case EAST: // sign faces to the SOUTH
-                    GlStateManager.translate(x + 0.5, y + 0.7, z + 0.6);
-                    GlStateManager.rotate(180, 0, 0, 1F);
-                    GlStateManager.rotate(-90, 1F, 0, 0);
-                    break;
-            }
-            GlStateManager.scale(0.8, 0.8, 0.8);
+            Quaternion rot = Quat.create(0, 1, 0, te.facingRot);
+            Quat.mul(rot, 1, 0, 0, te.display_rotateX - (!te.model.isGui3d() ? 65 : 0));
+            Quat.mul(rot, 0, 1, 0, te.display_rotateY);
+            Quat.mul(rot, 0, 0, 1, te.display_rotateZ);
 
-            IBakedModel model = Minecraft.getMinecraft().getRenderItem().getItemModelWithOverrides(te.stack, te.getWorld(), null);
-            model = ForgeHooksClient.handleCameraTransforms(model, ItemCameraTransforms.TransformType.GROUND, false);
-
-            if (!model.isGui3d()) {
-                GlStateManager.rotate(180, 0, 1, 0);
-            }
+            GlStateManager.translate(x + 0.5, y + te.display_yOffset - (te.model.isGui3d() ? 0.075 : 0), z + 0.5);
+            IBakedModel model = ForgeHooksClient.handleCameraTransforms(te.model, ItemCameraTransforms.TransformType.GROUND, false);
+            GlStateManager.rotate(rot);
+            GlStateManager.scale(te.display_scale, te.display_scale, te.display_scale);
 
             Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
             Minecraft.getMinecraft().getRenderItem().renderItem(te.stack, model);
@@ -64,38 +44,20 @@ public class TileEntityShopRenderer extends TileEntitySpecialRenderer<TileEntity
             GlStateManager.popMatrix();
             GlStateManager.disableRescaleNormal();
             GlStateManager.disableBlend();
-
             GlStateManager.pushMatrix();
-            switch (te.facing) {
-                case NORTH: // sign faces to the EAST
-                    GlStateManager.translate(x + 0.7501, y + 0.5, z + 0.5);
-                    GlStateManager.rotate(270, 0F, 1F, 0F);
-                    break;
-                case SOUTH: // sign faces to the WEST
-                    GlStateManager.translate(x + 0.24999, y + 0.5, z + 0.5);
-                    GlStateManager.rotate(90, 0F, 1F, 0F);
-                    break;
-                case WEST: // sign faces to the NORTH
-                    GlStateManager.translate(x + 0.5, y + 0.5, z + 0.2499);
-                    break;
-                case EAST: // sign faces to the SOUTH
-                    GlStateManager.translate(x + 0.5, y + 0.5, z + 0.7501);
-                    GlStateManager.rotate(180, 0F, 1F, 0F);
-                    break;
-            }
 
+            GlStateManager.translate(x + te.signPosX, y + te.signPosY, z + te.signPosZ);
+            GlStateManager.rotate(te.signRot, 0F, 1F, 0F);
             GlStateManager.scale(-0.01F, -0.01F, 0.01F);
-            FontRenderer font = getFontRenderer();
 
             String quantity = "Qty: " + te.quantity;
             String icon = "\u99F4";
             String price = String.valueOf(te.price);
+            int priceWidth = getFontRenderer().getStringWidth(icon + price);
 
-            int priceWidth = font.getStringWidth(icon + price);
-
-            font.drawString(quantity, -font.getStringWidth(quantity) / 2, 2, 0x000000);
-            font.drawString(icon, -priceWidth / 2 - 1, 13, 0xffffff);
-            font.drawString(price, -priceWidth / 2 + 9, 13, 0x000000);
+            getFontRenderer().drawString(quantity, -getFontRenderer().getStringWidth(quantity) / 2, 2, 0x000000);
+            getFontRenderer().drawString(icon, -priceWidth / 2 - 1, 13, 0xffffff);
+            getFontRenderer().drawString(price, -priceWidth / 2 + 9, 13, 0x000000);
 
             GlStateManager.popMatrix();
         }

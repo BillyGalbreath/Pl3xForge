@@ -8,14 +8,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.SlotItemHandler;
 import net.pl3x.forge.client.block.ModBlocks;
 import net.pl3x.forge.client.tileentity.TileEntityShop;
+import net.pl3x.forge.client.util.ItemStackUtil;
 
 import javax.annotation.Nonnull;
 
 public class ContainerShopOwner extends Container {
     public TileEntityShop shop;
+    private boolean allowInteraction;
 
-    public ContainerShopOwner(InventoryPlayer playerInventory, TileEntityShop shop) {
+    public ContainerShopOwner(InventoryPlayer playerInventory, TileEntityShop shop, boolean allowInteraction) {
         this.shop = shop;
+        this.allowInteraction = allowInteraction;
 
         // shop inventory
         int rows = shop.inventory.getSlots() / 9;
@@ -26,13 +29,24 @@ public class ContainerShopOwner extends Container {
                     public void onSlotChanged() {
                         shop.markDirty();
                         shop.updateStack();
+                        shop.updateClients();
                     }
 
                     @Override
                     public boolean isItemValid(@Nonnull ItemStack stack) {
-                        stack = stack.copy();
-                        stack.setCount(1);
-                        return shop.stack.isEmpty() || ItemStack.areItemStacksEqual(shop.stack, stack);
+                        return allowInteraction && (shop.stack.isEmpty() || ItemStackUtil.isItemStackEqualIgnoreCount(shop.stack, stack));
+                    }
+
+                    @Override
+                    public void putStack(@Nonnull ItemStack stack) {
+                        if (allowInteraction) {
+                            super.putStack(stack);
+                        }
+                    }
+
+                    @Override
+                    public boolean canTakeStack(EntityPlayer playerIn) {
+                        return allowInteraction && super.canTakeStack(playerIn);
                     }
                 });
             }
@@ -52,7 +66,7 @@ public class ContainerShopOwner extends Container {
     }
 
     public boolean canInteractWith(EntityPlayer playerIn) {
-        return shop.getWorld().getBlockState(shop.getPos()).getBlock() == ModBlocks.shopBlock &&
+        return allowInteraction && shop.getWorld().getBlockState(shop.getPos()).getBlock() == ModBlocks.shopBlock &&
                 playerIn.getDistanceSq((double) shop.getPos().getX() + 0.5D,
                         (double) shop.getPos().getY() + 0.5D,
                         (double) shop.getPos().getZ() + 0.5D) <= 64.0D;
@@ -60,6 +74,9 @@ public class ContainerShopOwner extends Container {
 
     // handle shift clicking
     public ItemStack transferStackInSlot(EntityPlayer player, int index) {
+        if (!allowInteraction) {
+            return ItemStack.EMPTY;
+        }
         ItemStack copyStack = ItemStack.EMPTY;
         Slot slot = inventorySlots.get(index);
         if (slot != null && slot.getHasStack()) {

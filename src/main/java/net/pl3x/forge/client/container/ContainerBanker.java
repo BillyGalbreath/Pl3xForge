@@ -17,12 +17,12 @@ import net.pl3x.forge.client.inventory.SlotBanker;
 import java.util.concurrent.TimeUnit;
 
 public class ContainerBanker extends Container {
-    private final IInventory bankSlots;
     public final EntityPlayer player;
+    private final IInventory bankSlots;
+    public boolean increaseBankSlotsFailed = false;
     private long coins = 0;
     private int exp = 0;
     private PlayerData playerData;
-    public boolean increaseBankSlotsFailed = false;
 
     public ContainerBanker(EntityPlayer player) {
         this.player = player;

@@ -4,6 +4,7 @@ import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -19,14 +20,17 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
+import net.pl3x.forge.client.ChatColor;
 import net.pl3x.forge.client.Pl3xForgeClient;
 import net.pl3x.forge.client.block.BlockTileEntity;
 import net.pl3x.forge.client.gui.ModGuiHandler;
+import net.pl3x.forge.client.item.ModItems;
 import net.pl3x.forge.client.tileentity.TileEntityShop;
 
 import javax.annotation.Nullable;
@@ -37,9 +41,9 @@ public class BlockShop extends BlockTileEntity<TileEntityShop> {
 
     public BlockShop() {
         super(Material.GLASS, "shop");
-        setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.SOUTH));
-        setHardness(1.0F);
-        setLightLevel(1.0F);
+        setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.EAST));
+        setHardness(1);
+        setLightLevel(1);
 
         setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
     }
@@ -86,6 +90,10 @@ public class BlockShop extends BlockTileEntity<TileEntityShop> {
         return EnumBlockRenderType.MODEL;
     }
 
+    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
+        return BlockFaceShape.UNDEFINED;
+    }
+
     @Override
     public boolean isFullBlock(IBlockState state) {
         return false;
@@ -105,7 +113,7 @@ public class BlockShop extends BlockTileEntity<TileEntityShop> {
     @Override
     @SideOnly(Side.CLIENT)
     public float getAmbientOcclusionLightValue(IBlockState state) {
-        return 0.2F;
+        return 1.0F;
     }
 
     @Override
@@ -152,10 +160,13 @@ public class BlockShop extends BlockTileEntity<TileEntityShop> {
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (!worldIn.isRemote) {
-            if (playerIn.isSneaking()) {
-                playerIn.openGui(Pl3xForgeClient.instance, ModGuiHandler.SHOP_CUSTOMER, worldIn, pos.getX(), pos.getY(), pos.getZ());
-            } else {
-                playerIn.openGui(Pl3xForgeClient.instance, ModGuiHandler.SHOP_OWNER, worldIn, pos.getX(), pos.getY(), pos.getZ());
+            TileEntity te = worldIn.getTileEntity(pos);
+            if (te instanceof TileEntityShop) {
+                if (playerIn.isSneaking() || !((TileEntityShop) te).isOwner(playerIn)) {
+                    playerIn.openGui(Pl3xForgeClient.instance, ModGuiHandler.SHOP_CUSTOMER, worldIn, pos.getX(), pos.getY(), pos.getZ());
+                } else {
+                    playerIn.openGui(Pl3xForgeClient.instance, ModGuiHandler.SHOP_OWNER, worldIn, pos.getX(), pos.getY(), pos.getZ());
+                }
             }
         }
         return true;
@@ -172,8 +183,33 @@ public class BlockShop extends BlockTileEntity<TileEntityShop> {
                     InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), stack);
                 }
             }
+            for (int i = 0; i < ((TileEntityShop) te).coins; i++) {
+                InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), ModItems.COIN.getDefaultInstance());
+            }
         }
         super.breakBlock(worldIn, pos, state);
+    }
+
+    @Override
+    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+        TileEntity te = worldIn.getTileEntity(pos);
+        if (te instanceof TileEntityShop) {
+            ((TileEntityShop) te).setOwner(placer.getUniqueID());
+        }
+    }
+
+    @Override
+    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
+        if (!world.isRemote) {
+            TileEntity te = world.getTileEntity(pos);
+            if (te instanceof TileEntityShop) {
+                if (!((TileEntityShop) te).isOwner(player)) {
+                    player.sendMessage(new TextComponentString(ChatColor.colorize("&4You cannot break this shop")));
+                    return false;
+                }
+            }
+        }
+        return super.removedByPlayer(state, world, pos, player, willHarvest);
     }
 
     @Override

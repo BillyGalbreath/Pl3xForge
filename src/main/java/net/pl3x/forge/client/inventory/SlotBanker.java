@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SlotBanker extends Slot {
-    private ContainerBanker container;
     List<String> tooltip = new ArrayList<>();
+    private ContainerBanker container;
 
     public SlotBanker(ContainerBanker container, IInventory inventoryIn, int index, int xPosition, int yPosition) {
         super(inventoryIn, index, xPosition, yPosition);

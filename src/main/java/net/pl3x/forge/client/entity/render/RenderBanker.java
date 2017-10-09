@@ -20,7 +20,7 @@ public class RenderBanker extends RenderLiving<EntityBanker> {
     private static final ResourceLocation TEXTURE = new ResourceLocation(Pl3xForgeClient.modId + ":textures/entity/banker.png");
 
     public RenderBanker(RenderManager renderManager) {
-        super(renderManager, new ModelVillager(0.0F), 0.5F);
+        super(renderManager, new ModelVillager(0), 0);
         this.addLayer(new LayerCustomHead(this.getMainModel().villagerHead));
     }
 

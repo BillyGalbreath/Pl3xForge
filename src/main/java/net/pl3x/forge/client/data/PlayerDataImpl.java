@@ -48,14 +48,14 @@ public class PlayerDataImpl implements PlayerData {
         this.bankSlots = slots;
     }
 
+    public InventoryBanker getBankInventory() {
+        return bankInventory;
+    }
+
     public void setBankInventory(IInventory inventory) {
         for (int i = 0; i < inventory.getSizeInventory(); i++) {
             bankInventory.setInventorySlotContents(i, inventory.getStackInSlot(i));
         }
-    }
-
-    public InventoryBanker getBankInventory() {
-        return bankInventory;
     }
 
     @Override

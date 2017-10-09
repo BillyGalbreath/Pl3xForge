@@ -23,11 +23,11 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 public class ContainerEnchantmentSplitter extends Container {
+    public final BlockPos selfPosition;
     private final IInventory resultSlotTool;
     private final IInventory resultSlotBook;
     private final EnchantmentSplitterInventoryInputs inputSlots;
     private final World world;
-    public final BlockPos selfPosition;
     public boolean BAD_INPUT_TOOL = false;
     public boolean BAD_INPUT_BOOK = false;
     public boolean NEW_INPUT_TOOL = false;

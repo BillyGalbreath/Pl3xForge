@@ -6,106 +6,147 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
-import net.pl3x.forge.client.Pl3xForgeClient;
 import net.pl3x.forge.client.block.ModBlocks;
 import net.pl3x.forge.client.container.ContainerEnchantmentSplitter;
 import net.pl3x.forge.client.tileentity.TileEntityEnchantmentSplitter;
+import net.pl3x.forge.client.util.GuiUtil;
 
 public class GuiEnchantmentSplitter extends GuiContainer {
-    private static final ResourceLocation BG_TEXTURE = new ResourceLocation(Pl3xForgeClient.modId, "textures/gui/enchantment_splitter.png");
-    private final ContainerEnchantmentSplitter splitter;
+    private final ContainerEnchantmentSplitter container;
     private InventoryPlayer playerInv;
+
+    private String name;
+    private String splitCost = "Split Cost: 3";
+
     private int animFrame = 0;
-    private boolean animbackwards = false;
+    private boolean animBackwards = false;
+
+    private int nameX;
+    private int errorX;
+    private int errorY;
+    private int toolX;
+    private int toolY;
+    private int bookX;
+    private int bookY;
+    private int iconX;
+    private int iconY;
+    private int inputX;
+    private int inputY;
+    private int resultX;
+    private int resultY;
+    private int x;
+    private int y;
+
+    private int splitCostX;
 
     public GuiEnchantmentSplitter(Container container, InventoryPlayer playerInv) {
         super(container);
         this.playerInv = playerInv;
-        this.splitter = (ContainerEnchantmentSplitter) inventorySlots;
+        this.container = (ContainerEnchantmentSplitter) inventorySlots;
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        String name;
-        TileEntity te = playerInv.player.world.getTileEntity(splitter.selfPosition);
+    public void initGui() {
+        super.initGui();
+
+        x = (width - xSize) / 2;
+        y = (height - ySize) / 2;
+
+        TileEntity te = playerInv.player.world.getTileEntity(container.selfPosition);
         if (te instanceof TileEntityEnchantmentSplitter && ((TileEntityEnchantmentSplitter) te).hasCustomName()) {
             name = ((TileEntityEnchantmentSplitter) te).getName();
         } else {
             name = I18n.format(ModBlocks.enchantmentSplitter.getUnlocalizedName() + ".name");
         }
-        fontRenderer.drawString(name, xSize - fontRenderer.getStringWidth(name) - 6, 6, 0x404040);
-        fontRenderer.drawString(playerInv.getDisplayName().getUnformattedText(), 8, ySize - 94, 0x404040);
+        nameX = xSize - fontRenderer.getStringWidth(name) - 6;
 
-        if (splitter.getSlot(2).getHasStack() &&
-                splitter.getSlot(3).getHasStack()) {
-            int color = 8453920; // green
-            String text = "Split Cost: 3";
+        errorX = x + 101;
+        errorY = y + 32;
+        toolX = x + 78;
+        toolY = y + 20;
+        bookX = x + 78;
+        bookY = y + 45;
+        iconX = x + 15;
+        iconY = y + 15;
+        inputX = x + 79;
+        inputY = y + 46;
+        resultX = x + 133;
+        resultY = y + 46;
 
-            if (!splitter.getSlot(2).canTakeStack(playerInv.player)) {
-                color = 16736352; // red
-            }
-
-            int shadowColor = -16777216 | (color & 16579836) >> 2 | color & -16777216;
-            int xPos = xSize - 8 - fontRenderer.getStringWidth(text);
-
-            if (fontRenderer.getUnicodeFlag()) {
-                drawRect(xPos - 3, 65, xSize - 7, 77, -16777216);
-                drawRect(xPos - 2, 66, xSize - 8, 76, -12895429);
-            } else {
-                fontRenderer.drawString(text, xPos, 68, shadowColor);
-                fontRenderer.drawString(text, xPos + 1, 67, shadowColor);
-                fontRenderer.drawString(text, xPos + 1, 68, shadowColor);
-            }
-
-            fontRenderer.drawString(text, xPos, 67, color);
-        }
-
+        splitCostX = xSize - 8 - fontRenderer.getStringWidth(splitCost);
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-        if (animbackwards) {
+    public void updateScreen() {
+        super.updateScreen();
+
+        if (animBackwards) {
             animFrame--;
             if (animFrame <= 0) {
-                animbackwards = false;
+                animBackwards = false;
             }
         } else {
             animFrame++;
             if (animFrame >= 25) {
-                animbackwards = true;
+                animBackwards = true;
             }
         }
+    }
 
+    @Override
+    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+        fontRenderer.drawString(name, nameX, 6, 0x404040);
+        fontRenderer.drawString("Inventory", 8, 72, 0x404040);
+
+        if (container.getSlot(2).getHasStack() && container.getSlot(3).getHasStack()) {
+            int color = container.getSlot(2).canTakeStack(playerInv.player) ? 0x80FF20 : 0xFF6060;
+            int shadowColor = -16777216 | (color & 0xFCFCFC) >> 2 | color & -16777216;
+            fontRenderer.drawString(splitCost, splitCostX, 68, shadowColor);
+            fontRenderer.drawString(splitCost, splitCostX + 1, 67, shadowColor);
+            fontRenderer.drawString(splitCost, splitCostX + 1, 68, shadowColor);
+            fontRenderer.drawString(splitCost, splitCostX, 67, color);
+        }
+    }
+
+    @Override
+    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
+        GuiUtil.drawBG(this, x, y, xSize, ySize);
+        GuiUtil.drawSlots(this, inventorySlots.inventorySlots, x, y);
+        GuiUtil.drawTexture(this, GuiUtil.ENCHANTED_BOOK, iconX, iconY, 0, 0, 35, 35, 35, 35);
+
+        mc.getTextureManager().bindTexture(GuiUtil.GUI_ELEMENTS);
         GlStateManager.color(1, 1, 1, 1);
-        mc.getTextureManager().bindTexture(BG_TEXTURE);
-        int x = (width - xSize) / 2;
-        int y = (height - ySize) / 2;
-        drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
 
-        if (splitter.getSlot(0).getHasStack() && splitter.getSlot(1).getHasStack() &&
-                (!splitter.getSlot(2).getHasStack() || !splitter.getSlot(3).getHasStack())) {
-            drawTexturedModalRect(x + 101, y + 32, xSize, 0, 28, 21);
+        drawTexturedModalRect(inputX, inputY, 168, 0, 18, 18);
+        drawTexturedModalRect(resultX, resultY, 186, 0, 18, 18);
+
+        // draw error X between slots
+        if ((container.getSlot(0).getHasStack() || container.getSlot(1).getHasStack()) &&
+                (!container.getSlot(2).getHasStack() || !container.getSlot(3).getHasStack())) {
+            drawTexturedModalRect(errorX, errorY, 228, 0, 28, 21);
         }
 
-        if (splitter.NEW_INPUT_TOOL && splitter.getSlot(0).getHasStack()) {
+        // draw green animation around slot
+        if (container.NEW_INPUT_TOOL && container.getSlot(0).getHasStack()) {
             if (animFrame < 5) {
-                drawTexturedModalRect(x + 78, y + 20, xSize, 41, 20, 20);
+                drawTexturedModalRect(toolX, toolY, 236, 41, 20, 20);
             } else if (animFrame < 10) {
-                drawTexturedModalRect(x + 78, y + 20, xSize, 61, 20, 20);
+                drawTexturedModalRect(toolX, toolY, 236, 61, 20, 20);
             } else if (animFrame < 15) {
-                drawTexturedModalRect(x + 78, y + 20, xSize, 81, 20, 20);
+                drawTexturedModalRect(toolX, toolY, 236, 81, 20, 20);
             } else if (animFrame < 20) {
-                drawTexturedModalRect(x + 78, y + 20, xSize, 101, 20, 20);
+                drawTexturedModalRect(toolX, toolY, 236, 101, 20, 20);
             } else {
-                drawTexturedModalRect(x + 78, y + 20, xSize, 121, 20, 20);
+                drawTexturedModalRect(toolX, toolY, 236, 121, 20, 20);
             }
         }
-        if (splitter.BAD_INPUT_TOOL && splitter.getSlot(0).getHasStack()) {
-            drawTexturedModalRect(x + 78, y + 20, xSize, 21, 20, 20);
+
+        // draw red box around bad slot(s)
+        if (container.BAD_INPUT_TOOL && container.getSlot(0).getHasStack()) {
+            drawTexturedModalRect(toolX, toolY, 236, 21, 20, 20);
         }
-        if (splitter.BAD_INPUT_BOOK && splitter.getSlot(1).getHasStack()) {
-            drawTexturedModalRect(x + 78, y + 45, xSize, 21, 20, 20);
+        if (container.BAD_INPUT_BOOK && container.getSlot(1).getHasStack()) {
+            drawTexturedModalRect(bookX, bookY, 236, 21, 20, 20);
         }
     }
 

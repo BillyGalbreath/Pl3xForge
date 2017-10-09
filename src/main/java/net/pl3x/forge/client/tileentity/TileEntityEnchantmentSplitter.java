@@ -17,6 +17,7 @@ import net.pl3x.forge.client.container.ContainerEnchantmentSplitter;
 import java.util.Random;
 
 public class TileEntityEnchantmentSplitter extends TileEntity implements ITickable, IInteractionObject {
+    private static final Random rand = new Random();
     public int tickCount;
     public float pageFlip;
     public float pageFlipPrev;
@@ -27,7 +28,6 @@ public class TileEntityEnchantmentSplitter extends TileEntity implements ITickab
     public float bookRotation;
     public float bookRotationPrev;
     public float tRot;
-    private static final Random rand = new Random();
     private String customName;
 
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
@@ -104,7 +104,7 @@ public class TileEntityEnchantmentSplitter extends TileEntity implements ITickab
         }
 
         this.bookRotation += f2 * 0.4F;
-        this.bookSpread = MathHelper.clamp(this.bookSpread, 0.0F, 1.0F);
+        this.bookSpread = MathHelper.clamp(this.bookSpread, 0, 1);
         ++this.tickCount;
         this.pageFlipPrev = this.pageFlip;
         float f = (this.flipT - this.pageFlip) * 0.4F;

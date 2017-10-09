@@ -18,6 +18,7 @@ public class PacketHandler {
         INSTANCE.registerMessage(ShopChangePacket.Handler.class, ShopChangePacket.class, 4, Side.SERVER);
         INSTANCE.registerMessage(ShopUpdateClientPacket.Handler.class, ShopUpdateClientPacket.class, 5, Side.CLIENT);
         INSTANCE.registerMessage(ShopClientRequestPacket.Handler.class, ShopClientRequestPacket.class, 6, Side.SERVER);
+        INSTANCE.registerMessage(ShopPurchasePacket.Handler.class, ShopPurchasePacket.class, 7, Side.SERVER);
     }
 
     public static void updatePlayerData(EntityPlayerMP player) {

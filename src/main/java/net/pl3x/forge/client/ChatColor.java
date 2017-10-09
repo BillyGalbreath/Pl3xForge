@@ -29,11 +29,17 @@ public enum ChatColor {
     RESET('r');
 
     public static final char COLOR_CHAR = '\u00A7';
+    private final static Map<Character, ChatColor> BY_CHAR = Maps.newHashMap();
+
+    static {
+        for (ChatColor color : values()) {
+            BY_CHAR.put(color.code, color);
+        }
+    }
 
     private final char code;
     private final boolean isFormat;
     private final String toString;
-    private final static Map<Character, ChatColor> BY_CHAR = Maps.newHashMap();
 
     ChatColor(char code) {
         this(code, false);
@@ -43,19 +49,6 @@ public enum ChatColor {
         this.code = code;
         this.isFormat = isFormat;
         this.toString = new String(new char[]{COLOR_CHAR, code});
-    }
-
-    @Override
-    public String toString() {
-        return toString;
-    }
-
-    public boolean isFormat() {
-        return isFormat;
-    }
-
-    public boolean isColor() {
-        return !isFormat() && this != RESET;
     }
 
     public static String colorize(String string) {
@@ -87,9 +80,16 @@ public enum ChatColor {
         return result;
     }
 
-    static {
-        for (ChatColor color : values()) {
-            BY_CHAR.put(color.code, color);
-        }
+    @Override
+    public String toString() {
+        return toString;
+    }
+
+    public boolean isFormat() {
+        return isFormat;
+    }
+
+    public boolean isColor() {
+        return !isFormat() && this != RESET;
     }
 }

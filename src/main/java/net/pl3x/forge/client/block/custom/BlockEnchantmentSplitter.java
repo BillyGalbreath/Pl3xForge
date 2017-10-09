@@ -21,9 +21,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.IWorldNameable;
 import net.minecraft.world.World;
-import net.pl3x.forge.client.gui.ModGuiHandler;
 import net.pl3x.forge.client.Pl3xForgeClient;
 import net.pl3x.forge.client.block.BlockTileEntity;
+import net.pl3x.forge.client.gui.ModGuiHandler;
 import net.pl3x.forge.client.tileentity.TileEntityEnchantmentSplitter;
 
 import javax.annotation.Nullable;
@@ -33,8 +33,8 @@ public class BlockEnchantmentSplitter extends BlockTileEntity<TileEntityEnchantm
 
     public BlockEnchantmentSplitter() {
         super(Material.ROCK, "enchantment_splitter");
-        setHardness(6.0F);
-        setResistance(2500.0F);
+        setHardness(6);
+        setResistance(2500);
         setLightOpacity(0);
         setCreativeTab(CreativeTabs.DECORATIONS);
     }

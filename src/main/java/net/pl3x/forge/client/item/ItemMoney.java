@@ -13,6 +13,18 @@ public class ItemMoney extends ItemBase {
         setMaxStackSize(1); // money does not stack
     }
 
+    public static boolean isMoney(EntityItem entityItem) {
+        return entityItem != null && isMoney(entityItem.getItem());
+    }
+
+    public static boolean isMoney(ItemStack stack) {
+        return stack != null && !stack.isEmpty() && isMoney(stack.getItem());
+    }
+
+    public static boolean isMoney(Item item) {
+        return item != null && item instanceof ItemMoney;
+    }
+
     @Override
     public ItemMoney setCreativeTab(CreativeTabs tab) {
         return this; // money items never go into creative tabs
@@ -64,17 +76,5 @@ public class ItemMoney extends ItemBase {
     @Override
     public int getItemBurnTime(ItemStack itemStack) {
         return 0; // not a furnace fuel
-    }
-
-    public static boolean isMoney(EntityItem entityItem) {
-        return entityItem != null && isMoney(entityItem.getItem());
-    }
-
-    public static boolean isMoney(ItemStack stack) {
-        return stack != null && !stack.isEmpty() && isMoney(stack.getItem());
-    }
-
-    public static boolean isMoney(Item item) {
-        return item != null && item instanceof ItemMoney;
     }
 }
