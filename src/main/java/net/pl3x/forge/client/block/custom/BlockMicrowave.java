@@ -83,12 +83,12 @@ public class BlockMicrowave extends BlockBase {
     @Override
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer() {
-        return BlockRenderLayer.CUTOUT;
+        return BlockRenderLayer.CUTOUT_MIPPED;
     }
 
     @Override
     public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
-        return layer == BlockRenderLayer.CUTOUT;
+        return layer == BlockRenderLayer.CUTOUT_MIPPED;
     }
 
     @Override
@@ -100,7 +100,7 @@ public class BlockMicrowave extends BlockBase {
     @Override
     @SideOnly(Side.CLIENT)
     public boolean isTranslucent(IBlockState state) {
-        return true;
+        return false;
     }
 
     @Override
