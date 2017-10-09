@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S",
+    "R",
+    "R"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:sea_lantern"
+    },
+    "S": {
+      "item": "minecraft:end_rod"
+    }
+  },
+  "result": {
+    "item": "pl3x:lamp"
+  }
+}

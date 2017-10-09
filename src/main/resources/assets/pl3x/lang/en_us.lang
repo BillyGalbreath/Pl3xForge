@@ -52,11 +52,15 @@ item.hat_wizard2.name=Wizard Hat 2
 item.coin.name=Coin
 
 # Blocks
-tile.ore_ruby.name=Ruby Ore
 tile.block_ruby.name=Block of Ruby
-tile.frosted_obsidian.name=Frosted Obsidian
+tile.deposit_box.name=Deposit Box
 tile.enchantment_splitter.name=Enchantment Splitter
+tile.frosted_obsidian.name=Frosted Obsidian
+tile.lamp.name=Lamp
+tile.microwave.name=Microwave
+tile.ore_ruby.name=Ruby Ore
 tile.shop.name=Shop
+tile.table.name=Table
 
 # Enchantments
 enchantment.lavaWalker=Lava Walker

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    " SX",
+    "SSS"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "S": {
+      "item": "minecraft:stone"
+    },
+    "X": {
+      "item": "minecraft:sign"
+    }
+  },
+  "result": {
+    "item": "pl3x:shop"
+  }
+}
