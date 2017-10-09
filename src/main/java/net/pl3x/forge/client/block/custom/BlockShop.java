@@ -1,6 +1,7 @@
 package net.pl3x.forge.client.block.custom;
 
 import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
@@ -42,6 +43,7 @@ public class BlockShop extends BlockTileEntity<TileEntityShop> {
     public BlockShop() {
         super(Material.ROCK, "shop");
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.EAST));
+        setResistance(6000001.0F);
         setHardness(1);
         setLightLevel(1);
 
@@ -138,6 +140,11 @@ public class BlockShop extends BlockTileEntity<TileEntityShop> {
     @Override
     public boolean canPlaceTorchOnTop(IBlockState state, IBlockAccess world, BlockPos pos) {
         return false;
+    }
+
+    @Override
+    public EnumPushReaction getMobilityFlag(IBlockState state) {
+        return EnumPushReaction.BLOCK;
     }
 
     @Override
