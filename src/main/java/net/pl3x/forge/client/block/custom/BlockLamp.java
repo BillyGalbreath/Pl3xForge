@@ -38,7 +38,7 @@ public class BlockLamp extends BlockBase {
     private static final AxisAlignedBB AABB_LOWER = new AxisAlignedBB(0.25D, 0D, 0.25D, 0.75D, 2D, 0.75D);
 
     public BlockLamp() {
-        super(Material.GLASS, "lamp");
+        super(Material.ROCK, "lamp");
         setDefaultState(blockState.getBaseState()
                 .withProperty(HALF, BlockLamp.Half.UPPER)
                 .withProperty(ON, Boolean.TRUE));

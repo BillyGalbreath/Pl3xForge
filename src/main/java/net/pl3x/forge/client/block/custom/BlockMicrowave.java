@@ -27,7 +27,7 @@ public class BlockMicrowave extends BlockBase {
     private static final AxisAlignedBB Z_AXIS_AABB = new AxisAlignedBB(0.125D, 0D, 0D, 0.875D, 0.625D, 1D);
 
     public BlockMicrowave() {
-        super(Material.GLASS, "microwave");
+        super(Material.ROCK, "microwave");
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.SOUTH));
         setHardness(1);
 
@@ -84,23 +84,6 @@ public class BlockMicrowave extends BlockBase {
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.CUTOUT_MIPPED;
-    }
-
-    @Override
-    public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
-        return layer == BlockRenderLayer.CUTOUT_MIPPED;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public float getAmbientOcclusionLightValue(IBlockState state) {
-        return 1.0F;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean isTranslucent(IBlockState state) {
-        return false;
     }
 
     @Override

@@ -40,7 +40,7 @@ public class BlockShop extends BlockTileEntity<TileEntityShop> {
     private static final AxisAlignedBB AABB = new AxisAlignedBB(0.185D, 0D, 0.185D, 0.815D, 1D, 0.815D);
 
     public BlockShop() {
-        super(Material.GLASS, "shop");
+        super(Material.ROCK, "shop");
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.EAST));
         setHardness(1);
         setLightLevel(1);
@@ -103,23 +103,6 @@ public class BlockShop extends BlockTileEntity<TileEntityShop> {
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.TRANSLUCENT;
-    }
-
-    @Override
-    public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
-        return layer != BlockRenderLayer.SOLID;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public float getAmbientOcclusionLightValue(IBlockState state) {
-        return 1.0F;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean isTranslucent(IBlockState state) {
-        return true;
     }
 
     @Override

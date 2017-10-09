@@ -4,7 +4,7 @@
     "particle": "minecraft:blocks/stone",
     "1": "minecraft:blocks/stone",
     "2": "minecraft:blocks/planks_oak",
-    "3": "pl3x:blocks/clear_glass"
+    "3": "pl3x:blocks/semi_blue_glass"
   },
   "elements": [
     {

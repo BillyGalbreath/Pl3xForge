@@ -2,7 +2,7 @@
   "textures": {
     "particle": "blocks/concrete_red",
     "1": "blocks/concrete_powder_black",
-    "2": "blocks/glass_black",
+    "2": "pl3x:blocks/black_glass",
     "3": "blocks/concrete_red",
     "4": "blocks/concrete_silver",
     "5": "blocks/concrete_light_blue"

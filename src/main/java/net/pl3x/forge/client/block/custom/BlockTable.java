@@ -26,7 +26,7 @@ public class BlockTable extends BlockBase {
     private static final AxisAlignedBB AABB = new AxisAlignedBB(0D, 0D, 0D, 1D, 1D, 1D);
 
     public BlockTable() {
-        super(Material.GLASS, "table");
+        super(Material.WOOD, "table");
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.SOUTH));
         setHardness(1);
 
