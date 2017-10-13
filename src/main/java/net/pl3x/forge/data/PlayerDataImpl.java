@@ -122,16 +122,16 @@ public class PlayerDataImpl implements PlayerData {
         nbt.setTag("bank", bank);
 
         NBTTagList homeList = new NBTTagList();
-        for (Map.Entry<String, Location> entry : homes.entrySet()) {
-            NBTTagCompound compound = new NBTTagCompound();
-            compound.setString("name", entry.getKey());
-            compound.setInteger("dimension", entry.getValue().getDimension());
-            compound.setDouble("x", entry.getValue().getX());
-            compound.setDouble("y", entry.getValue().getY());
-            compound.setDouble("z", entry.getValue().getZ());
-            compound.setFloat("pitch", entry.getValue().getPitch());
-            compound.setFloat("yaw", entry.getValue().getYaw());
-            homeList.appendTag(compound);
+        for (Map.Entry<String, Location> home : homes.entrySet()) {
+            NBTTagCompound homeNBT = new NBTTagCompound();
+            homeNBT.setString("name", home.getKey());
+            homeNBT.setInteger("dimension", home.getValue().getDimension());
+            homeNBT.setDouble("x", home.getValue().getX());
+            homeNBT.setDouble("y", home.getValue().getY());
+            homeNBT.setDouble("z", home.getValue().getZ());
+            homeNBT.setFloat("pitch", home.getValue().getPitch());
+            homeNBT.setFloat("yaw", home.getValue().getYaw());
+            homeList.appendTag(homeNBT);
         }
 
         nbt.setTag("homes", homeList);
@@ -151,17 +151,17 @@ public class PlayerDataImpl implements PlayerData {
         bankInventory.deserializeNBT(bank.getCompoundTag("inventory"));
 
         denyTeleports = nbt.getBoolean("denyteleports");
-        NBTTagList nbtTagList = nbt.getTagList("homes", 10);
-        for (int i = 0; i < nbtTagList.tagCount(); i++) {
-            NBTTagCompound compound = nbtTagList.getCompoundTagAt(i);
-            homes.put(compound.getString("name"), new Location(
-                    DimensionManager.getWorld(compound.getInteger("dimension")),
-                    compound.getInteger("dimension"),
-                    compound.getDouble("x"),
-                    compound.getDouble("y"),
-                    compound.getDouble("z"),
-                    compound.getFloat("pitch"),
-                    compound.getFloat("yaw")));
+        NBTTagList homesList = nbt.getTagList("homes", 10);
+        for (int i = 0; i < homesList.tagCount(); i++) {
+            NBTTagCompound home = homesList.getCompoundTagAt(i);
+            homes.put(home.getString("name"), new Location(
+                    DimensionManager.getWorld(home.getInteger("dimension")),
+                    home.getInteger("dimension"),
+                    home.getDouble("x"),
+                    home.getDouble("y"),
+                    home.getDouble("z"),
+                    home.getFloat("pitch"),
+                    home.getFloat("yaw")));
         }
     }
 
