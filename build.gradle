@@ -11,8 +11,8 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 
 def build = System.getenv()['BUILD_NUMBER'] ?: "SNAPSHOT"
 version = "1.4.0-b" + build
-group = "net.pl3x.forge.client"
-archivesBaseName = "Pl3xForgeClient"
+group = "net.pl3x.forge"
+archivesBaseName = "Pl3x"
 
 sourceCompatibility = targetCompatibility = '1.8'
 compileJava {
@@ -23,8 +23,8 @@ minecraft {
     version = "1.12.2-14.23.0.0"
     runDir = "run"
 
-    replace "@VERSION@", project.version
-    replaceIn "Pl3xForgeClient.java"
+    replace "@DEV_BUILD@", project.version
+    replaceIn "Pl3x.java"
 
     mappings = "snapshot_20170919"
     makeObfSourceJar = false

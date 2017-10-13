@@ -1,7 +1,7 @@
 [{
   "modid": "pl3x",
-  "name": "Pl3xForgeClient",
-  "description": "Pl3xForge Core Client Mod",
+  "name": "Pl3x",
+  "description": "Pl3x Core Mod",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "pl3x.net",
