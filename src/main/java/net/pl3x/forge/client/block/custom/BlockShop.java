@@ -9,6 +9,7 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryHelper;
@@ -22,6 +23,7 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -144,7 +146,17 @@ public class BlockShop extends BlockTileEntity<TileEntityShop> {
 
     @Override
     public EnumPushReaction getMobilityFlag(IBlockState state) {
-        return EnumPushReaction.BLOCK;
+        return EnumPushReaction.BLOCK; // stop pistons
+    }
+
+    @Override
+    public boolean canEntityDestroy(IBlockState state, IBlockAccess world, BlockPos pos, Entity entity) {
+        return false; // stop dragon/wither damage
+    }
+
+    @Override
+    public boolean canDropFromExplosion(Explosion explosionIn) {
+        return false; // stop explosion damage
     }
 
     @Override
