@@ -1,6 +1,9 @@
 package net.pl3x.forge.client.configuration;
 
 import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.Config.Comment;
+import net.minecraftforge.common.config.Config.Name;
+import net.minecraftforge.common.config.Config.RangeInt;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -11,27 +14,53 @@ import net.pl3x.forge.client.gui.HUDBalance;
 @Config(modid = Pl3xForgeClient.modId)
 @Config.LangKey("pl3x.config.title")
 public class ModConfig {
-
-    @Config.Name("Balance HUD")
-    @Config.Comment("Control the Balance HUD element")
+    @Name("Balance HUD")
+    @Comment("Control the Balance HUD element")
     public static BalanceHUDConfig balanceHud = new BalanceHUDConfig();
 
+    @Name("Claim Visuals")
+    @Comment("Control the visuals for claims")
+    public static ClaimVisuals claimVisuals = new ClaimVisuals();
+
     public static class BalanceHUDConfig {
-        @Config.Name("Enabled")
-        @Config.Comment("Toggle the HUD on/off")
+        @Name("Enabled")
+        @Comment("Toggle the HUD on/off")
         public boolean enabled = true;
 
-        @Config.Name("Position")
-        @Config.Comment("Anchor position of the HUD")
+        @Name("Position")
+        @Comment("Anchor position of the HUD")
         public HUDBalance.HUDPosition position = HUDBalance.HUDPosition.TOP_CENTER;
 
-        @Config.Name("Relative X")
-        @Config.Comment("X position relative to anchor")
+        @Name("Relative X")
+        @Comment("X position relative to anchor")
         public int relativeX = 0;
 
-        @Config.Name("Relative Y")
-        @Config.Comment("Y position relative to anchor")
+        @Name("Relative Y")
+        @Comment("Y position relative to anchor")
         public int relativeY = 0;
+    }
+
+    public static class ClaimVisuals {
+        @Name("1) Enable Claim Visuals")
+        @Comment("Turn on/off claim visuals")
+        public boolean enabled = true;
+
+        @Name("2) Outline Color")
+        @Comment("Choose a hex color value")
+        public String outlineColor = "#00FF0088";
+
+        @Name("3) Grid Color")
+        @Comment("Choose a hex color value")
+        public String gridColor = "#FFFF0088";
+
+        @Name("4) Wire Thickness")
+        @Comment("Choose a value for the wire frame thickness between 1 and 7.")
+        @RangeInt(min = 1, max = 7)
+        public int thickness = 1;
+
+        @Name("5) Render Behind Blocks")
+        @Comment("True to see translucent wire frame behind blocks")
+        public boolean renderBehind = true;
     }
 
     @Mod.EventBusSubscriber(modid = Pl3xForgeClient.modId)

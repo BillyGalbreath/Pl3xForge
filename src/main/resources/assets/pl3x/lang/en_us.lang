@@ -51,6 +51,11 @@ item.hat_wizard2.name=Wizard Hat 2
 
 item.coin.name=Coin
 
+# Key Bindings
+key.categories.pl3x=Pl3xForge
+key.showClaims=Toggle Claim Visuals
+
+
 # Blocks
 tile.block_ruby.name=Block of Ruby
 tile.deposit_box.name=Deposit Box

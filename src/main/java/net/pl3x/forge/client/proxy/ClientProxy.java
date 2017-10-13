@@ -16,6 +16,8 @@ import net.pl3x.forge.client.entity.EntityBanker;
 import net.pl3x.forge.client.entity.render.RenderBanker;
 import net.pl3x.forge.client.gui.TitleScreen;
 import net.pl3x.forge.client.listener.ClientEventHandler;
+import net.pl3x.forge.client.listener.KeyBindings;
+import net.pl3x.forge.client.listener.KeyInputHandler;
 import net.pl3x.forge.client.listener.ServerEventHandler;
 import net.pl3x.forge.client.tileentity.TileEntityEnchantmentSplitter;
 import net.pl3x.forge.client.tileentity.TileEntityShop;
@@ -38,6 +40,9 @@ public class ClientProxy extends CommonProxy {
         MinecraftForge.EVENT_BUS.register(new TitleScreen());
         MinecraftForge.EVENT_BUS.register(new ServerEventHandler());
         MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
+        MinecraftForge.EVENT_BUS.register(new KeyInputHandler());
+
+        KeyBindings.init();
     }
 
     public void postInit(FMLPostInitializationEvent event) {
