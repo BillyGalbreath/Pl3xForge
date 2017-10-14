@@ -50,6 +50,7 @@ public class IconManager {
             return null;
         }
 
+        String lastColors = ChatColor.getLastColors(string);
         Matcher match = ICON_TAG_REGEX_PATTERN.matcher(string);
         while (match.find()) {
             String code = match.group(1);
@@ -62,7 +63,7 @@ public class IconManager {
             }
             if (color != null) {
                 string = string.replace("{" + code + "}",
-                        color + icon.getCharacter().toString() + ChatColor.BLACK);
+                        color + icon.getCharacter().toString() + lastColors);
             } else {
                 string = string.replace("{" + code + "}",
                         icon.getCharacter().toString());
@@ -83,7 +84,7 @@ public class IconManager {
             }
             if (color != null) {
                 string = string.replace(":" + code + ":",
-                        color + String.valueOf((char) Integer.parseInt(emoji.getHex(), 16)) + ChatColor.BLACK);
+                        color + String.valueOf((char) Integer.parseInt(emoji.getHex(), 16)) + lastColors);
             } else {
                 string = string.replace(":" + code + ":",
                         String.valueOf((char) Integer.parseInt(emoji.getHex(), 16)));
@@ -92,7 +93,7 @@ public class IconManager {
 
         for (EmojiConfig.Emoji emoji : EmojiConfig.getData().getEmojis()) {
             if (color != null) {
-                string = string.replace(emoji.getEmoji(), color + String.valueOf((char) Integer.parseInt(emoji.getHex(), 16)) + ChatColor.BLACK);
+                string = string.replace(emoji.getEmoji(), color + String.valueOf((char) Integer.parseInt(emoji.getHex(), 16)) + lastColors);
             } else {
                 string = string.replace(emoji.getEmoji(), String.valueOf((char) Integer.parseInt(emoji.getHex(), 16)));
             }

@@ -88,7 +88,7 @@ public enum ChatColor {
         // Search backwards from the end as it is faster
         for (int index = length - 1; index > -1; index--) {
             char section = input.charAt(index);
-            if (section == COLOR_CHAR && index < length - 1) {
+            if ((section == COLOR_CHAR || section == '&') && index < length - 1) {
                 char c = input.charAt(index + 1);
                 ChatColor color = BY_CHAR.get(c);
 
