@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "pl3x:items/claim_tool_diamond"
+  }
+}

@@ -8,6 +8,9 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.item.tool.ItemAxe;
+import net.pl3x.forge.item.tool.ItemClaimTool;
+import net.pl3x.forge.item.tool.ItemClaimToolResize;
+import net.pl3x.forge.item.tool.ItemClaimToolVisual;
 import net.pl3x.forge.item.tool.ItemHoe;
 import net.pl3x.forge.item.tool.ItemPickaxe;
 import net.pl3x.forge.item.tool.ItemShovel;
@@ -84,6 +87,10 @@ public class ModItems {
 
     public static final ItemMoney COIN = new ItemMoney("coin");
 
+    public static final ItemClaimTool CLAIM_TOOL = new ItemClaimTool("claim_tool");
+    public static final ItemClaimToolResize CLAIM_TOOL_RESIZE = new ItemClaimToolResize("claim_tool_resize");
+    public static final ItemClaimToolVisual CLAIM_TOOL_VISUAL = new ItemClaimToolVisual("claim_tool_visual");
+
     public static void register(IForgeRegistry<Item> registry) {
         registry.registerAll(
                 ruby,
@@ -138,7 +145,11 @@ public class ModItems {
                 hatWizard,
                 hatWizard2,
 
-                COIN
+                COIN,
+
+                CLAIM_TOOL,
+                CLAIM_TOOL_RESIZE,
+                CLAIM_TOOL_VISUAL
         );
     }
 
@@ -195,5 +206,9 @@ public class ModItems {
         hatWizard2.registerItemModel();
 
         COIN.registerItemModel();
+
+        CLAIM_TOOL.registerItemModel();
+        CLAIM_TOOL_RESIZE.registerItemModel();
+        CLAIM_TOOL_VISUAL.registerItemModel();
     }
 }
