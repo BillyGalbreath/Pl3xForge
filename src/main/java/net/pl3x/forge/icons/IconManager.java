@@ -4,6 +4,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.event.HoverEvent;
 import net.pl3x.forge.ChatColor;
+import net.pl3x.forge.configuration.EmojiConfig;
 import net.pl3x.forge.configuration.IconConfig;
 
 import java.util.ArrayList;
@@ -15,7 +16,8 @@ import java.util.regex.Pattern;
 
 public class IconManager {
     public final static IconManager INSTANCE = new IconManager();
-    private final static Pattern TAG_REGEX_PATTERN = Pattern.compile("\\{(.*?)}");
+    private final static Pattern ICON_TAG_REGEX_PATTERN = Pattern.compile("\\{(.*?)}");
+    private final static Pattern EMOJI_TAG_REGEX_PATTERN = Pattern.compile(":(.*?):");
 
     private final Collection<Icon> icons = new HashSet<>();
 
@@ -39,12 +41,16 @@ public class IconManager {
         return getIconByHex(String.format("%04x", (int) unicode));
     }
 
-    public String translateIconsTags(String string) {
+    public String translateMessage(String string) {
+        return translateMessage(string, null);
+    }
+
+    public String translateMessage(String string, ChatColor color) {
         if (string == null) {
             return null;
         }
 
-        Matcher match = TAG_REGEX_PATTERN.matcher(string);
+        Matcher match = ICON_TAG_REGEX_PATTERN.matcher(string);
         while (match.find()) {
             String code = match.group(1);
             if (code == null) {
@@ -54,9 +60,44 @@ public class IconManager {
             if (icon == null) {
                 continue;
             }
-            string = string.replace("{" + code + "}",
-                    icon.getCharacter().toString());
+            if (color != null) {
+                string = string.replace("{" + code + "}",
+                        color + icon.getCharacter().toString() + ChatColor.BLACK);
+            } else {
+                string = string.replace("{" + code + "}",
+                        icon.getCharacter().toString());
+            }
         }
+
+        match = EMOJI_TAG_REGEX_PATTERN.matcher(string);
+        while (match.find()) {
+            String code = match.group(1);
+            if (code == null) {
+                continue;
+            }
+            EmojiConfig.Emoji emoji = EmojiConfig.getData().getEmojis().stream()
+                    .filter(e -> e.getAliases().contains(code.toLowerCase()))
+                    .findFirst().orElse(null);
+            if (emoji == null) {
+                continue;
+            }
+            if (color != null) {
+                string = string.replace(":" + code + ":",
+                        color + String.valueOf((char) Integer.parseInt(emoji.getHex(), 16)) + ChatColor.BLACK);
+            } else {
+                string = string.replace(":" + code + ":",
+                        String.valueOf((char) Integer.parseInt(emoji.getHex(), 16)));
+            }
+        }
+
+        for (EmojiConfig.Emoji emoji : EmojiConfig.getData().getEmojis()) {
+            if (color != null) {
+                string = string.replace(emoji.getEmoji(), color + String.valueOf((char) Integer.parseInt(emoji.getHex(), 16)) + ChatColor.BLACK);
+            } else {
+                string = string.replace(emoji.getEmoji(), String.valueOf((char) Integer.parseInt(emoji.getHex(), 16)));
+            }
+        }
+
         return string;
     }
 

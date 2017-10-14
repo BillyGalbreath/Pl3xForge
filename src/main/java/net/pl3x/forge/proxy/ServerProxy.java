@@ -43,6 +43,7 @@ import net.pl3x.forge.command.CmdTop;
 import net.pl3x.forge.command.CmdUnflip;
 import net.pl3x.forge.configuration.ClaimConfigs;
 import net.pl3x.forge.configuration.ConfigWatcher;
+import net.pl3x.forge.configuration.EmojiConfig;
 import net.pl3x.forge.configuration.IconConfig;
 import net.pl3x.forge.configuration.Lang;
 import net.pl3x.forge.configuration.MOTDConfig;
@@ -79,6 +80,7 @@ public class ServerProxy {
         PermsConfig.init(configDir);
         MailConfig.init(configDir);
         IconConfig.init(configDir);
+        EmojiConfig.init(configDir);
         MOTDConfig.init(configDir);
         ClaimConfigs.init(new File(configDir, ClaimConfigs.CLAIM_DIRECTORY));
 

@@ -1,8 +1,10 @@
 package net.pl3x.forge;
 
 import com.google.common.collect.Maps;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public enum ChatColor {
     BLACK('0'),
@@ -29,6 +31,10 @@ public enum ChatColor {
     RESET('r');
 
     public static final char COLOR_CHAR = '\u00A7';
+    public static final Pattern COLOR_PATTERN = Pattern.compile("(?i)" + COLOR_CHAR + "([0-9A-FR])");
+    public static final Pattern FORMAT_PATTERN = Pattern.compile("(?i)" + COLOR_CHAR + "([k-or])");
+    public static final Pattern ALTERNATE_COLOR_PATTERN = Pattern.compile("(?i)&([0-9A-FR])");
+    public static final Pattern ALTERNATE_FORMAT_PATTERN = Pattern.compile("(?i)&([k-or])");
     private final static Map<Character, ChatColor> BY_CHAR = Maps.newHashMap();
 
     static {
@@ -52,7 +58,27 @@ public enum ChatColor {
     }
 
     public static String colorize(String string) {
-        return string.replaceAll("(?i)&([a-f0-9k-or])", "\u00a7$1");
+        return TextFormatting.ALTERNATE_CODE_PATTERN.matcher(string).replaceAll(COLOR_CHAR + "$1");
+    }
+
+    public static String colorsOnly(String string) {
+        return COLOR_PATTERN.matcher(string).replaceAll(COLOR_CHAR + "$1");
+    }
+
+    public static String formatOnly(String string) {
+        return FORMAT_PATTERN.matcher(string).replaceAll(COLOR_CHAR + "$1");
+    }
+
+    public static String stripAllCodes(String string) {
+        return TextFormatting.FORMATTING_CODE_PATTERN.matcher(TextFormatting.ALTERNATE_CODE_PATTERN.matcher(string).replaceAll(COLOR_CHAR + "$1")).replaceAll("");
+    }
+
+    public static String stripOnlyColors(String string) {
+        return COLOR_PATTERN.matcher(ALTERNATE_COLOR_PATTERN.matcher(string).replaceAll(COLOR_CHAR + "$1")).replaceAll("");
+    }
+
+    public static String stripOnlyFormats(String string) {
+        return FORMAT_PATTERN.matcher(ALTERNATE_FORMAT_PATTERN.matcher(string).replaceAll(COLOR_CHAR + "$1")).replaceAll("");
     }
 
     public static String getLastColors(String input) {

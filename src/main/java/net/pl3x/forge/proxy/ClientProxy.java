@@ -12,6 +12,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import net.pl3x.forge.Pl3x;
+import net.pl3x.forge.configuration.EmojiConfig;
+import net.pl3x.forge.configuration.IconConfig;
 import net.pl3x.forge.entity.EntityBanker;
 import net.pl3x.forge.entity.render.RenderBanker;
 import net.pl3x.forge.gui.TitleScreen;

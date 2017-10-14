@@ -100,8 +100,8 @@ public class ChatEventHandler {
             messageText = ChatColor.colorize("&7&o") + messageText;
         }
 
-        // translate icon {tags} to unicode
-        messageText = IconManager.INSTANCE.translateIconsTags(messageText);
+        // translate icon {tags} and :emojis: to unicode
+        messageText = IconManager.INSTANCE.translateMessage(messageText);
 
         // message
         ITextComponent message = Utils.newChatWithLinks(messageText);
@@ -113,10 +113,8 @@ public class ChatEventHandler {
             for (ITextComponent sibling : message.getSiblings()) {
                 if (sibling.getStyle().getClickEvent() == null) {
                     String text = sibling.getUnformattedComponentText();
-                    text = permColor ? text.replaceAll("(?i)&([a-f0-9r])", "\u00a7$1") :
-                            text.replaceAll("(?i)&([a-f0-9r])", "").replaceAll("(?i)\u00a7([a-f0-9r])", "");
-                    text = permStyle ? text.replaceAll("(?i)&([k-or])", "\u00a7$1") :
-                            text.replaceAll("(?i)&([k-or])", "").replaceAll("(?i)\u00a7([k-or])", "");
+                    text = permColor ? ChatColor.colorsOnly(text) : ChatColor.stripOnlyColors(text);
+                    text = permStyle ? ChatColor.formatOnly(text) : ChatColor.stripOnlyFormats(text);
                     sibling = new TextComponentString(lastColor + text);
                     lastColor = ChatColor.getLastColors(text);
                 }
