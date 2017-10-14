@@ -16,7 +16,7 @@ public class MOTDConfig extends ConfigLoader {
         return data;
     }
 
-    public static void reload(File dir) {
+    public static void init(File dir) {
         configDir = dir;
         reload();
     }

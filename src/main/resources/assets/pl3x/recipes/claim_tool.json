@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NDR",
+    "GXE",
+    "BGN"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:blaze_rod"
+    },
+    "D": {
+      "item": "minecraft:diamond_block"
+    },
+    "E": {
+      "item": "minecraft:emerald_block"
+    },
+    "G": {
+      "item": "minecraft:gold_block"
+    },
+    "N": {
+      "item": "minecraft:nether_star"
+    },
+    "R": {
+      "item": "pl3x:block_ruby"
+    },
+    "X": {
+      "item": "minecraft:dragon_egg"
+    }
+  },
+  "result": {
+    "item": "pl3x:claim_tool"
+  }
+}

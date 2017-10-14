@@ -84,6 +84,12 @@ public class Pl3x {
         }
 
         @SubscribeEvent
+        public static void registerModels(ModelRegistryEvent event) {
+            ModItems.registerModels();
+            ModBlocks.registerModels();
+        }
+
+        @SubscribeEvent
         public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
             // set vanilla diamond recipe group
             ShapedRecipes diamondRecipe = (ShapedRecipes) event.getRegistry()
@@ -91,12 +97,6 @@ public class Pl3x {
             if (diamondRecipe != null) {
                 diamondRecipe.setGroup("minecraft:diamond");
             }
-        }
-
-        @SubscribeEvent
-        public static void registerModels(ModelRegistryEvent event) {
-            ModItems.registerModels();
-            ModBlocks.registerModels();
         }
     }
 }

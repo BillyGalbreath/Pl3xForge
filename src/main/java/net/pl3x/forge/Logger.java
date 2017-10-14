@@ -28,4 +28,8 @@ public class Logger {
     public static void warn(String message) {
         log(WARN, "&d" + message);
     }
+
+    public static void debug(String message) {
+        // no implemented yet
+    }
 }

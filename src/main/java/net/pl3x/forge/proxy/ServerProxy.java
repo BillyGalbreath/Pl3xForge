@@ -41,6 +41,7 @@ import net.pl3x.forge.command.CmdTPS;
 import net.pl3x.forge.command.CmdTPToggle;
 import net.pl3x.forge.command.CmdTop;
 import net.pl3x.forge.command.CmdUnflip;
+import net.pl3x.forge.configuration.ClaimConfigs;
 import net.pl3x.forge.configuration.ConfigWatcher;
 import net.pl3x.forge.configuration.IconConfig;
 import net.pl3x.forge.configuration.Lang;
@@ -74,11 +75,12 @@ public class ServerProxy {
     public void preInit(FMLPreInitializationEvent event) {
         File configDir = new File(event.getModConfigurationDirectory(), Pl3x.name);
 
-        Lang.reload(configDir);
-        PermsConfig.reload(configDir);
-        MailConfig.reload(configDir);
-        IconConfig.reload(configDir);
-        MOTDConfig.reload(configDir);
+        Lang.init(configDir);
+        PermsConfig.init(configDir);
+        MailConfig.init(configDir);
+        IconConfig.init(configDir);
+        MOTDConfig.init(configDir);
+        ClaimConfigs.init(new File(configDir, ClaimConfigs.CLAIM_DIRECTORY));
 
         configWatcher = new Thread(new ConfigWatcher(configDir.toPath()), ChatColor.colorize("&1Config&r"));
         configWatcher.start();

@@ -17,10 +17,10 @@ public class ClaimManager {
 
     private final Map<Long, Collection<Claim>> chunks = new HashMap<>();
     private final Map<Long, Claim> topLevelClaims = new HashMap<>();
-    private long nextId = 0;
+    public long NEXT_ID = 0;
 
-    public long getNextId() {
-        return nextId++;
+    public long getNextID() {
+        return NEXT_ID++;
     }
 
     public Collection<Claim> getTopLevelClaims() {
