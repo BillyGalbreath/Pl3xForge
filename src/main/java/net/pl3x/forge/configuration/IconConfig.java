@@ -2460,6 +2460,11 @@ public class IconConfig extends ConfigLoader {
             put("9b5c", "SMILEY_HALO");
             put("9b5d", "SMILEY_UNDECIDED");
             put("9b5e", "SMILEY_STRAIGHT");
+            put("9b60", "LOUD_SPEAKER");
+            put("9b61", "GOLD_STAR_MEDAL");
+            put("9b62", "SILVER_STAR_MEDAL");
+            put("9b63", "BRONZE_STAR_MEDAL");
+            put("9b64", "GOLD_CIRCLE_MEDAL");
         }};
     }
 }
