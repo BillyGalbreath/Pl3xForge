@@ -34,7 +34,10 @@ public class ClientEventHandler {
             GuiChat guiChat = (GuiChat) event.getGui();
             String text = guiChat.inputField.getText();
             if (!text.trim().isEmpty()) {
-                guiChat.inputField.setText(IconManager.INSTANCE.translateMessage(text));
+                String newText = IconManager.INSTANCE.translateMessage(text);
+                if (!newText.equals(text)) {
+                    guiChat.inputField.setText(newText);
+                }
             }
         }
 
@@ -43,8 +46,11 @@ public class ClientEventHandler {
             GuiRepair guiRepair = (GuiRepair) event.getGui();
             String text = guiRepair.nameField.getText();
             if (!text.trim().isEmpty()) {
-                guiRepair.nameField.setText(IconManager.INSTANCE.translateMessage(text));
-                guiRepair.renameItem();
+                String newText = IconManager.INSTANCE.translateMessage(text);
+                if (!newText.equals(text)) {
+                    guiRepair.nameField.setText(newText);
+                    guiRepair.renameItem();
+                }
             }
         }
 
@@ -53,8 +59,10 @@ public class ClientEventHandler {
             GuiEditSign guiEditSign = (GuiEditSign) event.getGui();
             String text = guiEditSign.tileSign.signText[guiEditSign.editLine].getUnformattedText();
             if (!text.trim().isEmpty()) {
-                guiEditSign.tileSign.signText[guiEditSign.editLine] =
-                        new TextComponentString(IconManager.INSTANCE.translateMessage(text, ChatColor.WHITE));
+                String newText = IconManager.INSTANCE.translateMessage(text, ChatColor.WHITE);
+                if (!newText.equals(text)) {
+                    guiEditSign.tileSign.signText[guiEditSign.editLine] = new TextComponentString(newText);
+                }
             }
         }
 
@@ -64,13 +72,19 @@ public class ClientEventHandler {
             if (guiBook.bookGettingSigned) {
                 String text = guiBook.bookTitle;
                 if (!text.trim().isEmpty()) {
-                    guiBook.bookTitle = IconManager.INSTANCE.translateMessage(text, ChatColor.WHITE);
+                    String newText = IconManager.INSTANCE.translateMessage(text, ChatColor.WHITE);
+                    if (!newText.equals(text)) {
+                        guiBook.bookTitle = newText;
+                    }
 
                 }
             } else {
                 String text = guiBook.pageGetCurrent();
                 if (!text.trim().isEmpty()) {
-                    guiBook.pageSetCurrent(IconManager.INSTANCE.translateMessage(text, ChatColor.WHITE));
+                    String newText = IconManager.INSTANCE.translateMessage(text, ChatColor.WHITE);
+                    if (!newText.equals(text)) {
+                        guiBook.pageSetCurrent(newText);
+                    }
                 }
             }
         }
