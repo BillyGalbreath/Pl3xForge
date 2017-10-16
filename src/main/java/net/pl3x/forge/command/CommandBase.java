@@ -7,7 +7,6 @@ import net.minecraft.util.math.BlockPos;
 import net.pl3x.forge.ChatColor;
 import net.pl3x.forge.data.CapabilityProvider;
 import net.pl3x.forge.data.PlayerData;
-import net.pl3x.forge.listener.CapabilityHandler;
 import net.pl3x.forge.permissions.Permissions;
 
 import javax.annotation.Nullable;

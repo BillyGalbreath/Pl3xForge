@@ -5,15 +5,15 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.pl3x.forge.block.custom.BlockChristmasTree;
-import net.pl3x.forge.block.custom.BlockEnchantmentSplitter;
-import net.pl3x.forge.block.custom.BlockLamp;
-import net.pl3x.forge.block.custom.BlockTable;
 import net.pl3x.forge.block.custom.BlockDepositBox;
+import net.pl3x.forge.block.custom.BlockEnchantmentSplitter;
 import net.pl3x.forge.block.custom.BlockFrostedObsidian;
+import net.pl3x.forge.block.custom.BlockLamp;
 import net.pl3x.forge.block.custom.BlockMicrowave;
 import net.pl3x.forge.block.custom.BlockRuby;
 import net.pl3x.forge.block.custom.BlockRubyOre;
 import net.pl3x.forge.block.custom.BlockShop;
+import net.pl3x.forge.block.custom.BlockTable;
 
 public class ModBlocks {
     public static final BlockRubyOre oreRuby = new BlockRubyOre();
