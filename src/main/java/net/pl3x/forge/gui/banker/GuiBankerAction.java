@@ -1,4 +1,4 @@
-package net.pl3x.forge.gui;
+package net.pl3x.forge.gui.banker;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiLabel;

@@ -1,4 +1,4 @@
-package net.pl3x.forge.gui;
+package net.pl3x.forge.gui.banker;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -7,6 +7,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.container.ContainerBanker;
+import net.pl3x.forge.gui.ModGuiHandler;
 import net.pl3x.forge.gui.element.Button;
 import net.pl3x.forge.gui.element.LockButton;
 import net.pl3x.forge.inventory.SlotBanker;

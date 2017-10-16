@@ -9,6 +9,12 @@ import net.pl3x.forge.container.ContainerBanker;
 import net.pl3x.forge.container.ContainerEnchantmentSplitter;
 import net.pl3x.forge.container.ContainerShopCustomer;
 import net.pl3x.forge.container.ContainerShopOwner;
+import net.pl3x.forge.gui.banker.GuiBanker;
+import net.pl3x.forge.gui.banker.GuiBankerAction;
+import net.pl3x.forge.gui.shop.GuiShopCustomer;
+import net.pl3x.forge.gui.shop.GuiShopOwner;
+import net.pl3x.forge.gui.shop.GuiShopOwnerDisplay;
+import net.pl3x.forge.gui.shop.GuiShopOwnerFunds;
 import net.pl3x.forge.network.BankPacket;
 import net.pl3x.forge.tileentity.TileEntityShop;
 

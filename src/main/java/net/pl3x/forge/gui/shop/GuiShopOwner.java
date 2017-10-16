@@ -1,4 +1,4 @@
-package net.pl3x.forge.gui;
+package net.pl3x.forge.gui.shop;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;
@@ -8,6 +8,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.util.math.BlockPos;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.container.ContainerShopOwner;
+import net.pl3x.forge.gui.ModGuiHandler;
 import net.pl3x.forge.gui.element.Button;
 import net.pl3x.forge.gui.element.TabButton;
 import net.pl3x.forge.util.GuiUtil;

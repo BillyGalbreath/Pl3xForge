@@ -1,4 +1,4 @@
-package net.pl3x.forge.gui;
+package net.pl3x.forge.gui.shop;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -8,6 +8,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.pl3x.forge.container.ContainerShopCustomer;
+import net.pl3x.forge.gui.HUDBalance;
 import net.pl3x.forge.gui.element.Button;
 import net.pl3x.forge.network.PacketHandler;
 import net.pl3x.forge.network.ShopPurchasePacket;
