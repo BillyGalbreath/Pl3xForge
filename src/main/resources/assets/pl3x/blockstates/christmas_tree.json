@@ -1,0 +1,11 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "normal": {
+      "model": "pl3x:christmas_tree"
+    },
+    "inventory": {
+      "model": "pl3x:christmas_tree"
+    }
+  }
+}

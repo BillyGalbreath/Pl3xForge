@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
+import net.pl3x.forge.block.custom.BlockChristmasTree;
 import net.pl3x.forge.block.custom.BlockEnchantmentSplitter;
 import net.pl3x.forge.block.custom.BlockLamp;
 import net.pl3x.forge.block.custom.BlockTable;
@@ -24,6 +25,7 @@ public class ModBlocks {
     public static final BlockMicrowave microwave = new BlockMicrowave();
     public static final BlockLamp lamp = new BlockLamp();
     public static final BlockTable table = new BlockTable();
+    public static final BlockChristmasTree christmasTree = new BlockChristmasTree();
 
     public static void register(IForgeRegistry<Block> registry) {
         registry.registerAll(
@@ -35,7 +37,8 @@ public class ModBlocks {
                 depositBox,
                 microwave,
                 lamp,
-                table
+                table,
+                christmasTree
         );
 
         GameRegistry.registerTileEntity(enchantmentSplitter.getTileEntityClass(), enchantmentSplitter.getRegistryName().toString());
@@ -52,7 +55,8 @@ public class ModBlocks {
                 depositBox.createItemBlock(),
                 microwave.createItemBlock(),
                 lamp.createItemBlock(),
-                table.createItemBlock()
+                table.createItemBlock(),
+                christmasTree.createItemBlock()
         );
     }
 
@@ -66,5 +70,6 @@ public class ModBlocks {
         microwave.registerItemModel(Item.getItemFromBlock(microwave));
         lamp.registerItemModel(Item.getItemFromBlock(lamp));
         table.registerItemModel(Item.getItemFromBlock(table));
+        christmasTree.registerItemModel(Item.getItemFromBlock(christmasTree));
     }
 }

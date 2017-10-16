@@ -1,0 +1,17 @@
+{
+  "display": {
+    "icon": {
+      "item": "pl3x:seasonal"
+    },
+    "title": "Seasonal",
+    "description": "Festive Advancements",
+    "background": "minecraft:textures/blocks/slime.png",
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "auto": {
+      "trigger": "minecraft:location"
+    }
+  }
+}

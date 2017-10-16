@@ -1,0 +1,112 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " N ",
+    "GLG",
+    "LWL"
+  ],
+  "key": {
+    "W": [
+      {
+        "item": "minecraft:log",
+        "data": 0
+      },
+      {
+        "item": "minecraft:log",
+        "data": 1
+      },
+      {
+        "item": "minecraft:log",
+        "data": 2
+      },
+      {
+        "item": "minecraft:log",
+        "data": 3
+      },
+      {
+        "item": "minecraft:log2",
+        "data": 0
+      },
+      {
+        "item": "minecraft:log2",
+        "data": 1
+      }
+    ],
+    "L": {
+      "item": "minecraft:leaves",
+      "data": 1
+    },
+    "G": [
+      {
+        "item": "minecraft:stained_glass",
+        "data": 0
+      },
+      {
+        "item": "minecraft:stained_glass",
+        "data": 1
+      },
+      {
+        "item": "minecraft:stained_glass",
+        "data": 2
+      },
+      {
+        "item": "minecraft:stained_glass",
+        "data": 3
+      },
+      {
+        "item": "minecraft:stained_glass",
+        "data": 4
+      },
+      {
+        "item": "minecraft:stained_glass",
+        "data": 5
+      },
+      {
+        "item": "minecraft:stained_glass",
+        "data": 6
+      },
+      {
+        "item": "minecraft:stained_glass",
+        "data": 7
+      },
+      {
+        "item": "minecraft:stained_glass",
+        "data": 8
+      },
+      {
+        "item": "minecraft:stained_glass",
+        "data": 9
+      },
+      {
+        "item": "minecraft:stained_glass",
+        "data": 10
+      },
+      {
+        "item": "minecraft:stained_glass",
+        "data": 11
+      },
+      {
+        "item": "minecraft:stained_glass",
+        "data": 12
+      },
+      {
+        "item": "minecraft:stained_glass",
+        "data": 13
+      },
+      {
+        "item": "minecraft:stained_glass",
+        "data": 14
+      },
+      {
+        "item": "minecraft:stained_glass",
+        "data": 15
+      }
+    ],
+    "N": {
+      "item": "minecraft:nether_star"
+    }
+  },
+  "result": {
+    "item": "pl3x:christmas_tree"
+  }
+}
