@@ -87,6 +87,8 @@ public class ModItems {
 
     public static final ItemMoney COIN = new ItemMoney("coin");
 
+    public static final ItemBase seasonal = new ItemBase("seasonal");
+
     public static final ItemClaimTool CLAIM_TOOL = new ItemClaimTool("claim_tool");
     public static final ItemClaimToolResize CLAIM_TOOL_RESIZE = new ItemClaimToolResize("claim_tool_resize");
     public static final ItemClaimToolVisual CLAIM_TOOL_VISUAL = new ItemClaimToolVisual("claim_tool_visual");
@@ -147,6 +149,8 @@ public class ModItems {
 
                 COIN,
 
+                seasonal,
+
                 CLAIM_TOOL,
                 CLAIM_TOOL_RESIZE,
                 CLAIM_TOOL_VISUAL
@@ -206,6 +210,8 @@ public class ModItems {
         hatWizard2.registerItemModel();
 
         COIN.registerItemModel();
+
+        seasonal.registerItemModel();
 
         CLAIM_TOOL.registerItemModel();
         CLAIM_TOOL_RESIZE.registerItemModel();

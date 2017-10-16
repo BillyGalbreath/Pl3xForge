@@ -1,0 +1,19 @@
+{
+  "display": {
+    "title": "Tree Time",
+    "description": "Place Christmas tree",
+    "icon": {
+      "item": "pl3x:christmas_tree"
+    },
+    "frame": "challenge"
+  },
+  "parent": "pl3x:seasonal/root",
+  "criteria": {
+    "placed_tree": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "pl3x:christmas_tree"
+      }
+    }
+  }
+}

@@ -62,6 +62,7 @@ key.showClaims=Toggle Claim Visuals
 
 # Blocks
 tile.block_ruby.name=Block of Ruby
+tile.christmas_tree.name=Christmas Tree
 tile.deposit_box.name=Deposit Box
 tile.enchantment_splitter.name=Enchantment Splitter
 tile.frosted_obsidian.name=Frosted Obsidian
