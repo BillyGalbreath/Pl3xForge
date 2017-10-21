@@ -1,7 +1,6 @@
 package net.pl3x.forge.listener;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.GuiRepair;
 import net.minecraft.client.gui.GuiScreenBook;
 import net.minecraft.client.gui.inventory.GuiEditSign;
@@ -10,6 +9,7 @@ import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.pl3x.client.gui.GuiChatBar;
 import net.pl3x.forge.ChatColor;
 import net.pl3x.forge.claims.Claim;
 import net.pl3x.forge.configuration.ClientConfig;
@@ -30,13 +30,13 @@ public class ClientEventHandler {
     @SubscribeEvent
     public void on(GuiScreenEvent.KeyboardInputEvent.Post event) {
         // chat input field
-        if ((event.getGui() instanceof GuiChat)) {
-            GuiChat guiChat = (GuiChat) event.getGui();
-            String text = guiChat.inputField.getText();
+        if ((event.getGui() instanceof GuiChatBar)) {
+            GuiChatBar guiChatBar = (GuiChatBar) event.getGui();
+            String text = guiChatBar.getText();
             if (!text.trim().isEmpty()) {
                 String newText = IconManager.INSTANCE.translateMessage(text);
                 if (!newText.equals(text)) {
-                    guiChat.inputField.setText(newText);
+                    guiChatBar.setText(newText, true);
                 }
             }
         }
