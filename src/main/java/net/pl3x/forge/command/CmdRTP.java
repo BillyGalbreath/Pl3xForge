@@ -33,7 +33,7 @@ public class CmdRTP extends CommandBase {
         EntityPlayerMP player = getCommandSenderAsPlayer(sender);
 
         if (cooldowns.contains(player.getUniqueID())) {
-            Lang.send(player, Lang.getData().COMMAND_ON_COOLDOWN);
+            Lang.send(player, Lang.INSTANCE.data.COMMAND_ON_COOLDOWN);
             return;
         }
 
@@ -43,7 +43,7 @@ public class CmdRTP extends CommandBase {
             failSafe--;
         }
         if (destination == null) {
-            Lang.send(player, Lang.getData().RTP_NO_SAFE_LOCATION);
+            Lang.send(player, Lang.INSTANCE.data.RTP_NO_SAFE_LOCATION);
             return;
         }
 
@@ -52,7 +52,7 @@ public class CmdRTP extends CommandBase {
                 .runTaskLater(60 * 5 * 20); // 5 minutes
 
         Teleport.teleport(player, destination);
-        Lang.send(player, Lang.getData().RTP_SUCCESS);
+        Lang.send(player, Lang.INSTANCE.data.RTP_SUCCESS);
     }
 
     private Location checkSpot(EntityPlayerMP player) {

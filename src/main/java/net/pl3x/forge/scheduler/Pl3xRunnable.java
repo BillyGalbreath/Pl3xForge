@@ -1,7 +1,5 @@
 package net.pl3x.forge.scheduler;
 
-import net.pl3x.forge.Pl3x;
-
 public abstract class Pl3xRunnable implements Runnable {
     private int taskId = -1;
 
@@ -15,16 +13,16 @@ public abstract class Pl3xRunnable implements Runnable {
 
     public Pl3xTask runTaskLater(long delay) {
         checkState();
-        return setupId(Pl3x.getScheduler().runTaskLater(this, delay));
+        return setupId(Pl3xScheduler.INSTANCE.runTaskLater(this, delay));
     }
 
     public Pl3xTask runTaskTimer(long delay, long period) throws IllegalArgumentException, IllegalStateException {
         checkState();
-        return setupId(Pl3x.getScheduler().runTaskTimer(this, delay, period));
+        return setupId(Pl3xScheduler.INSTANCE.runTaskTimer(this, delay, period));
     }
 
     public void cancel() throws IllegalStateException {
-        Pl3x.getScheduler().cancelTask(getTaskId());
+        Pl3xScheduler.INSTANCE.cancelTask(getTaskId());
     }
 
     private void checkState() {

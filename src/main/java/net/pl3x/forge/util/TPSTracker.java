@@ -3,6 +3,8 @@ package net.pl3x.forge.util;
 import net.pl3x.forge.scheduler.Pl3xRunnable;
 
 public class TPSTracker extends Pl3xRunnable {
+    public static final TPSTracker INSTANCE = new TPSTracker();
+
     private static final int TPS = 20;
     private static final long SEC_IN_NANO = 1000000000;
 

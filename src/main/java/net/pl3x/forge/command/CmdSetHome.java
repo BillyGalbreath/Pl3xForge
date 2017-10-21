@@ -25,17 +25,17 @@ public class CmdSetHome extends CommandBase {
         PlayerData playerData = getPlayerData(player);
 
         if (playerData.getHomes().size() >= 5) {
-            Lang.send(player, Lang.getData().HOME_LIMIT_REACHED);
+            Lang.send(player, Lang.INSTANCE.data.HOME_LIMIT_REACHED);
             return;
         }
 
         String homeName = args.length > 0 ? args[0].toLowerCase() : "home";
         if (playerData.getHome(homeName) != null) {
-            Lang.send(player, Lang.getData().HOME_ALREADY_SET);
+            Lang.send(player, Lang.INSTANCE.data.HOME_ALREADY_SET);
             return;
         }
 
         playerData.addHome(homeName, new Location(player));
-        Lang.send(player, Lang.getData().HOME_CREATED);
+        Lang.send(player, Lang.INSTANCE.data.HOME_CREATED);
     }
 }

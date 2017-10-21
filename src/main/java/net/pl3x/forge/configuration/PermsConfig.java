@@ -1,6 +1,7 @@
 package net.pl3x.forge.configuration;
 
 import net.pl3x.forge.Logger;
+import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.permissions.PermissionsGroup;
 import net.pl3x.forge.permissions.PermissionsPlayer;
 import net.pl3x.forge.permissions.PermissionsTrack;
@@ -11,32 +12,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class PermsConfig extends ConfigLoader {
-    static final String FILE_NAME = "permissions.json";
-    private static File configDir;
-    private static Data data;
+public class PermsConfig extends ConfigLoader implements ConfigBase {
+    public static final PermsConfig INSTANCE = new PermsConfig();
+    public static final String FILE_NAME = "permissions.json";
 
-    public static Data getHolder() {
-        return data;
-    }
+    public Data data;
 
-    public static void init(File dir) {
-        configDir = dir;
+    public void init() {
         reload();
     }
 
-    public static void reload() {
+    @Override
+    public String file() {
+        return FILE_NAME;
+    }
+
+    public void reload() {
         Logger.info("Loading permissions from disk...");
         try {
             data = loadConfig(new Data(),
-                    Data.class, new File(configDir, FILE_NAME));
+                    Data.class, new File(Pl3x.configDir, FILE_NAME));
         } catch (IOException e) {
             data = null;
             e.printStackTrace();
         }
     }
 
-    public static class Data {
+    public class Data {
         private List<PermissionsTrack> tracks = new ArrayList<PermissionsTrack>() {{
             add(new PermissionsTrack("default", 0));
             add(new PermissionsTrack("mod", 1));

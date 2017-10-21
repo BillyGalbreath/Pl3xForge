@@ -42,7 +42,7 @@ public class ChatEventHandler {
         boolean isStaffChat = false;
         if (messageText.startsWith("s:")) {
             if (!Permissions.hasPermission(sender, "command.staff")) {
-                Lang.send(sender, Lang.getData().COMMAND_NO_PERMISSION);
+                Lang.send(sender, Lang.INSTANCE.data.COMMAND_NO_PERMISSION);
                 event.setCanceled(true);
                 return;
             }
@@ -58,7 +58,7 @@ public class ChatEventHandler {
 
         String group = sender instanceof FakePlayer ? "discord" : "default";
         try {
-            group = PermsConfig.getHolder().getPlayer(sender.getUniqueID()).getGroup();
+            group = PermsConfig.INSTANCE.data.getPlayer(sender.getUniqueID()).getGroup();
         } catch (Exception ignore) {
         }
 

@@ -4,7 +4,6 @@ import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 import net.pl3x.forge.configuration.Lang;
-import net.pl3x.forge.proxy.ServerProxy;
 import net.pl3x.forge.util.TPSTracker;
 
 public class CmdTPS extends CommandBase {
@@ -18,18 +17,16 @@ public class CmdTPS extends CommandBase {
             return; // do not process client side
         }
 
-        TPSTracker tracker = ServerProxy.getTpsTracker();
-
         if (args.length > 0 && args[0].equalsIgnoreCase("now")) {
-            Lang.send(sender, Lang.getData().TPS_TRACKER_NOW
-                    .replace("{tps}", colorTPS(tracker.getTPS())));
+            Lang.send(sender, Lang.INSTANCE.data.TPS_TRACKER_NOW
+                    .replace("{tps}", colorTPS(TPSTracker.INSTANCE.getTPS())));
             return;
         }
 
-        double tps1 = tracker.tps1.getAverage();
-        double tps5 = tracker.tps5.getAverage();
-        double tps15 = tracker.tps15.getAverage();
-        Lang.send(sender, Lang.getData().TPS_TRACKER_AVERAGES
+        double tps1 = TPSTracker.INSTANCE.tps1.getAverage();
+        double tps5 = TPSTracker.INSTANCE.tps5.getAverage();
+        double tps15 = TPSTracker.INSTANCE.tps15.getAverage();
+        Lang.send(sender, Lang.INSTANCE.data.TPS_TRACKER_AVERAGES
                 .replace("{tps1}", colorTPS(tps1))
                 .replace("{tps5}", colorTPS(tps5))
                 .replace("{tps15}", colorTPS(tps15)));

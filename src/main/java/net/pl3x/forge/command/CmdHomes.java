@@ -31,11 +31,11 @@ public class CmdHomes extends CommandBase {
 
         ArrayList<String> homeNames = playerData.getHomeNames();
         if (homeNames == null || homeNames.isEmpty()) {
-            Lang.send(player, Lang.getData().HOME_NONE_SET);
+            Lang.send(player, Lang.INSTANCE.data.HOME_NONE_SET);
             return;
         }
 
-        Lang.send(player, Lang.getData().HOME_LIST
+        Lang.send(player, Lang.INSTANCE.data.HOME_LIST
                 .replace("{homes}", String.join("&7, &d", homeNames)));
     }
 }

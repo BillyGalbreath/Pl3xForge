@@ -1,6 +1,7 @@
 package net.pl3x.forge.configuration;
 
 import net.pl3x.forge.Logger;
+import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.icons.IconManager;
 
 import java.io.File;
@@ -8,24 +9,24 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class IconConfig extends ConfigLoader {
-    static final String FILE_NAME = "icons.json";
-    private static File configDir;
-    private static Data data;
+public class IconConfig extends ConfigLoader implements ConfigBase {
+    public static final IconConfig INSTANCE = new IconConfig();
+    public static final String FILE_NAME = "icons.json";
 
-    public static Data getData() {
-        return data;
-    }
+    public Data data;
 
-    public static void init(File dir) {
-        configDir = dir;
+    public void init() {
         reload();
     }
 
-    public static void reload() {
+    public String file() {
+        return FILE_NAME;
+    }
+
+    public void reload() {
         Logger.info("Loading " + FILE_NAME + " from disk...");
         try {
-            data = loadConfig(new Data(), Data.class, new File(configDir, FILE_NAME));
+            data = loadConfig(new Data(), Data.class, new File(Pl3x.configDir, FILE_NAME));
         } catch (IOException e) {
             data = null;
             e.printStackTrace();
@@ -34,7 +35,7 @@ public class IconConfig extends ConfigLoader {
         IconManager.INSTANCE.reloadIcons();
     }
 
-    public static class Data {
+    public class Data {
         public final Map<String, String> icons = new HashMap<String, String>() {{
             put("9000", "WOODEN_SWORD");
             put("9001", "WOODEN_PICKAXE");

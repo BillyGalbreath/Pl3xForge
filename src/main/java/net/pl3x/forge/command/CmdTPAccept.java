@@ -25,7 +25,7 @@ public class CmdTPAccept extends CommandBase {
 
         TeleportRequest request = Teleport.TELEPORT_REQUESTS.get(player.getUniqueID());
         if (request == null) {
-            Lang.send(player, Lang.getData().TELEPORT_REQUEST_NONE_PENDING);
+            Lang.send(player, Lang.INSTANCE.data.TELEPORT_REQUEST_NONE_PENDING);
             return;
         }
 

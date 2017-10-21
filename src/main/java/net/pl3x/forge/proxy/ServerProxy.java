@@ -10,7 +10,6 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.pl3x.forge.ChatColor;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.command.CmdBack;
 import net.pl3x.forge.command.CmdCountdown;
@@ -65,27 +64,16 @@ import net.pl3x.forge.world.ModWorldGen;
 import java.io.File;
 
 public class ServerProxy {
-    private static TPSTracker tpsTracker;
-    private static MOTDTask motdTask = new MOTDTask();
-    private Thread configWatcher;
-
-    public static TPSTracker getTpsTracker() {
-        return tpsTracker;
-    }
-
     public void preInit(FMLPreInitializationEvent event) {
-        File configDir = new File(event.getModConfigurationDirectory(), Pl3x.name);
+        Lang.INSTANCE.init();
+        PermsConfig.INSTANCE.init();
+        MailConfig.INSTANCE.init();
+        IconConfig.INSTANCE.init();
+        EmojiConfig.INSTANCE.init();
+        MOTDConfig.INSTANCE.init();
+        ClaimConfigs.init(new File(Pl3x.configDir, ClaimConfigs.CLAIM_DIRECTORY));
 
-        Lang.init(configDir);
-        PermsConfig.init(configDir);
-        MailConfig.init(configDir);
-        IconConfig.init(configDir);
-        EmojiConfig.init(configDir);
-        MOTDConfig.init(configDir);
-        ClaimConfigs.init(new File(configDir, ClaimConfigs.CLAIM_DIRECTORY));
-
-        configWatcher = new Thread(new ConfigWatcher(configDir.toPath()), ChatColor.colorize("&1Config&r"));
-        configWatcher.start();
+        ConfigWatcher.INSTANCE.start();
     }
 
     public void init(FMLInitializationEvent event) {
@@ -104,9 +92,8 @@ public class ServerProxy {
     }
 
     public void postInit(FMLPostInitializationEvent event) {
-        tpsTracker = new TPSTracker();
-        tpsTracker.runTaskTimer(20, 20); // 1 second
-        motdTask.runTaskTimer(1, 100); // 5 seconds
+        TPSTracker.INSTANCE.runTaskTimer(20, 20); // 1 second
+        MOTDTask.INSTANCE.runTaskTimer(1, 100); // 5 seconds
     }
 
     public void serverStarting(FMLServerStartingEvent event) {
@@ -142,7 +129,7 @@ public class ServerProxy {
     }
 
     public void serverStopping(FMLServerStoppingEvent event) {
-        configWatcher.interrupt();
+        ConfigWatcher.INSTANCE.interrupt();
     }
 
     public void registerItemRenderer(Item item, int meta, String id) {

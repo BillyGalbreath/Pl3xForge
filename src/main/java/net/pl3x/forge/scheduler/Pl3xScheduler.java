@@ -1,14 +1,16 @@
 package net.pl3x.forge.scheduler;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Pl3xScheduler {
+    public static final Pl3xScheduler INSTANCE = new Pl3xScheduler();
+
     private final AtomicInteger ids = new AtomicInteger(1);
     private final ConcurrentHashMap<Integer, Pl3xTask> tasks = new ConcurrentHashMap<>();
-    private int currentTick = -1;
+    private long currentTick = Long.MIN_VALUE;
 
     private int nextId() {
         return ids.incrementAndGet();
@@ -51,18 +53,17 @@ public class Pl3xScheduler {
     public void tick() {
         currentTick++;
 
-        Set<Integer> toRemove = new HashSet<>();
-        tasks.forEach((id, task) -> {
-            if (id > 0 && task.getNextRun() <= currentTick) {
-                task.run();
-                if (task.getPeriod() > 0) {
-                    task.setNextRun(currentTick + task.getPeriod());
+        Iterator<Map.Entry<Integer, Pl3xTask>> iter = tasks.entrySet().iterator();
+        while (iter.hasNext()) {
+            Map.Entry<Integer, Pl3xTask> entry = iter.next();
+            if (entry.getKey() > 0 && entry.getValue().getNextRun() <= currentTick) {
+                entry.getValue().run();
+                if (entry.getValue().getPeriod() > 0) {
+                    entry.getValue().setNextRun(currentTick + entry.getValue().getPeriod());
                 } else {
-                    toRemove.add(id);
+                    iter.remove();
                 }
             }
-        });
-
-        toRemove.forEach(tasks::remove);
+        }
     }
 }

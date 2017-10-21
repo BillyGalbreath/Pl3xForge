@@ -1,7 +1,5 @@
 package net.pl3x.forge.scheduler;
 
-import net.pl3x.forge.Pl3x;
-
 public class Pl3xTask implements Runnable {
     private final Runnable task;
     private final int id;
@@ -17,7 +15,9 @@ public class Pl3xTask implements Runnable {
 
     @Override
     public void run() {
-        task.run();
+        if (!cancelled) {
+            task.run();
+        }
     }
 
     public int getTaskId() {
@@ -41,8 +41,9 @@ public class Pl3xTask implements Runnable {
     }
 
     public void cancel() {
+        cancelled = true;
         if (period > 0) {
-            Pl3x.getScheduler().cancelTask(id);
+            Pl3xScheduler.INSTANCE.cancelTask(id);
         }
     }
 }

@@ -1,6 +1,8 @@
 package net.pl3x.forge.configuration;
 
+import net.pl3x.forge.ChatColor;
 import net.pl3x.forge.Logger;
+import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.scheduler.Pl3xRunnable;
 
 import java.io.IOException;
@@ -17,6 +19,8 @@ import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
 import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
 
 public class ConfigWatcher implements Runnable {
+    public static final Thread INSTANCE = new Thread(new ConfigWatcher(Pl3x.configDir.toPath()), ChatColor.colorize("&1Config&r"));
+
     private final static int RELOAD_DELAY = 20;
     private Set<ConfigType> reloadQueue = new HashSet<>();
     private Path dir;
@@ -36,14 +40,14 @@ public class ConfigWatcher implements Runnable {
                     String fileName = event.context().toString();
                     if (event.kind() == ENTRY_CREATE || event.kind() == ENTRY_MODIFY) {
                         for (ConfigType type : ConfigType.values()) {
-                            if (fileName.equals(type.file) && !reloadQueue.contains(type)) {
+                            if (fileName.equals(type.file()) && !reloadQueue.contains(type)) {
                                 Logger.warn("Config file changed: " + fileName);
                                 new ReloadConfig(type).runTaskLater(RELOAD_DELAY);
                             }
                         }
                     } else if (event.kind() == ENTRY_DELETE) {
                         for (ConfigType type : ConfigType.values()) {
-                            if (fileName.equals(type.file) && !reloadQueue.contains(type)) {
+                            if (fileName.equals(type.file()) && !reloadQueue.contains(type)) {
                                 Logger.warn("Config file deleted: " + fileName);
                                 new ReloadConfig(type).runTaskLater(RELOAD_DELAY);
                             }
@@ -73,40 +77,32 @@ public class ConfigWatcher implements Runnable {
         public void run() {
             Iterator<ConfigType> iter = reloadQueue.iterator();
             while (iter.hasNext()) {
-                ConfigType type = iter.next();
-                switch (type) {
-                    case PERMISSIONS:
-                        PermsConfig.reload();
-                        break;
-                    case LANG:
-                        Lang.reload();
-                        break;
-                    case MAIL:
-                        MailConfig.reload();
-                        break;
-                    case ICON:
-                        IconConfig.reload();
-                        break;
-                    case MOTD:
-                        MOTDConfig.reload();
-                        break;
-                }
+                iter.next().reload();
                 iter.remove();
             }
         }
     }
 
     private enum ConfigType {
-        PERMISSIONS(PermsConfig.FILE_NAME),
-        LANG(Lang.FILE_NAME),
-        MAIL(MailConfig.FILE_NAME),
-        ICON(IconConfig.FILE_NAME),
-        MOTD(MOTDConfig.FILE_NAME);
+        PERMISSIONS(PermsConfig.INSTANCE),
+        LANG(Lang.INSTANCE),
+        MAIL(MailConfig.INSTANCE),
+        ICON(IconConfig.INSTANCE),
+        EMOJI(EmojiConfig.INSTANCE),
+        MOTD(MOTDConfig.INSTANCE);
 
-        String file;
+        ConfigBase config;
 
-        ConfigType(String file) {
-            this.file = file;
+        ConfigType(ConfigBase config) {
+            this.config = config;
+        }
+
+        void reload() {
+            config.reload();
+        }
+
+        String file() {
+            return config.file();
         }
     }
 }

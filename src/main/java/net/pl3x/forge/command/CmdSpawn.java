@@ -22,6 +22,6 @@ public class CmdSpawn extends CommandBase {
         EntityPlayerMP player = getCommandSenderAsPlayer(sender);
 
         Teleport.teleport(player, new Location(player.world, player.world.getSpawnPoint()), true);
-        Lang.send(player, Lang.getData().SPAWN_TELEPORT);
+        Lang.send(player, Lang.INSTANCE.data.SPAWN_TELEPORT);
     }
 }

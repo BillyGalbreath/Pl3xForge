@@ -21,7 +21,7 @@ public class CmdFlySpeed extends CommandBase {
         EntityPlayerMP player = getCommandSenderAsPlayer(sender);
 
         if (args.length == 0) {
-            Lang.send(player, Lang.getData().FLY_SPEED_INVALID);
+            Lang.send(player, Lang.INSTANCE.data.FLY_SPEED_INVALID);
             return;
         }
 
@@ -32,13 +32,13 @@ public class CmdFlySpeed extends CommandBase {
             try {
                 speed = Integer.valueOf(args[0]);
             } catch (NumberFormatException e2) {
-                Lang.send(player, Lang.getData().FLY_SPEED_INVALID);
+                Lang.send(player, Lang.INSTANCE.data.FLY_SPEED_INVALID);
                 return;
             }
         }
 
         if (speed < 0F || speed > 10F) {
-            Lang.send(player, Lang.getData().FLY_SPEED_INVALID);
+            Lang.send(player, Lang.INSTANCE.data.FLY_SPEED_INVALID);
             return;
         }
 
@@ -48,7 +48,7 @@ public class CmdFlySpeed extends CommandBase {
         // inform the client of the changes
         player.sendPlayerAbilities();
 
-        Lang.send(player, Lang.getData().FLY_SPEED_SET
+        Lang.send(player, Lang.INSTANCE.data.FLY_SPEED_SET
                 .replace("{speed}", Float.toString(speed)));
     }
 }

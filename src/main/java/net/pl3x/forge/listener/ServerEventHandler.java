@@ -23,7 +23,6 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.pl3x.forge.ChatColor;
 import net.pl3x.forge.Location;
 import net.pl3x.forge.Logger;
-import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.configuration.Lang;
 import net.pl3x.forge.data.CapabilityProvider;
 import net.pl3x.forge.data.PlayerData;
@@ -32,6 +31,7 @@ import net.pl3x.forge.item.ItemMoney;
 import net.pl3x.forge.item.ModItems;
 import net.pl3x.forge.motd.MOTDCache;
 import net.pl3x.forge.network.PacketHandler;
+import net.pl3x.forge.scheduler.Pl3xScheduler;
 import net.pl3x.forge.util.EntityLifeSpan;
 import net.pl3x.forge.util.Teleport;
 import net.pl3x.forge.util.TeleportRequest;
@@ -148,7 +148,7 @@ public class ServerEventHandler {
         }
         EntityPlayerMP player = (EntityPlayerMP) event.getEntity();
         Teleport.BACK_DB.put(player.getUniqueID(), new Location(player));
-        Lang.send(player, Lang.getData().BACK_ON_DEATH);
+        Lang.send(player, Lang.INSTANCE.data.BACK_ON_DEATH);
     }
 
     @SubscribeEvent
@@ -210,9 +210,9 @@ public class ServerEventHandler {
     }
 
     @SubscribeEvent
-    public static void serverTick(TickEvent.ServerTickEvent event) {
-        if (event.phase == TickEvent.Phase.START) {
-            Pl3x.getScheduler().tick();
+    public void serverTick(TickEvent.ServerTickEvent event) {
+        if (event.phase == TickEvent.Phase.END) {
+            Pl3xScheduler.INSTANCE.tick();
         }
     }
 }

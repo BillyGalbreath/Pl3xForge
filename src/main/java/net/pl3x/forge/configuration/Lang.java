@@ -4,28 +4,29 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.util.text.TextComponentString;
 import net.pl3x.forge.ChatColor;
 import net.pl3x.forge.Logger;
+import net.pl3x.forge.Pl3x;
 
 import java.io.File;
 import java.io.IOException;
 
-public class Lang extends ConfigLoader {
-    static final String FILE_NAME = "messages.json";
-    private static File configDir;
-    private static Data data;
+public class Lang extends ConfigLoader implements ConfigBase {
+    public static final Lang INSTANCE = new Lang();
+    public static final String FILE_NAME = "messages.json";
 
-    public static Data getData() {
-        return data;
-    }
+    public Data data;
 
-    public static void init(File dir) {
-        configDir = dir;
+    public void init() {
         reload();
     }
 
-    public static void reload() {
+    public String file() {
+        return FILE_NAME;
+    }
+
+    public void reload() {
         Logger.info("Loading " + FILE_NAME + " from disk...");
         try {
-            data = loadConfig(new Data(), Data.class, new File(configDir, FILE_NAME));
+            data = loadConfig(new Data(), Data.class, new File(Pl3x.configDir, FILE_NAME));
         } catch (IOException e) {
             data = null;
             e.printStackTrace();
@@ -38,7 +39,7 @@ public class Lang extends ConfigLoader {
         }
     }
 
-    public static class Data {
+    public class Data {
         public String COMMAND_NO_PERMISSION = "&cYou do not have permission to use this command";
         public String TARGET_NO_PERMISSION = "&cTarget does not have that permission";
         public String MUST_SPECIFY_PLAYER = "&cMust specify a player";

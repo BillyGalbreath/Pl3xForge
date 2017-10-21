@@ -26,7 +26,7 @@ public class CmdTPToggle extends CommandBase {
         PlayerData playerData = getPlayerData(player);
         playerData.denyTeleports(!playerData.denyTeleports());
 
-        Lang.send(player, Lang.getData().TELEPORT_REQUEST_TP_TOGGLE
+        Lang.send(player, Lang.INSTANCE.data.TELEPORT_REQUEST_TP_TOGGLE
                 .replace("{state}", BooleanUtils.toStringOnOff(!playerData.denyTeleports())));
     }
 }

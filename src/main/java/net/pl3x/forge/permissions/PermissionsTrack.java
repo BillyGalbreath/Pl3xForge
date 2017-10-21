@@ -21,9 +21,9 @@ public class PermissionsTrack {
 
     public PermissionsGroup getParent() {
         for (int i = order - 1; i >= 0; i--) {
-            PermissionsTrack track = PermsConfig.getHolder().getTrack(i);
+            PermissionsTrack track = PermsConfig.INSTANCE.data.getTrack(i);
             if (track != null) {
-                return PermsConfig.getHolder().getGroup(track.group);
+                return PermsConfig.INSTANCE.data.getGroup(track.group);
             }
         }
         return null;

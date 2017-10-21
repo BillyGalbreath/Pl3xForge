@@ -48,11 +48,11 @@ public class CmdHome extends CommandBase {
 
         Location homeLoc = playerData.getHome(args.length > 0 ? args[0].toLowerCase() : "home");
         if (homeLoc == null) {
-            Lang.send(player, Lang.getData().HOME_NOT_FOUND);
+            Lang.send(player, Lang.INSTANCE.data.HOME_NOT_FOUND);
             return;
         }
 
         Teleport.teleport(player, homeLoc);
-        Lang.send(player, Lang.getData().HOME_TELEPORTED);
+        Lang.send(player, Lang.INSTANCE.data.HOME_TELEPORTED);
     }
 }

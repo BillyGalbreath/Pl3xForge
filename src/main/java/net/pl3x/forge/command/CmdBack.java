@@ -23,11 +23,11 @@ public class CmdBack extends CommandBase {
 
         Location backLoc = Teleport.BACK_DB.get(player.getUniqueID());
         if (backLoc == null) {
-            Lang.send(player, Lang.getData().BACK_NO_LOCATION);
+            Lang.send(player, Lang.INSTANCE.data.BACK_NO_LOCATION);
             return;
         }
 
         Teleport.teleport(player, backLoc, true);
-        Lang.send(player, Lang.getData().BACK_TO_PREVIOUS);
+        Lang.send(player, Lang.INSTANCE.data.BACK_TO_PREVIOUS);
     }
 }

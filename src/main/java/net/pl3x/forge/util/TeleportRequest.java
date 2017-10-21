@@ -28,9 +28,9 @@ public abstract class TeleportRequest {
     public void accept() {
         teleport();
 
-        Lang.send(target, Lang.getData().TELEPORT_REQUEST_ACCEPT_TARGET
+        Lang.send(target, Lang.INSTANCE.data.TELEPORT_REQUEST_ACCEPT_TARGET
                 .replace("{requester}", requester.getName()));
-        Lang.send(requester, Lang.getData().TELEPORT_REQUEST_ACCEPT_REQUESTER
+        Lang.send(requester, Lang.INSTANCE.data.TELEPORT_REQUEST_ACCEPT_REQUESTER
                 .replace("{target}", target.getName()));
 
         Teleport.TELEPORT_REQUESTS.remove(target.getUniqueID());
@@ -38,9 +38,9 @@ public abstract class TeleportRequest {
     }
 
     public void deny() {
-        Lang.send(target, Lang.getData().TELEPORT_REQUEST_DENIED_TARGET
+        Lang.send(target, Lang.INSTANCE.data.TELEPORT_REQUEST_DENIED_TARGET
                 .replace("{requester}", requester.getName()));
-        Lang.send(requester, Lang.getData().TELEPORT_REQUEST_DENIED_REQUESTER
+        Lang.send(requester, Lang.INSTANCE.data.TELEPORT_REQUEST_DENIED_REQUESTER
                 .replace("{target}", target.getName()));
 
         Teleport.TELEPORT_REQUESTS.remove(target.getUniqueID());
@@ -67,7 +67,7 @@ public abstract class TeleportRequest {
         public void run() {
             request.cancel();
 
-            String message = Lang.getData().TELEPORT_REQUEST_TIMED_OUT;
+            String message = Lang.INSTANCE.data.TELEPORT_REQUEST_TIMED_OUT;
 
             Lang.send(requester, message);
             Lang.send(target, message);

@@ -42,7 +42,7 @@ public class MOTDCache {
     }
 
     private void updateDescription() {
-        List<String> motds = MOTDConfig.getData().motds;
+        List<String> motds = MOTDConfig.INSTANCE.data.motds;
         if (motds == null || motds.isEmpty()) {
             return;
         }

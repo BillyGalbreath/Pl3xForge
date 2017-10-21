@@ -37,14 +37,14 @@ public class CmdPing extends CommandBase {
         EntityPlayerMP target;
         if (args.length < 1) {
             if (!(sender instanceof EntityPlayerMP)) {
-                Lang.send(sender, Lang.getData().MUST_SPECIFY_PLAYER);
+                Lang.send(sender, Lang.INSTANCE.data.MUST_SPECIFY_PLAYER);
                 return;
             }
             target = getCommandSenderAsPlayer(sender);
         } else {
             target = Utils.getPlayer(args[0]);
             if (target == null) {
-                Lang.send(sender, Lang.getData().PLAYER_NOT_ONLINE);
+                Lang.send(sender, Lang.INSTANCE.data.PLAYER_NOT_ONLINE);
                 return;
             }
         }
@@ -59,7 +59,7 @@ public class CmdPing extends CommandBase {
             color = "&e"; // yellow
         }
 
-        Lang.send(sender, Lang.getData().PING
+        Lang.send(sender, Lang.INSTANCE.data.PING
                 .replace("{target}", target.getName())
                 .replace("{ping}", color + ping));
     }

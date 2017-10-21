@@ -1,6 +1,7 @@
 package net.pl3x.forge.configuration;
 
 import net.pl3x.forge.Logger;
+import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.icons.IconManager;
 import net.pl3x.forge.util.FileUtils;
 
@@ -8,28 +9,28 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class EmojiConfig extends ConfigLoader {
-    static final String FILE_NAME = "emojis.json";
-    private static File configDir;
-    private static Data data;
+public class EmojiConfig extends ConfigLoader implements ConfigBase {
+    public static final EmojiConfig INSTANCE = new EmojiConfig();
+    public static final String FILE_NAME = "emojis.json";
 
-    public static Data getData() {
-        return data;
-    }
+    public Data data;
 
-    public static void init(File dir) {
-        configDir = dir;
-        File file = new File(configDir, FILE_NAME);
+    public void init() {
+        File file = new File(Pl3x.configDir, FILE_NAME);
         if (!file.exists()) {
             FileUtils.saveResource(FILE_NAME, file);
         }
         reload();
     }
 
-    public static void reload() {
+    public String file() {
+        return FILE_NAME;
+    }
+
+    public void reload() {
         Logger.info("Loading " + FILE_NAME + " from disk...");
         try {
-            data = loadConfig(new Data(), Data.class, new File(configDir, FILE_NAME));
+            data = loadConfig(new Data(), Data.class, new File(Pl3x.configDir, FILE_NAME));
         } catch (IOException e) {
             data = null;
             e.printStackTrace();
@@ -38,7 +39,7 @@ public class EmojiConfig extends ConfigLoader {
         IconManager.INSTANCE.reloadIcons();
     }
 
-    public static class Data {
+    public class Data {
         private List<Emoji> emojis;
 
         public List<Emoji> getEmojis() {
@@ -50,7 +51,7 @@ public class EmojiConfig extends ConfigLoader {
         }
     }
 
-    public static class Emoji {
+    public class Emoji {
         private String emoji;
         private String description;
         private String hex;

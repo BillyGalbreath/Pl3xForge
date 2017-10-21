@@ -20,7 +20,8 @@ import net.pl3x.forge.block.ModBlocks;
 import net.pl3x.forge.enchantment.ModEnchantments;
 import net.pl3x.forge.item.ModItems;
 import net.pl3x.forge.proxy.ServerProxy;
-import net.pl3x.forge.scheduler.Pl3xScheduler;
+
+import java.io.File;
 
 @Mod(modid = Pl3x.modId, name = Pl3x.name, version = Pl3x.version)
 public class Pl3x {
@@ -34,14 +35,12 @@ public class Pl3x {
     @SidedProxy(serverSide = "net.pl3x.forge.proxy.ServerProxy", clientSide = "net.pl3x.forge.proxy.ClientProxy")
     public static ServerProxy proxy;
 
-    private static final Pl3xScheduler pl3xScheduler = new Pl3xScheduler();
-
-    public static Pl3xScheduler getScheduler() {
-        return pl3xScheduler;
-    }
+    public static File configDir;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        configDir = new File(event.getModConfigurationDirectory(), Pl3x.name);
+
         proxy.preInit(event);
     }
 

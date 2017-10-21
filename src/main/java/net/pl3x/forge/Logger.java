@@ -8,7 +8,7 @@ import static org.apache.logging.log4j.Level.INFO;
 import static org.apache.logging.log4j.Level.WARN;
 
 public class Logger {
-    private static org.apache.logging.log4j.Logger logger = LogManager.getLogger(ChatColor.colorize("&2Pl3xCore&r"));
+    private static org.apache.logging.log4j.Logger logger = LogManager.getLogger(ChatColor.colorize("&2" + Pl3x.name + "&r"));
 
     private Logger() {
     }

@@ -44,19 +44,19 @@ public class CmdGMAdventure extends CommandBase {
         EntityPlayerMP target;
         if (args.length < 1) {
             if (!(sender instanceof EntityPlayerMP)) {
-                Lang.send(sender, Lang.getData().MUST_SPECIFY_PLAYER);
+                Lang.send(sender, Lang.INSTANCE.data.MUST_SPECIFY_PLAYER);
                 return;
             }
             target = getCommandSenderAsPlayer(sender);
         } else {
             target = Utils.getPlayer(args[0]);
             if (target == null) {
-                Lang.send(sender, Lang.getData().PLAYER_NOT_ONLINE);
+                Lang.send(sender, Lang.INSTANCE.data.PLAYER_NOT_ONLINE);
                 return;
             }
 
             if (!Permissions.hasPermission(target, getPermissionNode())) {
-                Lang.send(sender, Lang.getData().TARGET_NO_PERMISSION);
+                Lang.send(sender, Lang.INSTANCE.data.TARGET_NO_PERMISSION);
                 return;
             }
         }
@@ -64,11 +64,11 @@ public class CmdGMAdventure extends CommandBase {
         target.setGameType(GameType.ADVENTURE);
 
         if (!target.equals(sender)) {
-            Lang.send(sender, Lang.getData().GAMEMODE_SENDER
+            Lang.send(sender, Lang.INSTANCE.data.GAMEMODE_SENDER
                     .replace("{target}", target.getName())
                     .replace("{gamemode}", getName()));
         }
-        Lang.send(target, Lang.getData().GAMEMODE_TARGET
+        Lang.send(target, Lang.INSTANCE.data.GAMEMODE_TARGET
                 .replace("{gamemode}", getName()));
     }
 }

@@ -1,37 +1,39 @@
 package net.pl3x.forge.configuration;
 
 import net.pl3x.forge.Logger;
+import net.pl3x.forge.Pl3x;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MOTDConfig extends ConfigLoader {
-    static final String FILE_NAME = "motd.json";
-    private static File configDir;
-    private static Data data;
+public class MOTDConfig extends ConfigLoader implements ConfigBase {
+    public static final MOTDConfig INSTANCE = new MOTDConfig();
+    public static final String FILE_NAME = "motd.json";
 
-    public static Data getData() {
-        return data;
-    }
+    public Data data;
 
-    public static void init(File dir) {
-        configDir = dir;
+    public void init() {
         reload();
     }
 
-    public static void reload() {
+    @Override
+    public String file() {
+        return FILE_NAME;
+    }
+
+    public void reload() {
         Logger.info("Loading " + FILE_NAME + " from disk...");
         try {
-            data = loadConfig(new Data(), Data.class, new File(configDir, FILE_NAME));
+            data = loadConfig(new Data(), Data.class, new File(Pl3x.configDir, FILE_NAME));
         } catch (IOException e) {
             data = null;
             e.printStackTrace();
         }
     }
 
-    public static class Data {
+    public class Data {
         public final List<String> motds = new ArrayList<String>() {{
             add("&7&ki&b&kii&3&kii&7&ki&b&kii&3&kiii&f            -=[&cPl3x&bForge &2Server&f]=-             &3&kiii&b&kii&7&ki&3&kii&b&kii&7&ki\n&ev&d1.12.1 &7- &6The best revenge is massive success");
             add("&7&ki&b&kii&3&kii&7&ki&b&kii&3&kiii&f            -=[&cPl3x&bForge &2Server&f]=-             &3&kiii&b&kii&7&ki&3&kii&b&kii&7&ki\n&ev&d1.12.1 &7- &6Join us! We have cookies! \\o/");

@@ -12,11 +12,11 @@ public class Permissions {
     }
 
     public static boolean hasPermission(UUID uuid, String node) {
-        PermissionsPlayer player = PermsConfig.getHolder().getPlayer(uuid);
+        PermissionsPlayer player = PermsConfig.INSTANCE.data.getPlayer(uuid);
         if (player != null && player.getPermissions().containsKey(node)) {
             return player.hasPermission(node);
         }
-        PermissionsGroup group = PermsConfig.getHolder()
+        PermissionsGroup group = PermsConfig.INSTANCE.data
                 .getGroup(player != null ? player.getGroup() : "default");
         if (group == null) {
             return player != null && player.hasPermission(node);
@@ -25,7 +25,7 @@ public class Permissions {
     }
 
     public static boolean hasPermission(PermissionsGroup group, String node) {
-        PermissionsTrack track = PermsConfig.getHolder().getTrack(group.getName());
+        PermissionsTrack track = PermsConfig.INSTANCE.data.getTrack(group.getName());
         if (track == null) {
             return group.hasPermission(node);
         }
@@ -41,11 +41,11 @@ public class Permissions {
     }
 
     public static String getPrefix(UUID uuid) {
-        PermissionsPlayer player = PermsConfig.getHolder().getPlayer(uuid);
+        PermissionsPlayer player = PermsConfig.INSTANCE.data.getPlayer(uuid);
         if (player != null && player.getPrefix() != null && !player.getPrefix().isEmpty()) {
             return player.getPrefix();
         }
-        PermissionsGroup group = PermsConfig.getHolder()
+        PermissionsGroup group = PermsConfig.INSTANCE.data
                 .getGroup(player != null ? player.getGroup() : "default");
         return group != null ? group.getPrefix() : "";
     }
@@ -55,11 +55,11 @@ public class Permissions {
     }
 
     public static String getSuffix(UUID uuid) {
-        PermissionsPlayer player = PermsConfig.getHolder().getPlayer(uuid);
+        PermissionsPlayer player = PermsConfig.INSTANCE.data.getPlayer(uuid);
         if (player != null && player.getSuffix() != null && !player.getSuffix().isEmpty()) {
             return player.getSuffix();
         }
-        PermissionsGroup group = PermsConfig.getHolder()
+        PermissionsGroup group = PermsConfig.INSTANCE.data
                 .getGroup(player != null ? player.getGroup() : "default");
         return group != null ? group.getSuffix() : "";
     }

@@ -27,6 +27,6 @@ public class CmdTop extends CommandBase {
         location.setY(player.world.getTopSolidOrLiquidBlock(player.getPosition()).getY());
 
         Teleport.teleport(player, location, true);
-        Lang.send(player, Lang.getData().TOP_TELEPORT);
+        Lang.send(player, Lang.INSTANCE.data.TOP_TELEPORT);
     }
 }

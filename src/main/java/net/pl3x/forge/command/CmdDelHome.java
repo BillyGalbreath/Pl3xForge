@@ -46,11 +46,11 @@ public class CmdDelHome extends CommandBase {
 
         String homeName = args.length > 0 ? args[0].toLowerCase() : "home";
         if (playerData.getHome(homeName) == null) {
-            Lang.send(player, Lang.getData().HOME_NOT_FOUND);
+            Lang.send(player, Lang.INSTANCE.data.HOME_NOT_FOUND);
             return;
         }
 
         playerData.removeHome(homeName);
-        Lang.send(player, Lang.getData().HOME_DELETED);
+        Lang.send(player, Lang.INSTANCE.data.HOME_DELETED);
     }
 }

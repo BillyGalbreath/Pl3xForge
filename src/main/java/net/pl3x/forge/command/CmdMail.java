@@ -47,24 +47,24 @@ public class CmdMail extends CommandBase {
         EntityPlayerMP player = getCommandSenderAsPlayer(sender);
 
         if (args.length == 0) {
-            Lang.send(sender, Lang.getData().MAIL_NOTIFICATION
-                    .replace("{amount}", Integer.toString(MailConfig.getMailBag(player).size())));
+            Lang.send(sender, Lang.INSTANCE.data.MAIL_NOTIFICATION
+                    .replace("{amount}", Integer.toString(MailConfig.INSTANCE.getMailBag(player).size())));
             return;
         }
 
         // clear
         if (args[0].equalsIgnoreCase("clear")) {
-            MailConfig.getMailBag(player).clear();
-            MailConfig.save();
-            Lang.send(sender, Lang.getData().MAIL_CLEARED);
+            MailConfig.INSTANCE.getMailBag(player).clear();
+            MailConfig.INSTANCE.save();
+            Lang.send(sender, Lang.INSTANCE.data.MAIL_CLEARED);
             return;
         }
 
         // read
         else if (args[0].equalsIgnoreCase("read")) {
-            List<String> mails = MailConfig.getMailBag(player).getEntries();
+            List<String> mails = MailConfig.INSTANCE.getMailBag(player).getEntries();
             if (mails == null || mails.isEmpty()) {
-                Lang.send(sender, Lang.getData().MAIL_NONE);
+                Lang.send(sender, Lang.INSTANCE.data.MAIL_NONE);
                 return;
             }
             mails.forEach(mail -> Lang.send(sender, mail));
@@ -74,45 +74,45 @@ public class CmdMail extends CommandBase {
         // send
         else if (args[0].equalsIgnoreCase("send")) {
             if (!Permissions.hasPermission(player, getPermissionNode() + ".send")) {
-                Lang.send(sender, Lang.getData().COMMAND_NO_PERMISSION);
+                Lang.send(sender, Lang.INSTANCE.data.COMMAND_NO_PERMISSION);
                 return;
             }
 
             if (args.length < 2) {
-                Lang.send(sender, Lang.getData().MUST_SPECIFY_PLAYER);
+                Lang.send(sender, Lang.INSTANCE.data.MUST_SPECIFY_PLAYER);
                 return;
             }
 
             if (args.length < 3) {
-                Lang.send(sender, Lang.getData().MUST_SPECIFY_MESSAGE);
+                Lang.send(sender, Lang.INSTANCE.data.MUST_SPECIFY_MESSAGE);
                 return;
             }
 
             EntityPlayerMP target = Utils.getPlayer(args[1]);
-            MailConfig.MailBag mailBag = MailConfig.getMailBag(target);
+            MailConfig.MailBag mailBag = MailConfig.INSTANCE.getMailBag(target);
             if (target == null) {
                 UUID uuid = Utils.getUUIDFromName(args[0]);
                 if (uuid == null) {
-                    Lang.send(sender, Lang.getData().PLAYER_NOT_FOUND);
+                    Lang.send(sender, Lang.INSTANCE.data.PLAYER_NOT_FOUND);
                     return;
                 }
-                mailBag = MailConfig.getMailBag(uuid);
+                mailBag = MailConfig.INSTANCE.getMailBag(uuid);
             }
 
             mailBag.add(sender.getName(), String.join(" ",
                     Arrays.copyOfRange(args, 2, args.length)));
-            MailConfig.save();
+            MailConfig.INSTANCE.save();
 
             if (target != null) {
-                Lang.send(target, Lang.getData().MAIL_NOTIFICATION
+                Lang.send(target, Lang.INSTANCE.data.MAIL_NOTIFICATION
                         .replace("{amount}", Integer.toString(mailBag.size())));
             }
-            Lang.send(sender, Lang.getData().MAIL_SENT);
+            Lang.send(sender, Lang.INSTANCE.data.MAIL_SENT);
             return;
         }
 
-        Lang.send(sender, Lang.getData().UNKNOWN_COMMAND);
-        Lang.send(sender, Lang.getData().MAIL_NOTIFICATION
-                .replace("{amount}", Integer.toString(MailConfig.getMailBag(player).size())));
+        Lang.send(sender, Lang.INSTANCE.data.UNKNOWN_COMMAND);
+        Lang.send(sender, Lang.INSTANCE.data.MAIL_NOTIFICATION
+                .replace("{amount}", Integer.toString(MailConfig.INSTANCE.getMailBag(player).size())));
     }
 }

@@ -23,7 +23,7 @@ public class CmdFly extends CommandBase {
         EntityPlayerMP player = getCommandSenderAsPlayer(sender);
 
         if (player.interactionManager.getGameType() != GameType.SURVIVAL) {
-            Lang.send(player, Lang.getData().FLY_ONLY_SURVIVAL);
+            Lang.send(player, Lang.INSTANCE.data.FLY_ONLY_SURVIVAL);
             return;
         }
 
@@ -42,7 +42,7 @@ public class CmdFly extends CommandBase {
         // inform the client of the changes
         player.sendPlayerAbilities();
 
-        Lang.send(player, Lang.getData().FLY_TOGGLED
+        Lang.send(player, Lang.INSTANCE.data.FLY_TOGGLED
                 .replace("{state}",
                         BooleanUtils.toStringOnOff(player.capabilities.allowFlying)));
     }

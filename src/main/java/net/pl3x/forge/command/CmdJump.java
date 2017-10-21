@@ -27,7 +27,7 @@ public class CmdJump extends CommandBase {
 
         RayTraceResult result = Utils.getLineOfSight(player, 120);
         if (result == null) {
-            Lang.send(player, Lang.getData().JUMP_TOO_FAR);
+            Lang.send(player, Lang.INSTANCE.data.JUMP_TOO_FAR);
             return;
         }
 
@@ -37,6 +37,6 @@ public class CmdJump extends CommandBase {
         location = location.add(0.5, 1, 0.5);
 
         Teleport.teleport(player, location, true);
-        Lang.send(player, Lang.getData().JUMP_TELEPORT);
+        Lang.send(player, Lang.INSTANCE.data.JUMP_TELEPORT);
     }
 }

@@ -76,7 +76,7 @@ public class IconManager {
             if (code == null) {
                 continue;
             }
-            EmojiConfig.Emoji emoji = EmojiConfig.getData().getEmojis().stream()
+            EmojiConfig.Emoji emoji = EmojiConfig.INSTANCE.data.getEmojis().stream()
                     .filter(e -> e.getAliases().contains(code.toLowerCase()))
                     .findFirst().orElse(null);
             if (emoji == null) {
@@ -91,7 +91,7 @@ public class IconManager {
             }
         }
 
-        for (EmojiConfig.Emoji emoji : EmojiConfig.getData().getEmojis()) {
+        for (EmojiConfig.Emoji emoji : EmojiConfig.INSTANCE.data.getEmojis()) {
             if (color != null) {
                 string = string.replace(emoji.getEmoji(), color + String.valueOf((char) Integer.parseInt(emoji.getHex(), 16)) + lastColors);
             } else {
@@ -163,7 +163,7 @@ public class IconManager {
     public void reloadIcons() {
         icons.clear();
 
-        IconConfig.Data iconData = IconConfig.getData();
+        IconConfig.Data iconData = IconConfig.INSTANCE.data;
         for (String hex : iconData.icons.keySet()) {
             if (hex == null || hex.length() != 4) {
                 continue;
