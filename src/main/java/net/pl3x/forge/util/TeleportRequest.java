@@ -33,7 +33,6 @@ public abstract class TeleportRequest {
         Lang.send(requester, Lang.INSTANCE.data.TELEPORT_REQUEST_ACCEPT_REQUESTER
                 .replace("{target}", target.getName()));
 
-        Teleport.TELEPORT_REQUESTS.remove(target.getUniqueID());
         cancel();
     }
 
@@ -43,13 +42,13 @@ public abstract class TeleportRequest {
         Lang.send(requester, Lang.INSTANCE.data.TELEPORT_REQUEST_DENIED_REQUESTER
                 .replace("{target}", target.getName()));
 
-        Teleport.TELEPORT_REQUESTS.remove(target.getUniqueID());
         cancel();
     }
 
     protected abstract void teleport();
 
     public void cancel() {
+        Teleport.TELEPORT_REQUESTS.remove(requester.getUniqueID());
         try {
             timeoutTask.cancel();
         } catch (IllegalStateException ignore) {
