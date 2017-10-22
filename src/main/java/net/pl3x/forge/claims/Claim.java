@@ -3,7 +3,6 @@ package net.pl3x.forge.claims;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
-import net.pl3x.forge.claims.visual.ClaimVisual;
 import net.pl3x.forge.util.PlayerUtil;
 
 import java.util.Collection;
@@ -21,7 +20,6 @@ public class Claim {
     private int minZ;
     private int maxX;
     private int maxZ;
-    private ClaimVisual visual;
 
     public Claim(long id, UUID owner, Claim parent, boolean isAdminClaim,
                  int dimension, BlockPos pos1, BlockPos pos2) {
@@ -109,12 +107,6 @@ public class Claim {
         minZ = Math.min(z1, z2);
         maxX = Math.max(x1, x2);
         maxZ = Math.max(z1, z2);
-
-        visual = new ClaimVisual(this);
-    }
-
-    public ClaimVisual getVisual() {
-        return visual;
     }
 
     public int getArea() {
@@ -139,11 +131,11 @@ public class Claim {
 
     public boolean overlaps(Claim claim) {
         for (int x = claim.minX; x <= claim.maxX; x++) {
-                for (int z = claim.minZ; z <= claim.maxZ; z++) {
-                    if (contains(x, z)) {
-                        return true;
-                    }
+            for (int z = claim.minZ; z <= claim.maxZ; z++) {
+                if (contains(x, z)) {
+                    return true;
                 }
+            }
         }
         return false;
     }

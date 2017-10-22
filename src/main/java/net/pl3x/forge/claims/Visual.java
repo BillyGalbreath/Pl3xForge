@@ -1,15 +1,14 @@
-package net.pl3x.forge.claims.visual;
+package net.pl3x.forge.claims;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.GlStateManager;
-import net.pl3x.forge.claims.Claim;
 import net.pl3x.forge.configuration.ClientConfig;
 import net.pl3x.forge.util.Color;
 import net.pl3x.forge.util.GL;
 import org.lwjgl.opengl.GL11;
 
-public class ClaimVisual {
+public class Visual {
     private final int minX;
     private final int minZ;
     private final int maxX;
@@ -19,19 +18,11 @@ public class ClaimVisual {
     private Color gridColor;
     private float thickness;
 
-    public ClaimVisual(Claim claim) {
-        minX = claim.getMinX();
-        minZ = claim.getMinZ();
-        maxX = claim.getMaxX();
-        maxZ = claim.getMaxZ();
-        setFrame();
-    }
-
-    public ClaimVisual(int x1, int z1, int x2, int z2) {
-        this.minX = Math.min(x1, x2);
-        this.minZ = Math.min(z1, z2);
-        this.maxX = Math.max(x1, x2);
-        this.maxZ = Math.max(z1, z2);
+    public Visual(int minX, int minZ, int maxX, int maxZ) {
+        this.minX = minX;
+        this.minZ = minZ;
+        this.maxX = maxX + 1;
+        this.maxZ = maxZ + 1;
         setFrame();
     }
 
@@ -68,7 +59,7 @@ public class ClaimVisual {
         double y1 = 0 - camY;
         double z1 = minZ - camZ;
         double x2 = maxX - camX;
-        double y2 = 255 - camY;
+        double y2 = 256 - camY;
         double z2 = maxZ - camZ;
 
         GlStateManager.glLineWidth(thickness);

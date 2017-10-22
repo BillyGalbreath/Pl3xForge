@@ -65,19 +65,19 @@ public class GL {
 
     public static void drawCubeGrid(double x1, double y1, double z1, double x2, double y2, double z2, float r, float g, float b, float a) {
         double viewDistance = 128;
-        for (double y = Math.max(y1, -viewDistance) + 1; y <= y2 - 1 && y <= viewDistance; y++) {
+        for (double y = Math.max(y1, (y1 - (long) y1) - viewDistance) + 1; y <= y2 - 1 && y <= viewDistance; y++) {
             drawLine(x1, y, z2, x2, y, z2, r, g, b, a);
             drawLine(x1, y, z1, x2, y, z1, r, g, b, a);
             drawLine(x1, y, z1, x1, y, z2, r, g, b, a);
             drawLine(x2, y, z1, x2, y, z2, r, g, b, a);
         }
-        for (double x = Math.max(x1, -viewDistance) + 1; x <= x2 - 1 && x <= viewDistance; x++) {
+        for (double x = Math.max(x1, (x1 - (long) x1) - viewDistance) + 1; x <= x2 - 1 && x <= viewDistance; x++) {
             drawLine(x, y1, z1, x, y2, z1, r, g, b, a);
             drawLine(x, y1, z2, x, y2, z2, r, g, b, a);
             drawLine(x, y2, z1, x, y2, z2, r, g, b, a);
             drawLine(x, y1, z1, x, y1, z2, r, g, b, a);
         }
-        for (double z = Math.max(z1, -viewDistance) + 1; z <= z2 - 1 && z <= viewDistance; z++) {
+        for (double z = Math.max(z1, (z1 - (long) z1) - viewDistance) + 1; z <= z2 - 1 && z <= viewDistance; z++) {
             drawLine(x1, y1, z, x2, y1, z, r, g, b, a);
             drawLine(x1, y2, z, x2, y2, z, r, g, b, a);
             drawLine(x2, y1, z, x2, y2, z, r, g, b, a);
