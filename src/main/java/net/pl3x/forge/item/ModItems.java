@@ -57,6 +57,7 @@ public class ModItems {
 
     public static final ItemHat hatAfro = new ItemHat("hat_afro");
     public static final ItemHat hatBigheadBillygalbreath = new ItemHat("hat_bighead_billygalbreath");
+    public static final ItemHat hatBigheadChrysti = new ItemHat("hat_bighead_chrysti");
     public static final ItemHat hatCake = new ItemHat("hat_cake");
     public static final ItemHat hatCloak = new ItemHat("hat_cloak");
     public static final ItemHat hatCowboy = new ItemHat("hat_cowboy");
@@ -119,6 +120,7 @@ public class ModItems {
 
                 hatAfro,
                 hatBigheadBillygalbreath,
+                hatBigheadChrysti,
                 hatCake,
                 hatCloak,
                 hatCowboy,
@@ -181,6 +183,7 @@ public class ModItems {
 
         hatAfro.registerItemModel();
         hatBigheadBillygalbreath.registerItemModel();
+        hatBigheadChrysti.registerItemModel();
         hatCake.registerItemModel();
         hatCloak.registerItemModel();
         hatCowboy.registerItemModel();
