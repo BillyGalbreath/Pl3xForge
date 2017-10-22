@@ -18,28 +18,26 @@ public class Claim {
     private boolean isAdminClaim;
     private final int dimension;
     private int minX;
-    private int minY;
     private int minZ;
     private int maxX;
-    private int maxY;
     private int maxZ;
     private ClaimVisual visual;
 
     public Claim(long id, UUID owner, Claim parent, boolean isAdminClaim,
                  int dimension, BlockPos pos1, BlockPos pos2) {
         this(id, owner, parent, isAdminClaim, dimension,
-                pos1.getX(), pos1.getY(), pos1.getZ(),
-                pos2.getX(), pos2.getY(), pos2.getZ());
+                pos1.getX(), pos1.getZ(),
+                pos2.getX(), pos2.getZ());
     }
 
     public Claim(long id, UUID owner, Claim parent, boolean isAdminClaim,
-                 int dimension, int x1, int y1, int z1, int x2, int y2, int z2) {
+                 int dimension, int x1, int z1, int x2, int z2) {
         this.id = id;
         this.owner = owner;
         this.parent = parent;
         this.isAdminClaim = isAdminClaim;
         this.dimension = dimension;
-        resize(x1, y1, z1, x2, y2, z2);
+        resize(x1, z1, x2, z2);
     }
 
     public long getId() {
@@ -94,10 +92,6 @@ public class Claim {
         return minX;
     }
 
-    public int getMinY() {
-        return minY;
-    }
-
     public int getMinZ() {
         return minZ;
     }
@@ -106,20 +100,14 @@ public class Claim {
         return maxX;
     }
 
-    public int getMaxY() {
-        return maxY;
-    }
-
     public int getMaxZ() {
         return maxZ;
     }
 
-    public void resize(int x1, int y1, int z1, int x2, int y2, int z2) {
+    public void resize(int x1, int z1, int x2, int z2) {
         minX = Math.min(x1, x2);
-        minY = Math.min(y1, y2);
         minZ = Math.min(z1, z2);
         maxX = Math.max(x1, x2);
-        maxY = Math.max(y1, y2);
         maxZ = Math.max(z1, z2);
 
         visual = new ClaimVisual(this);
@@ -142,44 +130,34 @@ public class Claim {
     }
 
     public BlockPos getMinPos() {
-        return new BlockPos(minX, minY, minZ);
+        return new BlockPos(minX, 0, minZ);
     }
 
     public BlockPos getMaxPos() {
-        return new BlockPos(maxX, maxY, maxZ);
+        return new BlockPos(maxX, 255, maxZ);
     }
 
     public boolean overlaps(Claim claim) {
         for (int x = claim.minX; x <= claim.maxX; x++) {
-            for (int y = claim.minY; y <= claim.maxY; y++) {
                 for (int z = claim.minZ; z <= claim.maxZ; z++) {
-                    if (contains(x, y, z)) {
+                    if (contains(x, z)) {
                         return true;
                     }
                 }
-            }
         }
         return false;
     }
 
     public boolean contains(BlockPos pos) {
-        return contains(pos.getX(), pos.getY(), pos.getZ());
+        return contains(pos.getX(), pos.getZ());
     }
 
-    public boolean contains(int x, int y, int z) {
-        return x >= minX && x <= maxX &&
-                y >= minY && y <= maxY &&
-                z >= minZ && z <= maxZ;
+    public boolean contains(int x, int z) {
+        return x >= minX && x <= maxX && z >= minZ && z <= maxZ;
     }
 
     public boolean isCorner(BlockPos pos) {
-        return isCorner(pos, false);
-    }
-
-    public boolean isCorner(BlockPos pos, boolean checkY) {
-        return (pos.getX() == minX || pos.getX() == maxX) &&
-                (pos.getZ() == minZ || pos.getZ() == maxZ) &&
-                (!checkY || pos.getY() == minY || pos.getY() == maxY);
+        return (pos.getX() == minX || pos.getX() == maxX) && (pos.getZ() == minZ || pos.getZ() == maxZ);
     }
 
     public Collection<Long> getChunkHashes() {
@@ -208,10 +186,8 @@ public class Claim {
     public String toString() {
         return "Coordinates[dimension:" + dimension +
                 ",minX:" + minX +
-                ",minY:" + minY +
                 ",minZ:" + minZ +
                 ",maxX:" + maxX +
-                ",maxY:" + maxY +
                 ",maxZ:" + maxZ + "]";
     }
 }

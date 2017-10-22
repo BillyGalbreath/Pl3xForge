@@ -46,10 +46,8 @@ public class ClaimConfig extends ConfigLoader {
         private long parent;
         private int dimension;
         private int minX;
-        private int minY;
         private int minZ;
         private int maxX;
-        private int maxY;
         private int maxZ;
         // TODO: trusts
         // TODO: managers
@@ -103,14 +101,6 @@ public class ClaimConfig extends ConfigLoader {
             this.minX = minX;
         }
 
-        public int getMinY() {
-            return minY;
-        }
-
-        public void setMinY(int minY) {
-            this.minY = minY;
-        }
-
         public int getMinZ() {
             return minZ;
         }
@@ -125,14 +115,6 @@ public class ClaimConfig extends ConfigLoader {
 
         public void setMaxX(int maxX) {
             this.maxX = maxX;
-        }
-
-        public int getMaxY() {
-            return maxY;
-        }
-
-        public void setMaxY(int maxY) {
-            this.maxY = maxY;
         }
 
         public int getMaxZ() {

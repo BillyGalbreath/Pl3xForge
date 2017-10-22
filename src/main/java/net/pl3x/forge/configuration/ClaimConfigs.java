@@ -101,14 +101,12 @@ public class ClaimConfigs {
             }
 
             // get the coordinates
-            int dimension, minX, minY, minZ, maxX, maxY, maxZ;
+            int dimension, minX, minZ, maxX, maxZ;
             try {
                 dimension = config.data.getDimension();
                 minX = config.data.getMinX();
-                minY = config.data.getMinY();
                 minZ = config.data.getMinZ();
                 maxX = config.data.getMaxX();
-                maxY = config.data.getMaxY();
                 maxZ = config.data.getMaxZ();
             } catch (Exception e) {
                 Logger.error("   Could not get coordinates! Skipping.. (file " + id + ".json)");
@@ -117,7 +115,7 @@ public class ClaimConfigs {
             }
 
             // everything looks good, make the claim
-            Claim claim = new Claim(id, owner, parent, isAdminClaim, dimension, minX, minY, minZ, maxX, maxY, maxZ);
+            Claim claim = new Claim(id, owner, parent, isAdminClaim, dimension, minX, minZ, maxX, maxZ);
 
             // TODO trusts
             //claim.getTrusts().putAll(config.data.getTrusts());
@@ -130,7 +128,7 @@ public class ClaimConfigs {
             Logger.debug("  owner: " + owner);
             Logger.debug("  parent: " + (parent == null ? "null" : parent.getId()));
             Logger.debug("  dimension: " + dimension);
-            Logger.debug("  coords: " + minX + "," + minY + "," + minZ + " - " + maxX + "," + maxY + "," + maxZ);
+            Logger.debug("  coords: " + minX + "," + minZ + " - " + maxX + "," + maxZ);
             Logger.debug("  isAdminClaim: " + isAdminClaim);
             //Logger.debug("  trusts: " + claim.getTrusts());
             //Logger.debug("  flags: " + claim.getFlags());
