@@ -11,10 +11,8 @@ import org.lwjgl.opengl.GL11;
 
 public class ClaimVisual {
     private final int minX;
-    private final int minY;
     private final int minZ;
     private final int maxX;
-    private final int maxY;
     private final int maxZ;
 
     private Color outlineColor;
@@ -23,20 +21,16 @@ public class ClaimVisual {
 
     public ClaimVisual(Claim claim) {
         minX = claim.getMinX();
-        minY = claim.getMinY();
         minZ = claim.getMinZ();
         maxX = claim.getMaxX();
-        maxY = claim.getMaxY();
         maxZ = claim.getMaxZ();
         setFrame();
     }
 
-    public ClaimVisual(int x1, int y1, int z1, int x2, int y2, int z2) {
+    public ClaimVisual(int x1, int z1, int x2, int z2) {
         this.minX = Math.min(x1, x2);
-        this.minY = Math.min(y1, y2);
         this.minZ = Math.min(z1, z2);
         this.maxX = Math.max(x1, x2);
-        this.maxY = Math.max(y1, y2);
         this.maxZ = Math.max(z1, z2);
         setFrame();
     }
@@ -71,10 +65,10 @@ public class ClaimVisual {
         double camZ = player.prevPosZ + (player.posZ - player.prevPosZ) * partialTicks;
 
         double x1 = minX - camX;
-        double y1 = minY - camY;
+        double y1 = 0 - camY;
         double z1 = minZ - camZ;
         double x2 = maxX - camX;
-        double y2 = maxY - camY;
+        double y2 = 255 - camY;
         double z2 = maxZ - camZ;
 
         GlStateManager.glLineWidth(thickness);
