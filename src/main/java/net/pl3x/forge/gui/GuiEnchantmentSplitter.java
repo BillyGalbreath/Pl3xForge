@@ -56,7 +56,7 @@ public class GuiEnchantmentSplitter extends GuiContainer {
         if (te instanceof TileEntityEnchantmentSplitter && ((TileEntityEnchantmentSplitter) te).hasCustomName()) {
             name = ((TileEntityEnchantmentSplitter) te).getName();
         } else {
-            name = I18n.format(ModBlocks.enchantmentSplitter.getUnlocalizedName() + ".name");
+            name = I18n.format(ModBlocks.ENCHANTMENT_SPLITTER.getUnlocalizedName() + ".name");
         }
         nameX = xSize - fontRenderer.getStringWidth(name) - 6;
 

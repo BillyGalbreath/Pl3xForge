@@ -96,7 +96,7 @@ public class BlockLamp extends BlockBase {
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return state.getValue(HALF) == BlockLamp.Half.UPPER ? Items.AIR : Item.getItemFromBlock(ModBlocks.lamp);
+        return state.getValue(HALF) == BlockLamp.Half.UPPER ? Items.AIR : Item.getItemFromBlock(ModBlocks.LAMP);
     }
 
     @Override

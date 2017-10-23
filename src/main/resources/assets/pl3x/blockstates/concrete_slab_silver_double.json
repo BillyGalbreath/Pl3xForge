@@ -1,0 +1,8 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "variant=default": {
+      "model": "silver_concrete"
+    }
+  }
+}

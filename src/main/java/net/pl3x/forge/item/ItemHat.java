@@ -17,7 +17,7 @@ public class ItemHat extends ItemBase {
     public static final CreativeTabs tabHats = new CreativeTabs("Hats") {
         @Override
         public ItemStack getTabIconItem() {
-            return new ItemStack(ModItems.hatHardhatOn);
+            return new ItemStack(ModItems.HAT_HARDHAT_ON);
         }
     };
 

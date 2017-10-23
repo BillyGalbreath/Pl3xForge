@@ -45,8 +45,8 @@ public class BlockOre extends BlockBase {
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        if (this == ModBlocks.oreRuby) {
-            return ModItems.ruby;
+        if (this == ModBlocks.RUBY) {
+            return ModItems.RUBY;
         } else {
             return Item.getItemFromBlock(this);
         }

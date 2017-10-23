@@ -1,0 +1,8 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "variant=default": {
+      "model": "green_concrete"
+    }
+  }
+}

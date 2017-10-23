@@ -8,11 +8,11 @@ import net.pl3x.forge.item.ModItems;
 public class ModRecipes {
     public static void init() {
         // Ore Dict
-        ModBlocks.blockRuby.initOreDict();
-        ModBlocks.oreRuby.initOreDict();
-        ModItems.ruby.initOreDict();
+        ModBlocks.RUBY_BLOCK.initOreDict();
+        ModBlocks.RUBY.initOreDict();
+        ModItems.RUBY.initOreDict();
 
         // Smelting
-        GameRegistry.addSmelting(ModBlocks.oreRuby, new ItemStack(ModItems.ruby), 0.7f);
+        GameRegistry.addSmelting(ModBlocks.RUBY, new ItemStack(ModItems.RUBY), 0.7f);
     }
 }

@@ -260,7 +260,7 @@ public class ContainerEnchantmentSplitter extends Container {
 
     public boolean canInteractWith(EntityPlayer playerIn) {
         // check if correct block type & make sure player is within 8 blocks distance
-        return world.getBlockState(selfPosition).getBlock() == ModBlocks.enchantmentSplitter &&
+        return world.getBlockState(selfPosition).getBlock() == ModBlocks.ENCHANTMENT_SPLITTER &&
                 playerIn.getDistanceSq((double) selfPosition.getX() + 0.5D,
                         (double) selfPosition.getY() + 0.5D,
                         (double) selfPosition.getZ() + 0.5D) <= 64.0D;

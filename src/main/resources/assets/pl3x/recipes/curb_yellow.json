@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "curb",
+  "ingredients": [
+    {
+      "item": "minecraft:concrete",
+      "data": 4
+    },
+    {
+      "item": "minecraft:grass",
+      "data": 0
+    }
+  ],
+  "result": {
+    "item": "pl3x:curb_yellow"
+  }
+}

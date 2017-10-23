@@ -28,7 +28,7 @@ public class ContainerShopCustomer extends Container {
     }
 
     public boolean canInteractWith(EntityPlayer playerIn) {
-        return shop.getWorld().getBlockState(shop.getPos()).getBlock() == ModBlocks.shopBlock &&
+        return shop.getWorld().getBlockState(shop.getPos()).getBlock() == ModBlocks.SHOP &&
                 playerIn.getDistanceSq((double) shop.getPos().getX() + 0.5D,
                         (double) shop.getPos().getY() + 0.5D,
                         (double) shop.getPos().getZ() + 0.5D) <= 64.0D;

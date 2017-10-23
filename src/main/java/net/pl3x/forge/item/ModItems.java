@@ -8,13 +8,13 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.item.tool.ItemAxe;
-import net.pl3x.forge.item.tool.claimtool.ItemClaimToolCreate;
-import net.pl3x.forge.item.tool.claimtool.ItemClaimToolResize;
-import net.pl3x.forge.item.tool.claimtool.ItemClaimToolVisual;
 import net.pl3x.forge.item.tool.ItemHoe;
 import net.pl3x.forge.item.tool.ItemPickaxe;
 import net.pl3x.forge.item.tool.ItemShovel;
 import net.pl3x.forge.item.tool.ItemSword;
+import net.pl3x.forge.item.tool.claimtool.ItemClaimToolCreate;
+import net.pl3x.forge.item.tool.claimtool.ItemClaimToolResize;
+import net.pl3x.forge.item.tool.claimtool.ItemClaimToolVisual;
 
 public class ModItems {
     // ARMORS // new int[]{boots, leggings, chestplate, helmet}
@@ -33,62 +33,62 @@ public class ModItems {
             EnumHelper.addToolMaterial("RUBY",
                     5, 2038, 12, 5, 30);
 
-    public static final ItemOre ruby = new ItemOre("ruby", "ruby").setCreativeTab(CreativeTabs.MISC);
+    public static final ItemOre RUBY = new ItemOre("ruby", "ruby").setCreativeTab(CreativeTabs.MISC);
 
-    public static final ItemSword rubySword = new ItemSword(rubyToolMaterial, "ruby_sword").setCreativeTab(CreativeTabs.COMBAT);
-    public static final ItemPickaxe rubyPickaxe = new ItemPickaxe(rubyToolMaterial, "ruby_pickaxe").setCreativeTab(CreativeTabs.TOOLS);
-    public static final ItemShovel rubyShovel = new ItemShovel(rubyToolMaterial, "ruby_shovel").setCreativeTab(CreativeTabs.TOOLS);
-    public static final ItemAxe rubyAxe = new ItemAxe(rubyToolMaterial, "ruby_axe").setCreativeTab(CreativeTabs.TOOLS);
-    public static final ItemHoe rubyHoe = new ItemHoe(rubyToolMaterial, "ruby_hoe").setCreativeTab(CreativeTabs.TOOLS);
-    public static final ItemArmor rubyHelmet = new ItemArmor(rubyArmorMaterial, EntityEquipmentSlot.HEAD, "ruby_helmet").setCreativeTab(CreativeTabs.COMBAT);
-    public static final ItemArmor rubyChestplate = new ItemArmor(rubyArmorMaterial, EntityEquipmentSlot.CHEST, "ruby_chestplate").setCreativeTab(CreativeTabs.COMBAT);
-    public static final ItemArmor rubyLeggings = new ItemArmor(rubyArmorMaterial, EntityEquipmentSlot.LEGS, "ruby_leggings").setCreativeTab(CreativeTabs.COMBAT);
-    public static final ItemArmor rubyBoots = new ItemArmor(rubyArmorMaterial, EntityEquipmentSlot.FEET, "ruby_boots").setCreativeTab(CreativeTabs.COMBAT);
+    public static final ItemSword RUBY_SWORD = new ItemSword(rubyToolMaterial, "ruby_sword").setCreativeTab(CreativeTabs.COMBAT);
+    public static final ItemPickaxe RUBY_PICKAXE = new ItemPickaxe(rubyToolMaterial, "ruby_pickaxe").setCreativeTab(CreativeTabs.TOOLS);
+    public static final ItemShovel RUBY_SHOVEL = new ItemShovel(rubyToolMaterial, "ruby_shovel").setCreativeTab(CreativeTabs.TOOLS);
+    public static final ItemAxe RUBY_AXE = new ItemAxe(rubyToolMaterial, "ruby_axe").setCreativeTab(CreativeTabs.TOOLS);
+    public static final ItemHoe RUBY_HOE = new ItemHoe(rubyToolMaterial, "ruby_hoe").setCreativeTab(CreativeTabs.TOOLS);
+    public static final ItemArmor RUBY_HELMET = new ItemArmor(rubyArmorMaterial, EntityEquipmentSlot.HEAD, "ruby_helmet").setCreativeTab(CreativeTabs.COMBAT);
+    public static final ItemArmor RUBY_CHESTPLATE = new ItemArmor(rubyArmorMaterial, EntityEquipmentSlot.CHEST, "ruby_chestplate").setCreativeTab(CreativeTabs.COMBAT);
+    public static final ItemArmor RUBY_LEGGINGS = new ItemArmor(rubyArmorMaterial, EntityEquipmentSlot.LEGS, "ruby_leggings").setCreativeTab(CreativeTabs.COMBAT);
+    public static final ItemArmor RUBY_BOOTS = new ItemArmor(rubyArmorMaterial, EntityEquipmentSlot.FEET, "ruby_boots").setCreativeTab(CreativeTabs.COMBAT);
 
-    public static final ItemSword emeraldSword = new ItemSword(emeraldToolMaterial, "emerald_sword").setCreativeTab(CreativeTabs.COMBAT);
-    public static final ItemPickaxe emeraldPickaxe = new ItemPickaxe(emeraldToolMaterial, "emerald_pickaxe").setCreativeTab(CreativeTabs.TOOLS);
-    public static final ItemShovel emeraldShovel = new ItemShovel(emeraldToolMaterial, "emerald_shovel").setCreativeTab(CreativeTabs.TOOLS);
-    public static final ItemAxe emeraldAxe = new ItemAxe(emeraldToolMaterial, "emerald_axe").setCreativeTab(CreativeTabs.TOOLS);
-    public static final ItemHoe emeraldHoe = new ItemHoe(emeraldToolMaterial, "emerald_hoe").setCreativeTab(CreativeTabs.TOOLS);
-    public static final ItemArmor emeraldHelmet = new ItemArmor(emeraldArmorMaterial, EntityEquipmentSlot.HEAD, "emerald_helmet").setCreativeTab(CreativeTabs.COMBAT);
-    public static final ItemArmor emeraldChestplate = new ItemArmor(emeraldArmorMaterial, EntityEquipmentSlot.CHEST, "emerald_chestplate").setCreativeTab(CreativeTabs.COMBAT);
-    public static final ItemArmor emeraldLeggings = new ItemArmor(emeraldArmorMaterial, EntityEquipmentSlot.LEGS, "emerald_leggings").setCreativeTab(CreativeTabs.COMBAT);
-    public static final ItemArmor emeraldBoots = new ItemArmor(emeraldArmorMaterial, EntityEquipmentSlot.FEET, "emerald_boots").setCreativeTab(CreativeTabs.COMBAT);
+    public static final ItemSword EMERALD_SWORD = new ItemSword(emeraldToolMaterial, "emerald_sword").setCreativeTab(CreativeTabs.COMBAT);
+    public static final ItemPickaxe EMERALD_PICKAXE = new ItemPickaxe(emeraldToolMaterial, "emerald_pickaxe").setCreativeTab(CreativeTabs.TOOLS);
+    public static final ItemShovel EMERALD_SHOVEL = new ItemShovel(emeraldToolMaterial, "emerald_shovel").setCreativeTab(CreativeTabs.TOOLS);
+    public static final ItemAxe EMERALD_AXE = new ItemAxe(emeraldToolMaterial, "emerald_axe").setCreativeTab(CreativeTabs.TOOLS);
+    public static final ItemHoe EMERALD_HOE = new ItemHoe(emeraldToolMaterial, "emerald_hoe").setCreativeTab(CreativeTabs.TOOLS);
+    public static final ItemArmor EMERALD_HELMET = new ItemArmor(emeraldArmorMaterial, EntityEquipmentSlot.HEAD, "emerald_helmet").setCreativeTab(CreativeTabs.COMBAT);
+    public static final ItemArmor EMERALD_CHESTPLATE = new ItemArmor(emeraldArmorMaterial, EntityEquipmentSlot.CHEST, "emerald_chestplate").setCreativeTab(CreativeTabs.COMBAT);
+    public static final ItemArmor EMERALD_LEGGINGS = new ItemArmor(emeraldArmorMaterial, EntityEquipmentSlot.LEGS, "emerald_leggings").setCreativeTab(CreativeTabs.COMBAT);
+    public static final ItemArmor EMERALD_BOOTS = new ItemArmor(emeraldArmorMaterial, EntityEquipmentSlot.FEET, "emerald_boots").setCreativeTab(CreativeTabs.COMBAT);
 
-    public static final ItemHat hatAfro = new ItemHat("hat_afro");
-    public static final ItemHat hatBigheadBillygalbreath = new ItemHat("hat_bighead_billygalbreath");
-    public static final ItemHat hatBigheadChrysti = new ItemHat("hat_bighead_chrysti");
-    public static final ItemHat hatCake = new ItemHat("hat_cake");
-    public static final ItemHat hatCloak = new ItemHat("hat_cloak");
-    public static final ItemHat hatCowboy = new ItemHat("hat_cowboy");
-    public static final ItemHat hatEyeBand = new ItemHat("hat_eye_band");
-    public static final ItemHat hatFez = new ItemHat("hat_fez");
-    public static final ItemHat hatHardhatOff = new ItemHat("hat_hardhat_off");
-    public static final ItemHat hatHardhatOn = new ItemHat("hat_hardhat_on");
-    public static final ItemHat hatHeadphonesCatEars = new ItemHat("hat_headphones_cat_ears");
-    public static final ItemHat hatHighhat = new ItemHat("hat_highhat");
-    public static final ItemHat hatMullet = new ItemHat("hat_mullet");
-    public static final ItemHat hatOcelot = new ItemHat("hat_ocelot");
-    public static final ItemHat hatOcelotSiamese = new ItemHat("hat_ocelot_siamese");
-    public static final ItemHat hatOcelotTabby = new ItemHat("hat_ocelot_tabby");
-    public static final ItemHat hatOcelotTux = new ItemHat("hat_ocelot_tux");
-    public static final ItemHat hatSanta = new ItemHat("hat_santa");
-    public static final ItemHat hatSombrero = new ItemHat("hat_sombrero");
-    public static final ItemHat hatSquid = new ItemHat("hat_squid");
-    public static final ItemHat hatTophatBlackBlue = new ItemHat("hat_tophat_black_blue");
-    public static final ItemHat hatTophatBlackGrey = new ItemHat("hat_tophat_black_gray");
-    public static final ItemHat hatTophatBlackRed = new ItemHat("hat_tophat_black_red");
-    public static final ItemHat hatTophatBlackWhite = new ItemHat("hat_tophat_black_white");
-    public static final ItemHat hatTophatBlackYellow = new ItemHat("hat_tophat_black_yellow");
-    public static final ItemHat hatTophatRoundBlackWhite = new ItemHat("hat_tophat_round_black_white");
-    public static final ItemHat hatTophatRoundWhiteBlack = new ItemHat("hat_tophat_round_white_black");
-    public static final ItemHat hatTophatWhiteRed = new ItemHat("hat_tophat_white_red");
-    public static final ItemHat hatWizard = new ItemHat("hat_wizard");
-    public static final ItemHat hatWizard2 = new ItemHat("hat_wizard2");
+    public static final ItemHat HAT_AFRO = new ItemHat("hat_afro");
+    public static final ItemHat HAT_BIGHEAD_BILLYGALBREATH = new ItemHat("hat_bighead_billygalbreath");
+    public static final ItemHat HAT_BIGHEAD_CHRYSTI = new ItemHat("hat_bighead_chrysti");
+    public static final ItemHat HAT_CAKE = new ItemHat("hat_cake");
+    public static final ItemHat HAT_CLOAK = new ItemHat("hat_cloak");
+    public static final ItemHat HAT_COWBOY = new ItemHat("hat_cowboy");
+    public static final ItemHat HAT_EYE_BAND = new ItemHat("hat_eye_band");
+    public static final ItemHat HAT_FEZ = new ItemHat("hat_fez");
+    public static final ItemHat HAT_HARDHAT_OFF = new ItemHat("hat_hardhat_off");
+    public static final ItemHat HAT_HARDHAT_ON = new ItemHat("hat_hardhat_on");
+    public static final ItemHat HAT_HEADPHONES_CAT_EARS = new ItemHat("hat_headphones_cat_ears");
+    public static final ItemHat HAT_HIGHHAT = new ItemHat("hat_highhat");
+    public static final ItemHat HAT_MULLET = new ItemHat("hat_mullet");
+    public static final ItemHat HAT_OCELOT = new ItemHat("hat_ocelot");
+    public static final ItemHat HAT_OCELOT_SIAMESE = new ItemHat("hat_ocelot_siamese");
+    public static final ItemHat HAT_OCELOT_TABBY = new ItemHat("hat_ocelot_tabby");
+    public static final ItemHat HAT_OCELOT_TUX = new ItemHat("hat_ocelot_tux");
+    public static final ItemHat HAT_SANTA = new ItemHat("hat_santa");
+    public static final ItemHat HAT_SOMBRERO = new ItemHat("hat_sombrero");
+    public static final ItemHat HAT_SQUID = new ItemHat("hat_squid");
+    public static final ItemHat HAT_TOPHAT_BLACK_BLUE = new ItemHat("hat_tophat_black_blue");
+    public static final ItemHat HAT_TOPHAT_BLACK_GRAY = new ItemHat("hat_tophat_black_gray");
+    public static final ItemHat HAT_TOPHAT_BLACK_RED = new ItemHat("hat_tophat_black_red");
+    public static final ItemHat HAT_TOPHAT_BLACK_WHITE = new ItemHat("hat_tophat_black_white");
+    public static final ItemHat HAT_TOPHAT_BLACK_YELLOW = new ItemHat("hat_tophat_black_yellow");
+    public static final ItemHat HAT_TOPHAT_ROUND_BLACK_WHITE = new ItemHat("hat_tophat_round_black_white");
+    public static final ItemHat HAT_TOPHAT_ROUND_WHITE_BLACK = new ItemHat("hat_tophat_round_white_black");
+    public static final ItemHat HAT_TOPHAT_WHITE_RED = new ItemHat("hat_tophat_white_red");
+    public static final ItemHat HAT_WIZARD = new ItemHat("hat_wizard");
+    public static final ItemHat HAT_WIZARD_2 = new ItemHat("hat_wizard2");
 
     public static final ItemMoney COIN = new ItemMoney("coin");
 
-    public static final ItemBase seasonal = new ItemBase("seasonal");
+    public static final ItemBase SEASONAL = new ItemBase("seasonal");
 
     public static final ItemClaimToolCreate CLAIM_TOOL_CREATE = new ItemClaimToolCreate("claim_tool");
     public static final ItemClaimToolResize CLAIM_TOOL_RESIZE = new ItemClaimToolResize("claim_tool_resize");
@@ -96,62 +96,62 @@ public class ModItems {
 
     public static void register(IForgeRegistry<Item> registry) {
         registry.registerAll(
-                ruby,
+                RUBY,
 
-                rubySword,
-                rubyPickaxe,
-                rubyShovel,
-                rubyAxe,
-                rubyHoe,
-                rubyHelmet,
-                rubyChestplate,
-                rubyLeggings,
-                rubyBoots,
+                RUBY_SWORD,
+                RUBY_PICKAXE,
+                RUBY_SHOVEL,
+                RUBY_AXE,
+                RUBY_HOE,
+                RUBY_HELMET,
+                RUBY_CHESTPLATE,
+                RUBY_LEGGINGS,
+                RUBY_BOOTS,
 
-                emeraldSword,
-                emeraldPickaxe,
-                emeraldShovel,
-                emeraldAxe,
-                emeraldHoe,
-                emeraldHelmet,
-                emeraldChestplate,
-                emeraldLeggings,
-                emeraldBoots,
+                EMERALD_SWORD,
+                EMERALD_PICKAXE,
+                EMERALD_SHOVEL,
+                EMERALD_AXE,
+                EMERALD_HOE,
+                EMERALD_HELMET,
+                EMERALD_CHESTPLATE,
+                EMERALD_LEGGINGS,
+                EMERALD_BOOTS,
 
-                hatAfro,
-                hatBigheadBillygalbreath,
-                hatBigheadChrysti,
-                hatCake,
-                hatCloak,
-                hatCowboy,
-                hatEyeBand,
-                hatFez,
-                hatHardhatOff,
-                hatHardhatOn,
-                hatHeadphonesCatEars,
-                hatHighhat,
-                hatMullet,
-                hatOcelot,
-                hatOcelotSiamese,
-                hatOcelotTabby,
-                hatOcelotTux,
-                hatSanta,
-                hatSombrero,
-                hatSquid,
-                hatTophatBlackBlue,
-                hatTophatBlackGrey,
-                hatTophatBlackRed,
-                hatTophatBlackWhite,
-                hatTophatBlackYellow,
-                hatTophatRoundBlackWhite,
-                hatTophatRoundWhiteBlack,
-                hatTophatWhiteRed,
-                hatWizard,
-                hatWizard2,
+                HAT_AFRO,
+                HAT_BIGHEAD_BILLYGALBREATH,
+                HAT_BIGHEAD_CHRYSTI,
+                HAT_CAKE,
+                HAT_CLOAK,
+                HAT_COWBOY,
+                HAT_EYE_BAND,
+                HAT_FEZ,
+                HAT_HARDHAT_OFF,
+                HAT_HARDHAT_ON,
+                HAT_HEADPHONES_CAT_EARS,
+                HAT_HIGHHAT,
+                HAT_MULLET,
+                HAT_OCELOT,
+                HAT_OCELOT_SIAMESE,
+                HAT_OCELOT_TABBY,
+                HAT_OCELOT_TUX,
+                HAT_SANTA,
+                HAT_SOMBRERO,
+                HAT_SQUID,
+                HAT_TOPHAT_BLACK_BLUE,
+                HAT_TOPHAT_BLACK_GRAY,
+                HAT_TOPHAT_BLACK_RED,
+                HAT_TOPHAT_BLACK_WHITE,
+                HAT_TOPHAT_BLACK_YELLOW,
+                HAT_TOPHAT_ROUND_BLACK_WHITE,
+                HAT_TOPHAT_ROUND_WHITE_BLACK,
+                HAT_TOPHAT_WHITE_RED,
+                HAT_WIZARD,
+                HAT_WIZARD_2,
 
                 COIN,
 
-                seasonal,
+                SEASONAL,
 
                 CLAIM_TOOL_CREATE,
                 CLAIM_TOOL_RESIZE,
@@ -160,61 +160,61 @@ public class ModItems {
     }
 
     public static void registerModels() {
-        ruby.registerItemModel();
-        rubySword.registerItemModel();
-        rubyPickaxe.registerItemModel();
-        rubyShovel.registerItemModel();
-        rubyAxe.registerItemModel();
-        rubyHoe.registerItemModel();
-        rubyHelmet.registerItemModel();
-        rubyChestplate.registerItemModel();
-        rubyLeggings.registerItemModel();
-        rubyBoots.registerItemModel();
+        RUBY.registerItemModel();
+        RUBY_SWORD.registerItemModel();
+        RUBY_PICKAXE.registerItemModel();
+        RUBY_SHOVEL.registerItemModel();
+        RUBY_AXE.registerItemModel();
+        RUBY_HOE.registerItemModel();
+        RUBY_HELMET.registerItemModel();
+        RUBY_CHESTPLATE.registerItemModel();
+        RUBY_LEGGINGS.registerItemModel();
+        RUBY_BOOTS.registerItemModel();
 
-        emeraldSword.registerItemModel();
-        emeraldPickaxe.registerItemModel();
-        emeraldShovel.registerItemModel();
-        emeraldAxe.registerItemModel();
-        emeraldHoe.registerItemModel();
-        emeraldHelmet.registerItemModel();
-        emeraldChestplate.registerItemModel();
-        emeraldLeggings.registerItemModel();
-        emeraldBoots.registerItemModel();
+        EMERALD_SWORD.registerItemModel();
+        EMERALD_PICKAXE.registerItemModel();
+        EMERALD_SHOVEL.registerItemModel();
+        EMERALD_AXE.registerItemModel();
+        EMERALD_HOE.registerItemModel();
+        EMERALD_HELMET.registerItemModel();
+        EMERALD_CHESTPLATE.registerItemModel();
+        EMERALD_LEGGINGS.registerItemModel();
+        EMERALD_BOOTS.registerItemModel();
 
-        hatAfro.registerItemModel();
-        hatBigheadBillygalbreath.registerItemModel();
-        hatBigheadChrysti.registerItemModel();
-        hatCake.registerItemModel();
-        hatCloak.registerItemModel();
-        hatCowboy.registerItemModel();
-        hatEyeBand.registerItemModel();
-        hatFez.registerItemModel();
-        hatHardhatOff.registerItemModel();
-        hatHardhatOn.registerItemModel();
-        hatHeadphonesCatEars.registerItemModel();
-        hatHighhat.registerItemModel();
-        hatMullet.registerItemModel();
-        hatOcelot.registerItemModel();
-        hatOcelotSiamese.registerItemModel();
-        hatOcelotTabby.registerItemModel();
-        hatOcelotTux.registerItemModel();
-        hatSanta.registerItemModel();
-        hatSombrero.registerItemModel();
-        hatSquid.registerItemModel();
-        hatTophatBlackBlue.registerItemModel();
-        hatTophatBlackGrey.registerItemModel();
-        hatTophatBlackRed.registerItemModel();
-        hatTophatBlackWhite.registerItemModel();
-        hatTophatBlackYellow.registerItemModel();
-        hatTophatRoundBlackWhite.registerItemModel();
-        hatTophatRoundWhiteBlack.registerItemModel();
-        hatTophatWhiteRed.registerItemModel();
-        hatWizard.registerItemModel();
-        hatWizard2.registerItemModel();
+        HAT_AFRO.registerItemModel();
+        HAT_BIGHEAD_BILLYGALBREATH.registerItemModel();
+        HAT_BIGHEAD_CHRYSTI.registerItemModel();
+        HAT_CAKE.registerItemModel();
+        HAT_CLOAK.registerItemModel();
+        HAT_COWBOY.registerItemModel();
+        HAT_EYE_BAND.registerItemModel();
+        HAT_FEZ.registerItemModel();
+        HAT_HARDHAT_OFF.registerItemModel();
+        HAT_HARDHAT_ON.registerItemModel();
+        HAT_HEADPHONES_CAT_EARS.registerItemModel();
+        HAT_HIGHHAT.registerItemModel();
+        HAT_MULLET.registerItemModel();
+        HAT_OCELOT.registerItemModel();
+        HAT_OCELOT_SIAMESE.registerItemModel();
+        HAT_OCELOT_TABBY.registerItemModel();
+        HAT_OCELOT_TUX.registerItemModel();
+        HAT_SANTA.registerItemModel();
+        HAT_SOMBRERO.registerItemModel();
+        HAT_SQUID.registerItemModel();
+        HAT_TOPHAT_BLACK_BLUE.registerItemModel();
+        HAT_TOPHAT_BLACK_GRAY.registerItemModel();
+        HAT_TOPHAT_BLACK_RED.registerItemModel();
+        HAT_TOPHAT_BLACK_WHITE.registerItemModel();
+        HAT_TOPHAT_BLACK_YELLOW.registerItemModel();
+        HAT_TOPHAT_ROUND_BLACK_WHITE.registerItemModel();
+        HAT_TOPHAT_ROUND_WHITE_BLACK.registerItemModel();
+        HAT_TOPHAT_WHITE_RED.registerItemModel();
+        HAT_WIZARD.registerItemModel();
+        HAT_WIZARD_2.registerItemModel();
 
         COIN.registerItemModel();
 
-        seasonal.registerItemModel();
+        SEASONAL.registerItemModel();
 
         CLAIM_TOOL_CREATE.registerItemModel();
         CLAIM_TOOL_RESIZE.registerItemModel();
