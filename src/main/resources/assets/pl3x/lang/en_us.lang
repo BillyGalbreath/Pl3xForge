@@ -51,6 +51,7 @@ item.hat_wizard.name=Wizard Hat
 item.hat_wizard2.name=Wizard Hat 2
 
 item.coin.name=Coin
+item.seasonal.name=Seasonal
 
 item.claim_tool.name=Claim Tool
 item.claim_tool_resize.name=Resize Claim Tool
