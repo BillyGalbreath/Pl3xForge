@@ -5,6 +5,7 @@ import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.GuiRepair;
 import net.minecraft.client.gui.GuiScreenBook;
 import net.minecraft.client.gui.inventory.GuiEditSign;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -15,6 +16,9 @@ import net.pl3x.forge.claims.Selection;
 import net.pl3x.forge.configuration.ClientConfig;
 import net.pl3x.forge.gui.HUDBalance;
 import net.pl3x.forge.icons.IconManager;
+import net.pl3x.forge.item.ModItems;
+
+import javax.naming.directory.ModificationItem;
 
 public class ClientEventHandler {
     private final HUDBalance hudBalance = new HUDBalance();
@@ -103,6 +107,11 @@ public class ClientEventHandler {
         if (selection.getDimension() != Minecraft.getMinecraft().player.dimension) {
             Selection.CURRENT_SELECTION = new Selection();
             return; // in a different dimension, clear the selection
+        }
+
+        if (Minecraft.getMinecraft().player.getHeldItemMainhand().getItem() != ModItems.CLAIM_TOOL) {
+            Selection.CURRENT_SELECTION = new Selection();
+            return; // not holding the claim tool anymore, clear the selection
         }
 
         selection.getVisual().render(event.getPartialTicks());

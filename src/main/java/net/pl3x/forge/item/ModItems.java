@@ -8,13 +8,11 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.item.tool.ItemAxe;
+import net.pl3x.forge.item.tool.ItemClaimTool;
 import net.pl3x.forge.item.tool.ItemHoe;
 import net.pl3x.forge.item.tool.ItemPickaxe;
 import net.pl3x.forge.item.tool.ItemShovel;
 import net.pl3x.forge.item.tool.ItemSword;
-import net.pl3x.forge.item.tool.claimtool.ItemClaimToolCreate;
-import net.pl3x.forge.item.tool.claimtool.ItemClaimToolResize;
-import net.pl3x.forge.item.tool.claimtool.ItemClaimToolVisual;
 
 public class ModItems {
     // ARMORS // new int[]{boots, leggings, chestplate, helmet}
@@ -90,9 +88,7 @@ public class ModItems {
 
     public static final ItemBase SEASONAL = new ItemBase("seasonal");
 
-    public static final ItemClaimToolCreate CLAIM_TOOL_CREATE = new ItemClaimToolCreate("claim_tool");
-    public static final ItemClaimToolResize CLAIM_TOOL_RESIZE = new ItemClaimToolResize("claim_tool_resize");
-    public static final ItemClaimToolVisual CLAIM_TOOL_VISUAL = new ItemClaimToolVisual("claim_tool_visual");
+    public static final ItemClaimTool CLAIM_TOOL = new ItemClaimTool();
 
     public static void register(IForgeRegistry<Item> registry) {
         registry.registerAll(
@@ -153,9 +149,7 @@ public class ModItems {
 
                 SEASONAL,
 
-                CLAIM_TOOL_CREATE,
-                CLAIM_TOOL_RESIZE,
-                CLAIM_TOOL_VISUAL
+                CLAIM_TOOL
         );
     }
 
@@ -216,8 +210,6 @@ public class ModItems {
 
         SEASONAL.registerItemModel();
 
-        CLAIM_TOOL_CREATE.registerItemModel();
-        CLAIM_TOOL_RESIZE.registerItemModel();
-        CLAIM_TOOL_VISUAL.registerItemModel();
+        CLAIM_TOOL.registerItemModel();
     }
 }

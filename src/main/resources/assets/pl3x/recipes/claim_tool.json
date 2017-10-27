@@ -1,28 +1,22 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "NDR",
-    "GXE",
+    "NRR",
+    "GXR",
     "BGN"
   ],
   "key": {
     "B": {
       "item": "minecraft:blaze_rod"
     },
-    "D": {
-      "item": "minecraft:diamond_block"
-    },
-    "E": {
-      "item": "minecraft:emerald_block"
-    },
     "G": {
-      "item": "minecraft:gold_block"
+      "item": "minecraft:gold_ingot"
     },
     "N": {
       "item": "minecraft:nether_star"
     },
     "R": {
-      "item": "pl3x:block_ruby"
+      "item": "pl3x:ruby"
     },
     "X": {
       "item": "minecraft:dragon_egg"

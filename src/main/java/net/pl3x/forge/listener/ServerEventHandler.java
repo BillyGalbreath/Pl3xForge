@@ -34,7 +34,7 @@ import net.pl3x.forge.data.PlayerData;
 import net.pl3x.forge.entity.EntityBanker;
 import net.pl3x.forge.item.ItemMoney;
 import net.pl3x.forge.item.ModItems;
-import net.pl3x.forge.item.tool.claimtool.ItemClaimTool;
+import net.pl3x.forge.item.tool.ItemClaimTool;
 import net.pl3x.forge.motd.MOTDCache;
 import net.pl3x.forge.network.PacketHandler;
 import net.pl3x.forge.scheduler.Pl3xRunnable;
@@ -158,9 +158,7 @@ public class ServerEventHandler {
 
     @SubscribeEvent
     public void onRightClickAir(PlayerInteractEvent.RightClickItem event) {
-        if (processClaimToolClick(event, null, true)) {
-            //event.setCanceled(true);
-        }
+        processClaimToolClick(event, null, true);
     }
 
     @SubscribeEvent
@@ -172,9 +170,7 @@ public class ServerEventHandler {
 
     @SubscribeEvent
     public void onLeftClickAir(PlayerInteractEvent.LeftClickItem event) {
-        if (processClaimToolClick(event, null, false)) {
-            //event.setCanceled(true);
-        }
+        processClaimToolClick(event, null, false);
     }
 
     private boolean processClaimToolClick(PlayerInteractEvent event, BlockPos pos, boolean isRightClick) {
@@ -187,7 +183,9 @@ public class ServerEventHandler {
                     pos = result.getBlockPos();
                 }
             }
-
+            if (pos == null) {
+                return false; // still could not find a block in sight
+            }
             if (isRightClick) {
                 claimTool.processRightClick(event.getEntityPlayer(), pos);
             } else {
