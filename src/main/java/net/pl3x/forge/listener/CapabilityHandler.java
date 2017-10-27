@@ -16,7 +16,7 @@ public class CapabilityHandler {
     public static final ResourceLocation PLAYER_DATA = new ResourceLocation(Pl3x.modId, "playerdata");
 
     @SubscribeEvent
-    public void attachCapability(AttachCapabilitiesEvent<Entity> event) {
+    public void on(AttachCapabilitiesEvent<Entity> event) {
         if (!(event.getObject() instanceof EntityPlayer)) {
             return;
         }
@@ -24,14 +24,14 @@ public class CapabilityHandler {
     }
 
     @SubscribeEvent
-    public void onPlayerClone(PlayerEvent.Clone event) {
+    public void on(PlayerEvent.Clone event) {
         event.getEntityPlayer().getCapability(CapabilityProvider.CAPABILITY, null)
                 .setDataFromNBT(event.getOriginal().getCapability(CapabilityProvider.CAPABILITY, null)
                         .getDataAsNBT());
     }
 
     @SubscribeEvent
-    public void onPlayerJoinWorld(EntityJoinWorldEvent event) {
+    public void on(EntityJoinWorldEvent event) {
         if (!(event.getEntity() instanceof EntityPlayerMP)) {
             return;
         }

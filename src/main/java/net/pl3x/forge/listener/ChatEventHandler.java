@@ -28,7 +28,7 @@ import java.util.List;
 
 public class ChatEventHandler {
     @SubscribeEvent
-    public void onChatEvent(ServerChatEvent event) {
+    public void on(ServerChatEvent event) {
         if (event.isCanceled() || event.getPlayer() == null || event.getMessage() == null) {
             return;
         }

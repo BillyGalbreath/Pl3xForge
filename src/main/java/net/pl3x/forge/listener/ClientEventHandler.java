@@ -5,7 +5,6 @@ import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.GuiRepair;
 import net.minecraft.client.gui.GuiScreenBook;
 import net.minecraft.client.gui.inventory.GuiEditSign;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -17,8 +16,6 @@ import net.pl3x.forge.configuration.ClientConfig;
 import net.pl3x.forge.gui.HUDBalance;
 import net.pl3x.forge.icons.IconManager;
 import net.pl3x.forge.item.ModItems;
-
-import javax.naming.directory.ModificationItem;
 
 public class ClientEventHandler {
     private final HUDBalance hudBalance = new HUDBalance();

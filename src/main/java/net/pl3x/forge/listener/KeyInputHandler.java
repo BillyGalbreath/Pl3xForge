@@ -9,7 +9,7 @@ import net.pl3x.forge.configuration.ClientConfig;
 
 public class KeyInputHandler {
     @SubscribeEvent
-    public void onKeyInput(InputEvent.KeyInputEvent event) {
+    public void on(InputEvent.KeyInputEvent event) {
         if (KeyBindings.showClaims.isPressed()) {
             ClientConfig.claimVisuals.enabled = !ClientConfig.claimVisuals.enabled;
             ConfigManager.sync(Pl3x.modId, Config.Type.INSTANCE);

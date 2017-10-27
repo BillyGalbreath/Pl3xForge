@@ -3,13 +3,16 @@ package net.pl3x.forge.item.tool;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.pl3x.forge.claims.Selection;
 import net.pl3x.forge.item.ItemBase;
 
@@ -95,5 +98,27 @@ public class ItemClaimTool extends ItemBase {
 
         // update the left click position
         Selection.CURRENT_SELECTION.setLeftClickPos(pos);
+    }
+
+    public static void processClaimToolClick(PlayerInteractEvent event, BlockPos pos, boolean isRightClick) {
+        Item item = event.getEntityPlayer().getHeldItemMainhand().getItem();
+        if (item instanceof ItemClaimTool) {
+            ItemClaimTool claimTool = (ItemClaimTool) item;
+            if (pos == null) {
+                RayTraceResult result = event.getEntityPlayer().rayTrace(256, 1F);
+                if (result != null && result.typeOfHit == RayTraceResult.Type.BLOCK) {
+                    pos = result.getBlockPos();
+                }
+            }
+            if (pos == null) {
+                return; // still could not find a block in sight
+            }
+            if (isRightClick) {
+                claimTool.processRightClick(event.getEntityPlayer(), pos);
+            } else {
+                claimTool.processLeftClick(event.getEntityPlayer(), pos);
+            }
+            event.setCanceled(true);
+        }
     }
 }

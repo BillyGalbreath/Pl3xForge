@@ -6,12 +6,9 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.SPacketPlayerListHeaderFooter;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.event.CommandEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -47,14 +44,14 @@ import java.util.Iterator;
 
 public class ServerEventHandler {
     @SubscribeEvent
-    public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+    public void on(PlayerEvent.PlayerLoggedInEvent event) {
         if (event.player instanceof EntityPlayerMP) {
             PacketHandler.updatePlayerData((EntityPlayerMP) event.player);
         }
     }
 
     @SubscribeEvent
-    public void onPlayerQuit(PlayerEvent.PlayerLoggedOutEvent event) {
+    public void on(PlayerEvent.PlayerLoggedOutEvent event) {
         if (event.isCanceled() || event.player == null) {
             return;
         }
@@ -70,7 +67,7 @@ public class ServerEventHandler {
     }
 
     @SubscribeEvent
-    public void onEntityJoinWorld(EntityJoinWorldEvent event) {
+    public void on(EntityJoinWorldEvent event) {
         if (!(event.getEntity() instanceof EntityPlayerMP)) {
             return; // not an online player
         }
@@ -81,7 +78,7 @@ public class ServerEventHandler {
     }
 
     @SubscribeEvent
-    public void onItemPickup(EntityItemPickupEvent event) {
+    public void on(EntityItemPickupEvent event) {
         // Fires when player is close enough to item
         // whether item was actually picked up or not
 
@@ -106,7 +103,7 @@ public class ServerEventHandler {
     }
 
     @SubscribeEvent
-    public void onDeathDropCoins(LivingDeathEvent event) {
+    public void on(LivingDeathEvent event) {
         EntityLivingBase entity = event.getEntityLiving();
         if (entity instanceof EntityPlayerMP) {
             EntityPlayerMP player = (EntityPlayerMP) entity;
@@ -141,7 +138,7 @@ public class ServerEventHandler {
     }
 
     @SubscribeEvent
-    public void onTargetBanker(LivingSetAttackTargetEvent event) {
+    public void on(LivingSetAttackTargetEvent event) {
         if (event.getTarget() instanceof EntityBanker) {
             if (event.getEntityLiving() instanceof EntityZombie) {
                 ((EntityZombie) event.getEntityLiving()).setAttackTarget(null);
@@ -150,54 +147,29 @@ public class ServerEventHandler {
     }
 
     @SubscribeEvent
-    public void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
-        if (processClaimToolClick(event, event.getPos(), true)) {
-            event.setCanceled(true);
-        }
+    public void on(PlayerInteractEvent.RightClickBlock event) {
+        ItemClaimTool.processClaimToolClick(event, event.getPos(), true);
+        // if cancelled, do not process anything else
     }
 
     @SubscribeEvent
-    public void onRightClickAir(PlayerInteractEvent.RightClickItem event) {
-        processClaimToolClick(event, null, true);
+    public void on(PlayerInteractEvent.RightClickItem event) {
+        ItemClaimTool.processClaimToolClick(event, null, true);
     }
 
     @SubscribeEvent
-    public void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {
-        if (processClaimToolClick(event, event.getPos(), false)) {
-            event.setCanceled(true);
-        }
+    public void on(PlayerInteractEvent.LeftClickBlock event) {
+        ItemClaimTool.processClaimToolClick(event, event.getPos(), false);
+        // if cancelled, do not process anything else
     }
 
     @SubscribeEvent
-    public void onLeftClickAir(PlayerInteractEvent.LeftClickItem event) {
-        processClaimToolClick(event, null, false);
-    }
-
-    private boolean processClaimToolClick(PlayerInteractEvent event, BlockPos pos, boolean isRightClick) {
-        Item item = event.getEntityPlayer().getHeldItemMainhand().getItem();
-        if (item instanceof ItemClaimTool) {
-            ItemClaimTool claimTool = (ItemClaimTool) item;
-            if (pos == null) {
-                RayTraceResult result = event.getEntityPlayer().rayTrace(256, 1F);
-                if (result != null && result.typeOfHit == RayTraceResult.Type.BLOCK) {
-                    pos = result.getBlockPos();
-                }
-            }
-            if (pos == null) {
-                return false; // still could not find a block in sight
-            }
-            if (isRightClick) {
-                claimTool.processRightClick(event.getEntityPlayer(), pos);
-            } else {
-                claimTool.processLeftClick(event.getEntityPlayer(), pos);
-            }
-            return true;
-        }
-        return false;
+    public void on(PlayerInteractEvent.LeftClickItem event) {
+        ItemClaimTool.processClaimToolClick(event, null, false);
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public void onCommandEvent(CommandEvent event) {
+    public void on(CommandEvent event) {
         new Pl3xRunnable() {
             public void run() {
                 if (event.isCanceled() || event.getSender() == null) {
@@ -211,7 +183,7 @@ public class ServerEventHandler {
     }
 
     @SubscribeEvent
-    public void onLivingSpawn(LivingSpawnEvent.CheckSpawn event) {
+    public void on(LivingSpawnEvent.CheckSpawn event) {
         ResourceLocation key = EntityList.getKey(event.getEntity());
         if (key == null) {
             return;
@@ -243,9 +215,9 @@ public class ServerEventHandler {
     }
 
     @SubscribeEvent
-    public void serverTick(TickEvent.ServerTickEvent event) {
+    public void on(TickEvent.ServerTickEvent event) {
         if (event.phase != TickEvent.Phase.END) {
-            return;
+            return; // only process at end of tick to prevent double processing each tick
         }
 
         // tick the scheduler
