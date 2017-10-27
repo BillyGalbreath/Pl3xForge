@@ -3,7 +3,7 @@
     "particle": "blocks/dirt",
     "top": "blocks/grass_top",
     "bottom": "blocks/dirt",
-    "side": "blocks/dirt",
+    "side": "blocks/grass_side",
     "overlay": "blocks/grass_side_overlay"
   },
   "elements": [
@@ -195,7 +195,7 @@
       "to": [16, 16, 16],
       "faces": {
         "east": {"uv": [0, 0, 8, 16], "texture": "#overlay", "tintindex": 0, "cullface": "east"},
-        "south": {"uv": [0, 0, 8, 16], "texture": "#overlay", "tintindex": 0, "cullface": "south"}
+        "south": {"uv": [8, 0, 16, 16], "texture": "#overlay", "tintindex": 0, "cullface": "south"}
       }
     }
   ],
