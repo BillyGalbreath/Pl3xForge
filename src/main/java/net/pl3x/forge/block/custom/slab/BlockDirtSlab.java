@@ -1,5 +1,6 @@
 package net.pl3x.forge.block.custom.slab;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
@@ -108,15 +109,20 @@ public abstract class BlockDirtSlab extends BlockSlab {
         if (worldIn.getLightFromNeighbors(pos.up()) < 9) {
             return; // not bright enough
         }
+        // look for grass to change self into grass too
         for (int i = 0; i < 4; ++i) {
-            BlockPos blockpos = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
-            if (blockpos.getY() >= 0 && blockpos.getY() < 256 && !worldIn.isBlockLoaded(blockpos)) {
+            BlockPos grassPos = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
+            if (grassPos.getY() >= 0 && grassPos.getY() < 256 && !worldIn.isBlockLoaded(grassPos)) {
                 return; // block not loaded (lazy chunk?)
             }
-            if (worldIn.getBlockState(blockpos).getBlock() != Blocks.GRASS) {
+            IBlockState grassState = worldIn.getBlockState(grassPos);
+            Block grassBlock = grassState.getBlock();
+            if (grassBlock != Blocks.GRASS &&
+                    grassBlock != ModBlocks.GRASS_SLAB &&
+                    grassBlock != ModBlocks.GRASS_SLAB_DOUBLE) {
                 continue; // not a grass block
             }
-            if (worldIn.getLightFromNeighbors(pos.up()) >= 4 && worldIn.getBlockState(pos.up()).getLightOpacity(worldIn, blockpos.up()) <= 2) {
+            if (worldIn.getLightFromNeighbors(pos.up()) >= 4 && worldIn.getBlockState(pos.up()).getLightOpacity(worldIn, grassPos.up()) <= 2) {
                 if (isDouble()) {
                     worldIn.setBlockState(pos, ModBlocks.GRASS_SLAB_DOUBLE.getDefaultState());
                 } else {

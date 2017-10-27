@@ -127,31 +127,39 @@ public abstract class BlockGrassSlab extends BlockSlab {
         return BlockGrassSlab.Variant.DEFAULT;
     }
 
+    @Override
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-        if (!worldIn.isRemote) {
+        if (worldIn.isRemote) {
             return; // dont run on client
         }
-        if (worldIn.getLightFromNeighbors(pos.up()) < 4 && worldIn.getBlockState(pos.up()).getLightOpacity(worldIn, pos.up()) > 2) {
-            worldIn.setBlockState(pos, ModBlocks.DIRT_SLAB.getDefaultState().withProperty(HALF, state.getValue(HALF)));
+        BlockPos posUp = pos.up();
+        if (worldIn.getLightFromNeighbors(posUp) < 4 && worldIn.getBlockState(posUp).getLightOpacity(worldIn, posUp) > 2) {
+            if (isDouble()) {
+                worldIn.setBlockState(pos, ModBlocks.DIRT_SLAB_DOUBLE.getDefaultState());
+            } else {
+                worldIn.setBlockState(pos, ModBlocks.DIRT_SLAB.getDefaultState().withProperty(HALF, state.getValue(HALF)));
+            }
             return; // grass slab turned to dirt slab
         }
-        if (worldIn.getLightFromNeighbors(pos.up()) < 9) {
+        if (worldIn.getLightFromNeighbors(posUp) < 9) {
             return; // not bright enough
         }
+        // look for dirt to change to grass
         for (int i = 0; i < 4; ++i) {
-            BlockPos blockpos = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
-            if (blockpos.getY() >= 0 && blockpos.getY() < 256 && !worldIn.isBlockLoaded(blockpos)) {
+            BlockPos dirtpos = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
+            if (dirtpos.getY() >= 0 && dirtpos.getY() < 256 && !worldIn.isBlockLoaded(dirtpos)) {
                 return; // block not loaded (lazy chunk?)
             }
-            IBlockState iblockstate = worldIn.getBlockState(blockpos.up());
-            IBlockState iblockstate1 = worldIn.getBlockState(blockpos);
-            Block block = iblockstate1.getBlock();
-            if (worldIn.getLightFromNeighbors(blockpos.up()) >= 4 && iblockstate.getLightOpacity(worldIn, pos.up()) <= 2) {
-                if (block == ModBlocks.DIRT_SLAB) {
-                    worldIn.setBlockState(blockpos, ModBlocks.GRASS_SLAB.getDefaultState().withProperty(HALF, iblockstate1.getValue(HALF)));
-                }
-                if (block == Blocks.DIRT) {
-                    worldIn.setBlockState(blockpos, Blocks.GRASS.getDefaultState());
+            IBlockState dirtUpState = worldIn.getBlockState(dirtpos.up());
+            IBlockState dirtState = worldIn.getBlockState(dirtpos);
+            Block dirtBlock = dirtState.getBlock();
+            if (worldIn.getLightFromNeighbors(dirtpos.up()) >= 4 && dirtUpState.getLightOpacity(worldIn, pos.up()) <= 2) {
+                if (dirtBlock == ModBlocks.DIRT_SLAB) {
+                    worldIn.setBlockState(dirtpos, ModBlocks.GRASS_SLAB.getDefaultState().withProperty(HALF, dirtState.getValue(HALF)));
+                } else if (dirtBlock == ModBlocks.DIRT_SLAB_DOUBLE) {
+                    worldIn.setBlockState(dirtpos, ModBlocks.GRASS_SLAB_DOUBLE.getDefaultState());
+                } else if (dirtBlock == Blocks.DIRT) {
+                    worldIn.setBlockState(dirtpos, Blocks.GRASS.getDefaultState());
                 }
             }
         }
