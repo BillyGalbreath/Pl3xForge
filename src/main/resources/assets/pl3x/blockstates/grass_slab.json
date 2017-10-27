@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=bottom,variant=default": {
+      "model": "pl3x:grass_slab_bottom"
+    },
+    "half=top,variant=default": {
+      "model": "pl3x:grass_slab_top"
+    }
+  }
+}

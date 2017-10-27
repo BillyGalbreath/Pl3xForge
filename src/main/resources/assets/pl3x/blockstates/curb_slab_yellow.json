@@ -1,0 +1,18 @@
+{
+  "variants": {
+    "facing=south,shape=straight": { "model": "pl3x:curb_slab_yellow", "y": 0 },
+    "facing=west,shape=straight":  { "model": "pl3x:curb_slab_yellow", "y": 90, "uvlock": true },
+    "facing=north,shape=straight": { "model": "pl3x:curb_slab_yellow", "y": 180, "uvlock": true },
+    "facing=east,shape=straight":  { "model": "pl3x:curb_slab_yellow", "y": 270, "uvlock": true },
+
+    "facing=south,shape=corner_left": { "model": "pl3x:curb_slab_yellow_corner", "y": 0 },
+    "facing=west,shape=corner_left":  { "model": "pl3x:curb_slab_yellow_corner", "y": 90, "uvlock": true },
+    "facing=north,shape=corner_left": { "model": "pl3x:curb_slab_yellow_corner", "y": 180, "uvlock": true },
+    "facing=east,shape=corner_left":  { "model": "pl3x:curb_slab_yellow_corner", "y": 270, "uvlock": true },
+
+    "facing=east,shape=corner_right":  { "model": "pl3x:curb_slab_yellow_corner", "y": 0 },
+    "facing=south,shape=corner_right": { "model": "pl3x:curb_slab_yellow_corner", "y": 90, "uvlock": true },
+    "facing=west,shape=corner_right":  { "model": "pl3x:curb_slab_yellow_corner", "y": 180, "uvlock": true },
+    "facing=north,shape=corner_right": { "model": "pl3x:curb_slab_yellow_corner", "y": 270, "uvlock": true }
+  }
+}

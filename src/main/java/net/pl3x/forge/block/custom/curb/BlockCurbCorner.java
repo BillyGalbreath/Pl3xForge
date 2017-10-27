@@ -72,6 +72,7 @@ public class BlockCurbCorner extends BlockBase {
         return EnumBlockRenderType.MODEL;
     }
 
+    @Override
     public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
         return BlockFaceShape.SOLID;
     }
@@ -79,7 +80,12 @@ public class BlockCurbCorner extends BlockBase {
     @Override
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer() {
-        return BlockRenderLayer.SOLID;
+        return BlockRenderLayer.CUTOUT_MIPPED;
+    }
+
+    @Override
+    public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
+        return false;
     }
 
     @Override

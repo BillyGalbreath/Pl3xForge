@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "curb_slab",
+  "pattern": [
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "pl3x:curb_orange"
+    }
+  },
+  "result": {
+    "item": "pl3x:curb_slab_orange",
+    "count": 6
+  }
+}

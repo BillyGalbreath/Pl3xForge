@@ -49,6 +49,26 @@ public class ModColorManager {
         blockColors.registerBlockColorHandler(grassColorHandler, ModBlocks.CURB_SILVER);
         blockColors.registerBlockColorHandler(grassColorHandler, ModBlocks.CURB_WHITE);
         blockColors.registerBlockColorHandler(grassColorHandler, ModBlocks.CURB_YELLOW);
+
+        blockColors.registerBlockColorHandler(grassColorHandler, ModBlocks.CURB_SLAB_BLACK);
+        blockColors.registerBlockColorHandler(grassColorHandler, ModBlocks.CURB_SLAB_BLUE);
+        blockColors.registerBlockColorHandler(grassColorHandler, ModBlocks.CURB_SLAB_BROWN);
+        blockColors.registerBlockColorHandler(grassColorHandler, ModBlocks.CURB_SLAB_CYAN);
+        blockColors.registerBlockColorHandler(grassColorHandler, ModBlocks.CURB_SLAB_GRAY);
+        blockColors.registerBlockColorHandler(grassColorHandler, ModBlocks.CURB_SLAB_GREEN);
+        blockColors.registerBlockColorHandler(grassColorHandler, ModBlocks.CURB_SLAB_LIGHT_BLUE);
+        blockColors.registerBlockColorHandler(grassColorHandler, ModBlocks.CURB_SLAB_LIME);
+        blockColors.registerBlockColorHandler(grassColorHandler, ModBlocks.CURB_SLAB_MAGENTA);
+        blockColors.registerBlockColorHandler(grassColorHandler, ModBlocks.CURB_SLAB_ORANGE);
+        blockColors.registerBlockColorHandler(grassColorHandler, ModBlocks.CURB_SLAB_PINK);
+        blockColors.registerBlockColorHandler(grassColorHandler, ModBlocks.CURB_SLAB_PURPLE);
+        blockColors.registerBlockColorHandler(grassColorHandler, ModBlocks.CURB_SLAB_RED);
+        blockColors.registerBlockColorHandler(grassColorHandler, ModBlocks.CURB_SLAB_SILVER);
+        blockColors.registerBlockColorHandler(grassColorHandler, ModBlocks.CURB_SLAB_WHITE);
+        blockColors.registerBlockColorHandler(grassColorHandler, ModBlocks.CURB_SLAB_YELLOW);
+
+        blockColors.registerBlockColorHandler(grassColorHandler, ModBlocks.GRASS_SLAB);
+        blockColors.registerBlockColorHandler(grassColorHandler, ModBlocks.GRASS_SLAB_DOUBLE);
     }
 
     private static void registerItemColorHandlers(final BlockColors blockColors, final ItemColors itemColors) {
@@ -73,5 +93,25 @@ public class ModColorManager {
         itemColors.registerItemColorHandler(itemBlockColorHandler, ModBlocks.CURB_SILVER);
         itemColors.registerItemColorHandler(itemBlockColorHandler, ModBlocks.CURB_WHITE);
         itemColors.registerItemColorHandler(itemBlockColorHandler, ModBlocks.CURB_YELLOW);
+
+        itemColors.registerItemColorHandler(itemBlockColorHandler, ModBlocks.CURB_SLAB_BLACK);
+        itemColors.registerItemColorHandler(itemBlockColorHandler, ModBlocks.CURB_SLAB_BLUE);
+        itemColors.registerItemColorHandler(itemBlockColorHandler, ModBlocks.CURB_SLAB_BROWN);
+        itemColors.registerItemColorHandler(itemBlockColorHandler, ModBlocks.CURB_SLAB_CYAN);
+        itemColors.registerItemColorHandler(itemBlockColorHandler, ModBlocks.CURB_SLAB_GRAY);
+        itemColors.registerItemColorHandler(itemBlockColorHandler, ModBlocks.CURB_SLAB_GREEN);
+        itemColors.registerItemColorHandler(itemBlockColorHandler, ModBlocks.CURB_SLAB_LIGHT_BLUE);
+        itemColors.registerItemColorHandler(itemBlockColorHandler, ModBlocks.CURB_SLAB_LIME);
+        itemColors.registerItemColorHandler(itemBlockColorHandler, ModBlocks.CURB_SLAB_MAGENTA);
+        itemColors.registerItemColorHandler(itemBlockColorHandler, ModBlocks.CURB_SLAB_ORANGE);
+        itemColors.registerItemColorHandler(itemBlockColorHandler, ModBlocks.CURB_SLAB_PINK);
+        itemColors.registerItemColorHandler(itemBlockColorHandler, ModBlocks.CURB_SLAB_PURPLE);
+        itemColors.registerItemColorHandler(itemBlockColorHandler, ModBlocks.CURB_SLAB_RED);
+        itemColors.registerItemColorHandler(itemBlockColorHandler, ModBlocks.CURB_SLAB_SILVER);
+        itemColors.registerItemColorHandler(itemBlockColorHandler, ModBlocks.CURB_SLAB_WHITE);
+        itemColors.registerItemColorHandler(itemBlockColorHandler, ModBlocks.CURB_SLAB_YELLOW);
+
+        itemColors.registerItemColorHandler(itemBlockColorHandler, ModBlocks.GRASS_SLAB);
+        itemColors.registerItemColorHandler(itemBlockColorHandler, ModBlocks.GRASS_SLAB_DOUBLE);
     }
 }

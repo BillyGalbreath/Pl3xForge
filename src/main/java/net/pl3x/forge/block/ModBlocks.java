@@ -19,6 +19,12 @@ import net.pl3x.forge.block.custom.curb.BlockCurb;
 import net.pl3x.forge.block.custom.curb.BlockCurbCorner;
 import net.pl3x.forge.block.custom.slab.BlockConcreteSlabDouble;
 import net.pl3x.forge.block.custom.slab.BlockConcreteSlabHalf;
+import net.pl3x.forge.block.custom.slab.BlockCurbSlab;
+import net.pl3x.forge.block.custom.slab.BlockCurbSlabCorner;
+import net.pl3x.forge.block.custom.slab.BlockDirtSlabDouble;
+import net.pl3x.forge.block.custom.slab.BlockDirtSlabHalf;
+import net.pl3x.forge.block.custom.slab.BlockGrassSlabDouble;
+import net.pl3x.forge.block.custom.slab.BlockGrassSlabHalf;
 
 public class ModBlocks {
     public static final BlockRubyOre RUBY = new BlockRubyOre();
@@ -82,7 +88,31 @@ public class ModBlocks {
     public static final BlockCurb CURB_WHITE = new BlockCurb(EnumDyeColor.WHITE);
     public static final BlockCurb CURB_YELLOW = new BlockCurb(EnumDyeColor.YELLOW);
 
+    public static final BlockCurbSlab CURB_SLAB_BLACK = new BlockCurbSlab(EnumDyeColor.BLACK);
+    public static final BlockCurbSlab CURB_SLAB_BLUE = new BlockCurbSlab(EnumDyeColor.BLUE);
+    public static final BlockCurbSlab CURB_SLAB_BROWN = new BlockCurbSlab(EnumDyeColor.BROWN);
+    public static final BlockCurbSlab CURB_SLAB_CYAN = new BlockCurbSlab(EnumDyeColor.CYAN);
+    public static final BlockCurbSlab CURB_SLAB_GRAY = new BlockCurbSlab(EnumDyeColor.GRAY);
+    public static final BlockCurbSlab CURB_SLAB_GREEN = new BlockCurbSlab(EnumDyeColor.GREEN);
+    public static final BlockCurbSlab CURB_SLAB_LIGHT_BLUE = new BlockCurbSlab(EnumDyeColor.LIGHT_BLUE);
+    public static final BlockCurbSlab CURB_SLAB_LIME = new BlockCurbSlab(EnumDyeColor.LIME);
+    public static final BlockCurbSlab CURB_SLAB_MAGENTA = new BlockCurbSlab(EnumDyeColor.MAGENTA);
+    public static final BlockCurbSlab CURB_SLAB_ORANGE = new BlockCurbSlab(EnumDyeColor.ORANGE);
+    public static final BlockCurbSlab CURB_SLAB_PINK = new BlockCurbSlab(EnumDyeColor.PINK);
+    public static final BlockCurbSlab CURB_SLAB_PURPLE = new BlockCurbSlab(EnumDyeColor.PURPLE);
+    public static final BlockCurbSlab CURB_SLAB_RED = new BlockCurbSlab(EnumDyeColor.RED);
+    public static final BlockCurbSlab CURB_SLAB_SILVER = new BlockCurbSlab(EnumDyeColor.SILVER);
+    public static final BlockCurbSlab CURB_SLAB_WHITE = new BlockCurbSlab(EnumDyeColor.WHITE);
+    public static final BlockCurbSlab CURB_SLAB_YELLOW = new BlockCurbSlab(EnumDyeColor.YELLOW);
+
     public static final BlockCurbCorner CURB_CORNER = new BlockCurbCorner();
+    public static final BlockCurbSlabCorner CURB_SLAB_CORNER = new BlockCurbSlabCorner();
+
+    public static final BlockDirtSlabHalf DIRT_SLAB = new BlockDirtSlabHalf();
+    public static final BlockDirtSlabDouble DIRT_SLAB_DOUBLE = new BlockDirtSlabDouble();
+
+    public static final BlockGrassSlabHalf GRASS_SLAB = new BlockGrassSlabHalf();
+    public static final BlockGrassSlabDouble GRASS_SLAB_DOUBLE = new BlockGrassSlabDouble();
 
     public static void register(IForgeRegistry<Block> registry) {
         registry.registerAll(
@@ -147,7 +177,31 @@ public class ModBlocks {
                 CURB_WHITE,
                 CURB_YELLOW,
 
-                CURB_CORNER
+                CURB_SLAB_BLACK,
+                CURB_SLAB_BLUE,
+                CURB_SLAB_BROWN,
+                CURB_SLAB_CYAN,
+                CURB_SLAB_GRAY,
+                CURB_SLAB_GREEN,
+                CURB_SLAB_LIGHT_BLUE,
+                CURB_SLAB_LIME,
+                CURB_SLAB_MAGENTA,
+                CURB_SLAB_ORANGE,
+                CURB_SLAB_PINK,
+                CURB_SLAB_PURPLE,
+                CURB_SLAB_RED,
+                CURB_SLAB_SILVER,
+                CURB_SLAB_WHITE,
+                CURB_SLAB_YELLOW,
+
+                CURB_CORNER,
+                CURB_SLAB_CORNER,
+
+                DIRT_SLAB,
+                DIRT_SLAB_DOUBLE,
+
+                GRASS_SLAB,
+                GRASS_SLAB_DOUBLE
         );
 
         GameRegistry.registerTileEntity(ENCHANTMENT_SPLITTER.getTileEntityClass(), ENCHANTMENT_SPLITTER.getRegistryName().toString());
@@ -203,7 +257,28 @@ public class ModBlocks {
                 CURB_WHITE.createItemBlock(),
                 CURB_YELLOW.createItemBlock(),
 
-                CURB_CORNER.createItemBlock()
+                CURB_SLAB_BLACK.createItemBlock(),
+                CURB_SLAB_BLUE.createItemBlock(),
+                CURB_SLAB_BROWN.createItemBlock(),
+                CURB_SLAB_CYAN.createItemBlock(),
+                CURB_SLAB_GRAY.createItemBlock(),
+                CURB_SLAB_GREEN.createItemBlock(),
+                CURB_SLAB_LIGHT_BLUE.createItemBlock(),
+                CURB_SLAB_LIME.createItemBlock(),
+                CURB_SLAB_MAGENTA.createItemBlock(),
+                CURB_SLAB_ORANGE.createItemBlock(),
+                CURB_SLAB_PINK.createItemBlock(),
+                CURB_SLAB_PURPLE.createItemBlock(),
+                CURB_SLAB_RED.createItemBlock(),
+                CURB_SLAB_SILVER.createItemBlock(),
+                CURB_SLAB_WHITE.createItemBlock(),
+                CURB_SLAB_YELLOW.createItemBlock(),
+
+                CURB_CORNER.createItemBlock(),
+                CURB_SLAB_CORNER.createItemBlock(),
+
+                DIRT_SLAB.createItemBlock(),
+                GRASS_SLAB.createItemBlock()
         );
     }
 
@@ -269,6 +344,30 @@ public class ModBlocks {
         CURB_WHITE.registerItemModel(Item.getItemFromBlock(CURB_WHITE));
         CURB_YELLOW.registerItemModel(Item.getItemFromBlock(CURB_YELLOW));
 
+        CURB_SLAB_BLACK.registerItemModel(Item.getItemFromBlock(CURB_SLAB_BLACK));
+        CURB_SLAB_BLUE.registerItemModel(Item.getItemFromBlock(CURB_SLAB_BLUE));
+        CURB_SLAB_BROWN.registerItemModel(Item.getItemFromBlock(CURB_SLAB_BROWN));
+        CURB_SLAB_CYAN.registerItemModel(Item.getItemFromBlock(CURB_SLAB_CYAN));
+        CURB_SLAB_GRAY.registerItemModel(Item.getItemFromBlock(CURB_SLAB_GRAY));
+        CURB_SLAB_GREEN.registerItemModel(Item.getItemFromBlock(CURB_SLAB_GREEN));
+        CURB_SLAB_LIGHT_BLUE.registerItemModel(Item.getItemFromBlock(CURB_SLAB_LIGHT_BLUE));
+        CURB_SLAB_LIME.registerItemModel(Item.getItemFromBlock(CURB_SLAB_LIME));
+        CURB_SLAB_MAGENTA.registerItemModel(Item.getItemFromBlock(CURB_SLAB_MAGENTA));
+        CURB_SLAB_ORANGE.registerItemModel(Item.getItemFromBlock(CURB_SLAB_ORANGE));
+        CURB_SLAB_PINK.registerItemModel(Item.getItemFromBlock(CURB_SLAB_PINK));
+        CURB_SLAB_PURPLE.registerItemModel(Item.getItemFromBlock(CURB_SLAB_PURPLE));
+        CURB_SLAB_RED.registerItemModel(Item.getItemFromBlock(CURB_SLAB_RED));
+        CURB_SLAB_SILVER.registerItemModel(Item.getItemFromBlock(CURB_SLAB_SILVER));
+        CURB_SLAB_WHITE.registerItemModel(Item.getItemFromBlock(CURB_SLAB_WHITE));
+        CURB_SLAB_YELLOW.registerItemModel(Item.getItemFromBlock(CURB_SLAB_YELLOW));
+
         CURB_CORNER.registerItemModel(Item.getItemFromBlock(CURB_CORNER));
+        CURB_SLAB_CORNER.registerItemModel(Item.getItemFromBlock(CURB_SLAB_CORNER));
+
+        DIRT_SLAB.registerItemModel(Item.getItemFromBlock(DIRT_SLAB));
+        DIRT_SLAB_DOUBLE.registerItemModel(Item.getItemFromBlock(DIRT_SLAB_DOUBLE));
+
+        GRASS_SLAB.registerItemModel(Item.getItemFromBlock(GRASS_SLAB));
+        GRASS_SLAB_DOUBLE.registerItemModel(Item.getItemFromBlock(GRASS_SLAB_DOUBLE));
     }
 }

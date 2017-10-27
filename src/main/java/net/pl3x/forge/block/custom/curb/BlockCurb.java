@@ -140,7 +140,14 @@ public class BlockCurb extends BlockBase {
     @Override
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer() {
-        return BlockRenderLayer.SOLID;
+        return BlockRenderLayer.CUTOUT_MIPPED;
+    }
+
+    @Override
+    public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
+        state = this.getActualState(state, world, pos);
+        BlockCurb.EnumShape shape = state.getValue(SHAPE);
+        return shape != EnumShape.CORNER_LEFT && shape != EnumShape.CORNER_RIGHT && face == state.getValue(FACING);
     }
 
     @Override
@@ -160,7 +167,7 @@ public class BlockCurb extends BlockBase {
 
     @Override
     public boolean isOpaqueCube(IBlockState state) {
-        return false;
+        return true;
     }
 
     @Override
