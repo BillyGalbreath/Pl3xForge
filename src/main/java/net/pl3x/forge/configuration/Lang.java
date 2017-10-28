@@ -63,9 +63,12 @@ public class Lang extends ConfigLoader implements ConfigBase {
         public String GAMEMODE_TARGET = "&aYour gamemode set to {gamemode}";
 
         public String HOME_NOT_FOUND = "&cHome not found";
+        public String HOME_BED_MISSING = "&cBed is missing from the world";
         public String HOME_LIMIT_REACHED = "&cYou have reached you homes limit";
+        public String HOME_CANNOT_MANUALLY_SET_BED = "&cYou cannot manually set your bed home";
         public String HOME_ALREADY_SET = "&cHome already set. Use /delhome to remove it first";
         public String HOME_NONE_SET = "&cYou have no homes set";
+        public String HOME_BED_SET = "&aBed home set";
         public String HOME_CREATED = "&aHome set";
         public String HOME_DELETED = "&aHome removed";
         public String HOME_TELEPORTED = "&aTeleported home";

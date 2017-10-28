@@ -4,6 +4,7 @@ import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.PlayerNotFoundException;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -49,6 +50,11 @@ public class CmdHome extends CommandBase {
         Location homeLoc = playerData.getHome(args.length > 0 ? args[0].toLowerCase() : "home");
         if (homeLoc == null) {
             Lang.send(player, Lang.INSTANCE.data.HOME_NOT_FOUND);
+            return;
+        }
+
+        if (homeLoc.getWorld().getBlockState(homeLoc.getBlockPos()).getBlock() != Blocks.BED) {
+            Lang.send(player, Lang.INSTANCE.data.HOME_BED_MISSING);
             return;
         }
 

@@ -5,6 +5,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.SPacketPlayerListHeaderFooter;
@@ -17,6 +18,7 @@ import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -144,6 +146,19 @@ public class ServerEventHandler {
                 ((EntityZombie) event.getEntityLiving()).setAttackTarget(null);
             }
         }
+    }
+
+    @SubscribeEvent
+    public void on(PlayerSleepInBedEvent event) {
+        EntityPlayer player = event.getEntityPlayer();
+        PlayerData playerData = player.getCapability(CapabilityProvider.CAPABILITY, null);
+        Location bed = playerData.getHome("bed");
+        Location newLoc = new Location(player.world, event.getPos());
+        if (newLoc.equals(bed)) {
+            return;
+        }
+        playerData.addHome("bed", newLoc);
+        Lang.send(player, Lang.INSTANCE.data.HOME_BED_SET);
     }
 
     @SubscribeEvent

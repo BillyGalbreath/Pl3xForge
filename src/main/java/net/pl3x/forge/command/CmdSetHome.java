@@ -30,6 +30,10 @@ public class CmdSetHome extends CommandBase {
         }
 
         String homeName = args.length > 0 ? args[0].toLowerCase() : "home";
+        if (homeName.equals("bed")) {
+            Lang.send(player, Lang.INSTANCE.data.HOME_CANNOT_MANUALLY_SET_BED);
+            return;
+        }
         if (playerData.getHome(homeName) != null) {
             Lang.send(player, Lang.INSTANCE.data.HOME_ALREADY_SET);
             return;

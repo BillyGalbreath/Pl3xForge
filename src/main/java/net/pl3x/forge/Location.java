@@ -118,4 +118,34 @@ public class Location implements Cloneable {
             throw new Error(e);
         }
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false; // null
+        }
+        if (getClass() != obj.getClass()) {
+            return false; // incompatible objects
+        }
+        final Location other = (Location) obj;
+        if (this.world != other.world && (this.world == null || !this.world.equals(other.world))) {
+            return false; // not same world
+        }
+        if (Double.doubleToLongBits(this.x) != Double.doubleToLongBits(other.x)) {
+            return false; // not same x
+        }
+        if (Double.doubleToLongBits(this.y) != Double.doubleToLongBits(other.y)) {
+            return false; // not same y
+        }
+        if (Double.doubleToLongBits(this.z) != Double.doubleToLongBits(other.z)) {
+            return false; // not same z
+        }
+        if (Float.floatToIntBits(this.pitch) != Float.floatToIntBits(other.pitch)) {
+            return false; // not same pitch
+        }
+        if (Float.floatToIntBits(this.yaw) != Float.floatToIntBits(other.yaw)) {
+            return false; // not same yaw
+        }
+        return true;
+    }
 }
