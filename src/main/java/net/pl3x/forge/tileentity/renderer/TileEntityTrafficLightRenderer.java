@@ -17,38 +17,29 @@ public class TileEntityTrafficLightRenderer extends TileEntitySpecialRenderer<Ti
     public void render(TileEntityTrafficLight te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
         GlStateManager.pushMatrix();
         GlStateManager.disableTexture2D();
-        GL11.glDisable(GL11.GL_LIGHTING);
-        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 15 * 16.0F, 0);
+        GlStateManager.disableLighting();
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240, 240);
 
         GlStateManager.translate(x + 0.5, 0, z + 0.5);
         GlStateManager.rotate(te.rot, 0, 1, 0);
         GlStateManager.translate(-(x + 0.5), 0, -(z + 0.5));
 
-        x += 0.5;
-        y += te.state == null ? TileEntityTrafficLight.State.RED.y : te.state.y;
-        z += 0.59395;
+        x += TileEntityTrafficLight.ColorState.x;
+        y += te.colorState == null ? TileEntityTrafficLight.ColorState.RED.y : te.colorState.y;
+        z += TileEntityTrafficLight.ColorState.z;
 
-        if (te.state != null || te.on) {
-            drawLight(x, y, z, te.state);
+        if (te.isLightOn()) {
+            drawLight(x, y, z, te.colorState);
         }
 
-        GL11.glEnable(GL11.GL_LIGHTING);
+        GlStateManager.enableLighting();
         GlStateManager.enableTexture2D();
         GlStateManager.popMatrix();
-
-        te.tick += partialTicks;
-
-        if (te.state == null) {
-            if (te.tick > 40) {
-                te.tick = 0;
-                te.on = !te.on;
-            }
-        }
     }
 
-    private void drawLight(double x, double y, double z, TileEntityTrafficLight.State state) {
+    private void drawLight(double x, double y, double z, TileEntityTrafficLight.ColorState colorState) {
         GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-        setColor(state);
+        setColor(colorState);
         for (int i = 0; i <= sides; i++) {
             double angle = (TWICE_PI * i / sides) + Math.toRadians(180);
             GL11.glVertex3d(x + Math.cos(angle) * radius, y + Math.sin(angle) * radius, z);
@@ -56,12 +47,12 @@ public class TileEntityTrafficLightRenderer extends TileEntitySpecialRenderer<Ti
         GL11.glEnd();
     }
 
-    private void setColor(TileEntityTrafficLight.State state) {
-        if (state == null || state == TileEntityTrafficLight.State.RED) {
+    private void setColor(TileEntityTrafficLight.ColorState colorState) {
+        if (colorState == null || colorState == TileEntityTrafficLight.ColorState.RED) {
             GL11.glColor4f(1, 0, 0, 1); // red
-        } else if (state == TileEntityTrafficLight.State.YELLOW) {
+        } else if (colorState == TileEntityTrafficLight.ColorState.YELLOW) {
             GL11.glColor4f(1, 1, 0, 1); // yellow
-        } else if (state == TileEntityTrafficLight.State.GREEN) {
+        } else if (colorState == TileEntityTrafficLight.ColorState.GREEN) {
             GL11.glColor4f(0, 1, 0, 1); // green
         }
     }

@@ -9,7 +9,6 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -26,8 +25,8 @@ import net.pl3x.forge.tileentity.TileEntityTrafficLight;
 import javax.annotation.Nullable;
 
 public class BlockTrafficLight extends BlockTileEntity<TileEntityTrafficLight> {
-    private static final PropertyDirection FACING = BlockHorizontal.FACING;
-    private static final AxisAlignedBB AABB = new AxisAlignedBB(0D, 0D, 0D, 1D, 1D, 1D);
+    public static final PropertyDirection FACING = BlockHorizontal.FACING;
+    public static final AxisAlignedBB AABB = new AxisAlignedBB(0.375D, 0.0D, 0.41D, 0.625D, 0.6905D, 0.59D);
 
     public BlockTrafficLight() {
         super(Material.IRON, "traffic_light");
@@ -39,7 +38,7 @@ public class BlockTrafficLight extends BlockTileEntity<TileEntityTrafficLight> {
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return new AxisAlignedBB(0.375D, 0.0D, 0.41D, 0.625D, 0.6905D, 0.59D);
+        return AABB;
     }
 
     @Override
@@ -77,7 +76,7 @@ public class BlockTrafficLight extends BlockTileEntity<TileEntityTrafficLight> {
     @Override
     public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
         TileEntityTrafficLight te = this.getTileEntity(world, pos);
-        return te != null && te.on ? 9 : 0;
+        return te != null ? te.getLightLevel() : 0;
     }
 
     @Override
