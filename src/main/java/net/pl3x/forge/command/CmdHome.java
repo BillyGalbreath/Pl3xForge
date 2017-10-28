@@ -47,13 +47,14 @@ public class CmdHome extends CommandBase {
         EntityPlayerMP player = getCommandSenderAsPlayer(sender);
         PlayerData playerData = getPlayerData(player);
 
-        Location homeLoc = playerData.getHome(args.length > 0 ? args[0].toLowerCase() : "home");
+        String homeName = args.length > 0 ? args[0].toLowerCase() : "home";
+        Location homeLoc = playerData.getHome(homeName);
         if (homeLoc == null) {
             Lang.send(player, Lang.INSTANCE.data.HOME_NOT_FOUND);
             return;
         }
 
-        if (homeLoc.getWorld().getBlockState(homeLoc.getBlockPos()).getBlock() != Blocks.BED) {
+        if (homeName.equals("bed") && homeLoc.getWorld().getBlockState(homeLoc.getBlockPos()).getBlock() != Blocks.BED) {
             Lang.send(player, Lang.INSTANCE.data.HOME_BED_MISSING);
             return;
         }
