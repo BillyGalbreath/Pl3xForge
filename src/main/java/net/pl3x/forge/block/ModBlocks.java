@@ -15,6 +15,7 @@ import net.pl3x.forge.block.custom.BlockRuby;
 import net.pl3x.forge.block.custom.BlockRubyOre;
 import net.pl3x.forge.block.custom.BlockShop;
 import net.pl3x.forge.block.custom.BlockTable;
+import net.pl3x.forge.block.custom.BlockTrafficLight;
 import net.pl3x.forge.block.custom.curb.BlockCurb;
 import net.pl3x.forge.block.custom.curb.BlockCurbCorner;
 import net.pl3x.forge.block.custom.slab.BlockConcreteSlabDouble;
@@ -32,6 +33,7 @@ public class ModBlocks {
     public static final BlockFrostedObsidian FROSTED_OBSIDIAN = new BlockFrostedObsidian();
     public static final BlockEnchantmentSplitter ENCHANTMENT_SPLITTER = new BlockEnchantmentSplitter();
     public static final BlockShop SHOP = new BlockShop();
+    public static final BlockTrafficLight TRAFFIC_LIGHT = new BlockTrafficLight();
     public static final BlockDepositBox DEPOSIT_BOX = new BlockDepositBox();
     public static final BlockMicrowave MICROWAVE = new BlockMicrowave();
     public static final BlockLamp LAMP = new BlockLamp();
@@ -121,6 +123,7 @@ public class ModBlocks {
                 FROSTED_OBSIDIAN,
                 ENCHANTMENT_SPLITTER,
                 SHOP,
+                TRAFFIC_LIGHT,
                 DEPOSIT_BOX,
                 MICROWAVE,
                 LAMP,
@@ -206,6 +209,7 @@ public class ModBlocks {
 
         GameRegistry.registerTileEntity(ENCHANTMENT_SPLITTER.getTileEntityClass(), ENCHANTMENT_SPLITTER.getRegistryName().toString());
         GameRegistry.registerTileEntity(SHOP.getTileEntityClass(), SHOP.getRegistryName().toString());
+        GameRegistry.registerTileEntity(TRAFFIC_LIGHT.getTileEntityClass(), TRAFFIC_LIGHT.getRegistryName().toString());
 
 
     }
@@ -217,6 +221,7 @@ public class ModBlocks {
                 FROSTED_OBSIDIAN.createItemBlock(),
                 ENCHANTMENT_SPLITTER.createItemBlock(),
                 SHOP.createItemBlock(),
+                TRAFFIC_LIGHT.createItemBlock(),
                 DEPOSIT_BOX.createItemBlock(),
                 MICROWAVE.createItemBlock(),
                 LAMP.createItemBlock(),
@@ -288,6 +293,7 @@ public class ModBlocks {
         FROSTED_OBSIDIAN.registerItemModel(Item.getItemFromBlock(FROSTED_OBSIDIAN));
         ENCHANTMENT_SPLITTER.registerItemModel(Item.getItemFromBlock(ENCHANTMENT_SPLITTER));
         SHOP.registerItemModel(Item.getItemFromBlock(SHOP));
+        TRAFFIC_LIGHT.registerItemModel(Item.getItemFromBlock(TRAFFIC_LIGHT));
         DEPOSIT_BOX.registerItemModel(Item.getItemFromBlock(DEPOSIT_BOX));
         MICROWAVE.registerItemModel(Item.getItemFromBlock(MICROWAVE));
         LAMP.registerItemModel(Item.getItemFromBlock(LAMP));
