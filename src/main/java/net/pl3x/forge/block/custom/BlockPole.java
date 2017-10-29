@@ -136,7 +136,6 @@ public class BlockPole extends BlockBase {
         if (state.getValue(VERTICAL)) {
             i |= 1 << 4;
         }
-        System.out.println("i: " + i);
         return i;
     }
 
