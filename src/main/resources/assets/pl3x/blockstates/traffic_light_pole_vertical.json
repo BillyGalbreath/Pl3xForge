@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "normal": {"model": "pl3x:traffic_light_pole_vertical"},
+    "facing=south": {"model": "pl3x:traffic_light_pole_vertical", "y": 270},
+    "facing=west": {"model": "pl3x:traffic_light_pole_vertical", "y": 0},
+    "facing=north": {"model": "pl3x:traffic_light_pole_vertical", "y": 90},
+    "facing=east": {"model": "pl3x:traffic_light_pole_vertical", "y": 180}
+  }
+}

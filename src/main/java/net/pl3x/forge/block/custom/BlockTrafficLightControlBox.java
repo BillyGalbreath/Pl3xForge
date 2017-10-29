@@ -20,16 +20,17 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.block.BlockTileEntity;
-import net.pl3x.forge.tileentity.TileEntityTrafficLight;
+import net.pl3x.forge.tileentity.TileEntityTrafficLightControlBox;
 
 import javax.annotation.Nullable;
 
-public class BlockTrafficLight extends BlockTileEntity<TileEntityTrafficLight> {
-    public static final PropertyDirection FACING = BlockHorizontal.FACING;
-    public static final AxisAlignedBB AABB = new AxisAlignedBB(0.375D, 0.0D, 0.41D, 0.625D, 0.6905D, 0.59D);
+public class BlockTrafficLightControlBox extends BlockTileEntity<TileEntityTrafficLightControlBox> {
+    private static final PropertyDirection FACING = BlockHorizontal.FACING;
+    private static final AxisAlignedBB X_AXIS_AABB = new AxisAlignedBB(0D, 0D, 0.125D, 1D, 0.625D, 0.875D);
+    private static final AxisAlignedBB Z_AXIS_AABB = new AxisAlignedBB(0.125D, 0D, 0D, 0.875D, 0.625D, 1D);
 
-    public BlockTrafficLight() {
-        super(Material.IRON, "traffic_light");
+    public BlockTrafficLightControlBox() {
+        super(Material.ROCK, "traffic_light_control_box");
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.SOUTH));
         setHardness(1);
 
@@ -38,7 +39,7 @@ public class BlockTrafficLight extends BlockTileEntity<TileEntityTrafficLight> {
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return AABB;
+        return state.getValue(FACING).getAxis() == EnumFacing.Axis.X ? X_AXIS_AABB : Z_AXIS_AABB;
     }
 
     @Override
@@ -74,12 +75,6 @@ public class BlockTrafficLight extends BlockTileEntity<TileEntityTrafficLight> {
     }
 
     @Override
-    public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
-        TileEntityTrafficLight te = this.getTileEntity(world, pos);
-        return te != null ? te.getLightLevel() : 0;
-    }
-
-    @Override
     public EnumBlockRenderType getRenderType(IBlockState state) {
         return EnumBlockRenderType.MODEL;
     }
@@ -95,19 +90,8 @@ public class BlockTrafficLight extends BlockTileEntity<TileEntityTrafficLight> {
     }
 
     @Override
-    public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
-        return layer == BlockRenderLayer.SOLID;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean isTranslucent(IBlockState state) {
-        return false;
-    }
-
-    @Override
     public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-        return MapColor.YELLOW;
+        return MapColor.GRAY;
     }
 
     @Override
@@ -142,17 +126,17 @@ public class BlockTrafficLight extends BlockTileEntity<TileEntityTrafficLight> {
 
     @Override
     public boolean canPlaceTorchOnTop(IBlockState state, IBlockAccess world, BlockPos pos) {
-        return false;
+        return true;
     }
 
     @Override
-    public Class<TileEntityTrafficLight> getTileEntityClass() {
-        return TileEntityTrafficLight.class;
+    public Class<TileEntityTrafficLightControlBox> getTileEntityClass() {
+        return TileEntityTrafficLightControlBox.class;
     }
 
     @Nullable
     @Override
-    public TileEntityTrafficLight createTileEntity(World world, IBlockState state) {
-        return new TileEntityTrafficLight(state.getValue(FACING), 0.5, 0, 0.595);
+    public TileEntityTrafficLightControlBox createTileEntity(World world, IBlockState state) {
+        return new TileEntityTrafficLightControlBox();
     }
 }

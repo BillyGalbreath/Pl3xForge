@@ -24,12 +24,15 @@ import net.pl3x.forge.tileentity.TileEntityTrafficLight;
 
 import javax.annotation.Nullable;
 
-public class BlockTrafficLight extends BlockTileEntity<TileEntityTrafficLight> {
-    public static final PropertyDirection FACING = BlockHorizontal.FACING;
-    public static final AxisAlignedBB AABB = new AxisAlignedBB(0.375D, 0.0D, 0.41D, 0.625D, 0.6905D, 0.59D);
+public class BlockTrafficLightPoleHorizontal extends BlockTileEntity<TileEntityTrafficLight> {
+    private static final PropertyDirection FACING = BlockHorizontal.FACING;
+    private static final AxisAlignedBB AABB_NORTH = new AxisAlignedBB(0.41D, 0.14D, 0D, 0.75D, 0.83D, 1D);
+    private static final AxisAlignedBB AABB_SOUTH = new AxisAlignedBB(0.25D, 0.14D, 0D, 0.59D, 0.83D, 1D);
+    private static final AxisAlignedBB AABB_EAST = new AxisAlignedBB(0D, 0.14D, 0.41D, 1D, 0.83D, 0.75D);
+    private static final AxisAlignedBB AABB_WEST = new AxisAlignedBB(0D, 0.14D, 0.25D, 1D, 0.83D, 0.59D);
 
-    public BlockTrafficLight() {
-        super(Material.IRON, "traffic_light");
+    public BlockTrafficLightPoleHorizontal() {
+        super(Material.ROCK, "traffic_light_pole_horizontal");
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.SOUTH));
         setHardness(1);
 
@@ -38,7 +41,17 @@ public class BlockTrafficLight extends BlockTileEntity<TileEntityTrafficLight> {
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return AABB;
+        switch (state.getValue(FACING)) {
+            case NORTH:
+                return AABB_NORTH;
+            case WEST:
+                return AABB_WEST;
+            case EAST:
+                return AABB_EAST;
+            case SOUTH:
+            default:
+                return AABB_SOUTH;
+        }
     }
 
     @Override
@@ -89,6 +102,11 @@ public class BlockTrafficLight extends BlockTileEntity<TileEntityTrafficLight> {
     }
 
     @Override
+    public boolean isFullBlock(IBlockState state) {
+        return false;
+    }
+
+    @Override
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.SOLID;
@@ -107,7 +125,7 @@ public class BlockTrafficLight extends BlockTileEntity<TileEntityTrafficLight> {
 
     @Override
     public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-        return MapColor.YELLOW;
+        return MapColor.CLAY;
     }
 
     @Override
@@ -131,11 +149,6 @@ public class BlockTrafficLight extends BlockTileEntity<TileEntityTrafficLight> {
     }
 
     @Override
-    public boolean isFullBlock(IBlockState state) {
-        return false;
-    }
-
-    @Override
     public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
         return false;
     }
@@ -153,6 +166,6 @@ public class BlockTrafficLight extends BlockTileEntity<TileEntityTrafficLight> {
     @Nullable
     @Override
     public TileEntityTrafficLight createTileEntity(World world, IBlockState state) {
-        return new TileEntityTrafficLight(state.getValue(FACING), 0.5, 0, 0.595);
+        return new TileEntityTrafficLight(state.getValue(FACING), 0.5, 0.14, 0.7505);
     }
 }

@@ -8,52 +8,74 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.tileentity.TileEntityTrafficLight;
 import org.lwjgl.opengl.GL11;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SideOnly(Side.CLIENT)
 public class TileEntityTrafficLightRenderer extends TileEntitySpecialRenderer<TileEntityTrafficLight> {
-    private static final double TWICE_PI = Math.PI * 2;
-    private final static int sides = 20;
-    private final static double radius = 0.08;
+    private final static int SIDES = 20;
+    private final static List<Double> SIN_POINTS = new ArrayList<>();
+    private final static List<Double> COS_POINTS = new ArrayList<>();
+
+    public TileEntityTrafficLightRenderer() {
+        // calculate these once and reuse calculations
+        double radius = 0.08;
+        double radians = Math.toRadians(180);
+        double pi2 = Math.PI * 2;
+        for (int i = 0; i <= SIDES; i++) {
+            double angle = (pi2 * i / SIDES) + radians;
+            COS_POINTS.add(Math.cos(angle) * radius);
+            SIN_POINTS.add(Math.sin(angle) * radius);
+        }
+    }
 
     public void render(TileEntityTrafficLight te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+        if (!te.isLightOn()) {
+            return; // light is not on, do not draw
+        }
+
+        // setup GL crap
         GlStateManager.pushMatrix();
         GlStateManager.disableTexture2D();
         GlStateManager.disableLighting();
+
+        // make sure we are at brightest lighting possible
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240, 240);
 
+        // rotate at center of block
         GlStateManager.translate(x + 0.5, 0, z + 0.5);
         GlStateManager.rotate(te.rot, 0, 1, 0);
         GlStateManager.translate(-(x + 0.5), 0, -(z + 0.5));
 
-        x += TileEntityTrafficLight.ColorState.x;
-        y += te.colorState == null ? TileEntityTrafficLight.ColorState.RED.y : te.colorState.y;
-        z += TileEntityTrafficLight.ColorState.z;
+        // set light position
+        x += te.xOffset;
+        y += te.yOffset + (te.lightState == null ? TileEntityTrafficLight.LightState.RED.y : te.lightState.y);
+        z += te.zOffset;
 
-        if (te.isLightOn()) {
-            drawLight(x, y, z, te.colorState);
+        // draw the light
+        GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+        setColor(te.lightState);
+        for (int i = 0; i <= SIDES; i++) {
+            GL11.glVertex3d(x + COS_POINTS.get(i), y + SIN_POINTS.get(i), z);
         }
+        GL11.glEnd();
 
+        // clean up GL crap
         GlStateManager.enableLighting();
         GlStateManager.enableTexture2D();
         GlStateManager.popMatrix();
     }
 
-    private void drawLight(double x, double y, double z, TileEntityTrafficLight.ColorState colorState) {
-        GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-        setColor(colorState);
-        for (int i = 0; i <= sides; i++) {
-            double angle = (TWICE_PI * i / sides) + Math.toRadians(180);
-            GL11.glVertex3d(x + Math.cos(angle) * radius, y + Math.sin(angle) * radius, z);
-        }
-        GL11.glEnd();
-    }
-
-    private void setColor(TileEntityTrafficLight.ColorState colorState) {
-        if (colorState == null || colorState == TileEntityTrafficLight.ColorState.RED) {
-            GL11.glColor4f(1, 0, 0, 1); // red
-        } else if (colorState == TileEntityTrafficLight.ColorState.YELLOW) {
-            GL11.glColor4f(1, 1, 0, 1); // yellow
-        } else if (colorState == TileEntityTrafficLight.ColorState.GREEN) {
-            GL11.glColor4f(0, 1, 0, 1); // green
+    private void setColor(TileEntityTrafficLight.LightState colorState) {
+        switch (colorState != null ? colorState : TileEntityTrafficLight.LightState.RED) {
+            case RED:
+                GL11.glColor4f(1, 0, 0, 1);
+                break;
+            case YELLOW:
+                GL11.glColor4f(1, 1, 0, 1);
+                break;
+            case GREEN:
+                GL11.glColor4f(0, 1, 0, 1);
         }
     }
 }

@@ -124,8 +124,14 @@ tile.frosted_obsidian.name=Frosted Obsidian
 tile.lamp.name=Lamp
 tile.microwave.name=Microwave
 tile.ore_ruby.name=Ruby Ore
+tile.pole_angle.name=Pole Angle
+tile.pole_horizontal.name=Pole Horizontal
+tile.pole_vertical.name=Pole Vertical
 tile.shop.name=Shop
 tile.table.name=Table
+tile.traffic_light.name=Traffic Light
+tile.traffic_light_pole_horizontal.name=Traffic Light Pole Horizontal
+tile.traffic_light_pole_vertical.name=Traffic Light Pole Vertical
 
 # Enchantments
 enchantment.lavaWalker=Lava Walker

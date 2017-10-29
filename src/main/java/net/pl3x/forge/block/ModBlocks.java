@@ -11,11 +11,17 @@ import net.pl3x.forge.block.custom.BlockEnchantmentSplitter;
 import net.pl3x.forge.block.custom.BlockFrostedObsidian;
 import net.pl3x.forge.block.custom.BlockLamp;
 import net.pl3x.forge.block.custom.BlockMicrowave;
+import net.pl3x.forge.block.custom.BlockPoleAngle;
+import net.pl3x.forge.block.custom.BlockPoleHorizontal;
+import net.pl3x.forge.block.custom.BlockPoleVertical;
 import net.pl3x.forge.block.custom.BlockRuby;
 import net.pl3x.forge.block.custom.BlockRubyOre;
 import net.pl3x.forge.block.custom.BlockShop;
 import net.pl3x.forge.block.custom.BlockTable;
 import net.pl3x.forge.block.custom.BlockTrafficLight;
+import net.pl3x.forge.block.custom.BlockTrafficLightControlBox;
+import net.pl3x.forge.block.custom.BlockTrafficLightPoleHorizontal;
+import net.pl3x.forge.block.custom.BlockTrafficLightPoleVertical;
 import net.pl3x.forge.block.custom.curb.BlockCurb;
 import net.pl3x.forge.block.custom.curb.BlockCurbCorner;
 import net.pl3x.forge.block.custom.slab.BlockConcreteSlabDouble;
@@ -33,12 +39,20 @@ public class ModBlocks {
     public static final BlockFrostedObsidian FROSTED_OBSIDIAN = new BlockFrostedObsidian();
     public static final BlockEnchantmentSplitter ENCHANTMENT_SPLITTER = new BlockEnchantmentSplitter();
     public static final BlockShop SHOP = new BlockShop();
-    public static final BlockTrafficLight TRAFFIC_LIGHT = new BlockTrafficLight();
     public static final BlockDepositBox DEPOSIT_BOX = new BlockDepositBox();
     public static final BlockMicrowave MICROWAVE = new BlockMicrowave();
     public static final BlockLamp LAMP = new BlockLamp();
     public static final BlockTable TABLE = new BlockTable();
     public static final BlockChristmasTree CHRISTMAS_TREE = new BlockChristmasTree();
+
+    public static final BlockTrafficLight TRAFFIC_LIGHT = new BlockTrafficLight();
+    public static final BlockTrafficLightPoleVertical TRAFFIC_LIGHT_POLE_VERTICAL = new BlockTrafficLightPoleVertical();
+    public static final BlockTrafficLightPoleHorizontal TRAFFIC_LIGHT_POLE_HORIZONTAL = new BlockTrafficLightPoleHorizontal();
+    public static final BlockTrafficLightControlBox TRAFFIC_LIGHT_CONTROL_BOX = new BlockTrafficLightControlBox();
+
+    public static final BlockPoleAngle POLE_ANGLE = new BlockPoleAngle();
+    public static final BlockPoleVertical POLE_VERTICAL = new BlockPoleVertical();
+    public static final BlockPoleHorizontal POLE_HORIZONTAL = new BlockPoleHorizontal();
 
     public static final BlockConcreteSlabHalf CONCRETE_SLAB_BLACK = new BlockConcreteSlabHalf(EnumDyeColor.BLACK);
     public static final BlockConcreteSlabDouble CONCRETE_SLAB_BLACK_DOUBLE = new BlockConcreteSlabDouble(EnumDyeColor.BLACK);
@@ -123,12 +137,20 @@ public class ModBlocks {
                 FROSTED_OBSIDIAN,
                 ENCHANTMENT_SPLITTER,
                 SHOP,
-                TRAFFIC_LIGHT,
                 DEPOSIT_BOX,
                 MICROWAVE,
                 LAMP,
                 TABLE,
                 CHRISTMAS_TREE,
+
+                TRAFFIC_LIGHT,
+                TRAFFIC_LIGHT_POLE_VERTICAL,
+                TRAFFIC_LIGHT_POLE_HORIZONTAL,
+                TRAFFIC_LIGHT_CONTROL_BOX,
+
+                POLE_ANGLE,
+                POLE_VERTICAL,
+                POLE_HORIZONTAL,
 
                 CONCRETE_SLAB_BLACK,
                 CONCRETE_SLAB_BLACK_DOUBLE,
@@ -210,8 +232,7 @@ public class ModBlocks {
         GameRegistry.registerTileEntity(ENCHANTMENT_SPLITTER.getTileEntityClass(), ENCHANTMENT_SPLITTER.getRegistryName().toString());
         GameRegistry.registerTileEntity(SHOP.getTileEntityClass(), SHOP.getRegistryName().toString());
         GameRegistry.registerTileEntity(TRAFFIC_LIGHT.getTileEntityClass(), TRAFFIC_LIGHT.getRegistryName().toString());
-
-
+        GameRegistry.registerTileEntity(TRAFFIC_LIGHT_CONTROL_BOX.getTileEntityClass(), TRAFFIC_LIGHT_CONTROL_BOX.getRegistryName().toString());
     }
 
     public static void registerItemBlocks(IForgeRegistry<Item> registry) {
@@ -221,12 +242,20 @@ public class ModBlocks {
                 FROSTED_OBSIDIAN.createItemBlock(),
                 ENCHANTMENT_SPLITTER.createItemBlock(),
                 SHOP.createItemBlock(),
-                TRAFFIC_LIGHT.createItemBlock(),
                 DEPOSIT_BOX.createItemBlock(),
                 MICROWAVE.createItemBlock(),
                 LAMP.createItemBlock(),
                 TABLE.createItemBlock(),
                 CHRISTMAS_TREE.createItemBlock(),
+
+                TRAFFIC_LIGHT.createItemBlock(),
+                TRAFFIC_LIGHT_POLE_VERTICAL.createItemBlock(),
+                TRAFFIC_LIGHT_POLE_HORIZONTAL.createItemBlock(),
+                TRAFFIC_LIGHT_CONTROL_BOX.createItemBlock(),
+
+                POLE_ANGLE.createItemBlock(),
+                POLE_VERTICAL.createItemBlock(),
+                POLE_HORIZONTAL.createItemBlock(),
 
                 CONCRETE_SLAB_BLACK.createItemBlock(),
                 CONCRETE_SLAB_BLUE.createItemBlock(),
@@ -293,12 +322,20 @@ public class ModBlocks {
         FROSTED_OBSIDIAN.registerItemModel(Item.getItemFromBlock(FROSTED_OBSIDIAN));
         ENCHANTMENT_SPLITTER.registerItemModel(Item.getItemFromBlock(ENCHANTMENT_SPLITTER));
         SHOP.registerItemModel(Item.getItemFromBlock(SHOP));
-        TRAFFIC_LIGHT.registerItemModel(Item.getItemFromBlock(TRAFFIC_LIGHT));
         DEPOSIT_BOX.registerItemModel(Item.getItemFromBlock(DEPOSIT_BOX));
         MICROWAVE.registerItemModel(Item.getItemFromBlock(MICROWAVE));
         LAMP.registerItemModel(Item.getItemFromBlock(LAMP));
         TABLE.registerItemModel(Item.getItemFromBlock(TABLE));
         CHRISTMAS_TREE.registerItemModel(Item.getItemFromBlock(CHRISTMAS_TREE));
+
+        TRAFFIC_LIGHT.registerItemModel(Item.getItemFromBlock(TRAFFIC_LIGHT));
+        TRAFFIC_LIGHT_POLE_VERTICAL.registerItemModel(Item.getItemFromBlock(TRAFFIC_LIGHT_POLE_VERTICAL));
+        TRAFFIC_LIGHT_POLE_HORIZONTAL.registerItemModel(Item.getItemFromBlock(TRAFFIC_LIGHT_POLE_HORIZONTAL));
+        TRAFFIC_LIGHT_CONTROL_BOX.registerItemModel(Item.getItemFromBlock(TRAFFIC_LIGHT_CONTROL_BOX));
+
+        POLE_ANGLE.registerItemModel(Item.getItemFromBlock(POLE_ANGLE));
+        POLE_VERTICAL.registerItemModel(Item.getItemFromBlock(POLE_VERTICAL));
+        POLE_HORIZONTAL.registerItemModel(Item.getItemFromBlock(POLE_HORIZONTAL));
 
         CONCRETE_SLAB_BLACK.registerItemModel(Item.getItemFromBlock(CONCRETE_SLAB_BLACK));
         CONCRETE_SLAB_BLACK_DOUBLE.registerItemModel(Item.getItemFromBlock(CONCRETE_SLAB_BLACK_DOUBLE));

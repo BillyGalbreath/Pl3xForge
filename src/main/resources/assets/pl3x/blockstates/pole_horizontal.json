@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "normal": {"model": "pl3x:pole_horizontal"},
+    "facing=south": {"model": "pl3x:pole_horizontal", "y": 270},
+    "facing=west": {"model": "pl3x:pole_horizontal", "y": 0},
+    "facing=north": {"model": "pl3x:pole_horizontal", "y": 90},
+    "facing=east": {"model": "pl3x:pole_horizontal", "y": 180}
+  }
+}
