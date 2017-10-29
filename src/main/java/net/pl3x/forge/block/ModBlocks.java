@@ -11,9 +11,7 @@ import net.pl3x.forge.block.custom.BlockEnchantmentSplitter;
 import net.pl3x.forge.block.custom.BlockFrostedObsidian;
 import net.pl3x.forge.block.custom.BlockLamp;
 import net.pl3x.forge.block.custom.BlockMicrowave;
-import net.pl3x.forge.block.custom.BlockPoleAngle;
-import net.pl3x.forge.block.custom.BlockPoleHorizontal;
-import net.pl3x.forge.block.custom.BlockPoleVertical;
+import net.pl3x.forge.block.custom.BlockPole;
 import net.pl3x.forge.block.custom.BlockRuby;
 import net.pl3x.forge.block.custom.BlockRubyOre;
 import net.pl3x.forge.block.custom.BlockShop;
@@ -50,9 +48,7 @@ public class ModBlocks {
     public static final BlockTrafficLightPoleHorizontal TRAFFIC_LIGHT_POLE_HORIZONTAL = new BlockTrafficLightPoleHorizontal();
     public static final BlockTrafficLightControlBox TRAFFIC_LIGHT_CONTROL_BOX = new BlockTrafficLightControlBox();
 
-    public static final BlockPoleAngle POLE_ANGLE = new BlockPoleAngle();
-    public static final BlockPoleVertical POLE_VERTICAL = new BlockPoleVertical();
-    public static final BlockPoleHorizontal POLE_HORIZONTAL = new BlockPoleHorizontal();
+    public static final BlockPole METAL_POLE = new BlockPole("metal_pole");
 
     public static final BlockConcreteSlabHalf CONCRETE_SLAB_BLACK = new BlockConcreteSlabHalf(EnumDyeColor.BLACK);
     public static final BlockConcreteSlabDouble CONCRETE_SLAB_BLACK_DOUBLE = new BlockConcreteSlabDouble(EnumDyeColor.BLACK);
@@ -148,9 +144,7 @@ public class ModBlocks {
                 TRAFFIC_LIGHT_POLE_HORIZONTAL,
                 TRAFFIC_LIGHT_CONTROL_BOX,
 
-                POLE_ANGLE,
-                POLE_VERTICAL,
-                POLE_HORIZONTAL,
+                METAL_POLE,
 
                 CONCRETE_SLAB_BLACK,
                 CONCRETE_SLAB_BLACK_DOUBLE,
@@ -253,9 +247,7 @@ public class ModBlocks {
                 TRAFFIC_LIGHT_POLE_HORIZONTAL.createItemBlock(),
                 TRAFFIC_LIGHT_CONTROL_BOX.createItemBlock(),
 
-                POLE_ANGLE.createItemBlock(),
-                POLE_VERTICAL.createItemBlock(),
-                POLE_HORIZONTAL.createItemBlock(),
+                METAL_POLE.createItemBlock(),
 
                 CONCRETE_SLAB_BLACK.createItemBlock(),
                 CONCRETE_SLAB_BLUE.createItemBlock(),
@@ -333,9 +325,7 @@ public class ModBlocks {
         TRAFFIC_LIGHT_POLE_HORIZONTAL.registerItemModel(Item.getItemFromBlock(TRAFFIC_LIGHT_POLE_HORIZONTAL));
         TRAFFIC_LIGHT_CONTROL_BOX.registerItemModel(Item.getItemFromBlock(TRAFFIC_LIGHT_CONTROL_BOX));
 
-        POLE_ANGLE.registerItemModel(Item.getItemFromBlock(POLE_ANGLE));
-        POLE_VERTICAL.registerItemModel(Item.getItemFromBlock(POLE_VERTICAL));
-        POLE_HORIZONTAL.registerItemModel(Item.getItemFromBlock(POLE_HORIZONTAL));
+        METAL_POLE.registerItemModel(Item.getItemFromBlock(METAL_POLE));
 
         CONCRETE_SLAB_BLACK.registerItemModel(Item.getItemFromBlock(CONCRETE_SLAB_BLACK));
         CONCRETE_SLAB_BLACK_DOUBLE.registerItemModel(Item.getItemFromBlock(CONCRETE_SLAB_BLACK_DOUBLE));

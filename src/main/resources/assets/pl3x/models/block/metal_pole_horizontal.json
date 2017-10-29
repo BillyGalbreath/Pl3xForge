@@ -1,0 +1,6 @@
+{
+  "parent": "pl3x:block/pole_horizontal",
+  "textures": {
+    "texture": "blocks/concrete_powder_silver"
+  }
+}

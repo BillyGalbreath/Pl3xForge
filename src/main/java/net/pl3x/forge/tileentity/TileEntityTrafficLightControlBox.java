@@ -9,12 +9,14 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.pl3x.forge.network.PacketHandler;
 import net.pl3x.forge.network.TrafficLightControlBoxUpdatePacket;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class TileEntityTrafficLightControlBox extends TileEntity implements ITickable {
     public int tick = 0;
     public IntersectionState intersectionState = IntersectionState.EW_GREEN_NS_RED;
 
     public TileEntityTrafficLightControlBox() {
-        //
+        tick = ThreadLocalRandom.current().nextInt(IntersectionState.EW_GREEN_NS_RED.ticks);
     }
 
     @Override

@@ -1,0 +1,29 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "OR": [
+          { "north": "false", "south": "false", "east": "false", "west": "false" },
+          { "vertical": "true" }
+        ]
+      },
+      "apply": { "model": "pl3x:metal_pole_vertical" }
+    },
+    {
+      "when": { "north": "true" },
+      "apply": { "model": "pl3x:metal_pole_horizontal", "y": 90, "uvlock": true }
+    },
+    {
+      "when": { "east": "true" },
+      "apply": { "model": "pl3x:metal_pole_horizontal", "y": 180, "uvlock": true }
+    },
+    {
+      "when": { "south": "true" },
+      "apply": { "model": "pl3x:metal_pole_horizontal", "y": 270, "uvlock": true }
+    },
+    {
+      "when": { "west": "true" },
+      "apply": { "model": "pl3x:metal_pole_horizontal", "y": 0, "uvlock": true }
+    }
+  ]
+}

@@ -65,6 +65,13 @@ public class TileEntityTrafficLight extends TileEntity implements ITickable {
         return isLightOn() ? 5 : 0;
     }
 
+    public void resetLight() {
+        lightState = null;
+        searchTick = 0;
+        blinkTick = 0;
+        blinkState = facing == EnumFacing.NORTH || facing == EnumFacing.SOUTH;
+    }
+
     public void update() {
         // check control box is still there
         if (controlBox != null) {
@@ -77,14 +84,15 @@ public class TileEntityTrafficLight extends TileEntity implements ITickable {
         // if no control box set, look for one
         if (controlBox == null) {
             if (lightState != null) {
-                lightState = null;
+                resetLight();
             }
             searchTick++;
             if (searchTick > 20) {
                 searchTick = 0;
-                for (int x = pos.getX() - 25; x <= pos.getX() + 25; x++) {
-                    for (int y = pos.getY() - 25; y <= pos.getY() + 25; y++) {
-                        for (int z = pos.getZ() - 25; z <= pos.getZ() + 25; z++) {
+                int radius = 10;
+                for (int x = pos.getX() - radius; x <= pos.getX() + radius; x++) {
+                    for (int y = pos.getY() - radius; y <= pos.getY() + radius; y++) {
+                        for (int z = pos.getZ() - radius; z <= pos.getZ() + radius; z++) {
                             TileEntity tileEntity = world.getTileEntity(new BlockPos(x, y, z));
                             if (tileEntity instanceof TileEntityTrafficLightControlBox) {
                                 controlBox = (TileEntityTrafficLightControlBox) tileEntity;
