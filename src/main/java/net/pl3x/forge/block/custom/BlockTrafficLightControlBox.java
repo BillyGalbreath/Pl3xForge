@@ -9,25 +9,32 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.pl3x.forge.ChatColor;
+import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.block.BlockTileEntity;
+import net.pl3x.forge.gui.ModGuiHandler;
 import net.pl3x.forge.tileentity.TileEntityTrafficLightControlBox;
 
 import javax.annotation.Nullable;
 
 public class BlockTrafficLightControlBox extends BlockTileEntity<TileEntityTrafficLightControlBox> {
     private static final PropertyDirection FACING = BlockHorizontal.FACING;
-    private static final AxisAlignedBB X_AXIS_AABB = new AxisAlignedBB(0D, 0D, 0.125D, 1D, 0.625D, 0.875D);
-    private static final AxisAlignedBB Z_AXIS_AABB = new AxisAlignedBB(0.125D, 0D, 0D, 0.875D, 0.625D, 1D);
+    private static final AxisAlignedBB X_AXIS_AABB = new AxisAlignedBB(0.0625D, 0D, 0.25D, 0.9375D, 1D, 0.75D);
+    private static final AxisAlignedBB Z_AXIS_AABB = new AxisAlignedBB(0.25D, 0D, 0.0625D, 0.75D, 1D, 0.9375D);
 
     public BlockTrafficLightControlBox() {
         super(Material.ROCK, "traffic_light_control_box");
@@ -130,6 +137,39 @@ public class BlockTrafficLightControlBox extends BlockTileEntity<TileEntityTraff
     }
 
     @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if (!worldIn.isRemote) {
+            TileEntityTrafficLightControlBox te = getTileEntity(worldIn, pos);
+            if (te != null && te.isOwner(playerIn)) {
+                playerIn.openGui(Pl3x.instance, ModGuiHandler.TRAFFIC_LIGHT_CONTROL_BOX, worldIn, pos.getX(), pos.getY(), pos.getZ());
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+        TileEntityTrafficLightControlBox te = getTileEntity(worldIn, pos);
+        if (te != null) {
+            te.setOwner(placer.getUniqueID());
+        }
+    }
+
+    @Override
+    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
+        if (!world.isRemote) {
+            TileEntityTrafficLightControlBox te = getTileEntity(world, pos);
+            if (te != null) {
+                if (!te.isOwner(player)) {
+                    player.sendMessage(new TextComponentString(ChatColor.colorize("&4You cannot break this block")));
+                    return false;
+                }
+            }
+        }
+        return super.removedByPlayer(state, world, pos, player, willHarvest);
+    }
+
+    @Override
     public Class<TileEntityTrafficLightControlBox> getTileEntityClass() {
         return TileEntityTrafficLightControlBox.class;
     }
@@ -138,5 +178,12 @@ public class BlockTrafficLightControlBox extends BlockTileEntity<TileEntityTraff
     @Override
     public TileEntityTrafficLightControlBox createTileEntity(World world, IBlockState state) {
         return new TileEntityTrafficLightControlBox();
+    }
+
+    @Override
+    public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param) {
+        super.eventReceived(state, worldIn, pos, id, param);
+        TileEntityTrafficLightControlBox te = getTileEntity(worldIn, pos);
+        return te != null && te.receiveClientEvent(id, param);
     }
 }

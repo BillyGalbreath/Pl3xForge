@@ -1,6 +1,8 @@
 package net.pl3x.forge.tileentity;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
@@ -8,10 +10,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.pl3x.forge.network.PacketHandler;
 import net.pl3x.forge.network.TrafficLightControlBoxUpdatePacket;
+import net.pl3x.forge.util.PlayerUtil;
 
+import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class TileEntityTrafficLightControlBox extends TileEntity implements ITickable {
+    public UUID owner;
     public int tick = 0;
     public IntersectionState intersectionState = IntersectionState.EW_GREEN_NS_RED;
 
@@ -44,6 +49,33 @@ public class TileEntityTrafficLightControlBox extends TileEntity implements ITic
     @Override
     public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newSate) {
         return oldState.getBlock() != newSate.getBlock();
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+        compound.setString("owner", owner == null ? "" : owner.toString());
+        return super.writeToNBT(compound);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+        try {
+            owner = UUID.fromString(compound.getString("owner"));
+        } catch (IllegalArgumentException ignore) {
+        }
+        super.readFromNBT(compound);
+    }
+
+    public void setOwner(UUID uuid) {
+        this.owner = uuid;
+    }
+
+    public UUID getOwner() {
+        return owner;
+    }
+
+    public boolean isOwner(EntityPlayer player) {
+        return player.getUniqueID().equals(owner) || PlayerUtil.isOp(player);
     }
 
     public enum IntersectionState {

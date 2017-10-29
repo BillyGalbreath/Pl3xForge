@@ -9,6 +9,7 @@ import net.pl3x.forge.container.ContainerBanker;
 import net.pl3x.forge.container.ContainerEnchantmentSplitter;
 import net.pl3x.forge.container.ContainerShopCustomer;
 import net.pl3x.forge.container.ContainerShopOwner;
+import net.pl3x.forge.container.ContainerTrafficLightControlBox;
 import net.pl3x.forge.gui.banker.GuiBanker;
 import net.pl3x.forge.gui.banker.GuiBankerAction;
 import net.pl3x.forge.gui.shop.GuiShopCustomer;
@@ -17,6 +18,7 @@ import net.pl3x.forge.gui.shop.GuiShopOwnerDisplay;
 import net.pl3x.forge.gui.shop.GuiShopOwnerFunds;
 import net.pl3x.forge.network.BankPacket;
 import net.pl3x.forge.tileentity.TileEntityShop;
+import net.pl3x.forge.tileentity.TileEntityTrafficLightControlBox;
 
 public class ModGuiHandler implements IGuiHandler {
     public static final int ENCHANTMENT_SPLITTER = 0;
@@ -29,6 +31,7 @@ public class ModGuiHandler implements IGuiHandler {
     public static final int SHOP_OWNER_DISPLAY = 7;
     public static final int SHOP_OWNER_FUNDS = 8;
     public static final int SHOP_CUSTOMER = 9;
+    public static final int TRAFFIC_LIGHT_CONTROL_BOX = 10;
 
     @Override
     public Container getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
@@ -45,6 +48,8 @@ public class ModGuiHandler implements IGuiHandler {
                 return new ContainerShopOwner(player.inventory, (TileEntityShop) world.getTileEntity(new BlockPos(x, y, z)), false);
             case SHOP_CUSTOMER:
                 return new ContainerShopCustomer(player.inventory, (TileEntityShop) world.getTileEntity(new BlockPos(x, y, z)));
+            case TRAFFIC_LIGHT_CONTROL_BOX:
+                return new ContainerTrafficLightControlBox(player, (TileEntityTrafficLightControlBox) world.getTileEntity(new BlockPos(x, y, z)));
             default:
                 return null;
         }
@@ -73,6 +78,8 @@ public class ModGuiHandler implements IGuiHandler {
                 return new GuiShopOwnerFunds(getServerGuiElement(ID, player, world, x, y, z), player.inventory);
             case SHOP_CUSTOMER:
                 return new GuiShopCustomer(getServerGuiElement(ID, player, world, x, y, z), player.inventory);
+            case TRAFFIC_LIGHT_CONTROL_BOX:
+                return new GuiTrafficLightControlBox(getServerGuiElement(ID, player, world, x, y, z), player);
             default:
                 return null;
         }
