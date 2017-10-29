@@ -14,6 +14,7 @@ public class TileEntityEnchantmentSplitterRenderer extends TileEntitySpecialRend
     private static final ResourceLocation TEXTURE_BOOK = new ResourceLocation("textures/entity/enchanting_table_book.png");
     private final ModelBook modelBook = new ModelBook();
 
+    @Override
     public void render(TileEntityEnchantmentSplitter te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
         GlStateManager.pushMatrix();
         GlStateManager.translate((float) x + 0.5F, (float) y + 0.75F, (float) z + 0.5F);

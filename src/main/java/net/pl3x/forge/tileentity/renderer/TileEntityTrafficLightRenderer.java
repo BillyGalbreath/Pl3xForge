@@ -29,6 +29,7 @@ public class TileEntityTrafficLightRenderer extends TileEntitySpecialRenderer<Ti
         }
     }
 
+    @Override
     public void render(TileEntityTrafficLight te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
         if (!te.isLightOn()) {
             return; // light is not on, do not draw

@@ -112,6 +112,7 @@ public class TileEntityShop extends TileEntity implements ITickable, IInteractio
         }
     }
 
+    @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         compound.setString("owner", owner == null ? "" : owner.toString());
         compound.setTag("inventory", inventory.serializeNBT());
@@ -128,6 +129,7 @@ public class TileEntityShop extends TileEntity implements ITickable, IInteractio
         return super.writeToNBT(compound);
     }
 
+    @Override
     public void readFromNBT(NBTTagCompound compound) {
         try {
             owner = UUID.fromString(compound.getString("owner"));
@@ -160,25 +162,31 @@ public class TileEntityShop extends TileEntity implements ITickable, IInteractio
         return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? (T) inventory : super.getCapability(capability, facing);
     }
 
+    @Override
     public void update() {
     }
 
+    @Override
     public String getName() {
         return "tile.shop";
     }
 
+    @Override
     public boolean hasCustomName() {
         return false;
     }
 
+    @Override
     public ITextComponent getDisplayName() {
         return new TextComponentTranslation(getName());
     }
 
+    @Override
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
         return new ContainerShopOwner(playerInventory, this, true);
     }
 
+    @Override
     public String getGuiID() {
         return Pl3x.modId + ":" + "shop";
     }

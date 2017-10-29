@@ -30,6 +30,7 @@ public class TileEntityEnchantmentSplitter extends TileEntity implements ITickab
     public float tRot;
     private String customName;
 
+    @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
 
@@ -40,6 +41,7 @@ public class TileEntityEnchantmentSplitter extends TileEntity implements ITickab
         return compound;
     }
 
+    @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
 
@@ -48,6 +50,7 @@ public class TileEntityEnchantmentSplitter extends TileEntity implements ITickab
         }
     }
 
+    @Override
     public void update() {
         this.bookSpreadPrev = this.bookSpread;
         this.bookRotationPrev = this.bookRotation;
@@ -113,10 +116,12 @@ public class TileEntityEnchantmentSplitter extends TileEntity implements ITickab
         this.pageFlip += this.flipA;
     }
 
+    @Override
     public String getName() {
         return this.hasCustomName() ? this.customName : "tile.enchantment_splitter";
     }
 
+    @Override
     public boolean hasCustomName() {
         return this.customName != null && !this.customName.isEmpty();
     }
@@ -125,14 +130,17 @@ public class TileEntityEnchantmentSplitter extends TileEntity implements ITickab
         this.customName = customNameIn;
     }
 
+    @Override
     public ITextComponent getDisplayName() {
         return this.hasCustomName() ? new TextComponentString(this.getName()) : new TextComponentTranslation(this.getName());
     }
 
+    @Override
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
         return new ContainerEnchantmentSplitter(playerInventory, this.world, this.pos);
     }
 
+    @Override
     public String getGuiID() {
         return Pl3x.modId + ":" + "enchantment_splitter";
     }

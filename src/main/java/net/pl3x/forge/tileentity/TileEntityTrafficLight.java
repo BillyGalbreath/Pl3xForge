@@ -72,6 +72,7 @@ public class TileEntityTrafficLight extends TileEntity implements ITickable {
         blinkState = facing == EnumFacing.NORTH || facing == EnumFacing.SOUTH;
     }
 
+    @Override
     public void update() {
         // check control box is still there
         if (controlBox != null) {
