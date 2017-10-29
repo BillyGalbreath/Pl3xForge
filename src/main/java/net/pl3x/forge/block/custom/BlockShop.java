@@ -14,7 +14,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -162,9 +161,9 @@ public class BlockShop extends BlockTileEntity<TileEntityShop> {
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (!worldIn.isRemote) {
-            TileEntity te = worldIn.getTileEntity(pos);
-            if (te instanceof TileEntityShop) {
-                if (playerIn.isSneaking() || !((TileEntityShop) te).isOwner(playerIn)) {
+            TileEntityShop te = getTileEntity(worldIn, pos);
+            if (te != null) {
+                if (playerIn.isSneaking() || !te.isOwner(playerIn)) {
                     playerIn.openGui(Pl3x.instance, ModGuiHandler.SHOP_CUSTOMER, worldIn, pos.getX(), pos.getY(), pos.getZ());
                 } else {
                     playerIn.openGui(Pl3x.instance, ModGuiHandler.SHOP_OWNER, worldIn, pos.getX(), pos.getY(), pos.getZ());
@@ -176,16 +175,16 @@ public class BlockShop extends BlockTileEntity<TileEntityShop> {
 
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-        TileEntity te = worldIn.getTileEntity(pos);
-        if (te instanceof TileEntityShop) {
-            ItemStackHandler inventory = ((TileEntityShop) te).inventory;
+        TileEntityShop te = getTileEntity(worldIn, pos);
+        if (te != null) {
+            ItemStackHandler inventory = te.inventory;
             for (int i = 0; i < inventory.getSlots(); ++i) {
                 ItemStack stack = inventory.getStackInSlot(i);
                 if (!stack.isEmpty()) {
                     InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), stack);
                 }
             }
-            for (int i = 0; i < ((TileEntityShop) te).coins; i++) {
+            for (int i = 0; i < te.coins; i++) {
                 InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), ModItems.COIN.getDefaultInstance());
             }
         }
@@ -194,18 +193,18 @@ public class BlockShop extends BlockTileEntity<TileEntityShop> {
 
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        TileEntity te = worldIn.getTileEntity(pos);
-        if (te instanceof TileEntityShop) {
-            ((TileEntityShop) te).setOwner(placer.getUniqueID());
+        TileEntityShop te = getTileEntity(worldIn, pos);
+        if (te != null) {
+            te.setOwner(placer.getUniqueID());
         }
     }
 
     @Override
     public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
         if (!world.isRemote) {
-            TileEntity te = world.getTileEntity(pos);
-            if (te instanceof TileEntityShop) {
-                if (!((TileEntityShop) te).isOwner(player)) {
+            TileEntityShop te = getTileEntity(world, pos);
+            if (te != null) {
+                if (!te.isOwner(player)) {
                     player.sendMessage(new TextComponentString(ChatColor.colorize("&4You cannot break this shop")));
                     return false;
                 }
@@ -233,7 +232,7 @@ public class BlockShop extends BlockTileEntity<TileEntityShop> {
     @Override
     public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param) {
         super.eventReceived(state, worldIn, pos, id, param);
-        TileEntity tileentity = worldIn.getTileEntity(pos);
-        return tileentity != null && tileentity.receiveClientEvent(id, param);
+        TileEntityShop te = getTileEntity(worldIn, pos);
+        return te != null && te.receiveClientEvent(id, param);
     }
 }

@@ -70,10 +70,9 @@ public class BlockEnchantmentSplitter extends BlockTileEntity<TileEntityEnchantm
         super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
 
         if (stack.hasDisplayName()) {
-            TileEntity tileentity = worldIn.getTileEntity(pos);
-
-            if (tileentity instanceof TileEntityEnchantmentSplitter) {
-                ((TileEntityEnchantmentSplitter) tileentity).setCustomName(stack.getDisplayName());
+            TileEntityEnchantmentSplitter te = getTileEntity(worldIn, pos);
+            if (te != null) {
+                te.setCustomName(stack.getDisplayName());
             }
         }
     }
@@ -120,7 +119,7 @@ public class BlockEnchantmentSplitter extends BlockTileEntity<TileEntityEnchantm
 
     public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param) {
         super.eventReceived(state, worldIn, pos, id, param);
-        TileEntity tileentity = worldIn.getTileEntity(pos);
-        return tileentity != null && tileentity.receiveClientEvent(id, param);
+        TileEntityEnchantmentSplitter te = getTileEntity(worldIn, pos);
+        return te != null && te.receiveClientEvent(id, param);
     }
 }
