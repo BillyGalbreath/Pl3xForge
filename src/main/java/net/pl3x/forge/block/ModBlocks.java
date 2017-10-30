@@ -18,8 +18,6 @@ import net.pl3x.forge.block.custom.BlockShop;
 import net.pl3x.forge.block.custom.BlockTable;
 import net.pl3x.forge.block.custom.BlockTrafficLight;
 import net.pl3x.forge.block.custom.BlockTrafficLightControlBox;
-import net.pl3x.forge.block.custom.BlockTrafficLightPoleHorizontal;
-import net.pl3x.forge.block.custom.BlockTrafficLightPoleVertical;
 import net.pl3x.forge.block.custom.curb.BlockCurb;
 import net.pl3x.forge.block.custom.curb.BlockCurbCorner;
 import net.pl3x.forge.block.custom.slab.BlockConcreteSlabDouble;
@@ -44,8 +42,6 @@ public class ModBlocks {
     public static final BlockChristmasTree CHRISTMAS_TREE = new BlockChristmasTree();
 
     public static final BlockTrafficLight TRAFFIC_LIGHT = new BlockTrafficLight();
-    public static final BlockTrafficLightPoleVertical TRAFFIC_LIGHT_POLE_VERTICAL = new BlockTrafficLightPoleVertical();
-    public static final BlockTrafficLightPoleHorizontal TRAFFIC_LIGHT_POLE_HORIZONTAL = new BlockTrafficLightPoleHorizontal();
     public static final BlockTrafficLightControlBox TRAFFIC_LIGHT_CONTROL_BOX = new BlockTrafficLightControlBox();
 
     public static final BlockPole METAL_POLE = new BlockPole("metal_pole");
@@ -140,8 +136,6 @@ public class ModBlocks {
                 CHRISTMAS_TREE,
 
                 TRAFFIC_LIGHT,
-                TRAFFIC_LIGHT_POLE_VERTICAL,
-                TRAFFIC_LIGHT_POLE_HORIZONTAL,
                 TRAFFIC_LIGHT_CONTROL_BOX,
 
                 METAL_POLE,
@@ -243,8 +237,6 @@ public class ModBlocks {
                 CHRISTMAS_TREE.createItemBlock(),
 
                 TRAFFIC_LIGHT.createItemBlock(),
-                TRAFFIC_LIGHT_POLE_VERTICAL.createItemBlock(),
-                TRAFFIC_LIGHT_POLE_HORIZONTAL.createItemBlock(),
                 TRAFFIC_LIGHT_CONTROL_BOX.createItemBlock(),
 
                 METAL_POLE.createItemBlock(),
@@ -321,8 +313,6 @@ public class ModBlocks {
         CHRISTMAS_TREE.registerItemModel(Item.getItemFromBlock(CHRISTMAS_TREE));
 
         TRAFFIC_LIGHT.registerItemModel(Item.getItemFromBlock(TRAFFIC_LIGHT));
-        TRAFFIC_LIGHT_POLE_VERTICAL.registerItemModel(Item.getItemFromBlock(TRAFFIC_LIGHT_POLE_VERTICAL));
-        TRAFFIC_LIGHT_POLE_HORIZONTAL.registerItemModel(Item.getItemFromBlock(TRAFFIC_LIGHT_POLE_HORIZONTAL));
         TRAFFIC_LIGHT_CONTROL_BOX.registerItemModel(Item.getItemFromBlock(TRAFFIC_LIGHT_CONTROL_BOX));
 
         METAL_POLE.registerItemModel(Item.getItemFromBlock(METAL_POLE));

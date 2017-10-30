@@ -19,6 +19,13 @@ public class GL {
         GL11.glEnd();
     }
 
+    public static void drawLine(int x1, int y1, int x2, int y2, int color) {
+        drawLine(x1, y1, 0, x2, y2, 0,
+                ((color >> 16) & 0xFF) / 255F,
+                ((color >> 8) & 0xFF) / 255F,
+                (color & 0xFF) / 255F);
+    }
+
     public static void drawSqaure(double x1, double y1, double z1, double x2, double y2, double z2, Color c) {
         drawSquare(x1, y1, z1, x2, y2, z2, c.getRed() / 255, c.getGreen() / 255, c.getBlue() / 255, c.getAlpha() / 255);
     }

@@ -4,6 +4,21 @@
     "facing=south": {"model": "pl3x:traffic_light", "y": 270},
     "facing=west": {"model": "pl3x:traffic_light", "y": 0},
     "facing=north": {"model": "pl3x:traffic_light", "y": 90},
-    "facing=east": {"model": "pl3x:traffic_light", "y": 180}
+    "facing=east": {"model": "pl3x:traffic_light", "y": 180},
+
+    "facing=south,pole=none": {"model": "pl3x:traffic_light", "y": 270},
+    "facing=west,pole=none": {"model": "pl3x:traffic_light", "y": 0},
+    "facing=north,pole=none": {"model": "pl3x:traffic_light", "y": 90},
+    "facing=east,pole=none": {"model": "pl3x:traffic_light", "y": 180},
+
+    "facing=south,pole=vertical": {"model": "pl3x:traffic_light_pole_vertical", "y": 270},
+    "facing=west,pole=vertical": {"model": "pl3x:traffic_light_pole_vertical", "y": 0},
+    "facing=north,pole=vertical": {"model": "pl3x:traffic_light_pole_vertical", "y": 90},
+    "facing=east,pole=vertical": {"model": "pl3x:traffic_light_pole_vertical", "y": 180},
+
+    "facing=south,pole=horizontal": {"model": "pl3x:traffic_light_pole_horizontal", "y": 270},
+    "facing=west,pole=horizontal": {"model": "pl3x:traffic_light_pole_horizontal", "y": 0},
+    "facing=north,pole=horizontal": {"model": "pl3x:traffic_light_pole_horizontal", "y": 90},
+    "facing=east,pole=horizontal": {"model": "pl3x:traffic_light_pole_horizontal", "y": 180}
   }
 }

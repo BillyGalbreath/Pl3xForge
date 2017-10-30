@@ -145,8 +145,7 @@ public class BlockPole extends BlockBase {
         Block block = state.getBlock();
         boolean flag = shape == BlockFaceShape.MIDDLE_POLE &&
                 (state.getMaterial() == this.blockMaterial ||
-                        block == ModBlocks.TRAFFIC_LIGHT_POLE_VERTICAL ||
-                        block == ModBlocks.TRAFFIC_LIGHT_POLE_HORIZONTAL);
+                        block == ModBlocks.TRAFFIC_LIGHT);
         return !isExcept(block) && shape == BlockFaceShape.SOLID || flag;
     }
 
@@ -219,12 +218,11 @@ public class BlockPole extends BlockBase {
         Block otherBlock = otherState.getBlock();
         if (facing == EnumFacing.UP || facing == EnumFacing.DOWN) {
             return otherBlock == this || otherBlock.isSideSolid(otherState, world, otherPos, facing.getOpposite()) ||
-                    otherBlock == ModBlocks.TRAFFIC_LIGHT_POLE_VERTICAL;
+                    otherBlock == ModBlocks.TRAFFIC_LIGHT;
         }
         return otherBlock.canBeConnectedTo(world, otherPos, facing.getOpposite()) ||
                 canConnectTo(world, otherPos, facing.getOpposite()) ||
-                otherBlock == ModBlocks.TRAFFIC_LIGHT_POLE_VERTICAL ||
-                otherBlock == ModBlocks.TRAFFIC_LIGHT_POLE_HORIZONTAL;
+                otherBlock == ModBlocks.TRAFFIC_LIGHT;
     }
 
     @Override

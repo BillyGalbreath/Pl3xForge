@@ -4,6 +4,7 @@ import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -12,6 +13,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -20,17 +22,30 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.block.BlockTileEntity;
+import net.pl3x.forge.block.ModBlocks;
 import net.pl3x.forge.tileentity.TileEntityTrafficLight;
 
 import javax.annotation.Nullable;
 
 public class BlockTrafficLight extends BlockTileEntity<TileEntityTrafficLight> {
+    public static final PropertyEnum<EnumPole> POLE = PropertyEnum.create("pole", EnumPole.class);
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
-    public static final AxisAlignedBB AABB = new AxisAlignedBB(0.375D, 0.0D, 0.41D, 0.625D, 0.6905D, 0.59D);
+    private static final AxisAlignedBB AABB_VERT_NS = new AxisAlignedBB(0.41D, 0.0D, 0.375D, 0.59D, 0.6905D, 0.625D);
+    private static final AxisAlignedBB AABB_VERT_WE = new AxisAlignedBB(0.375D, 0.0D, 0.41D, 0.625D, 0.6905D, 0.59D);
+    private static final AxisAlignedBB AABB_VERT_NORTH_HORIZ_POLE = new AxisAlignedBB(0.41D, 0.14D, 0D, 0.75D, 0.83D, 1D);
+    private static final AxisAlignedBB AABB_VERT_SOUTH_HORIZ_POLE = new AxisAlignedBB(0.25D, 0.14D, 0D, 0.59D, 0.83D, 1D);
+    private static final AxisAlignedBB AABB_VERT_EAST_HORIZ_POLE = new AxisAlignedBB(0D, 0.14D, 0.41D, 1D, 0.83D, 0.75D);
+    private static final AxisAlignedBB AABB_VERT_WEST_HORIZ_POLE = new AxisAlignedBB(0D, 0.14D, 0.25D, 1D, 0.83D, 0.59D);
+    private static final AxisAlignedBB AABB_VERT_NORTH_VERT_POLE = new AxisAlignedBB(0.37D, 0D, 0.37D, 0.78D, 1D, 0.63D);
+    private static final AxisAlignedBB AABB_VERT_SOUTH_VERT_POLE = new AxisAlignedBB(0.22D, 0D, 0.37D, 0.63D, 1D, 0.63D);
+    private static final AxisAlignedBB AABB_VERT_EAST_VERT_POLE = new AxisAlignedBB(0.37D, 0D, 0.37D, 0.63D, 1D, 0.78D);
+    private static final AxisAlignedBB AABB_VERT_WEST_VERT_POLE = new AxisAlignedBB(0.37D, 0D, 0.22D, 0.63D, 1D, 0.63D);
 
     public BlockTrafficLight() {
         super(Material.IRON, "traffic_light");
-        setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.SOUTH));
+        setDefaultState(blockState.getBaseState()
+                .withProperty(FACING, EnumFacing.SOUTH)
+                .withProperty(POLE, EnumPole.NONE));
         setHardness(1);
 
         setCreativeTab(CreativeTabs.DECORATIONS);
@@ -38,7 +53,43 @@ public class BlockTrafficLight extends BlockTileEntity<TileEntityTrafficLight> {
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return AABB;
+        switch (state.getActualState(source, pos).getValue(POLE)) {
+            case VERTICAL:
+                switch (state.getValue(FACING)) {
+                    case WEST:
+                        return AABB_VERT_WEST_VERT_POLE;
+                    case EAST:
+                        return AABB_VERT_EAST_VERT_POLE;
+                    case NORTH:
+                        return AABB_VERT_NORTH_VERT_POLE;
+                    case SOUTH:
+                    default:
+                        return AABB_VERT_SOUTH_VERT_POLE;
+                }
+            case HORIZONTAL:
+                switch (state.getValue(FACING)) {
+                    case WEST:
+                        return AABB_VERT_WEST_HORIZ_POLE;
+                    case EAST:
+                        return AABB_VERT_EAST_HORIZ_POLE;
+                    case NORTH:
+                        return AABB_VERT_NORTH_HORIZ_POLE;
+                    case SOUTH:
+                    default:
+                        return AABB_VERT_SOUTH_HORIZ_POLE;
+                }
+            case NONE:
+            default:
+                switch (state.getValue(FACING)) {
+                    case WEST:
+                    case EAST:
+                        return AABB_VERT_WE;
+                    case NORTH:
+                    case SOUTH:
+                    default:
+                        return AABB_VERT_NS;
+                }
+        }
     }
 
     @Override
@@ -64,13 +115,30 @@ public class BlockTrafficLight extends BlockTileEntity<TileEntityTrafficLight> {
     }
 
     @Override
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+        return state.withProperty(POLE, attachPole(worldIn, pos));
+    }
+
+    private EnumPole attachPole(IBlockAccess world, BlockPos pos) {
+        for (EnumFacing facing : EnumFacing.values()) {
+            if (world.getBlockState(pos.offset(facing)).getBlock() == ModBlocks.METAL_POLE) {
+                if (facing == EnumFacing.UP || facing == EnumFacing.DOWN) {
+                    return EnumPole.VERTICAL;
+                }
+                return EnumPole.HORIZONTAL;
+            }
+        }
+        return EnumPole.NONE;
+    }
+
+    @Override
     public IBlockState withRotation(IBlockState state, Rotation rot) {
         return state.getBlock() != this ? state : state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     @Override
     public BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, FACING);
+        return new BlockStateContainer(this, FACING, POLE);
     }
 
     @Override
@@ -153,6 +221,28 @@ public class BlockTrafficLight extends BlockTileEntity<TileEntityTrafficLight> {
     @Nullable
     @Override
     public TileEntityTrafficLight createTileEntity(World world, IBlockState state) {
-        return new TileEntityTrafficLight(state.getValue(FACING), 0.5, 0, 0.595);
+        return new TileEntityTrafficLight(state.getValue(FACING));
+    }
+
+    public enum EnumPole implements IStringSerializable {
+        NONE("none"),
+        VERTICAL("vertical"),
+        HORIZONTAL("horizontal");
+
+        private final String name;
+
+        EnumPole(String name) {
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return this.name;
+        }
+
+        @Override
+        public String getName() {
+            return this.name;
+        }
     }
 }

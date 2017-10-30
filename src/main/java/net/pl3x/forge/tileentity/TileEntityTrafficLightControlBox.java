@@ -12,23 +12,31 @@ import net.pl3x.forge.network.PacketHandler;
 import net.pl3x.forge.network.TrafficLightControlBoxUpdatePacket;
 import net.pl3x.forge.util.PlayerUtil;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class TileEntityTrafficLightControlBox extends TileEntity implements ITickable {
     public UUID owner;
     public int tick = 0;
-    public IntersectionState intersectionState = IntersectionState.EW_GREEN_NS_RED;
+    public IntersectionState intersectionState = IntersectionState.NS_GREEN_EW_RED;
+    public final Map<IntersectionState, Integer> ticksPerCycle = new HashMap<>();
 
     public TileEntityTrafficLightControlBox() {
-        tick = ThreadLocalRandom.current().nextInt(IntersectionState.EW_GREEN_NS_RED.ticks);
+        ticksPerCycle.put(IntersectionState.NS_GREEN_EW_RED, 100);
+        ticksPerCycle.put(IntersectionState.NS_YELLOW_EW_RED, 20);
+        ticksPerCycle.put(IntersectionState.NS_RED_EW_GREEN, 100);
+        ticksPerCycle.put(IntersectionState.NS_RED_EW_YELLOW, 20);
+
+        tick = ThreadLocalRandom.current().nextInt(ticksPerCycle.get(IntersectionState.NS_GREEN_EW_RED));
     }
 
     @Override
     public void update() {
         // tick the logic
         tick++;
-        if (tick > intersectionState.ticks) {
+        if (tick > ticksPerCycle.get(intersectionState)) {
             tick = 0;
             int next = intersectionState.ordinal() + 1;
             if (next >= IntersectionState.values().length) {
@@ -79,15 +87,9 @@ public class TileEntityTrafficLightControlBox extends TileEntity implements ITic
     }
 
     public enum IntersectionState {
-        EW_GREEN_NS_RED(100),
-        EW_YELLOW_NS_RED(20),
-        EW_RED_NS_GREEN(100),
-        EW_RED_NS_YELLOW(20);
-
-        public int ticks;
-
-        IntersectionState(int ticks) {
-            this.ticks = ticks;
-        }
+        NS_GREEN_EW_RED,
+        NS_YELLOW_EW_RED,
+        NS_RED_EW_GREEN,
+        NS_RED_EW_YELLOW
     }
 }

@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.pl3x.forge.block.custom.BlockTrafficLight;
 import net.pl3x.forge.tileentity.TileEntityTrafficLight;
 import org.lwjgl.opengl.GL11;
 
@@ -49,8 +50,13 @@ public class TileEntityTrafficLightRenderer extends TileEntitySpecialRenderer<Ti
         GlStateManager.translate(-(x + 0.5), 0, -(z + 0.5));
 
         // set light position
-        x += te.xOffset;
-        y += te.yOffset + (te.lightState == null ? TileEntityTrafficLight.LightState.RED.y : te.lightState.y);
+        if (te.pole == BlockTrafficLight.EnumPole.HORIZONTAL) {
+            x += te.xOffset + (te.lightState == null ? TileEntityTrafficLight.LightState.RED.x : te.lightState.x);
+            y += te.yOffset + TileEntityTrafficLight.LightState.YELLOW.y;
+        } else {
+            x += te.xOffset;
+            y += te.yOffset + (te.lightState == null ? TileEntityTrafficLight.LightState.RED.y : te.lightState.y);
+        }
         z += te.zOffset;
 
         // draw the light

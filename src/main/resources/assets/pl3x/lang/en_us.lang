@@ -50,10 +50,9 @@ item.hat_tophat_white_red.name=TopHat White with Red trim
 item.hat_wizard.name=Wizard Hat
 item.hat_wizard2.name=Wizard Hat 2
 
+item.claim_tool.name=Claim Tool
 item.coin.name=Coin
 item.seasonal.name=Seasonal
-
-item.claim_tool.name=Claim Tool
 
 # Key Bindings
 key.categories.pl3x=Pl3xForge
@@ -61,9 +60,6 @@ key.showClaims=Toggle Claim Visuals
 
 
 # Blocks
-tile.block_ruby.name=Block of Ruby
-tile.christmas_tree.name=Christmas Tree
-
 tile.concrete_slab_black.name=Black Concrete Slab
 tile.concrete_slab_blue.name=Blue Concrete Slab
 tile.concrete_slab_brown.name=Brown Concrete Slab
@@ -115,23 +111,21 @@ tile.curb_slab_silver.name=Light Gray Curb Slab
 tile.curb_slab_white.name=White Curb Slab
 tile.curb_slab_yellow.name=Yellow Curb Slab
 
-tile.dirt_slab.name=Dirt Slab
-tile.grass_slab.name=Grass Slab
-
+tile.block_ruby.name=Block of Ruby
+tile.christmas_tree.name=Christmas Tree
 tile.deposit_box.name=Deposit Box
+tile.dirt_slab.name=Dirt Slab
 tile.enchantment_splitter.name=Enchantment Splitter
 tile.frosted_obsidian.name=Frosted Obsidian
+tile.grass_slab.name=Grass Slab
 tile.lamp.name=Lamp
+tile.metal_pole.name=Metal Pole
 tile.microwave.name=Microwave
 tile.ore_ruby.name=Ruby Ore
-tile.pole_angle.name=Pole Angle
-tile.pole_horizontal.name=Pole Horizontal
-tile.pole_vertical.name=Pole Vertical
 tile.shop.name=Shop
 tile.table.name=Table
 tile.traffic_light.name=Traffic Light
-tile.traffic_light_pole_horizontal.name=Traffic Light Pole Horizontal
-tile.traffic_light_pole_vertical.name=Traffic Light Pole Vertical
+tile.traffic_light_control_box.name=Traffic Light Control Box
 
 # Enchantments
 enchantment.lavaWalker=Lava Walker
