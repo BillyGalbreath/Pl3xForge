@@ -5,10 +5,11 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.util.EnumFacing;
 import net.pl3x.forge.container.ContainerTrafficLightControlBox;
 import net.pl3x.forge.gui.element.Button;
+import net.pl3x.forge.tileentity.TileEntityTrafficLight;
 import net.pl3x.forge.tileentity.TileEntityTrafficLightControlBox;
-import net.pl3x.forge.util.GL;
 import net.pl3x.forge.util.GuiUtil;
 
 public class GuiTrafficLightControlBox extends GuiContainer {
@@ -56,20 +57,19 @@ public class GuiTrafficLightControlBox extends GuiContainer {
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         fontRenderer.drawString("Traffic Light Control Box", 8, 8, 0x404040);
 
-        int i = 0;
-        for (TileEntityTrafficLightControlBox.IntersectionState state :
-                TileEntityTrafficLightControlBox.IntersectionState.values()) {
-            fontRenderer.drawString(state.name(), 10, 30 + 12 * i,
-                    state == container.controlBox.intersectionState ? 0xffffff : 0x404040);
-            i++;
-        }
+        fontRenderer.drawString("N", 35, 112, 0x404040);
+        fontRenderer.drawString("S", 35, 135, 0x404040);
+        fontRenderer.drawString("W", 25, 123, 0x404040);
+        fontRenderer.drawString("E", 45, 123, 0x404040);
+        fontRenderer.drawString("+", 35, 123, 0x404040);
+
+        fontRenderer.drawString("Next", 79, 106, 0x404040);
+        fontRenderer.drawString("Cycle", 77, 116, 0x404040);
+        fontRenderer.drawString("In:", 84, 126, 0x404040);
 
         String timeLeft = Integer.toString(container.controlBox.ticksPerCycle
                 .get(container.controlBox.intersectionState) - container.controlBox.tick);
-        fontRenderer.drawString("Next", 275 - fontRenderer.getStringWidth("Next") / 2, 20, 0x404040);
-        fontRenderer.drawString("Cycle", 275 - fontRenderer.getStringWidth("Cycle") / 2, 30, 0x404040);
-        fontRenderer.drawString("In:", 275 - fontRenderer.getStringWidth("In") / 2, 40, 0x404040);
-        fontRenderer.drawString(timeLeft, 275 - fontRenderer.getStringWidth(timeLeft) / 2, 55, 0x404040);
+        fontRenderer.drawString(timeLeft, 90 - fontRenderer.getStringWidth(timeLeft) / 2, 141, 0x404040);
 
         // draw textboxes
     }
@@ -78,32 +78,20 @@ public class GuiTrafficLightControlBox extends GuiContainer {
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
         GuiUtil.drawBG(this, x, y, xSize, ySize);
 
-        TileEntityTrafficLightControlBox.IntersectionState state = container.controlBox.intersectionState;
-        switch (state) {
-            case NS_GREEN_EW_RED:
-                drawRect(x + 9, y + 27, x + 107, y + 39, 0xFF336699);
-                break;
-            case NS_YELLOW_EW_RED:
-                drawRect(x + 9, y + 39, x + 107, y + 51, 0xFF336699);
-                break;
-            case NS_RED_EW_GREEN:
-                drawRect(x + 9, y + 51, x + 107, y + 63, 0xFF336699);
-                break;
-            case NS_RED_EW_YELLOW:
-                drawRect(x + 9, y + 63, x + 107, y + 75, 0xFF336699);
-                break;
-        }
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(x, y, 0);
 
-        GlStateManager.disableTexture2D();
-        GlStateManager.glLineWidth(1);
-        GL.drawLine(x + 9, y + 27, x + 107, y + 27, 0xffffff);
-        GL.drawLine(x + 9, y + 39, x + 107, y + 39, 0xffffff);
-        GL.drawLine(x + 9, y + 51, x + 107, y + 51, 0xffffff);
-        GL.drawLine(x + 9, y + 63, x + 107, y + 63, 0xffffff);
-        GL.drawLine(x + 9, y + 75, x + 107, y + 75, 0xffffff);
-        GL.drawLine(x + 9, y + 27, x + 9, y + 75, 0xffffff);
-        GL.drawLine(x + 107, y + 27, x + 107, y + 75, 0xffffff);
-        GlStateManager.enableTexture2D();
+        GuiUtil.drawTexture(this, GuiUtil.GUI_ELEMENTS, 26, 100, 204, 0, 24, 9);
+        GuiUtil.drawTexture(this, GuiUtil.GUI_ELEMENTS, 26, 145, 204, 0, 24, 9);
+        GlStateManager.pushMatrix();
+        GlStateManager.rotate(90, 0, 0, 1);
+        GuiUtil.drawTexture(this, GuiUtil.GUI_ELEMENTS, 115, -20, 204, 0, 24, 9);
+        GuiUtil.drawTexture(this, GuiUtil.GUI_ELEMENTS, 115, -64, 204, 0, 24, 9);
+        GlStateManager.popMatrix();
+
+        drawLights();
+
+        GlStateManager.popMatrix();
     }
 
     @Override
@@ -112,6 +100,95 @@ public class GuiTrafficLightControlBox extends GuiContainer {
         super.drawScreen(mouseX, mouseY, partialTicks, 1024);
         GlStateManager.disableLighting();
         GlStateManager.disableBlend();
+    }
+
+    private void drawLights() {
+        TileEntityTrafficLightControlBox.IntersectionState state = container.controlBox.intersectionState;
+        switch (state) {
+            case NS_GREEN_EW_RED:
+                drawLight(EnumFacing.NORTH, TileEntityTrafficLight.LightState.GREEN);
+                drawLight(EnumFacing.SOUTH, TileEntityTrafficLight.LightState.GREEN);
+                drawLight(EnumFacing.WEST, TileEntityTrafficLight.LightState.RED);
+                drawLight(EnumFacing.EAST, TileEntityTrafficLight.LightState.RED);
+                break;
+            case NS_YELLOW_EW_RED:
+                drawLight(EnumFacing.NORTH, TileEntityTrafficLight.LightState.YELLOW);
+                drawLight(EnumFacing.SOUTH, TileEntityTrafficLight.LightState.YELLOW);
+                drawLight(EnumFacing.WEST, TileEntityTrafficLight.LightState.RED);
+                drawLight(EnumFacing.EAST, TileEntityTrafficLight.LightState.RED);
+                break;
+            case NS_RED_EW_GREEN:
+                drawLight(EnumFacing.NORTH, TileEntityTrafficLight.LightState.RED);
+                drawLight(EnumFacing.SOUTH, TileEntityTrafficLight.LightState.RED);
+                drawLight(EnumFacing.WEST, TileEntityTrafficLight.LightState.GREEN);
+                drawLight(EnumFacing.EAST, TileEntityTrafficLight.LightState.GREEN);
+                break;
+            case NS_RED_EW_YELLOW:
+                drawLight(EnumFacing.NORTH, TileEntityTrafficLight.LightState.RED);
+                drawLight(EnumFacing.SOUTH, TileEntityTrafficLight.LightState.RED);
+                drawLight(EnumFacing.WEST, TileEntityTrafficLight.LightState.YELLOW);
+                drawLight(EnumFacing.EAST, TileEntityTrafficLight.LightState.YELLOW);
+                break;
+        }
+    }
+
+    private void drawLight(EnumFacing facing, TileEntityTrafficLight.LightState state) {
+        switch (facing) {
+            case NORTH:
+                switch (state) {
+                    case RED:
+                        GuiUtil.drawTexture(this, GuiUtil.GUI_ELEMENTS, 28, 102, 204, 9, 6, 5);
+                        break;
+                    case YELLOW:
+                        GuiUtil.drawTexture(this, GuiUtil.GUI_ELEMENTS, 35, 102, 216, 9, 6, 5);
+                        break;
+                    case GREEN:
+                        GuiUtil.drawTexture(this, GuiUtil.GUI_ELEMENTS, 42, 102, 210, 9, 6, 5);
+                        break;
+                }
+                break;
+            case SOUTH:
+                switch (state) {
+                    case RED:
+                        GuiUtil.drawTexture(this, GuiUtil.GUI_ELEMENTS, 28, 147, 204, 9, 6, 5);
+                        break;
+                    case YELLOW:
+                        GuiUtil.drawTexture(this, GuiUtil.GUI_ELEMENTS, 35, 147, 216, 9, 6, 5);
+                        break;
+                    case GREEN:
+                        GuiUtil.drawTexture(this, GuiUtil.GUI_ELEMENTS, 42, 147, 210, 9, 6, 5);
+                }
+                break;
+            case WEST:
+                GlStateManager.pushMatrix();
+                GlStateManager.rotate(90, 0, 0, 1);
+                switch (state) {
+                    case RED:
+                        GuiUtil.drawTexture(this, GuiUtil.GUI_ELEMENTS, 117, -18, 204, 9, 6, 5);
+                        break;
+                    case YELLOW:
+                        GuiUtil.drawTexture(this, GuiUtil.GUI_ELEMENTS, 124, -18, 216, 9, 6, 5);
+                        break;
+                    case GREEN:
+                        GuiUtil.drawTexture(this, GuiUtil.GUI_ELEMENTS, 131, -18, 210, 9, 6, 5);
+                }
+                GlStateManager.popMatrix();
+                break;
+            case EAST:
+                GlStateManager.pushMatrix();
+                GlStateManager.rotate(90, 0, 0, 1);
+                switch (state) {
+                    case RED:
+                        GuiUtil.drawTexture(this, GuiUtil.GUI_ELEMENTS, 117, -62, 204, 9, 6, 5);
+                        break;
+                    case YELLOW:
+                        GuiUtil.drawTexture(this, GuiUtil.GUI_ELEMENTS, 124, -62, 216, 9, 6, 5);
+                        break;
+                    case GREEN:
+                        GuiUtil.drawTexture(this, GuiUtil.GUI_ELEMENTS, 131, -62, 210, 9, 6, 5);
+                }
+                GlStateManager.popMatrix();
+        }
     }
 
     @Override

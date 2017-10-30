@@ -84,4 +84,10 @@ public class GuiUtil {
         GlStateManager.color(1, 1, 1, 1);
         Gui.drawModalRectWithCustomSizedTexture(x, y, u, v, width, height, textureWidth, textureHeight);
     }
+
+    public static void drawTexture(GuiScreen gui, ResourceLocation texture, int x, int y, int textureX, int textureY, int width, int height) {
+        gui.mc.getTextureManager().bindTexture(texture);
+        GlStateManager.color(1, 1, 1, 1);
+        gui.drawTexturedModalRect(x, y, textureX, textureY, width, height);
+    }
 }
