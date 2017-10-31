@@ -20,6 +20,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.gui.ModGuiHandler;
 import net.pl3x.forge.network.PacketHandler;
@@ -74,6 +76,11 @@ public class EntityBanker extends EntityCreature implements INpc {
         setCanPickUpLoot(false);
         enablePersistence();
         setEntityInvulnerable(true);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public boolean getAlwaysRenderNameTagForRender() {
+        return true;
     }
 
     @Override

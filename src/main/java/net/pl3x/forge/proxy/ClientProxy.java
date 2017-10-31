@@ -16,7 +16,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.ModColorManager;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.entity.EntityBanker;
+import net.pl3x.forge.entity.EntityPenguin;
+import net.pl3x.forge.entity.ModEntities;
 import net.pl3x.forge.entity.render.RenderBanker;
+import net.pl3x.forge.entity.render.RenderPenguin;
 import net.pl3x.forge.gui.TitleScreen;
 import net.pl3x.forge.listener.ClientEventHandler;
 import net.pl3x.forge.listener.KeyBindings;
@@ -38,7 +41,7 @@ public class ClientProxy extends ServerProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityShop.class, new TileEntityShopRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTrafficLight.class, new TileEntityTrafficLightRenderer());
 
-        RenderingRegistry.registerEntityRenderingHandler(EntityBanker.class, new RenderBanker.RenderBankerFactory());
+        ModEntities.registerRenders();
     }
 
     public void init(FMLInitializationEvent event) {

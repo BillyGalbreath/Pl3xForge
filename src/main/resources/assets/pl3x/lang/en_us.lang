@@ -54,11 +54,6 @@ item.claim_tool.name=Claim Tool
 item.coin.name=Coin
 item.seasonal.name=Seasonal
 
-# Key Bindings
-key.categories.pl3x=Pl3xForge
-key.showClaims=Toggle Claim Visuals
-
-
 # Blocks
 tile.concrete_slab_black.name=Black Concrete Slab
 tile.concrete_slab_blue.name=Blue Concrete Slab
@@ -127,6 +122,14 @@ tile.table.name=Table
 tile.traffic_light.name=Traffic Light
 tile.traffic_light_control_box.name=Traffic Light Control Box
 
+# Entity Names
+entity.banker.name=Banker
+entity.penguin.name=Penguin
+
+# Key Bindings
+key.categories.pl3x=Pl3xForge
+key.showClaims=Toggle Claim Visuals
+
 # Enchantments
 enchantment.lavaWalker=Lava Walker
 
@@ -135,3 +138,9 @@ itemGroup.Hats=Hats
 
 # GUI strings
 pl3x.config.title=Pl3xForge Config
+
+# Subtitles
+pl3x:subtitles.penguin.ambient=Penguin squawks
+pl3x:subtitles.penguin.baby.ambient=Penguin baby squeaks
+pl3x:subtitles.penguin.death=Penguin dies
+pl3x:subtitles.penguin.hurt=Penguin hurts
