@@ -12,6 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.entity.render.RenderBanker;
 import net.pl3x.forge.entity.render.RenderPenguin;
+import net.pl3x.forge.entity.render.RenderTrafficCone;
 
 import java.util.List;
 import java.util.Set;
@@ -24,14 +25,16 @@ public class ModEntities {
     public static void init() {
         EntityRegistry.registerModEntity(new ResourceLocation(Pl3x.modId, "banker"), EntityBanker.class, "banker", 0, Pl3x.instance, 48, 1, true, 0xFFFFFF, 0x000000);
         EntityRegistry.registerModEntity(new ResourceLocation(Pl3x.modId, "penguin"), EntityPenguin.class, "penguin", 1, Pl3x.instance, 48, 1, true, 0x000000, 0xFFFFFF);
+        EntityRegistry.registerModEntity(new ResourceLocation(Pl3x.modId, "traffic_cone"), EntityTrafficCone.class, "traffic_cone", 48, Pl3x.instance, 48, 1, true);
 
         addEntitySpawns();
     }
 
     @SideOnly(Side.CLIENT)
     public static void registerRenders() {
-        RenderingRegistry.registerEntityRenderingHandler(EntityPenguin.class, RenderPenguin::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityBanker.class, RenderBanker::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityPenguin.class, RenderPenguin::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTrafficCone.class, RenderTrafficCone::new);
     }
 
     public static void addEntitySpawns() {
