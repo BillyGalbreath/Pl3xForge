@@ -1,0 +1,46 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "pl3x:lamp"
+    ]
+  },
+  "criteria": {
+    "has_sea_lantern": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:sea_lantern"
+          }
+        ]
+      }
+    },
+    "has_end_rod": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:end_rod"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "pl3x:lamp"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_sea_lantern",
+      "has_the_recipe"
+    ],
+    [
+      "has_end_rod",
+      "has_the_recipe"
+    ]
+  ]
+}

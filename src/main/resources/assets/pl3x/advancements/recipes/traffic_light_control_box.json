@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "pl3x:traffic_light_control_box"
+    ]
+  },
+  "criteria": {
+    "has_traffic_light": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pl3x:traffic_light"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "pl3x:traffic_light_control_box"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_traffic_light",
+      "has_the_recipe"
+    ]
+  ]
+}

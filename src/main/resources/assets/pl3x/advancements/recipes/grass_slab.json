@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "pl3x:grass_slab"
+    ]
+  },
+  "criteria": {
+    "has_grass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:grass",
+            "data": 0
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "pl3x:grass_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_grass",
+      "has_the_recipe"
+    ]
+  ]
+}

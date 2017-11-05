@@ -1,0 +1,63 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "pl3x:concrete_slab_black",
+      "pl3x:concrete_slab_blue",
+      "pl3x:concrete_slab_brown",
+      "pl3x:concrete_slab_cyan",
+      "pl3x:concrete_slab_gray",
+      "pl3x:concrete_slab_green",
+      "pl3x:concrete_slab_light_blue",
+      "pl3x:concrete_slab_lime",
+      "pl3x:concrete_slab_magenta",
+      "pl3x:concrete_slab_orange",
+      "pl3x:concrete_slab_pink",
+      "pl3x:concrete_slab_purple",
+      "pl3x:concrete_slab_red",
+      "pl3x:concrete_slab_silver",
+      "pl3x:concrete_slab_white",
+      "pl3x:concrete_slab_yellow"
+    ]
+  },
+  "criteria": {
+    "has_concrete": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:concrete",
+            "data": 32767
+          }
+        ]
+      }
+    },
+    "has_concrete_powder": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:concrete_powder",
+            "data": 32767
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "pl3x:concrete_slab_black"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_concrete",
+      "has_the_recipe"
+    ],
+    [
+      "has_concrete_powder",
+      "has_the_recipe"
+    ]
+  ]
+}

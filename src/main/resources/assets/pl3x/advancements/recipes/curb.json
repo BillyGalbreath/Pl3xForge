@@ -1,0 +1,79 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "pl3x:curb_black",
+      "pl3x:curb_blue",
+      "pl3x:curb_brown",
+      "pl3x:curb_cyan",
+      "pl3x:curb_gray",
+      "pl3x:curb_green",
+      "pl3x:curb_light_blue",
+      "pl3x:curb_lime",
+      "pl3x:curb_magenta",
+      "pl3x:curb_orange",
+      "pl3x:curb_pink",
+      "pl3x:curb_purple",
+      "pl3x:curb_red",
+      "pl3x:curb_silver",
+      "pl3x:curb_white",
+      "pl3x:curb_yellow",
+      "pl3x:curb_slab_black",
+      "pl3x:curb_slab_blue",
+      "pl3x:curb_slab_brown",
+      "pl3x:curb_slab_cyan",
+      "pl3x:curb_slab_gray",
+      "pl3x:curb_slab_green",
+      "pl3x:curb_slab_light_blue",
+      "pl3x:curb_slab_lime",
+      "pl3x:curb_slab_magenta",
+      "pl3x:curb_slab_orange",
+      "pl3x:curb_slab_pink",
+      "pl3x:curb_slab_purple",
+      "pl3x:curb_slab_red",
+      "pl3x:curb_slab_silver",
+      "pl3x:curb_slab_white",
+      "pl3x:curb_slab_yellow"
+    ]
+  },
+  "criteria": {
+    "has_concrete": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:concrete",
+            "data": 32767
+          }
+        ]
+      }
+    },
+    "has_concrete_powder": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:concrete_powder",
+            "data": 32767
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "pl3x:curb_black"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_concrete",
+      "has_the_recipe"
+    ],
+    [
+      "has_concrete_powder",
+      "has_the_recipe"
+    ]
+  ]
+}

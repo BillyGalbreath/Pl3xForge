@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IRI",
+    "IYI",
+    "IGI"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:gold_ingot"
+    },
+    "R": {
+      "item": "minecraft:stained_glass",
+      "data": 14
+    },
+    "Y": {
+      "item": "minecraft:stained_glass",
+      "data": 4
+    },
+    "G": {
+      "item": "minecraft:stained_glass",
+      "data": 13
+    }
+  },
+  "result": {
+    "item": "pl3x:traffic_light"
+  }
+}
