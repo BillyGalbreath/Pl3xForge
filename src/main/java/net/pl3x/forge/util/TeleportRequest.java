@@ -49,6 +49,7 @@ public abstract class TeleportRequest {
 
     public void cancel() {
         Teleport.TELEPORT_REQUESTS.remove(requester.getUniqueID());
+        Teleport.TELEPORT_REQUESTS.remove(target.getUniqueID());
         try {
             timeoutTask.cancel();
         } catch (IllegalStateException ignore) {

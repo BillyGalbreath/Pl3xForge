@@ -49,7 +49,7 @@ public class Teleport {
         @Override
         public void placeInPortal(Entity entity, float yaw) {
             int i = MathHelper.floor(entity.posX);
-            int j = MathHelper.floor(entity.posY) - 1;
+            int j = MathHelper.floor(entity.posY);
             int k = MathHelper.floor(entity.posZ);
             entity.setLocationAndAngles(i, j, k, entity.rotationYaw, 0.0F);
         }
