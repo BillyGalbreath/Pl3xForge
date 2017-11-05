@@ -4,18 +4,33 @@ import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.math.BlockPos;
 import net.pl3x.forge.configuration.BigHeadConfig;
 import net.pl3x.forge.configuration.Lang;
 import net.pl3x.forge.network.BigHeadPacket;
 import net.pl3x.forge.network.PacketHandler;
 import net.pl3x.forge.util.Utils;
 
+import javax.annotation.Nullable;
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class CmdBigHead extends CommandBase {
     public CmdBigHead() {
         super("bighead", "Toggle BigHead mode for a player");
+    }
+
+    @Override
+    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos) {
+        if (args.length == 1) {
+            return Utils.getOnlinePlayerNames().stream()
+                    .filter(name -> name.toLowerCase().startsWith(args[0].toLowerCase()))
+                    .collect(Collectors.toList());
+        }
+        return Collections.emptyList();
     }
 
     @Override
