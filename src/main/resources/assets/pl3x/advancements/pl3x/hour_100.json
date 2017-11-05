@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:clock"
+    },
+    "title": "Hey, Mikey, I think he likes it",
+    "description": "Play for 100 hours",
+    "frame": "goal",
+    "hidden": true
+  },
+  "parent": "pl3x:pl3x/hour_ten",
+  "rewards": {
+    "experience": 1000
+  },
+  "criteria": {
+    "total_time": {
+      "trigger": "pl3x:play_time",
+      "conditions": {
+        "duration": 7200000
+      }
+    }
+  },
+  "requirements": [
+    ["total_time"]
+  ]
+}

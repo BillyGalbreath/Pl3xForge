@@ -1,0 +1,21 @@
+{
+  "display": {
+    "icon": {
+      "item": "pl3x:coin"
+    },
+    "title": "Living comfortably",
+    "description": "Save 100 coins in the bank"
+  },
+  "parent": "pl3x:money/bank_first",
+  "criteria": {
+    "deposit_coin": {
+      "trigger": "pl3x:deposit_coin",
+      "conditions": {
+        "balance": 100
+      }
+    }
+  },
+  "requirements": [
+    ["deposit_coin"]
+  ]
+}

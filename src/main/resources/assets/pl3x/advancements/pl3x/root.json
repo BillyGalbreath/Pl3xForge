@@ -1,0 +1,17 @@
+{
+  "display": {
+    "icon": {
+      "item": "pl3x:pl3x_logo"
+    },
+    "title": "Pl3x Advancements",
+    "description": "Pl3x Advancements",
+    "background": "pl3x:textures/gui/advancements/backgrounds/pl3x.png",
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "auto": {
+      "trigger": "minecraft:location"
+    }
+  }
+}

@@ -29,6 +29,8 @@ public class GuiBankerAction extends GuiContainer {
     private int iconY;
     private int textX;
     private int textY;
+    private int maxX;
+    private int maxY;
     private int x;
     private int y;
 
@@ -37,8 +39,8 @@ public class GuiBankerAction extends GuiContainer {
         this.player = player;
         this.action = action;
 
-        xSize = 80;
-        ySize = 61;
+        xSize = 100;
+        ySize = 71;
 
         expMan = new ExperienceManager(player);
     }
@@ -54,10 +56,12 @@ public class GuiBankerAction extends GuiContainer {
         iconY = y + 6;
         textX = x + 28;
         textY = y + 10;
+        maxX = x + 7;
+        maxY = y + 45;
 
-        addButton(new Button(0, x + 43, y + 45, 30, 10, "Ok"));
+        addButton(new Button(0, x + 63, y + 55, 30, 10, "Ok"));
 
-        amountField = new GuiTextField(0, fontRenderer, x + 9, y + 27, 62, 12);
+        amountField = new GuiTextField(0, fontRenderer, x + 9, y + 27, 82, 12);
         amountField.setTextColor(-1);
         amountField.setDisabledTextColour(-1);
         amountField.setEnableBackgroundDrawing(true);
@@ -84,6 +88,16 @@ public class GuiBankerAction extends GuiContainer {
             fontRenderer.drawString("Deposit", textX, textY, 0x404040);
         } else {
             fontRenderer.drawString("Withdraw", textX, textY, 0x404040);
+        }
+
+        if (action == BankPacket.DEPOSIT_COIN) {
+            fontRenderer.drawString("Max: " + getCurrentCoins(), maxX, maxY, 0x404040);
+        } else if (action == BankPacket.WITHDRAW_COIN) {
+            fontRenderer.drawString("Max: " + getCurrentBankCoins(), maxX, maxY, 0x404040);
+        } else if (action == BankPacket.DEPOSIT_EXP) {
+            fontRenderer.drawString("Max: " + expMan.getCurrentExp(), maxX, maxY, 0x404040);
+        } else if (action == BankPacket.WITHDRAW_EXP) {
+            fontRenderer.drawString("Max: " + getCurrentBankExp(), maxX, maxY, 0x404040);
         }
 
         amountField.drawTextBox();

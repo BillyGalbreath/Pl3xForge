@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.pl3x.forge.Pl3x;
+import net.pl3x.forge.advancement.ModAdvancements;
 import net.pl3x.forge.command.CmdBack;
 import net.pl3x.forge.command.CmdBigHead;
 import net.pl3x.forge.command.CmdCountdown;
@@ -79,6 +80,8 @@ public class ServerProxy {
         ClaimConfigs.init(new File(Pl3x.configDir, ClaimConfigs.CLAIM_DIRECTORY));
 
         ConfigWatcher.INSTANCE.start();
+
+        ModAdvancements.registerTriggers();
     }
 
     public void init(FMLInitializationEvent event) {

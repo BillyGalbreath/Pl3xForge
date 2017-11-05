@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:clock"
+    },
+    "title": "Veteran status achieved",
+    "description": "Play for 1000 hours",
+    "frame": "challenge",
+    "hidden": true
+  },
+  "parent": "pl3x:pl3x/hour_100",
+  "rewards": {
+    "experience": 1000
+  },
+  "criteria": {
+    "total_time": {
+      "trigger": "pl3x:play_time",
+      "conditions": {
+        "duration": 72000000
+      }
+    }
+  },
+  "requirements": [
+    ["total_time"]
+  ]
+}

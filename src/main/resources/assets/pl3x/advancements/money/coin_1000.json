@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "item": "pl3x:coin"
+    },
+    "title": "Bank? What bank?",
+    "description": "Have 1000 coins on you",
+    "frame": "challenge"
+  },
+  "parent": "pl3x:money/coin_100",
+  "criteria": {
+    "pickup_coin": {
+      "trigger": "pl3x:pickup_coin",
+      "conditions": {
+        "balance": 1000
+      }
+    }
+  },
+  "requirements": [
+    ["pickup_coin"]
+  ]
+}

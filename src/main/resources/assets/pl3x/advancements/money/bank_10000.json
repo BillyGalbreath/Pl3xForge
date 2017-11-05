@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "item": "pl3x:coin"
+    },
+    "title": "I'm Rich Bitch!",
+    "description": "Save 10,000 coins in the bank",
+    "frame": "challenge"
+  },
+  "parent": "pl3x:money/bank_1000",
+  "criteria": {
+    "deposit_coin": {
+      "trigger": "pl3x:deposit_coin",
+      "conditions": {
+        "balance": 10000
+      }
+    }
+  },
+  "requirements": [
+    ["deposit_coin"]
+  ]
+}

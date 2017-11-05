@@ -1,0 +1,21 @@
+{
+  "display": {
+    "icon": {
+      "item": "pl3x:coin"
+    },
+    "title": "Saving it for a rainy day",
+    "description": "Deposit coin(s) into the bank"
+  },
+  "parent": "pl3x:money/coin_first",
+  "criteria": {
+    "deposit_coin": {
+      "trigger": "pl3x:deposit_coin",
+      "conditions": {
+        "balance": 0
+      }
+    }
+  },
+  "requirements": [
+    ["deposit_coin"]
+  ]
+}

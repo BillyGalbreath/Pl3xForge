@@ -3,9 +3,9 @@
     "icon": {
       "item": "pl3x:seasonal"
     },
-    "title": "Seasonal",
+    "title": "Seasonal Advancements",
     "description": "Festive Advancements",
-    "background": "minecraft:textures/blocks/slime.png",
+    "background": "pl3x:textures/gui/advancements/backgrounds/seasonal.png",
     "show_toast": false,
     "announce_to_chat": false
   },

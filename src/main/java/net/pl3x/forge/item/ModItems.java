@@ -87,6 +87,7 @@ public class ModItems {
 
     public static final ItemClaimTool CLAIM_TOOL = new ItemClaimTool();
     public static final ItemMoney COIN = new ItemMoney("coin");
+    public static final ItemBase PL3X_LOGO = new ItemBase("pl3x_logo");
     public static final ItemBase SEASONAL = new ItemBase("seasonal");
     public static final ItemTrafficCone TRAFFIC_CONE = new ItemTrafficCone();
 
@@ -148,6 +149,7 @@ public class ModItems {
 
                 CLAIM_TOOL,
                 COIN,
+                PL3X_LOGO,
                 SEASONAL,
                 TRAFFIC_CONE
         );
@@ -208,6 +210,7 @@ public class ModItems {
 
         CLAIM_TOOL.registerItemModel();
         COIN.registerItemModel();
+        PL3X_LOGO.registerItemModel();
         SEASONAL.registerItemModel();
         TRAFFIC_CONE.registerItemModel();
     }

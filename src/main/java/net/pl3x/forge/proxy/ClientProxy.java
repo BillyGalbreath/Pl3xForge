@@ -46,7 +46,6 @@ public class ClientProxy extends ServerProxy {
         MinecraftForge.EVENT_BUS.register(new BigHeadListener());
         MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
         MinecraftForge.EVENT_BUS.register(new KeyInputHandler());
-        MinecraftForge.EVENT_BUS.register(new ServerEventHandler());
         MinecraftForge.EVENT_BUS.register(new TitleScreen());
 
         ModColorManager.registerColorHandlers();

@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.SPacketPlayerListHeaderFooter;
+import net.minecraft.stats.StatList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.event.CommandEvent;
@@ -27,6 +28,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.pl3x.forge.ChatColor;
 import net.pl3x.forge.Location;
 import net.pl3x.forge.Logger;
+import net.pl3x.forge.advancement.ModAdvancements;
 import net.pl3x.forge.configuration.Lang;
 import net.pl3x.forge.data.CapabilityProvider;
 import net.pl3x.forge.data.PlayerData;
@@ -45,6 +47,8 @@ import net.pl3x.forge.util.TeleportRequest;
 import java.util.Iterator;
 
 public class ServerEventHandler {
+    private short tick = 0;
+
     @SubscribeEvent
     public void on(PlayerEvent.PlayerLoggedInEvent event) {
         if (event.player instanceof EntityPlayerMP) {
@@ -97,6 +101,8 @@ public class ServerEventHandler {
 
         PlayerData capability = player.getCapability(CapabilityProvider.CAPABILITY, null);
         capability.setCoins(capability.getCoins() + 1);
+
+        ModAdvancements.PICKUP_COIN_TRIGGER.trigger(player, capability.getCoins());
 
         player.sendStatusMessage(new TextComponentString(
                 ChatColor.colorize("&a&oPicked up " + entityItem.getItem().getDisplayName())), true);
@@ -235,16 +241,26 @@ public class ServerEventHandler {
             return; // only process at end of tick to prevent double processing each tick
         }
 
+        // IMPORTANT!
+        // IMPORTANT! Do not store variables here. GC will freak out and cause lag
+        // IMPORTANT!
+
         // tick the scheduler
         Pl3xScheduler.INSTANCE.tick();
 
         // update the MOTD
-        // IMPORTANT! Do not store variables here. GC will freak out and cause lag
         FMLCommonHandler.instance().getMinecraftServerInstance().getServerStatusResponse()
                 .setServerDescription(MOTDCache.INSTANCE.getDescription());
         if (MOTDCache.INSTANCE.getIconBlob() != null) {
             FMLCommonHandler.instance().getMinecraftServerInstance()
                     .getServerStatusResponse().setFavicon(MOTDCache.INSTANCE.getIconBlob());
+        }
+
+        tick++;
+        if (tick > 20) {
+            tick = 0;
+            FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayers().forEach(player ->
+                    ModAdvancements.PLAY_TIME_TRIGGER.trigger(player, player.getStatFile().readStat(StatList.PLAY_ONE_MINUTE)));
         }
     }
 }

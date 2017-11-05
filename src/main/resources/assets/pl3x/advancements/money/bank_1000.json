@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "item": "pl3x:coin"
+    },
+    "title": "Money Bags",
+    "description": "Save 1000 coins in the bank",
+    "frame": "goal"
+  },
+  "parent": "pl3x:money/bank_100",
+  "criteria": {
+    "deposit_coin": {
+      "trigger": "pl3x:deposit_coin",
+      "conditions": {
+        "balance": 1000
+      }
+    }
+  },
+  "requirements": [
+    ["deposit_coin"]
+  ]
+}

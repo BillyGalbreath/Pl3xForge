@@ -1,0 +1,25 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:clock"
+    },
+    "title": "Feeling right at home",
+    "description": "Play for 10 hours",
+    "hidden": true
+  },
+  "parent": "pl3x:pl3x/hour_one",
+  "rewards": {
+    "experience": 1000
+  },
+  "criteria": {
+    "total_time": {
+      "trigger": "pl3x:play_time",
+      "conditions": {
+        "duration": 720000
+      }
+    }
+  },
+  "requirements": [
+    ["total_time"]
+  ]
+}

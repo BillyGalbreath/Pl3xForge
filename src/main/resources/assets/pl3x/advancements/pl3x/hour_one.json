@@ -1,0 +1,25 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:clock"
+    },
+    "title": "Made it this far..",
+    "description": "Play for an hour",
+    "hidden": true
+  },
+  "parent": "pl3x:pl3x/root",
+  "rewards": {
+    "experience": 1000
+  },
+  "criteria": {
+    "total_time": {
+      "trigger": "pl3x:play_time",
+      "conditions": {
+        "duration": 72000
+      }
+    }
+  },
+  "requirements": [
+    ["total_time"]
+  ]
+}

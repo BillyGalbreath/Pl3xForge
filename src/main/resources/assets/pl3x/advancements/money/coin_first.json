@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "item": "pl3x:coin"
+    },
+    "title": "Oh, Money!",
+    "description": "Found money! \\o/",
+    "background": "pl3x:textures/gui/advancements/backgrounds/money.png",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "pickup_coin": {
+      "trigger": "pl3x:pickup_coin",
+      "conditions": {
+        "balance": 0
+      }
+    }
+  },
+  "requirements": [
+    ["pickup_coin"]
+  ]
+}

@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.pl3x.forge.ChatColor;
 import net.pl3x.forge.ExperienceManager;
 import net.pl3x.forge.Pl3x;
+import net.pl3x.forge.advancement.ModAdvancements;
 import net.pl3x.forge.data.CapabilityProvider;
 import net.pl3x.forge.data.PlayerData;
 import net.pl3x.forge.gui.ModGuiHandler;
@@ -71,6 +72,7 @@ public class BankPacket implements IMessage {
                         capability.setCoins(coins - packet.amount);
                         capability.setBankCoins(bankCoins + packet.amount);
                         player.sendMessage(new TextComponentString(ChatColor.colorize("&aDeposited " + packet.amount + " coins into bank")));
+                        ModAdvancements.DEPOSIT_COIN_TRIGGER.trigger(player, capability.getBankCoins());
                         break;
                     case WITHDRAW_COIN:
                         if (packet.amount > bankCoins) {

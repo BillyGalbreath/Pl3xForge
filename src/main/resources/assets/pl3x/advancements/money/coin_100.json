@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "item": "pl3x:coin"
+    },
+    "title": "Heavy Pockets",
+    "description": "Have 100 coins on you",
+    "frame": "goal",
+    "hidden": true
+  },
+  "parent": "pl3x:money/coin_first",
+  "criteria": {
+    "pickup_coin": {
+      "trigger": "pl3x:pickup_coin",
+      "conditions": {
+        "balance": 100
+      }
+    }
+  },
+  "requirements": [
+    ["pickup_coin"]
+  ]
+}
