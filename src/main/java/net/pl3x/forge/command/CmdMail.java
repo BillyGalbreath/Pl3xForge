@@ -91,7 +91,7 @@ public class CmdMail extends CommandBase {
             EntityPlayerMP target = Utils.getPlayer(args[1]);
             MailConfig.MailBag mailBag = MailConfig.INSTANCE.getMailBag(target);
             if (target == null) {
-                UUID uuid = Utils.getUUIDFromName(args[0]);
+                UUID uuid = Utils.getUUIDFromName(args[1]);
                 if (uuid == null) {
                     Lang.send(sender, Lang.INSTANCE.data.PLAYER_NOT_FOUND);
                     return;
