@@ -7,12 +7,13 @@ import net.minecraft.item.Item;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.pl3x.forge.Pl3x;
-import net.pl3x.forge.item.tool.ItemAxe;
-import net.pl3x.forge.item.tool.ItemClaimTool;
-import net.pl3x.forge.item.tool.ItemHoe;
-import net.pl3x.forge.item.tool.ItemPickaxe;
-import net.pl3x.forge.item.tool.ItemShovel;
-import net.pl3x.forge.item.tool.ItemSword;
+import net.pl3x.forge.item.custom.ItemClaimTool;
+import net.pl3x.forge.item.custom.ItemTrafficCone;
+import net.pl3x.forge.item.custom.tool.ItemAxe;
+import net.pl3x.forge.item.custom.tool.ItemHoe;
+import net.pl3x.forge.item.custom.tool.ItemPickaxe;
+import net.pl3x.forge.item.custom.tool.ItemShovel;
+import net.pl3x.forge.item.custom.tool.ItemSword;
 
 public class ModItems {
     // ARMORS // new int[]{boots, leggings, chestplate, helmet}
@@ -84,11 +85,11 @@ public class ModItems {
     public static final ItemHat HAT_WIZARD = new ItemHat("hat_wizard");
     public static final ItemHat HAT_WIZARD_2 = new ItemHat("hat_wizard2");
 
-    public static final ItemMoney COIN = new ItemMoney("coin");
-
-    public static final ItemBase SEASONAL = new ItemBase("seasonal");
-
     public static final ItemClaimTool CLAIM_TOOL = new ItemClaimTool();
+    public static final ItemMoney COIN = new ItemMoney("coin");
+    public static final ItemBase SEASONAL = new ItemBase("seasonal");
+    public static final ItemTrafficCone TRAFFIC_CONE = new ItemTrafficCone();
+
 
     public static void register(IForgeRegistry<Item> registry) {
         registry.registerAll(
@@ -145,11 +146,10 @@ public class ModItems {
                 HAT_WIZARD,
                 HAT_WIZARD_2,
 
+                CLAIM_TOOL,
                 COIN,
-
                 SEASONAL,
-
-                CLAIM_TOOL
+                TRAFFIC_CONE
         );
     }
 
@@ -206,10 +206,9 @@ public class ModItems {
         HAT_WIZARD.registerItemModel();
         HAT_WIZARD_2.registerItemModel();
 
-        COIN.registerItemModel();
-
-        SEASONAL.registerItemModel();
-
         CLAIM_TOOL.registerItemModel();
+        COIN.registerItemModel();
+        SEASONAL.registerItemModel();
+        TRAFFIC_CONE.registerItemModel();
     }
 }

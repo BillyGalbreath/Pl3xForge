@@ -33,7 +33,7 @@ import net.pl3x.forge.data.PlayerData;
 import net.pl3x.forge.entity.EntityBanker;
 import net.pl3x.forge.item.ItemMoney;
 import net.pl3x.forge.item.ModItems;
-import net.pl3x.forge.item.tool.ItemClaimTool;
+import net.pl3x.forge.item.custom.ItemClaimTool;
 import net.pl3x.forge.motd.MOTDCache;
 import net.pl3x.forge.network.PacketHandler;
 import net.pl3x.forge.scheduler.Pl3xRunnable;

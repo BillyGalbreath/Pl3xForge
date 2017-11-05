@@ -1,12 +1,13 @@
-package net.pl3x.forge.item.tool;
+package net.pl3x.forge.item.custom.tool;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemSpade;
 import net.pl3x.forge.Pl3x;
 
-public class ItemSword extends net.minecraft.item.ItemSword {
+public class ItemShovel extends ItemSpade {
     private final String name;
 
-    public ItemSword(ToolMaterial material, String name) {
+    public ItemShovel(ToolMaterial material, String name) {
         super(material);
         setRegistryName(name);
         setUnlocalizedName(name);
@@ -18,7 +19,7 @@ public class ItemSword extends net.minecraft.item.ItemSword {
     }
 
     @Override
-    public ItemSword setCreativeTab(CreativeTabs tab) {
+    public ItemShovel setCreativeTab(CreativeTabs tab) {
         super.setCreativeTab(tab);
         return this;
     }

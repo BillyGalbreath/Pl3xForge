@@ -5,7 +5,6 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -15,12 +14,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.ModColorManager;
 import net.pl3x.forge.Pl3x;
-import net.pl3x.forge.entity.EntityBanker;
-import net.pl3x.forge.entity.EntityPenguin;
 import net.pl3x.forge.entity.ModEntities;
-import net.pl3x.forge.entity.render.RenderBanker;
-import net.pl3x.forge.entity.render.RenderPenguin;
 import net.pl3x.forge.gui.TitleScreen;
+import net.pl3x.forge.listener.BigHeadListener;
 import net.pl3x.forge.listener.ClientEventHandler;
 import net.pl3x.forge.listener.KeyBindings;
 import net.pl3x.forge.listener.KeyInputHandler;
@@ -47,10 +43,11 @@ public class ClientProxy extends ServerProxy {
     public void init(FMLInitializationEvent event) {
         super.init(event);
 
-        MinecraftForge.EVENT_BUS.register(new TitleScreen());
-        MinecraftForge.EVENT_BUS.register(new ServerEventHandler());
+        MinecraftForge.EVENT_BUS.register(new BigHeadListener());
         MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
         MinecraftForge.EVENT_BUS.register(new KeyInputHandler());
+        MinecraftForge.EVENT_BUS.register(new ServerEventHandler());
+        MinecraftForge.EVENT_BUS.register(new TitleScreen());
 
         ModColorManager.registerColorHandlers();
 

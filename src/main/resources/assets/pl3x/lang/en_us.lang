@@ -53,6 +53,7 @@ item.hat_wizard2.name=Wizard Hat 2
 item.claim_tool.name=Claim Tool
 item.coin.name=Coin
 item.seasonal.name=Seasonal
+item.traffic_cone.name=Traffic Cone
 
 # Blocks
 tile.concrete_slab_black.name=Black Concrete Slab

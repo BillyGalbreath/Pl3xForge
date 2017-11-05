@@ -12,6 +12,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.command.CmdBack;
+import net.pl3x.forge.command.CmdBigHead;
 import net.pl3x.forge.command.CmdCountdown;
 import net.pl3x.forge.command.CmdDelHome;
 import net.pl3x.forge.command.CmdFlip;
@@ -40,6 +41,7 @@ import net.pl3x.forge.command.CmdTPS;
 import net.pl3x.forge.command.CmdTPToggle;
 import net.pl3x.forge.command.CmdTop;
 import net.pl3x.forge.command.CmdUnflip;
+import net.pl3x.forge.configuration.BigHeadConfig;
 import net.pl3x.forge.configuration.ClaimConfigs;
 import net.pl3x.forge.configuration.ConfigWatcher;
 import net.pl3x.forge.configuration.EmojiConfig;
@@ -66,11 +68,14 @@ import java.io.File;
 public class ServerProxy {
     public void preInit(FMLPreInitializationEvent event) {
         Lang.INSTANCE.init();
-        PermsConfig.INSTANCE.init();
-        MailConfig.INSTANCE.init();
+
+        BigHeadConfig.INSTANCE.init();
         IconConfig.INSTANCE.init();
-        EmojiConfig.INSTANCE.init();
+        EmojiConfig.INSTANCE.init(); // load AFTER icons
+        MailConfig.INSTANCE.init();
         MOTDConfig.INSTANCE.init();
+        PermsConfig.INSTANCE.init();
+
         ClaimConfigs.init(new File(Pl3x.configDir, ClaimConfigs.CLAIM_DIRECTORY));
 
         ConfigWatcher.INSTANCE.start();
@@ -98,6 +103,7 @@ public class ServerProxy {
 
     public void serverStarting(FMLServerStartingEvent event) {
         event.registerServerCommand(new CmdBack());
+        event.registerServerCommand(new CmdBigHead());
         event.registerServerCommand(new CmdCountdown());
         event.registerServerCommand(new CmdDelHome());
         event.registerServerCommand(new CmdFlip());

@@ -1,4 +1,4 @@
-package net.pl3x.forge.item.tool;
+package net.pl3x.forge.item.custom;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;

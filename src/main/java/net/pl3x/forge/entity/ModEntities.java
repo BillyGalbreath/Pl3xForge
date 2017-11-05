@@ -13,6 +13,7 @@ import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.entity.render.RenderBanker;
 import net.pl3x.forge.entity.render.RenderPenguin;
 import net.pl3x.forge.entity.render.RenderTrafficCone;
+import net.pl3x.forge.entity.render.RenderVehicle;
 
 import java.util.List;
 import java.util.Set;
@@ -25,7 +26,8 @@ public class ModEntities {
     public static void init() {
         EntityRegistry.registerModEntity(new ResourceLocation(Pl3x.modId, "banker"), EntityBanker.class, "banker", 0, Pl3x.instance, 48, 1, true, 0xFFFFFF, 0x000000);
         EntityRegistry.registerModEntity(new ResourceLocation(Pl3x.modId, "penguin"), EntityPenguin.class, "penguin", 1, Pl3x.instance, 48, 1, true, 0x000000, 0xFFFFFF);
-        EntityRegistry.registerModEntity(new ResourceLocation(Pl3x.modId, "traffic_cone"), EntityTrafficCone.class, "traffic_cone", 48, Pl3x.instance, 48, 1, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(Pl3x.modId, "traffic_cone"), EntityTrafficCone.class, "traffic_cone", 2, Pl3x.instance, 48, 1, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(Pl3x.modId, "go_cart"), EntityGoCart.class, "go_cart", 3, Pl3x.instance, 48, 1, true);
 
         addEntitySpawns();
     }
@@ -35,6 +37,7 @@ public class ModEntities {
         RenderingRegistry.registerEntityRenderingHandler(EntityBanker.class, RenderBanker::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityPenguin.class, RenderPenguin::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityTrafficCone.class, RenderTrafficCone::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGoCart.class, RenderVehicle::new);
     }
 
     public static void addEntitySpawns() {

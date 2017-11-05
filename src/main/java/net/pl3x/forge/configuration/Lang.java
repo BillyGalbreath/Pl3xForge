@@ -34,8 +34,10 @@ public class Lang extends ConfigLoader implements ConfigBase {
     }
 
     public static void send(ICommandSender sender, String message) {
-        for (String part : message.split("\n")) {
-            sender.sendMessage(new TextComponentString(ChatColor.colorize(part)));
+        if (message != null && !message.isEmpty()) {
+            for (String part : message.split("\n")) {
+                sender.sendMessage(new TextComponentString(ChatColor.colorize(part)));
+            }
         }
     }
 
@@ -52,6 +54,9 @@ public class Lang extends ConfigLoader implements ConfigBase {
         public String BACK_ON_DEATH = "&aUse /back to teleport to where you died";
         public String BACK_NO_LOCATION = "&cNo back location set";
         public String BACK_TO_PREVIOUS = "&aTeleported to previous location";
+
+        public String BIGHEAD_ENABLED = "&aBigHead mode &2enabled &afor {target}";
+        public String BIGHEAD_DISABLED = "&aBigHead mode &cdisabled &afor {target}";
 
         public String FLY_ONLY_SURVIVAL = "&cFly only works in survival mode";
         public String FLY_TOGGLED = "&aFly mode toggled {state}";

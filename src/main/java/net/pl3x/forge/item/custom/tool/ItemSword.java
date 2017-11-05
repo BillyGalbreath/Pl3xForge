@@ -1,12 +1,12 @@
-package net.pl3x.forge.item.tool;
+package net.pl3x.forge.item.custom.tool;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.pl3x.forge.Pl3x;
 
-public class ItemHoe extends net.minecraft.item.ItemHoe {
+public class ItemSword extends net.minecraft.item.ItemSword {
     private final String name;
 
-    public ItemHoe(ToolMaterial material, String name) {
+    public ItemSword(ToolMaterial material, String name) {
         super(material);
         setRegistryName(name);
         setUnlocalizedName(name);
@@ -18,7 +18,7 @@ public class ItemHoe extends net.minecraft.item.ItemHoe {
     }
 
     @Override
-    public ItemHoe setCreativeTab(CreativeTabs tab) {
+    public ItemSword setCreativeTab(CreativeTabs tab) {
         super.setCreativeTab(tab);
         return this;
     }

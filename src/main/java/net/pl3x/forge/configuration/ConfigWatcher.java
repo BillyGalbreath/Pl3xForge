@@ -84,12 +84,13 @@ public class ConfigWatcher implements Runnable {
     }
 
     private enum ConfigType {
-        PERMISSIONS(PermsConfig.INSTANCE),
+        BIGHEAD(BigHeadConfig.INSTANCE),
+        EMOJI(EmojiConfig.INSTANCE),
+        ICON(IconConfig.INSTANCE),
         LANG(Lang.INSTANCE),
         MAIL(MailConfig.INSTANCE),
-        ICON(IconConfig.INSTANCE),
-        EMOJI(EmojiConfig.INSTANCE),
-        MOTD(MOTDConfig.INSTANCE);
+        MOTD(MOTDConfig.INSTANCE),
+        PERMISSIONS(PermsConfig.INSTANCE);
 
         ConfigBase config;
 
