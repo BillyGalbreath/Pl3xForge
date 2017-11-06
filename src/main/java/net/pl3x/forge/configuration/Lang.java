@@ -90,6 +90,7 @@ public class Lang extends ConfigLoader implements ConfigBase {
 
         public String PING = "&a{target}'s ping is {ping}&ams";
 
+        public String RTP_OVERWORLD_ONLY = "&cRTP only works in the overworld";
         public String RTP_NO_SAFE_LOCATION = "&cCould not locate a safe location";
         public String RTP_SUCCESS = "&aTeleported to a random location";
 

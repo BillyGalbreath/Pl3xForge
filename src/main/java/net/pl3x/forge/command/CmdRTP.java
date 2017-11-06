@@ -32,6 +32,11 @@ public class CmdRTP extends CommandBase {
 
         EntityPlayerMP player = getCommandSenderAsPlayer(sender);
 
+        if (player.dimension != 0) {
+            Lang.send(player, Lang.INSTANCE.data.RTP_OVERWORLD_ONLY);
+            return;
+        }
+
         if (cooldowns.contains(player.getUniqueID())) {
             Lang.send(player, Lang.INSTANCE.data.COMMAND_ON_COOLDOWN);
             return;
