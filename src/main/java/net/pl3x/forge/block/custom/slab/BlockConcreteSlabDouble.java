@@ -10,8 +10,6 @@ import net.minecraft.world.IBlockAccess;
 public class BlockConcreteSlabDouble extends BlockConcreteSlab {
     public BlockConcreteSlabDouble(EnumDyeColor color) {
         super("concrete_slab_" + color.getName() + "_double", color);
-
-        setCreativeTab(null);
     }
 
     @Override

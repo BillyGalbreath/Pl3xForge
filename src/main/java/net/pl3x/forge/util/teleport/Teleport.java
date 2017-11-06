@@ -33,10 +33,10 @@ public class Teleport {
                             new SimpleTeleporter(loc.getWorldServer()));
         }
         if (center) {
-            player.connection.setPlayerLocation(loc.getBlockX() + 0.5D, loc.getBlockY(), loc.getBlockZ() + 0.5D, (float) loc.getYaw(), (float) loc.getPitch());
+            player.connection.setPlayerLocation(loc.getBlockX() + 0.5D, loc.getBlockY(), loc.getBlockZ() + 0.5D, loc.getYaw(), loc.getPitch());
             //player.setPositionAndUpdate(loc.getBlockX() + 0.5D, loc.getBlockY(), loc.getBlockZ() + 0.5D);
         } else {
-            player.connection.setPlayerLocation(loc.getX(), loc.getY(), loc.getZ(), (float) loc.getYaw(), (float) loc.getPitch());
+            player.connection.setPlayerLocation(loc.getX(), loc.getY(), loc.getZ(), loc.getYaw(), loc.getPitch());
             //player.setPositionAndUpdate(loc.getX(), loc.getY(), loc.getZ());
         }
     }

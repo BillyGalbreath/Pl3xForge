@@ -13,8 +13,8 @@ import java.io.IOException;
 
 public class TitleScreen extends GuiScreen {
     private final static String branding = "Pl3x " + Pl3x.version;
-    private Minecraft mc = Minecraft.getMinecraft();
-    private FontRenderer fontRenderer = mc.fontRenderer;
+    private final Minecraft mc = Minecraft.getMinecraft();
+    private final FontRenderer fontRenderer = mc.fontRenderer;
 
     @SubscribeEvent
     public void onRenderMainMenu(GuiScreenEvent event) throws IOException {

@@ -8,7 +8,7 @@ import net.minecraft.item.ItemBlock;
 import net.pl3x.forge.Pl3x;
 
 public class BlockBase extends Block {
-    protected final String name;
+    private final String name;
 
     public BlockBase(Material material, String name) {
         super(material);

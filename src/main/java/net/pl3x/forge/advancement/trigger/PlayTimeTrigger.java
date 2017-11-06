@@ -28,12 +28,7 @@ public class PlayTimeTrigger implements ICriterionTrigger<PlayTimeTrigger.Instan
 
     @Override
     public void addListener(PlayerAdvancements playerAdvancementsIn, Listener<Instance> listener) {
-        Listeners listeners = this.listeners.get(playerAdvancementsIn);
-        if (listeners == null) {
-            listeners = new Listeners(playerAdvancementsIn);
-            this.listeners.put(playerAdvancementsIn, listeners);
-        }
-        listeners.add(listener);
+        listeners.computeIfAbsent(playerAdvancementsIn, Listeners::new).add(listener);
     }
 
     @Override

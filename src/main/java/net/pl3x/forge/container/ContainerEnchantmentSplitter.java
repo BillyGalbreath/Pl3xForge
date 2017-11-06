@@ -7,7 +7,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCraftResult;
 import net.minecraft.inventory.Slot;
@@ -245,10 +244,6 @@ public class ContainerEnchantmentSplitter extends Container {
     private void clearFlags() {
         BAD_INPUT_TOOL = false;
         BAD_INPUT_BOOK = false;
-    }
-
-    public void addListener(IContainerListener listener) {
-        super.addListener(listener);
     }
 
     public void onContainerClosed(EntityPlayer playerIn) {

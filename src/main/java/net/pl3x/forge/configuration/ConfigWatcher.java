@@ -22,10 +22,10 @@ public class ConfigWatcher implements Runnable {
     public static final Thread INSTANCE = new Thread(new ConfigWatcher(Pl3x.configDir.toPath()), ChatColor.colorize("&1Config&r"));
 
     private final static int RELOAD_DELAY = 20;
-    private Set<ConfigType> reloadQueue = new HashSet<>();
-    private Path dir;
+    private final Set<ConfigType> reloadQueue = new HashSet<>();
+    private final Path dir;
 
-    public ConfigWatcher(Path dir) {
+    private ConfigWatcher(Path dir) {
         this.dir = dir;
     }
 
@@ -92,7 +92,7 @@ public class ConfigWatcher implements Runnable {
         MOTD(MOTDConfig.INSTANCE),
         PERMISSIONS(PermsConfig.INSTANCE);
 
-        ConfigBase config;
+        final ConfigBase config;
 
         ConfigType(ConfigBase config) {
             this.config = config;

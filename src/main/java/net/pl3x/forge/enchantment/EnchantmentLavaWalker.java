@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class EnchantmentLavaWalker extends Enchantment {
-    private static Map<UUID, BlockPos> playerPositionTracker = new HashMap<>();
+    private static final Map<UUID, BlockPos> playerPositionTracker = new HashMap<>();
 
     public EnchantmentLavaWalker() {
         super(Rarity.VERY_RARE, EnumEnchantmentType.ARMOR_FEET, new EntityEquipmentSlot[]{EntityEquipmentSlot.FEET});

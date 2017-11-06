@@ -29,7 +29,7 @@ public class EnchantmentSplitterInventoryInputs implements IInventory {
         this.inventoryTitle = title;
         this.hasCustomName = customName;
         this.slotsCount = slotCount;
-        this.inventoryContents = NonNullList.<ItemStack>withSize(slotCount, ItemStack.EMPTY);
+        this.inventoryContents = NonNullList.withSize(slotCount, ItemStack.EMPTY);
     }
 
     @SideOnly(Side.CLIENT)
@@ -42,7 +42,7 @@ public class EnchantmentSplitterInventoryInputs implements IInventory {
      */
     public void addInventoryChangeListener(IInventoryChangedListener listener) {
         if (this.changeListeners == null) {
-            this.changeListeners = Lists.<IInventoryChangedListener>newArrayList();
+            this.changeListeners = Lists.newArrayList();
         }
 
         this.changeListeners.add(listener);
@@ -59,7 +59,7 @@ public class EnchantmentSplitterInventoryInputs implements IInventory {
      * Returns the stack in the given slot.
      */
     public ItemStack getStackInSlot(int index) {
-        return index >= 0 && index < this.inventoryContents.size() ? (ItemStack) this.inventoryContents.get(index) : ItemStack.EMPTY;
+        return index >= 0 && index < this.inventoryContents.size() ? this.inventoryContents.get(index) : ItemStack.EMPTY;
     }
 
     /**
@@ -184,7 +184,7 @@ public class EnchantmentSplitterInventoryInputs implements IInventory {
      * Get the formatted ChatComponent that will be used for the sender's username in chat
      */
     public ITextComponent getDisplayName() {
-        return (ITextComponent) (this.hasCustomName() ? new TextComponentString(this.getName()) : new TextComponentTranslation(this.getName(), new Object[0]));
+        return this.hasCustomName() ? new TextComponentString(this.getName()) : new TextComponentTranslation(this.getName());
     }
 
     /**
@@ -200,8 +200,8 @@ public class EnchantmentSplitterInventoryInputs implements IInventory {
      */
     public void markDirty() {
         if (this.changeListeners != null) {
-            for (int i = 0; i < this.changeListeners.size(); ++i) {
-                ((IInventoryChangedListener) this.changeListeners.get(i)).onInventoryChanged(this);
+            for (IInventoryChangedListener changeListener : this.changeListeners) {
+                changeListener.onInventoryChanged(this);
             }
         }
     }

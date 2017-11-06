@@ -16,7 +16,7 @@ import net.pl3x.forge.block.BlockOre;
 import java.util.Random;
 
 public class BlockFrostedObsidian extends BlockOre {
-    public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 3);
+    private static final PropertyInteger AGE = PropertyInteger.create("age", 0, 3);
 
     public BlockFrostedObsidian() {
         super("frosted_obsidian", "frostedObsidian", 50, 6000, 3, "pickaxe");

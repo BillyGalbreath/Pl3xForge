@@ -12,10 +12,10 @@ import java.text.DecimalFormat;
 public class HUDBalance {
     public static long balance = 0;
 
-    private Minecraft mc = Minecraft.getMinecraft();
-    private FontRenderer fontRenderer = mc.fontRenderer;
+    private final Minecraft mc = Minecraft.getMinecraft();
+    private final FontRenderer fontRenderer = mc.fontRenderer;
 
-    private DecimalFormat df = new DecimalFormat("#,###");
+    private final DecimalFormat df = new DecimalFormat("#,###");
 
     public void draw() {
         if (!ClientConfig.balanceHud.enabled) {

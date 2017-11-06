@@ -28,12 +28,7 @@ public class PickupCoinTrigger implements ICriterionTrigger<PickupCoinTrigger.In
 
     @Override
     public void addListener(PlayerAdvancements playerAdvancementsIn, ICriterionTrigger.Listener<Instance> listener) {
-        Listeners listeners = this.listeners.get(playerAdvancementsIn);
-        if (listeners == null) {
-            listeners = new Listeners(playerAdvancementsIn);
-            this.listeners.put(playerAdvancementsIn, listeners);
-        }
-        listeners.add(listener);
+        listeners.computeIfAbsent(playerAdvancementsIn, Listeners::new).add(listener);
     }
 
     @Override
@@ -66,7 +61,7 @@ public class PickupCoinTrigger implements ICriterionTrigger<PickupCoinTrigger.In
     }
 
     public static class Instance extends AbstractCriterionInstance {
-        long balance;
+        final long balance;
 
         public Instance(long balance) {
             super(ID);

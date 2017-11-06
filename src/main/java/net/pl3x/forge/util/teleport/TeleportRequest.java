@@ -9,7 +9,7 @@ public abstract class TeleportRequest {
     private final EntityPlayerMP target;
     private final TeleportRequestTimeout timeoutTask;
 
-    public TeleportRequest(EntityPlayerMP requester, EntityPlayerMP target) {
+    TeleportRequest(EntityPlayerMP requester, EntityPlayerMP target) {
         this.requester = requester;
         this.target = target;
 

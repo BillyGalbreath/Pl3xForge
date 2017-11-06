@@ -19,9 +19,9 @@ import net.pl3x.forge.util.gl.GuiUtil;
 import java.util.List;
 
 public class GuiShopOwnerDisplay extends GuiContainer {
-    private ContainerShopOwner container;
+    private final ContainerShopOwner container;
 
-    private List<Slot> slotsToDraw;
+    private final List<Slot> slotsToDraw;
 
     private GuiTextField scaleField;
     private GuiTextField yOffsetField;
@@ -29,7 +29,7 @@ public class GuiShopOwnerDisplay extends GuiContainer {
     private GuiTextField yRotField;
     private GuiTextField zRotField;
 
-    private int slotStart;
+    private final int slotStart;
     private int x;
     private int y;
 

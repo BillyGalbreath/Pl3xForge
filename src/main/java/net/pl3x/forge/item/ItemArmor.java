@@ -5,7 +5,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.pl3x.forge.Pl3x;
 
 public class ItemArmor extends net.minecraft.item.ItemArmor {
-    protected final String name;
+    private final String name;
 
     public ItemArmor(ArmorMaterial material, EntityEquipmentSlot slot, String name) {
         super(material, 0, slot);

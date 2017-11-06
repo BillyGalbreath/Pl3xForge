@@ -1,0 +1,30 @@
+{
+  "penguin.ambient": {
+    "category": "neutral",
+    "sounds": [
+      "pl3x:penguin_ambient"
+    ],
+    "subtitle": "pl3x:subtitles.penguin.ambient"
+  },
+  "penguin.baby.ambient": {
+    "category": "neutral",
+    "sounds": [
+      "pl3x:penguin_baby_ambient"
+    ],
+    "subtitle": "pl3x:subtitles.penguin.baby.ambient"
+  },
+  "penguin.death": {
+    "category": "neutral",
+    "sounds": [
+      "pl3x:penguin_death"
+    ],
+    "subtitle": "pl3x:subtitles.penguin.death"
+  },
+  "penguin.hurt": {
+    "category": "neutral",
+    "sounds": [
+      "pl3x:penguin_hurt"
+    ],
+    "subtitle": "pl3x:subtitles.penguin.hurt"
+  }
+}

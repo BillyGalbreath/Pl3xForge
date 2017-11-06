@@ -13,7 +13,7 @@ public class CapabilityProvider implements ICapabilitySerializable<NBTBase> {
     @CapabilityInject(PlayerData.class)
     public static final Capability<PlayerData> CAPABILITY = null;
 
-    private PlayerData instance = CAPABILITY.getDefaultInstance();
+    private final PlayerData instance = CAPABILITY.getDefaultInstance();
 
     @Override
     public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {

@@ -3,7 +3,6 @@ package net.pl3x.forge.gui.banker;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.container.ContainerBanker;
@@ -17,7 +16,6 @@ import net.pl3x.forge.util.gl.GuiUtil;
 
 public class GuiBanker extends GuiContainer {
     private final ContainerBanker container;
-    private InventoryPlayer playerInv;
 
     private final String failed = "Insufficient Funds";
 
@@ -29,9 +27,8 @@ public class GuiBanker extends GuiContainer {
     private int x;
     private int y;
 
-    public GuiBanker(Container container, InventoryPlayer playerInv) {
+    public GuiBanker(Container container) {
         super(container);
-        this.playerInv = playerInv;
         this.container = (ContainerBanker) inventorySlots;
         ySize = 212;
     }

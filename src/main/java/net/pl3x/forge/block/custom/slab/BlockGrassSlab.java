@@ -27,9 +27,9 @@ import net.pl3x.forge.block.ModBlocks;
 import java.util.Random;
 
 public abstract class BlockGrassSlab extends BlockSlab {
-    public static final PropertyEnum<BlockGrassSlab.Variant> VARIANT = PropertyEnum.create("variant", BlockGrassSlab.Variant.class);
+    private static final PropertyEnum<BlockGrassSlab.Variant> VARIANT = PropertyEnum.create("variant", BlockGrassSlab.Variant.class);
 
-    protected final String name;
+    private final String name;
 
     public BlockGrassSlab(String name) {
         super(Material.ROCK);

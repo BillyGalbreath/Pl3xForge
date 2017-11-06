@@ -13,7 +13,7 @@ import net.pl3x.forge.data.CapabilityProvider;
 import net.pl3x.forge.network.PacketHandler;
 
 public class CapabilityHandler {
-    public static final ResourceLocation PLAYER_DATA = new ResourceLocation(Pl3x.modId, "playerdata");
+    private static final ResourceLocation PLAYER_DATA = new ResourceLocation(Pl3x.modId, "playerdata");
 
     @SubscribeEvent
     public void on(AttachCapabilitiesEvent<Entity> event) {

@@ -40,7 +40,7 @@ public class CmdCountdown extends CommandBase {
     }
 
     private class Countdown extends Pl3xRunnable {
-        private ICommandSender sender;
+        private final ICommandSender sender;
         private int counter;
 
         private Countdown(ICommandSender sender, int counter) {

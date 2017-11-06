@@ -1,6 +1,5 @@
 package net.pl3x.forge.entity.ai;
 
-import com.google.common.base.Predicate;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -12,6 +11,7 @@ import net.pl3x.forge.entity.EntityTrafficCone;
 import net.pl3x.forge.item.ModItems;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 public class EntityAIFollowConeHead extends EntityAIBase {
     private final EntityTrafficCone trafficCone;
@@ -40,7 +40,7 @@ public class EntityAIFollowConeHead extends EntityAIBase {
 
     public boolean shouldExecute() {
         List<EntityPlayer> list = trafficCone.world.getEntitiesWithinAABB(EntityPlayer.class,
-                trafficCone.getEntityBoundingBox().grow((double) areaSize), followPredicate);
+                trafficCone.getEntityBoundingBox().grow((double) areaSize), followPredicate::test);
         if (!list.isEmpty()) {
             for (EntityPlayer player : list) {
                 if (!player.isInvisible() && !player.isSpectator()) {

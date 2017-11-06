@@ -6,12 +6,16 @@ import net.minecraft.item.ItemStack;
 import net.pl3x.forge.Pl3x;
 
 public class ItemBase extends Item {
-    protected final String name;
+    private final String name;
 
     public ItemBase(String name) {
         this.name = name;
         setUnlocalizedName(name);
         setRegistryName(name);
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void registerItemModel() {

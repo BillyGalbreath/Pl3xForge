@@ -45,7 +45,7 @@ public class Selection {
         return new BlockPos(maxX, 256, maxZ);
     }
 
-    public void recalcMinMax() {
+    private void recalcMinMax() {
         if (rightClickPos == null && leftClickPos == null) {
             minX = 0;
             minZ = 0;

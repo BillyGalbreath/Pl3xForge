@@ -22,9 +22,9 @@ import java.io.IOException;
 public class GuiBankerAction extends GuiContainer {
     private final EntityPlayer player;
     private GuiTextField amountField;
-    private ExperienceManager expMan;
+    private final ExperienceManager expMan;
 
-    private int action;
+    private final int action;
     private int iconX;
     private int iconY;
     private int textX;

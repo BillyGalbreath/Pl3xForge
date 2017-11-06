@@ -17,15 +17,15 @@ import net.pl3x.forge.util.gl.GuiUtil;
 import java.util.List;
 
 public class GuiShopCustomer extends GuiContainer {
-    private ContainerShopCustomer container;
+    private final ContainerShopCustomer container;
 
-    private List<Slot> slotsToDraw;
+    private final List<Slot> slotsToDraw;
 
     private Button purchaseButton;
 
     private Error error;
 
-    private int slotStart;
+    private final int slotStart;
     private float itemRot = 0;
     private int itemWidth;
     private int itemHeight;
@@ -148,8 +148,8 @@ public class GuiShopCustomer extends GuiContainer {
         SHOP_IS_CLOSED("Shop is Closed"),
         INSUFFICIENT_FUNDS("Insufficient Funds");
 
-        private String message;
-        private int width;
+        private final String message;
+        private final int width;
 
         Error(String message) {
             this.message = message;

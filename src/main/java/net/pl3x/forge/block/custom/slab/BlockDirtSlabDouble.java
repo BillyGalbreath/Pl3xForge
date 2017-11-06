@@ -9,8 +9,6 @@ import net.minecraft.world.IBlockAccess;
 public class BlockDirtSlabDouble extends BlockDirtSlab {
     public BlockDirtSlabDouble() {
         super("dirt_slab_double");
-
-        setCreativeTab(null);
     }
 
     @Override

@@ -3,7 +3,6 @@ package net.pl3x.forge.util;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.player.PlayerCapabilities;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.PlayerList;
 import net.minecraft.util.math.RayTraceResult;
@@ -15,7 +14,6 @@ import net.minecraftforge.common.UsernameCache;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -23,8 +21,8 @@ import java.util.Map;
 import java.util.UUID;
 
 public class PlayerUtil {
-    private static MinecraftServer serverInstance = FMLCommonHandler.instance().getMinecraftServerInstance();
-    private static PlayerList playerList = serverInstance.getPlayerList();
+    private static final MinecraftServer serverInstance = FMLCommonHandler.instance().getMinecraftServerInstance();
+    private static final PlayerList playerList = serverInstance.getPlayerList();
 
     public static boolean isSinglePlayer() {
         return serverInstance != null && serverInstance.isSinglePlayer();
@@ -85,16 +83,6 @@ public class PlayerUtil {
             }
         }
         return null;
-    }
-
-    public static void setFlySpeed(EntityPlayerMP player, float speed) {
-        PlayerCapabilities capabilities = player.capabilities;
-        try {
-            Field flySpeed = capabilities.getClass().getDeclaredField("field_75096_f");
-            flySpeed.setAccessible(true);
-            flySpeed.set(capabilities, speed / 2F);
-        } catch (IllegalAccessException | NoSuchFieldException ignore) {
-        }
     }
 
     // borrowed from ForgeEssentials

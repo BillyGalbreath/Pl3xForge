@@ -17,17 +17,17 @@ import net.pl3x.forge.inventory.SlotBanker;
 import java.util.concurrent.TimeUnit;
 
 public class ContainerBanker extends Container {
-    public final EntityPlayer player;
-    private final IInventory bankSlots;
+    private final EntityPlayer player;
     public boolean increaseBankSlotsFailed = false;
     private long coins = 0;
     private int exp = 0;
-    private PlayerData playerData;
+    private final PlayerData playerData;
 
     public ContainerBanker(EntityPlayer player) {
         this.player = player;
 
         playerData = player.getCapability(CapabilityProvider.CAPABILITY, null);
+        IInventory bankSlots;
         if (playerData == null) {
             System.out.println("No capability found. Creating new banker inventory");
             bankSlots = new InventoryBanker();
@@ -85,10 +85,6 @@ public class ContainerBanker extends Container {
     @Override
     public boolean canInteractWith(EntityPlayer playerIn) {
         return player != null && player.equals(playerIn);
-    }
-
-    public void addListener(IContainerListener listener) {
-        super.addListener(listener);
     }
 
     // handle shift clicking

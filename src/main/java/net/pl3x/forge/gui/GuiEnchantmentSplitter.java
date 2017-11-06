@@ -13,10 +13,10 @@ import net.pl3x.forge.util.gl.GuiUtil;
 
 public class GuiEnchantmentSplitter extends GuiContainer {
     private final ContainerEnchantmentSplitter container;
-    private InventoryPlayer playerInv;
+    private final InventoryPlayer playerInv;
 
     private String name;
-    private String splitCost = "Split Cost: 3";
+    private final String splitCost = "Split Cost: 3";
 
     private int animFrame = 0;
     private boolean animBackwards = false;

@@ -28,12 +28,7 @@ public class DepositCoinTrigger implements ICriterionTrigger<DepositCoinTrigger.
 
     @Override
     public void addListener(PlayerAdvancements playerAdvancementsIn, Listener<Instance> listener) {
-        Listeners listeners = this.listeners.get(playerAdvancementsIn);
-        if (listeners == null) {
-            listeners = new Listeners(playerAdvancementsIn);
-            this.listeners.put(playerAdvancementsIn, listeners);
-        }
-        listeners.add(listener);
+        listeners.computeIfAbsent(playerAdvancementsIn, DepositCoinTrigger.Listeners::new).add(listener);
     }
 
     @Override

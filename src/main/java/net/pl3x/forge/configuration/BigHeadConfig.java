@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 public class BigHeadConfig extends ConfigLoader implements ConfigBase {
     public static final BigHeadConfig INSTANCE = new BigHeadConfig();
-    public static final String FILE_NAME = "bighead.json";
+    private static final String FILE_NAME = "bighead.json";
 
     public Data data;
 

@@ -12,7 +12,7 @@ import net.pl3x.forge.data.PlayerData;
 import net.pl3x.forge.gui.HUDBalance;
 
 public class PlayerDataPacket implements IMessage {
-    protected NBTTagCompound nbt;
+    private NBTTagCompound nbt;
 
     public PlayerDataPacket() {
     }

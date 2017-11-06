@@ -11,7 +11,7 @@ import java.util.List;
 
 public class EmojiConfig extends ConfigLoader implements ConfigBase {
     public static final EmojiConfig INSTANCE = new EmojiConfig();
-    public static final String FILE_NAME = "emojis.json";
+    private static final String FILE_NAME = "emojis.json";
 
     public Data data;
 

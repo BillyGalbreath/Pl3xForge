@@ -14,7 +14,7 @@ import java.util.UUID;
 
 public class PermsConfig extends ConfigLoader implements ConfigBase {
     public static final PermsConfig INSTANCE = new PermsConfig();
-    public static final String FILE_NAME = "permissions.json";
+    private static final String FILE_NAME = "permissions.json";
 
     public Data data;
 
@@ -39,19 +39,19 @@ public class PermsConfig extends ConfigLoader implements ConfigBase {
     }
 
     public class Data {
-        private List<PermissionsTrack> tracks = new ArrayList<PermissionsTrack>() {{
+        private final List<PermissionsTrack> tracks = new ArrayList<PermissionsTrack>() {{
             add(new PermissionsTrack("default", 0));
             add(new PermissionsTrack("mod", 1));
             add(new PermissionsTrack("admin", 2));
         }};
 
-        private List<PermissionsGroup> groups = new ArrayList<PermissionsGroup>() {{
+        private final List<PermissionsGroup> groups = new ArrayList<PermissionsGroup>() {{
             add(new PermissionsGroup("default", "", ""));
             add(new PermissionsGroup("mod", "[M]", ""));
             add(new PermissionsGroup("admin", "[A]", ""));
         }};
 
-        private List<PermissionsPlayer> players = new ArrayList<PermissionsPlayer>() {{
+        private final List<PermissionsPlayer> players = new ArrayList<PermissionsPlayer>() {{
             add(new PermissionsPlayer(UUID.fromString("0b54d4f1-8ce9-46b3-a723-4ffdeeae3d7d"),
                     "BillyGalbreath", "admin", "", ""));
             add(new PermissionsPlayer(UUID.fromString("5db23b22-9dd8-4672-94ab-4963a48c2e71"),

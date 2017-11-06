@@ -12,7 +12,7 @@ import java.util.List;
 
 @Mod.EventBusSubscriber
 public class ModSounds {
-    private static List<SoundEvent> sounds = Lists.newArrayList();
+    private static final List<SoundEvent> sounds = Lists.newArrayList();
     public static final SoundEvent PENGUIN_AMBIENT = createSound("penguin.ambient");
     public static final SoundEvent PENGUIN_BABY_AMBIENT = createSound("penguin.baby.ambient");
     public static final SoundEvent PENGUIN_DEATH = createSound("penguin.death");

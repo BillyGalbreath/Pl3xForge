@@ -15,7 +15,7 @@ import net.pl3x.forge.util.Validator;
 import net.pl3x.forge.util.gl.GuiUtil;
 
 public class GuiShopOwner extends GuiContainer {
-    private ContainerShopOwner container;
+    private final ContainerShopOwner container;
     private GuiTextField priceField;
     private GuiTextField qtyField;
 

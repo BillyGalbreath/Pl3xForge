@@ -13,9 +13,9 @@ import java.util.UUID;
 
 public class MailConfig extends ConfigLoader implements ConfigBase {
     public static final MailConfig INSTANCE = new MailConfig();
-    public static final String FILE_NAME = "mail.json";
+    private static final String FILE_NAME = "mail.json";
 
-    public MailData data;
+    private MailData data;
 
     public MailBag getMailBag(EntityPlayerMP player) {
         return data.getMailBag(player.getUniqueID());
@@ -52,15 +52,15 @@ public class MailConfig extends ConfigLoader implements ConfigBase {
     }
 
     public class MailData {
-        private HashMap<UUID, MailBag> mailBags = new HashMap<>();
+        private final HashMap<UUID, MailBag> mailBags = new HashMap<>();
 
-        public MailBag getMailBag(UUID uuid) {
+        MailBag getMailBag(UUID uuid) {
             return mailBags.computeIfAbsent(uuid, k -> new MailBag());
         }
     }
 
     public class MailBag {
-        private List<String> mail = new ArrayList<>();
+        private final List<String> mail = new ArrayList<>();
 
         public int size() {
             return mail.size();

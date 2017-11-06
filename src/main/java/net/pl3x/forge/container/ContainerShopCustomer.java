@@ -9,7 +9,7 @@ import net.pl3x.forge.block.ModBlocks;
 import net.pl3x.forge.tileentity.TileEntityShop;
 
 public class ContainerShopCustomer extends Container {
-    public TileEntityShop shop;
+    public final TileEntityShop shop;
 
     public ContainerShopCustomer(InventoryPlayer playerInventory, TileEntityShop shop) {
         this.shop = shop;

@@ -34,7 +34,7 @@ import javax.annotation.Nullable;
 import java.util.UUID;
 
 public class TileEntityShop extends TileEntity implements ITickable, IInteractionObject {
-    public UUID owner;
+    private UUID owner;
     public int price = 0;
     public int quantity = 0;
     public long coins = 0;

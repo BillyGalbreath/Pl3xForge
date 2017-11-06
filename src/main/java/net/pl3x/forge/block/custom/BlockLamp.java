@@ -223,7 +223,7 @@ public class BlockLamp extends BlockBase {
         return state.getValue(HALF) == Half.UPPER && state.getValue(ON);
     }
 
-    public void playClickSound(World world, BlockPos pos) {
+    private void playClickSound(World world, BlockPos pos) {
         world.playSound(null, pos.getX(), pos.getY(), pos.getZ(),
                 SoundEvents.UI_BUTTON_CLICK, SoundCategory.BLOCKS, 1.0F, 1.0F);
     }

@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class IconConfig extends ConfigLoader implements ConfigBase {
     public static final IconConfig INSTANCE = new IconConfig();
-    public static final String FILE_NAME = "icons.json";
+    private static final String FILE_NAME = "icons.json";
 
     public Data data;
 

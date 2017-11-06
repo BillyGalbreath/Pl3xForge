@@ -23,26 +23,22 @@ public class ModWorldGen implements IWorldGenerator {
     /**
      * @param world       World
      * @param random      Random
-     * @param chunk_X     X chunk coord
-     * @param chunk_Z     Z chunk coord
+     * @param chunkX      X chunk coord
+     * @param chunkZ      Z chunk coord
      * @param ore         Ore block to generate
      * @param maxChances  Max number of veins per chunk
      * @param maxVeinSize Max number of ores per vein
      * @param minY        Min height
      * @param maxY        Max height
      */
-    private void runGenerator(World world, Random random, int chunk_X, int chunk_Z, IBlockState ore, int maxChances, int maxVeinSize, int minY, int maxY) {
-        if (minY < 0 || maxY > 255 || minY > maxY) {
-            throw new IllegalArgumentException("Illegal Height Arguments for WorldGenerator");
-        }
-
+    private void runGenerator(World world, Random random, int chunkX, int chunkZ, IBlockState ore, int maxChances, int maxVeinSize, int minY, int maxY) {
         int heightDiff = maxY - minY + 1;
         for (int i = 0; i < maxChances; i++) {
             new WorldGenMinable(ore, random.nextInt(maxVeinSize))
                     .generate(world, random, new BlockPos(
-                            (chunk_X << 4) + random.nextInt(16),
+                            (chunkX << 4) + random.nextInt(16),
                             minY + random.nextInt(heightDiff),
-                            (chunk_Z << 4) + random.nextInt(16)));
+                            (chunkZ << 4) + random.nextInt(16)));
         }
     }
 }

@@ -95,11 +95,6 @@ public class EntityPenguin extends EntityAnimal {
     }
 
     @Override
-    protected int getExperiencePoints(EntityPlayer player) {
-        return super.getExperiencePoints(player);
-    }
-
-    @Override
     public boolean canBreatheUnderwater() {
         return true;
     }

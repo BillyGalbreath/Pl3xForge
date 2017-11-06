@@ -10,7 +10,7 @@ import java.util.List;
 
 public class MOTDConfig extends ConfigLoader implements ConfigBase {
     public static final MOTDConfig INSTANCE = new MOTDConfig();
-    public static final String FILE_NAME = "motd.json";
+    private static final String FILE_NAME = "motd.json";
 
     public Data data;
 

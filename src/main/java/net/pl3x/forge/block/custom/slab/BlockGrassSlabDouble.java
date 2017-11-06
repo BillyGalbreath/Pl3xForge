@@ -9,8 +9,6 @@ import net.minecraft.world.IBlockAccess;
 public class BlockGrassSlabDouble extends BlockGrassSlab {
     public BlockGrassSlabDouble() {
         super("grass_slab_double");
-
-        setCreativeTab(null);
     }
 
     @Override

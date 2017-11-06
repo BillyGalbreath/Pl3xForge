@@ -127,6 +127,12 @@ tile.traffic_light_control_box.name=Traffic Light Control Box
 entity.banker.name=Banker
 entity.penguin.name=Penguin
 
+# Subtitles
+pl3x:subtitles.penguin.ambient=Penguin squawks
+pl3x:subtitles.penguin.baby.ambient=Penguin Baby squeaks
+pl3x:subtitles.penguin.death=Penguin dies
+pl3x:subtitles.penguin.hurt=Penguin hurts
+
 # Key Bindings
 key.categories.pl3x=Pl3xForge
 key.showClaims=Toggle Claim Visuals

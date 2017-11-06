@@ -40,7 +40,7 @@ public class ModEntities {
         RenderingRegistry.registerEntityRenderingHandler(EntityGoCart.class, RenderVehicle::new);
     }
 
-    public static void addEntitySpawns() {
+    private static void addEntitySpawns() {
         List<Biome> penguinBiomes = Lists.newArrayList();
         for (Biome biome : Biome.REGISTRY) {
             Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(biome);

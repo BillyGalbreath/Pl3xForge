@@ -12,8 +12,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class BiomeHelper {
-    public static final ResourceLocation ADVENTURING_TIME = new ResourceLocation("minecraft", "adventure/adventuring_time");
-    public static final Map<String, String> EXPLORE_BIOMES = new HashMap<>();
+    private static final ResourceLocation ADVENTURING_TIME = new ResourceLocation("minecraft", "adventure/adventuring_time");
+    private static final Map<String, String> EXPLORE_BIOMES = new HashMap<>();
 
 
     static {

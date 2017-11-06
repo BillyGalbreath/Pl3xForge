@@ -23,9 +23,9 @@ public class CmdBiomes extends CommandBase {
         EntityPlayerMP player = getCommandSenderAsPlayer(sender);
 
         List<String> list = BiomeHelper.getVisitedBiomes(player);
-        String biomes = "";
+        StringBuilder biomes = new StringBuilder();
         for (String biome : list) {
-            biomes += "&7, " + biome;
+            biomes.append("&7, ").append(biome);
         }
 
         Lang.send(player, "&aAdventuring Time Biomes&7:");

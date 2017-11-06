@@ -25,10 +25,10 @@ import net.pl3x.forge.block.ModBlocks;
 import java.util.Random;
 
 public abstract class BlockConcreteSlab extends BlockSlab {
-    public static final PropertyEnum<BlockConcreteSlab.Variant> VARIANT = PropertyEnum.create("variant", BlockConcreteSlab.Variant.class);
+    private static final PropertyEnum<BlockConcreteSlab.Variant> VARIANT = PropertyEnum.create("variant", BlockConcreteSlab.Variant.class);
 
-    protected final String name;
-    protected final EnumDyeColor color;
+    private final String name;
+    private final EnumDyeColor color;
 
     public BlockConcreteSlab(String name, EnumDyeColor color) {
         super(Material.ROCK);
@@ -120,7 +120,7 @@ public abstract class BlockConcreteSlab extends BlockSlab {
         }
     }
 
-    public static BlockConcreteSlab getHalfBlock(EnumDyeColor color) {
+    private static BlockConcreteSlab getHalfBlock(EnumDyeColor color) {
         switch (color) {
             case BLACK:
                 return ModBlocks.CONCRETE_SLAB_BLACK;
@@ -158,7 +158,7 @@ public abstract class BlockConcreteSlab extends BlockSlab {
         }
     }
 
-    public static BlockConcreteSlab getDoubleBlock(EnumDyeColor color) {
+    private static BlockConcreteSlab getDoubleBlock(EnumDyeColor color) {
         switch (color) {
             case BLACK:
                 return ModBlocks.CONCRETE_SLAB_BLACK_DOUBLE;

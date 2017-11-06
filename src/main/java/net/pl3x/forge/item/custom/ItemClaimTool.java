@@ -63,7 +63,7 @@ public class ItemClaimTool extends ItemBase {
         return 0.0F; // cancel block crack animation
     }
 
-    public void processRightClick(EntityPlayer player, BlockPos pos) {
+    private void processRightClick(EntityPlayer player, BlockPos pos) {
         if (player.isSneaking()) {
             return;
         }
@@ -81,7 +81,7 @@ public class ItemClaimTool extends ItemBase {
         Selection.CURRENT_SELECTION.setRightClickPos(pos);
     }
 
-    public void processLeftClick(EntityPlayer player, BlockPos pos) {
+    private void processLeftClick(EntityPlayer player, BlockPos pos) {
         if (player.isSneaking()) {
             Selection.CURRENT_SELECTION = new Selection();
             return; // player is sneaking, reset selection

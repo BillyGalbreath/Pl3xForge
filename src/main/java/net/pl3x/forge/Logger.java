@@ -9,12 +9,12 @@ import static org.apache.logging.log4j.Level.INFO;
 import static org.apache.logging.log4j.Level.WARN;
 
 public class Logger {
-    private static org.apache.logging.log4j.Logger logger = LogManager.getLogger(ChatColor.colorize("&2" + Pl3x.name + "&r"));
+    private static final org.apache.logging.log4j.Logger logger = LogManager.getLogger(ChatColor.colorize("&2" + Pl3x.name + "&r"));
 
     private Logger() {
     }
 
-    public static void log(Level level, String message) {
+    private static void log(Level level, String message) {
         logger.log(level, ChatColor.colorize(message));
     }
 

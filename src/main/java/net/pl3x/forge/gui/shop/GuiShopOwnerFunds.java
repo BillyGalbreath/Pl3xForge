@@ -19,9 +19,9 @@ import net.pl3x.forge.util.gl.GuiUtil;
 import java.util.List;
 
 public class GuiShopOwnerFunds extends GuiContainer {
-    private ContainerShopOwner container;
+    private final ContainerShopOwner container;
 
-    private List<Slot> slotsToDraw;
+    private final List<Slot> slotsToDraw;
 
     private GuiTextField shopCoinField;
     private GuiTextField playerCoinField;
@@ -29,7 +29,7 @@ public class GuiShopOwnerFunds extends GuiContainer {
     private String strShop;
     private String strName;
 
-    private int slotStart;
+    private final int slotStart;
     private int strShopX;
     private int strNameX;
     private int strInvY;

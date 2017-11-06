@@ -9,8 +9,8 @@ import net.pl3x.forge.util.gl.GuiUtil;
 @SideOnly(Side.CLIENT)
 public class TabButton extends Button {
     public boolean selected = false;
-    private int w2;
-    private int h2;
+    private final int w2;
+    private final int h2;
 
     public TabButton(int buttonId, int x, int y, int width, int height, String displayString) {
         super(buttonId, x, y, width, height, displayString);

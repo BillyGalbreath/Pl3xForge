@@ -66,11 +66,6 @@ public class EntityBanker extends EntityCreature implements INpc {
     }
 
     @Override
-    public void writeEntityToNBT(NBTTagCompound compound) {
-        super.writeEntityToNBT(compound);
-    }
-
-    @Override
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
         setCanPickUpLoot(false);

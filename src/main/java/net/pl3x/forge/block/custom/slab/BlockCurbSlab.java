@@ -16,7 +16,6 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -29,10 +28,10 @@ import net.pl3x.forge.block.ModBlocks;
 
 public class BlockCurbSlab extends BlockBase {
     private static final PropertyDirection FACING = BlockHorizontal.FACING;
-    public static final PropertyEnum<BlockCurbSlab.EnumShape> SHAPE = PropertyEnum.create("shape", BlockCurbSlab.EnumShape.class);
+    private static final PropertyEnum<BlockCurbSlab.EnumShape> SHAPE = PropertyEnum.create("shape", BlockCurbSlab.EnumShape.class);
     private static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D);
 
-    protected final EnumDyeColor color;
+    private final EnumDyeColor color;
 
     public BlockCurbSlab(EnumDyeColor color) {
         super(Material.ROCK, "curb_slab_" + color.getName());
@@ -190,38 +189,6 @@ public class BlockCurbSlab extends BlockBase {
     @Override
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
         //this.modelState.neighborChanged(worldIn, pos, Blocks.AIR, pos);
-    }
-
-    @Override
-    public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
-        /*EnumFacing enumfacing = state.getValue(FACING);
-        BlockCurb.EnumShape shape = state.getValue(SHAPE);
-        switch (mirrorIn) {
-            case LEFT_RIGHT:
-                if (enumfacing.getAxis() == EnumFacing.Axis.Z) {
-                    switch (shape) {
-                        case CORNER_LEFT:
-                            return state.withRotation(Rotation.CLOCKWISE_180).withProperty(SHAPE, BlockCurb.EnumShape.CORNER_RIGHT);
-                        case CORNER_RIGHT:
-                            return state.withRotation(Rotation.CLOCKWISE_180).withProperty(SHAPE, BlockCurb.EnumShape.CORNER_LEFT);
-                        default:
-                            return state.withRotation(Rotation.CLOCKWISE_180);
-                    }
-                }
-                break;
-            case FRONT_BACK:
-                if (enumfacing.getAxis() == EnumFacing.Axis.X) {
-                    switch (shape) {
-                        case CORNER_LEFT:
-                            return state.withRotation(Rotation.CLOCKWISE_180).withProperty(SHAPE, BlockCurb.EnumShape.CORNER_RIGHT);
-                        case CORNER_RIGHT:
-                            return state.withRotation(Rotation.CLOCKWISE_180).withProperty(SHAPE, BlockCurb.EnumShape.CORNER_LEFT);
-                        case STRAIGHT:
-                            return state.withRotation(Rotation.CLOCKWISE_180);
-                    }
-                }
-        }*/
-        return super.withMirror(state, mirrorIn);
     }
 
     public enum EnumShape implements IStringSerializable {

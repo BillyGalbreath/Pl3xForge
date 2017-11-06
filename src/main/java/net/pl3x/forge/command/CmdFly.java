@@ -6,7 +6,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.GameType;
 import net.pl3x.forge.configuration.Lang;
-import net.pl3x.forge.util.PlayerUtil;
 import org.apache.commons.lang3.BooleanUtils;
 
 public class CmdFly extends CommandBase {
@@ -28,7 +27,7 @@ public class CmdFly extends CommandBase {
         }
 
         player.capabilities.allowFlying = !player.capabilities.allowFlying;
-        PlayerUtil.setFlySpeed(player, 0.1F);
+        player.capabilities.flySpeed = 0.05F; // default speed
 
         if (!player.capabilities.allowFlying) {
             // drop out of sky

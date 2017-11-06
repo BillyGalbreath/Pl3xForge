@@ -61,7 +61,7 @@ public class ModGuiHandler implements IGuiHandler {
             case ENCHANTMENT_SPLITTER:
                 return new GuiEnchantmentSplitter(getServerGuiElement(ID, player, world, x, y, z), player.inventory);
             case BANKER:
-                return new GuiBanker(getServerGuiElement(ID, player, world, x, y, z), player.inventory);
+                return new GuiBanker(getServerGuiElement(ID, player, world, x, y, z));
             case BANKER_DEPOSIT_COIN:
                 return new GuiBankerAction(getServerGuiElement(BANKER, player, world, x, y, z), player, BankPacket.DEPOSIT_COIN);
             case BANKER_WITHDRAW_COIN:

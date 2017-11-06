@@ -21,13 +21,13 @@ public class TileEntityEnchantmentSplitter extends TileEntity implements ITickab
     public int tickCount;
     public float pageFlip;
     public float pageFlipPrev;
-    public float flipT;
-    public float flipA;
+    private float flipT;
+    private float flipA;
     public float bookSpread;
     public float bookSpreadPrev;
     public float bookRotation;
     public float bookRotationPrev;
-    public float tRot;
+    private float tRot;
     private String customName;
 
     @Override
@@ -97,9 +97,9 @@ public class TileEntityEnchantmentSplitter extends TileEntity implements ITickab
             this.tRot += ((float) Math.PI * 2F);
         }
 
-        float f2;
-
-        for (f2 = this.tRot - this.bookRotation; f2 >= (float) Math.PI; f2 -= ((float) Math.PI * 2F)) {
+        float f2 = this.tRot - this.bookRotation;
+        while (f2 >= (float) Math.PI) {
+            f2 -= ((float) Math.PI * 2F);
         }
 
         while (f2 < -(float) Math.PI) {

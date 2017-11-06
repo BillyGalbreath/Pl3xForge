@@ -21,7 +21,7 @@ public class PlayerDataImpl implements PlayerData {
     private long bankCoins = 0;
     private int bankExp = 0;
     private int bankSlots = 0;
-    private InventoryBanker bankInventory = new InventoryBanker();
+    private final InventoryBanker bankInventory = new InventoryBanker();
     private TreeMap<String, Location> homes = new TreeMap<>();
     private boolean denyTeleports = false;
 

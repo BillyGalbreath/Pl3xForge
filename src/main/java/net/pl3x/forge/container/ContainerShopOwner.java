@@ -13,8 +13,8 @@ import net.pl3x.forge.util.ItemStackUtil;
 import javax.annotation.Nonnull;
 
 public class ContainerShopOwner extends Container {
-    public TileEntityShop shop;
-    private boolean allowInteraction;
+    public final TileEntityShop shop;
+    private final boolean allowInteraction;
 
     public ContainerShopOwner(InventoryPlayer playerInventory, TileEntityShop shop, boolean allowInteraction) {
         this.shop = shop;

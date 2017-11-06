@@ -11,8 +11,8 @@ public class Button extends GuiButton {
     private static final int HELD_REPEAT_DELAY = 10;
     private boolean held = false;
     private int heldTicks = 0;
-    private int w2;
-    private int h2;
+    private final int w2;
+    private final int h2;
 
     public Button(int buttonId, int x, int y, int widthIn, int heightIn, String buttonText) {
         super(buttonId, x, y, widthIn, heightIn, buttonText);
