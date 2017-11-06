@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.pl3x.forge.block.custom.BlockChristmasTree;
+import net.pl3x.forge.block.custom.BlockComputer;
 import net.pl3x.forge.block.custom.BlockDepositBox;
 import net.pl3x.forge.block.custom.BlockEnchantmentSplitter;
 import net.pl3x.forge.block.custom.BlockFrostedObsidian;
@@ -35,6 +36,7 @@ public class ModBlocks {
     public static final BlockFrostedObsidian FROSTED_OBSIDIAN = new BlockFrostedObsidian();
     public static final BlockEnchantmentSplitter ENCHANTMENT_SPLITTER = new BlockEnchantmentSplitter();
     public static final BlockShop SHOP = new BlockShop();
+    public static final BlockComputer COMPUTER = new BlockComputer();
     public static final BlockDepositBox DEPOSIT_BOX = new BlockDepositBox();
     public static final BlockMicrowave MICROWAVE = new BlockMicrowave();
     public static final BlockLamp LAMP = new BlockLamp();
@@ -129,6 +131,7 @@ public class ModBlocks {
                 FROSTED_OBSIDIAN,
                 ENCHANTMENT_SPLITTER,
                 SHOP,
+                COMPUTER,
                 DEPOSIT_BOX,
                 MICROWAVE,
                 LAMP,
@@ -230,6 +233,7 @@ public class ModBlocks {
                 FROSTED_OBSIDIAN.createItemBlock(),
                 ENCHANTMENT_SPLITTER.createItemBlock(),
                 SHOP.createItemBlock(),
+                COMPUTER.createItemBlock(),
                 DEPOSIT_BOX.createItemBlock(),
                 MICROWAVE.createItemBlock(),
                 LAMP.createItemBlock(),
@@ -306,6 +310,7 @@ public class ModBlocks {
         FROSTED_OBSIDIAN.registerItemModel(Item.getItemFromBlock(FROSTED_OBSIDIAN));
         ENCHANTMENT_SPLITTER.registerItemModel(Item.getItemFromBlock(ENCHANTMENT_SPLITTER));
         SHOP.registerItemModel(Item.getItemFromBlock(SHOP));
+        COMPUTER.registerItemModel(Item.getItemFromBlock(COMPUTER));
         DEPOSIT_BOX.registerItemModel(Item.getItemFromBlock(DEPOSIT_BOX));
         MICROWAVE.registerItemModel(Item.getItemFromBlock(MICROWAVE));
         LAMP.registerItemModel(Item.getItemFromBlock(LAMP));
