@@ -8,14 +8,14 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.StringUtils;
-import net.pl3x.forge.ExperienceManager;
 import net.pl3x.forge.data.CapabilityProvider;
 import net.pl3x.forge.data.PlayerData;
 import net.pl3x.forge.gui.element.Button;
 import net.pl3x.forge.network.BankPacket;
 import net.pl3x.forge.network.PacketHandler;
-import net.pl3x.forge.util.GuiUtil;
+import net.pl3x.forge.util.ExperienceManager;
 import net.pl3x.forge.util.Validator;
+import net.pl3x.forge.util.gl.GuiUtil;
 
 import java.io.IOException;
 

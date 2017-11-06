@@ -2,13 +2,13 @@ package net.pl3x.forge.permissions;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.pl3x.forge.configuration.PermsConfig;
-import net.pl3x.forge.util.Utils;
+import net.pl3x.forge.util.PlayerUtil;
 
 import java.util.UUID;
 
 public class Permissions {
     public static boolean hasPermission(EntityPlayerMP player, String node) {
-        return Utils.isOp(player) || hasPermission(player.getUniqueID(), node);
+        return PlayerUtil.isOp(player) || hasPermission(player.getUniqueID(), node);
     }
 
     public static boolean hasPermission(UUID uuid, String node) {

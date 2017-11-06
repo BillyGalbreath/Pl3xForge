@@ -1,5 +1,6 @@
 package net.pl3x.forge;
 
+import net.pl3x.forge.color.ChatColor;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 
@@ -30,6 +31,6 @@ public class Logger {
     }
 
     public static void debug(String message) {
-        // no implemented yet
+        // not implemented yet
     }
 }

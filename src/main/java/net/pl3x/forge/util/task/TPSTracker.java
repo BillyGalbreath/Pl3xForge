@@ -1,4 +1,4 @@
-package net.pl3x.forge.util;
+package net.pl3x.forge.util.task;
 
 import net.pl3x.forge.scheduler.Pl3xRunnable;
 

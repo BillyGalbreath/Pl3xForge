@@ -1,4 +1,4 @@
-package net.pl3x.forge.util;
+package net.pl3x.forge.util.gl;
 
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;

@@ -7,8 +7,8 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.capabilities.Capability;
-import net.pl3x.forge.Location;
 import net.pl3x.forge.inventory.InventoryBanker;
+import net.pl3x.forge.util.Location;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;

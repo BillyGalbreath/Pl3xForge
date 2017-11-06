@@ -8,7 +8,7 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import net.pl3x.forge.ChatColor;
+import net.pl3x.forge.color.ChatColor;
 import net.pl3x.forge.container.ContainerBanker;
 
 public class BankFailedPacket implements IMessage {

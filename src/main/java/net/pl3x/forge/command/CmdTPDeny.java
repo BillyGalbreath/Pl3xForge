@@ -5,8 +5,8 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.pl3x.forge.configuration.Lang;
-import net.pl3x.forge.util.Teleport;
-import net.pl3x.forge.util.TeleportRequest;
+import net.pl3x.forge.util.teleport.Teleport;
+import net.pl3x.forge.util.teleport.TeleportRequest;
 
 public class CmdTPDeny extends CommandBase {
     public CmdTPDeny() {

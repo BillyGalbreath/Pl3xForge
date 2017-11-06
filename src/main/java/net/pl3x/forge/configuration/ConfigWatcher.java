@@ -1,8 +1,8 @@
 package net.pl3x.forge.configuration;
 
-import net.pl3x.forge.ChatColor;
 import net.pl3x.forge.Logger;
 import net.pl3x.forge.Pl3x;
+import net.pl3x.forge.color.ChatColor;
 import net.pl3x.forge.scheduler.Pl3xRunnable;
 
 import java.io.IOException;

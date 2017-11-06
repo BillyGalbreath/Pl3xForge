@@ -1,5 +1,6 @@
-package net.pl3x.forge.util;
+package net.pl3x.forge.util.gl;
 
+import net.pl3x.forge.color.Color;
 import org.lwjgl.opengl.GL11;
 
 public class GL {

@@ -11,8 +11,8 @@ import net.pl3x.forge.container.ContainerShopOwner;
 import net.pl3x.forge.gui.ModGuiHandler;
 import net.pl3x.forge.gui.element.Button;
 import net.pl3x.forge.gui.element.TabButton;
-import net.pl3x.forge.util.GuiUtil;
 import net.pl3x.forge.util.Validator;
+import net.pl3x.forge.util.gl.GuiUtil;
 
 public class GuiShopOwner extends GuiContainer {
     private ContainerShopOwner container;

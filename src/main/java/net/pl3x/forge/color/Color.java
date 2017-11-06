@@ -1,4 +1,4 @@
-package net.pl3x.forge.util;
+package net.pl3x.forge.color;
 
 public class Color {
     private float red;

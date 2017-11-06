@@ -6,7 +6,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.pl3x.forge.configuration.Lang;
-import net.pl3x.forge.util.Utils;
+import net.pl3x.forge.util.PlayerUtil;
 
 import javax.annotation.Nullable;
 import java.util.Collections;
@@ -21,7 +21,7 @@ public class CmdPing extends CommandBase {
     @Override
     public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos) {
         if (args.length == 1) {
-            return Utils.getOnlinePlayerNames().stream()
+            return PlayerUtil.getOnlinePlayerNames().stream()
                     .filter(name -> name.toLowerCase().startsWith(args[0].toLowerCase()))
                     .collect(Collectors.toList());
         }
@@ -42,7 +42,7 @@ public class CmdPing extends CommandBase {
             }
             target = getCommandSenderAsPlayer(sender);
         } else {
-            target = Utils.getPlayer(args[0]);
+            target = PlayerUtil.getPlayer(args[0]);
             if (target == null) {
                 Lang.send(sender, Lang.INSTANCE.data.PLAYER_NOT_ONLINE);
                 return;

@@ -5,7 +5,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.pl3x.forge.ChatColor;
+import net.pl3x.forge.color.ChatColor;
 import net.pl3x.forge.container.ContainerBanker;
 
 import java.util.ArrayList;

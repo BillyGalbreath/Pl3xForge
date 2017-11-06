@@ -1,4 +1,4 @@
-package net.pl3x.forge.util;
+package net.pl3x.forge.util.teleport;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.pl3x.forge.configuration.Lang;

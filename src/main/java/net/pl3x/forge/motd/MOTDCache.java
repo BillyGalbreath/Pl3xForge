@@ -7,7 +7,7 @@ import io.netty.handler.codec.base64.Base64;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.pl3x.forge.ChatColor;
+import net.pl3x.forge.color.ChatColor;
 import net.pl3x.forge.configuration.MOTDConfig;
 import org.apache.commons.lang3.Validate;
 

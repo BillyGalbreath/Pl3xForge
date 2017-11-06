@@ -9,7 +9,7 @@ import net.minecraftforge.common.UsernameCache;
 import net.pl3x.forge.configuration.Lang;
 import net.pl3x.forge.configuration.MailConfig;
 import net.pl3x.forge.permissions.Permissions;
-import net.pl3x.forge.util.Utils;
+import net.pl3x.forge.util.PlayerUtil;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -88,10 +88,10 @@ public class CmdMail extends CommandBase {
                 return;
             }
 
-            EntityPlayerMP target = Utils.getPlayer(args[1]);
+            EntityPlayerMP target = PlayerUtil.getPlayer(args[1]);
             MailConfig.MailBag mailBag = MailConfig.INSTANCE.getMailBag(target);
             if (target == null) {
-                UUID uuid = Utils.getUUIDFromName(args[1]);
+                UUID uuid = PlayerUtil.getUUIDFromName(args[1]);
                 if (uuid == null) {
                     Lang.send(sender, Lang.INSTANCE.data.PLAYER_NOT_FOUND);
                     return;

@@ -1,4 +1,4 @@
-package net.pl3x.forge;
+package net.pl3x.forge.color;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.BlockColors;

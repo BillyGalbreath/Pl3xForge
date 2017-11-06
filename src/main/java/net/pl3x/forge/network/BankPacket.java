@@ -6,13 +6,13 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import net.pl3x.forge.ChatColor;
-import net.pl3x.forge.ExperienceManager;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.advancement.ModAdvancements;
+import net.pl3x.forge.color.ChatColor;
 import net.pl3x.forge.data.CapabilityProvider;
 import net.pl3x.forge.data.PlayerData;
 import net.pl3x.forge.gui.ModGuiHandler;
+import net.pl3x.forge.util.ExperienceManager;
 
 public class BankPacket implements IMessage {
     public static final byte DEPOSIT_COIN = 0;

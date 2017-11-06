@@ -1,4 +1,4 @@
-package net.pl3x.forge.util;
+package net.pl3x.forge.util.gl;
 
 import org.lwjgl.util.vector.Quaternion;
 

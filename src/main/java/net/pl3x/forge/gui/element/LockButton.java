@@ -7,7 +7,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.container.ContainerBanker;
 import net.pl3x.forge.inventory.SlotBanker;
-import net.pl3x.forge.util.GuiUtil;
+import net.pl3x.forge.util.gl.GuiUtil;
 
 @SideOnly(Side.CLIENT)
 public class LockButton extends GuiButton {

@@ -26,7 +26,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.block.BlockBase;
 import net.pl3x.forge.block.ModBlocks;
-import net.pl3x.forge.block.custom.curb.BlockCurb;
 
 public class BlockCurbSlab extends BlockBase {
     private static final PropertyDirection FACING = BlockHorizontal.FACING;

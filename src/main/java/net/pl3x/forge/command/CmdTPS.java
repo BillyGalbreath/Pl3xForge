@@ -4,7 +4,7 @@ import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 import net.pl3x.forge.configuration.Lang;
-import net.pl3x.forge.util.TPSTracker;
+import net.pl3x.forge.util.task.TPSTracker;
 
 public class CmdTPS extends CommandBase {
     public CmdTPS() {

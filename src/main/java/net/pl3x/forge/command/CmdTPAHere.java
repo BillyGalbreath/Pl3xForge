@@ -6,9 +6,9 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.pl3x.forge.configuration.Lang;
-import net.pl3x.forge.util.Teleport;
-import net.pl3x.forge.util.TeleportRequestTPAHere;
-import net.pl3x.forge.util.Utils;
+import net.pl3x.forge.util.PlayerUtil;
+import net.pl3x.forge.util.teleport.Teleport;
+import net.pl3x.forge.util.teleport.TeleportRequestTPAHere;
 
 import javax.annotation.Nullable;
 import java.util.Collections;
@@ -27,7 +27,7 @@ public class CmdTPAHere extends CommandBase {
     @Override
     public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos) {
         if (args.length == 1) {
-            return Utils.getOnlinePlayerNames().stream()
+            return PlayerUtil.getOnlinePlayerNames().stream()
                     .filter(name -> name.toLowerCase().startsWith(args[0].toLowerCase()))
                     .collect(Collectors.toList());
         }
@@ -47,7 +47,7 @@ public class CmdTPAHere extends CommandBase {
             return;
         }
 
-        EntityPlayerMP target = Utils.getPlayer(args[0]);
+        EntityPlayerMP target = PlayerUtil.getPlayer(args[0]);
         if (target == null) {
             Lang.send(player, Lang.INSTANCE.data.PLAYER_NOT_ONLINE);
             return;

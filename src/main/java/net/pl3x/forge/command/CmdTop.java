@@ -5,9 +5,9 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
-import net.pl3x.forge.Location;
 import net.pl3x.forge.configuration.Lang;
-import net.pl3x.forge.util.Teleport;
+import net.pl3x.forge.util.Location;
+import net.pl3x.forge.util.teleport.Teleport;
 
 public class CmdTop extends CommandBase {
     public CmdTop() {

@@ -5,7 +5,7 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.pl3x.forge.configuration.Lang;
-import net.pl3x.forge.util.Utils;
+import net.pl3x.forge.util.PlayerUtil;
 
 public class CmdFlySpeed extends CommandBase {
     public CmdFlySpeed() {
@@ -43,7 +43,7 @@ public class CmdFlySpeed extends CommandBase {
         }
 
         // set new fly speed
-        Utils.setFlySpeed(player, speed / 10F);
+        PlayerUtil.setFlySpeed(player, speed / 10F);
 
         // inform the client of the changes
         player.sendPlayerAbilities();

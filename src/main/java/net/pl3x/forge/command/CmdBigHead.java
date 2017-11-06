@@ -9,7 +9,7 @@ import net.pl3x.forge.configuration.BigHeadConfig;
 import net.pl3x.forge.configuration.Lang;
 import net.pl3x.forge.network.BigHeadPacket;
 import net.pl3x.forge.network.PacketHandler;
-import net.pl3x.forge.util.Utils;
+import net.pl3x.forge.util.PlayerUtil;
 
 import javax.annotation.Nullable;
 import java.util.Collections;
@@ -26,7 +26,7 @@ public class CmdBigHead extends CommandBase {
     @Override
     public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos) {
         if (args.length == 1) {
-            return Utils.getOnlinePlayerNames().stream()
+            return PlayerUtil.getOnlinePlayerNames().stream()
                     .filter(name -> name.toLowerCase().startsWith(args[0].toLowerCase()))
                     .collect(Collectors.toList());
         }
@@ -44,10 +44,10 @@ public class CmdBigHead extends CommandBase {
             return;
         }
 
-        EntityPlayerMP target = Utils.getPlayer(args[0]);
+        EntityPlayerMP target = PlayerUtil.getPlayer(args[0]);
         UUID uuid;
         if (target == null) {
-            uuid = Utils.getUUIDFromName(args[0]);
+            uuid = PlayerUtil.getUUIDFromName(args[0]);
             if (uuid == null) {
                 Lang.send(sender, Lang.INSTANCE.data.PLAYER_NOT_FOUND);
                 return;

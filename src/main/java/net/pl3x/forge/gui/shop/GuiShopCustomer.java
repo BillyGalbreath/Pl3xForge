@@ -12,7 +12,7 @@ import net.pl3x.forge.gui.HUDBalance;
 import net.pl3x.forge.gui.element.Button;
 import net.pl3x.forge.network.PacketHandler;
 import net.pl3x.forge.network.ShopPurchasePacket;
-import net.pl3x.forge.util.GuiUtil;
+import net.pl3x.forge.util.gl.GuiUtil;
 
 import java.util.List;
 

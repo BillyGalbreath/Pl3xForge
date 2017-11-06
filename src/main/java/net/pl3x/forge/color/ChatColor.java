@@ -1,4 +1,4 @@
-package net.pl3x.forge;
+package net.pl3x.forge.color;
 
 import com.google.common.collect.Maps;
 import net.minecraft.util.text.TextFormatting;

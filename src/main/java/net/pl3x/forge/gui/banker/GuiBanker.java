@@ -13,7 +13,7 @@ import net.pl3x.forge.gui.element.LockButton;
 import net.pl3x.forge.inventory.SlotBanker;
 import net.pl3x.forge.network.BankPacket;
 import net.pl3x.forge.network.PacketHandler;
-import net.pl3x.forge.util.GuiUtil;
+import net.pl3x.forge.util.gl.GuiUtil;
 
 public class GuiBanker extends GuiContainer {
     private final ContainerBanker container;

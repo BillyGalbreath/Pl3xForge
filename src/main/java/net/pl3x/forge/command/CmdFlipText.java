@@ -4,7 +4,7 @@ import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
-import net.pl3x.forge.util.Utils;
+import net.pl3x.forge.util.PlayerUtil;
 
 public class CmdFlipText extends CommandBase {
     public CmdFlipText() {
@@ -25,7 +25,7 @@ public class CmdFlipText extends CommandBase {
             message = String.join(" ", args);
         }
 
-        Utils.chat(player, flip(message));
+        PlayerUtil.chat(player, flip(message));
     }
 
     private String flip(String str) {

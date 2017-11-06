@@ -2,8 +2,8 @@ package net.pl3x.forge.data;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.nbt.NBTTagCompound;
-import net.pl3x.forge.Location;
 import net.pl3x.forge.inventory.InventoryBanker;
+import net.pl3x.forge.util.Location;
 
 import java.util.ArrayList;
 import java.util.TreeMap;

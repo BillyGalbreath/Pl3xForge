@@ -25,10 +25,9 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import net.pl3x.forge.ChatColor;
-import net.pl3x.forge.Location;
 import net.pl3x.forge.Logger;
 import net.pl3x.forge.advancement.ModAdvancements;
+import net.pl3x.forge.color.ChatColor;
 import net.pl3x.forge.configuration.Lang;
 import net.pl3x.forge.data.CapabilityProvider;
 import net.pl3x.forge.data.PlayerData;
@@ -40,9 +39,10 @@ import net.pl3x.forge.motd.MOTDCache;
 import net.pl3x.forge.network.PacketHandler;
 import net.pl3x.forge.scheduler.Pl3xRunnable;
 import net.pl3x.forge.scheduler.Pl3xScheduler;
-import net.pl3x.forge.util.EntityLifeSpan;
-import net.pl3x.forge.util.Teleport;
-import net.pl3x.forge.util.TeleportRequest;
+import net.pl3x.forge.util.Location;
+import net.pl3x.forge.util.task.EntityLifeSpan;
+import net.pl3x.forge.util.teleport.Teleport;
+import net.pl3x.forge.util.teleport.TeleportRequest;
 
 import java.util.Iterator;
 

@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.pl3x.forge.tileentity.TileEntityShop;
-import net.pl3x.forge.util.Quat;
+import net.pl3x.forge.util.gl.Quat;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Quaternion;
 

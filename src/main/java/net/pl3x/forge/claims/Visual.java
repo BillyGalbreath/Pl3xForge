@@ -3,9 +3,9 @@ package net.pl3x.forge.claims;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.GlStateManager;
+import net.pl3x.forge.color.Color;
 import net.pl3x.forge.configuration.ClientConfig;
-import net.pl3x.forge.util.Color;
-import net.pl3x.forge.util.GL;
+import net.pl3x.forge.util.gl.GL;
 import org.lwjgl.opengl.GL11;
 
 public class Visual {

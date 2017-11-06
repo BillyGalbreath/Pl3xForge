@@ -62,7 +62,7 @@ import net.pl3x.forge.listener.ServerEventHandler;
 import net.pl3x.forge.motd.MOTDTask;
 import net.pl3x.forge.network.PacketHandler;
 import net.pl3x.forge.recipe.ModRecipes;
-import net.pl3x.forge.util.TPSTracker;
+import net.pl3x.forge.util.task.TPSTracker;
 import net.pl3x.forge.world.ModWorldGen;
 
 import java.io.File;

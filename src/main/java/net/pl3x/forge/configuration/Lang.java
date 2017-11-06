@@ -2,9 +2,9 @@ package net.pl3x.forge.configuration;
 
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.text.TextComponentString;
-import net.pl3x.forge.ChatColor;
 import net.pl3x.forge.Logger;
 import net.pl3x.forge.Pl3x;
+import net.pl3x.forge.color.ChatColor;
 
 import java.io.File;
 import java.io.IOException;

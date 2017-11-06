@@ -4,7 +4,7 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
-import net.pl3x.forge.ChatColor;
+import net.pl3x.forge.color.ChatColor;
 import net.pl3x.forge.data.CapabilityProvider;
 import net.pl3x.forge.data.PlayerData;
 import net.pl3x.forge.permissions.Permissions;

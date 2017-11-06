@@ -9,7 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.pl3x.forge.block.ModBlocks;
 import net.pl3x.forge.container.ContainerEnchantmentSplitter;
 import net.pl3x.forge.tileentity.TileEntityEnchantmentSplitter;
-import net.pl3x.forge.util.GuiUtil;
+import net.pl3x.forge.util.gl.GuiUtil;
 
 public class GuiEnchantmentSplitter extends GuiContainer {
     private final ContainerEnchantmentSplitter container;

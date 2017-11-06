@@ -1,4 +1,4 @@
-package net.pl3x.forge;
+package net.pl3x.forge.util;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.math.BlockPos;

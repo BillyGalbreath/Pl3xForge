@@ -1,4 +1,4 @@
-package net.pl3x.forge.util;
+package net.pl3x.forge.util.task;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityTameable;

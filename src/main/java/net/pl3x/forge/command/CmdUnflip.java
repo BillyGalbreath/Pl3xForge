@@ -4,7 +4,7 @@ import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
-import net.pl3x.forge.util.Utils;
+import net.pl3x.forge.util.PlayerUtil;
 
 public class CmdUnflip extends CommandBase {
     public CmdUnflip() {
@@ -29,6 +29,6 @@ public class CmdUnflip extends CommandBase {
             message = String.join(" ", args) + " " + message;
         }
 
-        Utils.chat(player, message);
+        PlayerUtil.chat(player, message);
     }
 }

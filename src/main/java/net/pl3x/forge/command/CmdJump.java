@@ -6,10 +6,10 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import net.pl3x.forge.Location;
 import net.pl3x.forge.configuration.Lang;
-import net.pl3x.forge.util.Teleport;
-import net.pl3x.forge.util.Utils;
+import net.pl3x.forge.util.Location;
+import net.pl3x.forge.util.PlayerUtil;
+import net.pl3x.forge.util.teleport.Teleport;
 
 public class CmdJump extends CommandBase {
     public CmdJump() {
@@ -25,7 +25,7 @@ public class CmdJump extends CommandBase {
 
         EntityPlayerMP player = getCommandSenderAsPlayer(sender);
 
-        RayTraceResult result = Utils.getLineOfSight(player, 120);
+        RayTraceResult result = PlayerUtil.getLineOfSight(player, 120);
         if (result == null) {
             Lang.send(player, Lang.INSTANCE.data.JUMP_TOO_FAR);
             return;

@@ -3,7 +3,7 @@ package net.pl3x.forge.icons;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.event.HoverEvent;
-import net.pl3x.forge.ChatColor;
+import net.pl3x.forge.color.ChatColor;
 import net.pl3x.forge.configuration.EmojiConfig;
 import net.pl3x.forge.configuration.IconConfig;
 

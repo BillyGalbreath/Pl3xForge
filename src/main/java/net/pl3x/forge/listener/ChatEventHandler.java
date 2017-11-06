@@ -14,12 +14,13 @@ import net.minecraft.util.text.event.HoverEvent;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.pl3x.forge.ChatColor;
+import net.pl3x.forge.color.ChatColor;
 import net.pl3x.forge.configuration.Lang;
 import net.pl3x.forge.configuration.PermsConfig;
 import net.pl3x.forge.icons.IconManager;
 import net.pl3x.forge.permissions.Permissions;
-import net.pl3x.forge.util.Utils;
+import net.pl3x.forge.util.ChatUtil;
+import net.pl3x.forge.util.PlayerUtil;
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class ChatEventHandler {
         }
 
         EntityPlayerMP sender = event.getPlayer();
-        Collection<EntityPlayerMP> recipients = Utils.getPlayers();
+        Collection<EntityPlayerMP> recipients = PlayerUtil.getPlayers();
 
         String messageText = event.getMessage();
 
@@ -104,7 +105,7 @@ public class ChatEventHandler {
         messageText = IconManager.INSTANCE.translateMessage(messageText);
 
         // message
-        ITextComponent message = Utils.newChatWithLinks(messageText);
+        ITextComponent message = ChatUtil.newChatWithLinks(messageText);
         boolean permColor = Permissions.hasPermission(sender, "chat.color");
         boolean permStyle = Permissions.hasPermission(sender, "chat.style");
         if (permColor || permStyle) {
