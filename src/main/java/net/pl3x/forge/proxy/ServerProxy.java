@@ -14,6 +14,7 @@ import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.advancement.ModAdvancements;
 import net.pl3x.forge.command.CmdBack;
 import net.pl3x.forge.command.CmdBigHead;
+import net.pl3x.forge.command.CmdBiomes;
 import net.pl3x.forge.command.CmdCountdown;
 import net.pl3x.forge.command.CmdDelHome;
 import net.pl3x.forge.command.CmdFlip;
@@ -107,6 +108,7 @@ public class ServerProxy {
     public void serverStarting(FMLServerStartingEvent event) {
         event.registerServerCommand(new CmdBack());
         event.registerServerCommand(new CmdBigHead());
+        event.registerServerCommand(new CmdBiomes());
         event.registerServerCommand(new CmdCountdown());
         event.registerServerCommand(new CmdDelHome());
         event.registerServerCommand(new CmdFlip());
