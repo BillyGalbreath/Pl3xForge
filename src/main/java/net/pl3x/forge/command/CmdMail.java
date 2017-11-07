@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 public class CmdMail extends CommandBase {
     public CmdMail() {
-        super("mail", "Flip a table");
+        super("mail", "Manage your mailbox");
     }
 
     @Override
