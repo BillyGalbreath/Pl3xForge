@@ -2,11 +2,13 @@ package net.pl3x.forge.listener;
 
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.SPacketPlayerListHeaderFooter;
 import net.minecraft.stats.StatList;
@@ -25,13 +27,16 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.relauncher.Side;
 import net.pl3x.forge.Logger;
+import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.advancement.ModAdvancements;
 import net.pl3x.forge.color.ChatColor;
 import net.pl3x.forge.configuration.Lang;
 import net.pl3x.forge.data.CapabilityProvider;
 import net.pl3x.forge.data.PlayerData;
 import net.pl3x.forge.entity.EntityBanker;
+import net.pl3x.forge.gui.ModGuiHandler;
 import net.pl3x.forge.item.ItemMoney;
 import net.pl3x.forge.item.ModItems;
 import net.pl3x.forge.item.custom.ItemClaimTool;
@@ -187,6 +192,18 @@ public class ServerEventHandler {
     @SubscribeEvent
     public void on(PlayerInteractEvent.LeftClickItem event) {
         ItemClaimTool.processClaimToolClick(event, null, false);
+    }
+
+    @SubscribeEvent
+    public void on(PlayerInteractEvent.EntityInteractSpecific event) {
+        if (event.getSide() == Side.SERVER && event.getTarget() instanceof EntityArmorStand) {
+            EntityPlayer player = event.getEntityPlayer();
+            if (!player.isSneaking() && player.getHeldItemMainhand().getItem() != Items.NAME_TAG) {
+                player.openGui(Pl3x.instance, ModGuiHandler.ARMOR_STAND,
+                        event.getWorld(), 0, 0, 0, event.getTarget().getEntityId());
+                event.setCanceled(true);
+            }
+        }
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)

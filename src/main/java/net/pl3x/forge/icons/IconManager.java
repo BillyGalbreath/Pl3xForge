@@ -110,6 +110,7 @@ public class IconManager {
         for (char c : string.toCharArray()) {
             Icon icon = getIconByUnicode(c);
             if (icon == null) {
+                // TODO untranslate emojis
                 sb.append(c);
                 continue;
             }

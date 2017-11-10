@@ -21,6 +21,7 @@ public class PacketHandler {
         INSTANCE.registerMessage(ShopPurchasePacket.Handler.class, ShopPurchasePacket.class, 7, Side.SERVER);
         INSTANCE.registerMessage(TrafficLightControlBoxUpdatePacket.Handler.class, TrafficLightControlBoxUpdatePacket.class, 8, Side.CLIENT);
         INSTANCE.registerMessage(BigHeadPacket.Handler.class, BigHeadPacket.class, 9, Side.CLIENT);
+        INSTANCE.registerMessage(ArmorStandPacket.Handler.class, ArmorStandPacket.class, 10, Side.SERVER);
     }
 
     public static void updatePlayerData(EntityPlayerMP player) {
