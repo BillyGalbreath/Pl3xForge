@@ -27,6 +27,7 @@ import net.pl3x.forge.command.CmdGMSpectate;
 import net.pl3x.forge.command.CmdGMSurvival;
 import net.pl3x.forge.command.CmdHome;
 import net.pl3x.forge.command.CmdHomes;
+import net.pl3x.forge.command.CmdInvSee;
 import net.pl3x.forge.command.CmdJump;
 import net.pl3x.forge.command.CmdMail;
 import net.pl3x.forge.command.CmdPing;
@@ -121,6 +122,7 @@ public class ServerProxy {
         event.registerServerCommand(new CmdGMSurvival());
         event.registerServerCommand(new CmdHome());
         event.registerServerCommand(new CmdHomes());
+        event.registerServerCommand(new CmdInvSee());
         event.registerServerCommand(new CmdJump());
         event.registerServerCommand(new CmdMail());
         event.registerServerCommand(new CmdPing());

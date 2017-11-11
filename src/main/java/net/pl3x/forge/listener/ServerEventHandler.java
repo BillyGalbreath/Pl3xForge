@@ -63,6 +63,7 @@ import net.pl3x.forge.network.PacketHandler;
 import net.pl3x.forge.scheduler.Pl3xRunnable;
 import net.pl3x.forge.scheduler.Pl3xScheduler;
 import net.pl3x.forge.util.Location;
+import net.pl3x.forge.inventory.InventoryPlayer;
 import net.pl3x.forge.util.task.EntityLifeSpan;
 import net.pl3x.forge.util.teleport.Teleport;
 import net.pl3x.forge.util.teleport.TeleportRequest;
@@ -339,5 +340,10 @@ public class ServerEventHandler {
             FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayers().forEach(player ->
                     ModAdvancements.PLAY_TIME_TRIGGER.trigger(player, player.getStatFile().readStat(StatList.PLAY_ONE_MINUTE)));
         }
+    }
+
+    @SubscribeEvent
+    public void tickStart(TickEvent.PlayerTickEvent event) {
+        InventoryPlayer.tickStart(event.player);
     }
 }

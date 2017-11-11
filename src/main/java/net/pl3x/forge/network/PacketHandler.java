@@ -23,6 +23,7 @@ public class PacketHandler {
         INSTANCE.registerMessage(BigHeadPacket.Handler.class, BigHeadPacket.class, 9, Side.CLIENT);
         INSTANCE.registerMessage(ArmorStandChangePacket.Handler.class, ArmorStandChangePacket.class, 10, Side.SERVER);
         INSTANCE.registerMessage(ArmorStandRefreshPacket.Handler.class, ArmorStandRefreshPacket.class, 11, Side.CLIENT);
+        INSTANCE.registerMessage(OpenInventoryPacket.Handler.class, OpenInventoryPacket.class, 12, Side.CLIENT);
     }
 
     public static void updatePlayerData(EntityPlayerMP player) {
