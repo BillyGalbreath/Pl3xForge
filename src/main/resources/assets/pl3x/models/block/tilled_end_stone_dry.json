@@ -1,0 +1,8 @@
+{
+  "parent": "pl3x:block/tilled_end_stone",
+  "textures": {
+    "particle": "blocks/end_stone",
+    "end_stone": "blocks/end_stone",
+    "top": "pl3x:blocks/tilled_end_stone_dry"
+  }
+}

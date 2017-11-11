@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.pl3x.forge.block.custom.BlockTrafficLight;
+import net.pl3x.forge.block.custom.decoration.BlockTrafficLight;
 import net.pl3x.forge.tileentity.TileEntityTrafficLight;
 import org.lwjgl.opengl.GL11;
 

@@ -54,6 +54,7 @@ item.claim_tool.name=Claim Tool
 item.coin.name=Coin
 item.corn.name=Corn
 item.corn_seed.name=Corn Seed
+item.enderpearl_seeds.name=Ender Pearl Seeds
 item.seasonal.name=Seasonal
 item.traffic_cone.name=Traffic Cone
 
@@ -114,6 +115,7 @@ tile.christmas_tree.name=Christmas Tree
 tile.deposit_box.name=Deposit Box
 tile.dirt_slab.name=Dirt Slab
 tile.enchantment_splitter.name=Enchantment Splitter
+tile.enderpearl_crop.name=Ender Pearl Crop
 tile.frosted_obsidian.name=Frosted Obsidian
 tile.grass_slab.name=Grass Slab
 tile.lamp.name=Lamp
@@ -122,6 +124,7 @@ tile.microwave.name=Microwave
 tile.ore_ruby.name=Ruby Ore
 tile.shop.name=Shop
 tile.table.name=Table
+tile.tilled_end_stone.name=Tilled End Stone
 tile.traffic_light.name=Traffic Light
 tile.traffic_light_control_box.name=Traffic Light Control Box
 
@@ -149,8 +152,14 @@ itemGroup.Hats=Hats
 # GUI strings
 pl3x.config.title=Pl3xForge Config
 
+# Alerts
+enderpearl_crop.alert.hoe=This block can only be tilled by a hoe enchanted with Unbreaking I+
+
 # Subtitles
 pl3x:subtitles.penguin.ambient=Penguin squawks
 pl3x:subtitles.penguin.baby.ambient=Penguin baby squeaks
 pl3x:subtitles.penguin.death=Penguin dies
 pl3x:subtitles.penguin.hurt=Penguin hurts
+
+# Tooltips
+enderpearl_crop.tip.seed=Plant on tilled end stone

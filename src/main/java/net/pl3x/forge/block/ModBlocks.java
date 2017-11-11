@@ -5,23 +5,25 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
-import net.pl3x.forge.block.custom.BlockChristmasTree;
-import net.pl3x.forge.block.custom.BlockComputer;
-import net.pl3x.forge.block.custom.BlockDepositBox;
 import net.pl3x.forge.block.custom.BlockEnchantmentSplitter;
 import net.pl3x.forge.block.custom.BlockFrostedObsidian;
-import net.pl3x.forge.block.custom.BlockLamp;
-import net.pl3x.forge.block.custom.BlockMicrowave;
-import net.pl3x.forge.block.custom.BlockPole;
 import net.pl3x.forge.block.custom.BlockRuby;
 import net.pl3x.forge.block.custom.BlockRubyOre;
 import net.pl3x.forge.block.custom.BlockShop;
-import net.pl3x.forge.block.custom.BlockTable;
-import net.pl3x.forge.block.custom.BlockTrafficLight;
-import net.pl3x.forge.block.custom.BlockTrafficLightControlBox;
 import net.pl3x.forge.block.custom.crops.BlockCropCorn;
+import net.pl3x.forge.block.custom.crops.BlockCropEnderPearl;
 import net.pl3x.forge.block.custom.curb.BlockCurb;
 import net.pl3x.forge.block.custom.curb.BlockCurbCorner;
+import net.pl3x.forge.block.custom.decoration.BlockChristmasTree;
+import net.pl3x.forge.block.custom.decoration.BlockComputer;
+import net.pl3x.forge.block.custom.decoration.BlockDepositBox;
+import net.pl3x.forge.block.custom.decoration.BlockLamp;
+import net.pl3x.forge.block.custom.decoration.BlockMicrowave;
+import net.pl3x.forge.block.custom.decoration.BlockPole;
+import net.pl3x.forge.block.custom.decoration.BlockTable;
+import net.pl3x.forge.block.custom.decoration.BlockTrafficLight;
+import net.pl3x.forge.block.custom.decoration.BlockTrafficLightControlBox;
+import net.pl3x.forge.block.custom.farmland.BlockTilledEndStone;
 import net.pl3x.forge.block.custom.slab.BlockConcreteSlabDouble;
 import net.pl3x.forge.block.custom.slab.BlockConcreteSlabHalf;
 import net.pl3x.forge.block.custom.slab.BlockCurbSlab;
@@ -126,6 +128,8 @@ public class ModBlocks {
     public static final BlockGrassSlabDouble GRASS_SLAB_DOUBLE = new BlockGrassSlabDouble();
 
     public static final BlockCropCorn CROP_CORN = new BlockCropCorn();
+    public static final BlockCropEnderPearl CROP_ENDER_PEARL = new BlockCropEnderPearl();
+    public static final BlockTilledEndStone TILLED_END_STONE = new BlockTilledEndStone();
 
     public static void register(IForgeRegistry<Block> registry) {
         registry.registerAll(
@@ -222,7 +226,9 @@ public class ModBlocks {
                 GRASS_SLAB,
                 GRASS_SLAB_DOUBLE,
 
-                CROP_CORN
+                CROP_CORN,
+                CROP_ENDER_PEARL,
+                TILLED_END_STONE
         );
 
         GameRegistry.registerTileEntity(ENCHANTMENT_SPLITTER.getTileEntityClass(), ENCHANTMENT_SPLITTER.getRegistryName().toString());

@@ -7,7 +7,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
-import net.pl3x.forge.block.custom.BlockTrafficLight;
+import net.pl3x.forge.block.custom.decoration.BlockTrafficLight;
 
 public class TileEntityTrafficLight extends TileEntity implements ITickable {
     public final EnumFacing facing;

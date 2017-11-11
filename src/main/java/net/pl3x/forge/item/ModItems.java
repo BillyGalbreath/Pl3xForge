@@ -10,7 +10,8 @@ import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.item.custom.ItemClaimTool;
 import net.pl3x.forge.item.custom.ItemTrafficCone;
 import net.pl3x.forge.item.custom.food.ItemCorn;
-import net.pl3x.forge.item.custom.seed.ItemCornSeed;
+import net.pl3x.forge.item.custom.seed.ItemCornSeeds;
+import net.pl3x.forge.item.custom.seed.ItemEnderPearlSeeds;
 import net.pl3x.forge.item.custom.tool.ItemAxe;
 import net.pl3x.forge.item.custom.tool.ItemHoe;
 import net.pl3x.forge.item.custom.tool.ItemPickaxe;
@@ -94,8 +95,8 @@ public class ModItems {
     public static final ItemTrafficCone TRAFFIC_CONE = new ItemTrafficCone();
 
     public static final ItemCorn CORN = new ItemCorn();
-    public static final ItemCornSeed CORN_SEED = new ItemCornSeed();
-
+    public static final ItemCornSeeds CORN_SEEDS = new ItemCornSeeds();
+    public static final ItemEnderPearlSeeds ENDER_PEARL_SEEDS = new ItemEnderPearlSeeds();
 
     public static void register(IForgeRegistry<Item> registry) {
         registry.registerAll(
@@ -159,7 +160,8 @@ public class ModItems {
                 TRAFFIC_CONE,
 
                 CORN,
-                CORN_SEED
+                CORN_SEEDS,
+                ENDER_PEARL_SEEDS
         );
     }
 
@@ -223,6 +225,7 @@ public class ModItems {
         TRAFFIC_CONE.registerItemModel();
 
         CORN.registerItemModel();
-        CORN_SEED.registerItemModel();
+        CORN_SEEDS.registerItemModel();
+        ENDER_PEARL_SEEDS.registerItemModel();
     }
 }

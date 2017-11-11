@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pl3x:corn"
+    }
+  ],
+  "result": {
+    "item": "pl3x:corn_seeds"
+  }
+}

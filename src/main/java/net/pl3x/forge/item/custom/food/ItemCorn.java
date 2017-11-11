@@ -2,7 +2,6 @@ package net.pl3x.forge.item.custom.food;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemFood;
-import net.minecraftforge.oredict.OreDictionary;
 import net.pl3x.forge.Pl3x;
 
 public class ItemCorn extends ItemFood {
@@ -17,9 +16,4 @@ public class ItemCorn extends ItemFood {
     public void registerItemModel() {
         Pl3x.proxy.registerItemRenderer(this, 0, "corn");
     }
-
-    public void initOreDict() {
-        OreDictionary.registerOre("cropCorn", this);
-    }
 }
-

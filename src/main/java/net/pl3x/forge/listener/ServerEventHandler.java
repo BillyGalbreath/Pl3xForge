@@ -1,5 +1,7 @@
 package net.pl3x.forge.listener;
 
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityArmorStand;
@@ -8,13 +10,26 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.SPacketPlayerListHeaderFooter;
 import net.minecraft.stats.StatList;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
+import net.minecraft.world.storage.loot.LootEntryItem;
+import net.minecraft.world.storage.loot.LootTableList;
+import net.minecraft.world.storage.loot.conditions.LootCondition;
+import net.minecraft.world.storage.loot.functions.LootFunction;
 import net.minecraftforge.event.CommandEvent;
+import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
@@ -22,7 +37,9 @@ import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
+import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
@@ -31,6 +48,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.pl3x.forge.Logger;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.advancement.ModAdvancements;
+import net.pl3x.forge.block.ModBlocks;
 import net.pl3x.forge.color.ChatColor;
 import net.pl3x.forge.configuration.Lang;
 import net.pl3x.forge.data.CapabilityProvider;
@@ -203,6 +221,48 @@ public class ServerEventHandler {
                         event.getWorld(), 0, 0, 0, event.getTarget().getEntityId());
                 event.setCanceled(true);
             }
+        }
+    }
+
+    @SubscribeEvent
+    public void on(UseHoeEvent event) {
+        if (event.getResult() != Event.Result.DEFAULT || event.isCanceled()) {
+            return;
+        }
+
+        EntityPlayer player = event.getEntityPlayer();
+        World world = event.getWorld();
+        BlockPos pos = event.getPos();
+
+        if (world.getBlockState(pos).getBlock() == Blocks.END_STONE) {
+            boolean canHoe = false;
+            ItemStack[] heldItems = {player.getHeldItem(EnumHand.MAIN_HAND), player.getHeldItem(EnumHand.OFF_HAND)};
+            for (ItemStack heldItem : heldItems) {
+                if (!heldItem.isEmpty() && heldItem.getItem() instanceof ItemHoe) {
+                    canHoe = canHoe || player.capabilities.isCreativeMode ||
+                            EnchantmentHelper.getEnchantmentLevel(Enchantment.getEnchantmentByID(34), heldItem) > 0;
+                }
+            }
+            if (canHoe) {
+                world.setBlockState(pos, ModBlocks.TILLED_END_STONE.getDefaultState());
+                event.setResult(Event.Result.ALLOW);
+                return;
+            }
+            if (!world.isRemote) {
+                player.sendStatusMessage(new TextComponentTranslation("enderpearl_crop.alert.hoe").setStyle(new Style().setItalic(true).setColor(TextFormatting.GRAY)), true);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void on(LootTableLoadEvent event) {
+        if (event.getName().equals(LootTableList.CHESTS_ABANDONED_MINESHAFT) ||
+                event.getName().equals(LootTableList.CHESTS_IGLOO_CHEST) ||
+                event.getName().equals(LootTableList.CHESTS_DESERT_PYRAMID) ||
+                event.getName().equals(LootTableList.CHESTS_JUNGLE_TEMPLE) ||
+                event.getName().equals(LootTableList.CHESTS_SIMPLE_DUNGEON)) {
+            event.getTable().getPool("main").addEntry(new LootEntryItem(ModItems.ENDER_PEARL_SEEDS, 1, 0,
+                    new LootFunction[0], new LootCondition[0], Pl3x.modId + ":enderpearl_seeds"));
         }
     }
 
