@@ -9,6 +9,8 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.item.custom.ItemClaimTool;
 import net.pl3x.forge.item.custom.ItemTrafficCone;
+import net.pl3x.forge.item.custom.food.ItemCorn;
+import net.pl3x.forge.item.custom.seed.ItemCornSeed;
 import net.pl3x.forge.item.custom.tool.ItemAxe;
 import net.pl3x.forge.item.custom.tool.ItemHoe;
 import net.pl3x.forge.item.custom.tool.ItemPickaxe;
@@ -91,6 +93,9 @@ public class ModItems {
     public static final ItemBase SEASONAL = new ItemBase("seasonal");
     public static final ItemTrafficCone TRAFFIC_CONE = new ItemTrafficCone();
 
+    public static final ItemCorn CORN = new ItemCorn();
+    public static final ItemCornSeed CORN_SEED = new ItemCornSeed();
+
 
     public static void register(IForgeRegistry<Item> registry) {
         registry.registerAll(
@@ -151,7 +156,10 @@ public class ModItems {
                 COIN,
                 PL3X_LOGO,
                 SEASONAL,
-                TRAFFIC_CONE
+                TRAFFIC_CONE,
+
+                CORN,
+                CORN_SEED
         );
     }
 
@@ -213,5 +221,8 @@ public class ModItems {
         PL3X_LOGO.registerItemModel();
         SEASONAL.registerItemModel();
         TRAFFIC_CONE.registerItemModel();
+
+        CORN.registerItemModel();
+        CORN_SEED.registerItemModel();
     }
 }

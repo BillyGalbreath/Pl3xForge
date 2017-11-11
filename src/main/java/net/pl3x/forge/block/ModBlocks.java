@@ -19,6 +19,7 @@ import net.pl3x.forge.block.custom.BlockShop;
 import net.pl3x.forge.block.custom.BlockTable;
 import net.pl3x.forge.block.custom.BlockTrafficLight;
 import net.pl3x.forge.block.custom.BlockTrafficLightControlBox;
+import net.pl3x.forge.block.custom.crops.BlockCropCorn;
 import net.pl3x.forge.block.custom.curb.BlockCurb;
 import net.pl3x.forge.block.custom.curb.BlockCurbCorner;
 import net.pl3x.forge.block.custom.slab.BlockConcreteSlabDouble;
@@ -124,6 +125,8 @@ public class ModBlocks {
     public static final BlockGrassSlabHalf GRASS_SLAB = new BlockGrassSlabHalf();
     public static final BlockGrassSlabDouble GRASS_SLAB_DOUBLE = new BlockGrassSlabDouble();
 
+    public static final BlockCropCorn CROP_CORN = new BlockCropCorn();
+
     public static void register(IForgeRegistry<Block> registry) {
         registry.registerAll(
                 RUBY,
@@ -217,7 +220,9 @@ public class ModBlocks {
                 DIRT_SLAB_DOUBLE,
 
                 GRASS_SLAB,
-                GRASS_SLAB_DOUBLE
+                GRASS_SLAB_DOUBLE,
+
+                CROP_CORN
         );
 
         GameRegistry.registerTileEntity(ENCHANTMENT_SPLITTER.getTileEntityClass(), ENCHANTMENT_SPLITTER.getRegistryName().toString());
