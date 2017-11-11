@@ -127,6 +127,7 @@ tile.traffic_light_control_box.name=Traffic Light Control Box
 
 # Entity Names
 entity.banker.name=Banker
+entity.go_cart.name=Go Cart
 entity.penguin.name=Penguin
 
 # Subtitles
