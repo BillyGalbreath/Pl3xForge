@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class Button extends GuiButton {
     private static final int HELD_REPEAT_DELAY = 10;
-    private boolean held = false;
+    public boolean held = false;
     private int heldTicks = 0;
     private final int w2;
     private final int h2;

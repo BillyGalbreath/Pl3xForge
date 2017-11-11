@@ -10,8 +10,8 @@ import net.pl3x.forge.util.gl.GuiUtil;
 public class CheckBox extends Button {
     protected boolean checked;
 
-    public CheckBox(int id, int x, int y, boolean checked) {
-        super(id, x, y, 10, 10, "");
+    public CheckBox(int id, int x, int y, String label, boolean checked) {
+        super(id, x, y, 10, 10, label);
         this.checked = checked;
     }
 
@@ -32,10 +32,9 @@ public class CheckBox extends Button {
         if (!visible) {
             return;
         }
-        hovered = mouseX >= x && mouseY >= y && mouseX < x + 10 && mouseY < y + 10;
+        hovered = mouseX >= x && mouseY >= y && mouseX < x + 13 + mc.fontRenderer.getStringWidth(displayString) && mouseY < y + height;
         mc.getTextureManager().bindTexture(GuiUtil.GUI_ELEMENTS);
-        GlStateManager.disableDepth();
-
+        GlStateManager.color(1, 1, 1, 1);
         int xOffset = 0;
         int yOffset = 0;
         if (checked) {
@@ -45,12 +44,12 @@ public class CheckBox extends Button {
             yOffset += 10;
         }
         drawTexturedModalRect(x, y, 204 + xOffset, 21 + yOffset, 10, 10);
-        GlStateManager.enableDepth();
+        mc.fontRenderer.drawString(displayString, x + 13, y + 1, 0x404040);
     }
 
     @Override
     public boolean mousePressed(Minecraft mc, int mouseX, int mouseY) {
-        if (enabled && visible && mouseX >= x && mouseY >= y && mouseX < x + width && mouseY < y + height) {
+        if (enabled && visible && hovered) {
             checked = !checked;
             return true;
         }

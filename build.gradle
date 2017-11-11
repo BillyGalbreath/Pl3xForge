@@ -14,7 +14,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 def mcVersion = "1.12.2"
 def forgeVersion = "14.23.0"
 def mappingsVersion = "20171003"
-def pl3xVersion = "64"
+def pl3xVersion = "66"
 def build = System.getenv()['BUILD_NUMBER'] ?: "SNAPSHOT"
 version = "1.4.0-b" + build
 

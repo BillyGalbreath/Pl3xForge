@@ -1,16 +1,17 @@
 package net.pl3x.forge.network;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityArmorStand;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.math.Rotations;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.pl3x.forge.Logger;
 
-public class ArmorStandPacket implements IMessage {
+public class ArmorStandRefreshPacket implements IMessage {
     private int entityId;
     private int dimension;
     private int rotation;
@@ -36,34 +37,34 @@ public class ArmorStandPacket implements IMessage {
     private boolean arms;
     private boolean base;
 
-    public ArmorStandPacket() {
+    public ArmorStandRefreshPacket() {
     }
 
-    public ArmorStandPacket(EntityArmorStand armorStand) {
-        entityId = armorStand.getEntityId();
-        dimension = armorStand.dimension;
-        rotation = (int) armorStand.rotationYaw;
-        headX = (int) armorStand.getHeadRotation().getX();
-        headY = (int) armorStand.getHeadRotation().getY();
-        headZ = (int) armorStand.getHeadRotation().getZ();
-        bodyX = (int) armorStand.getBodyRotation().getX();
-        bodyY = (int) armorStand.getBodyRotation().getY();
-        bodyZ = (int) armorStand.getBodyRotation().getZ();
-        leftLegX = (int) armorStand.getLeftLegRotation().getX();
-        leftLegY = (int) armorStand.getLeftLegRotation().getY();
-        leftLegZ = (int) armorStand.getLeftLegRotation().getZ();
-        rightLegX = (int) armorStand.getRightLegRotation().getX();
-        rightLegY = (int) armorStand.getRightLegRotation().getY();
-        rightLegZ = (int) armorStand.getRightLegRotation().getZ();
-        leftArmX = (int) armorStand.getLeftArmRotation().getX();
-        leftArmY = (int) armorStand.getLeftArmRotation().getY();
-        leftArmZ = (int) armorStand.getLeftArmRotation().getZ();
-        rightArmX = (int) armorStand.getRightArmRotation().getX();
-        rightArmY = (int) armorStand.getRightArmRotation().getY();
-        rightArmZ = (int) armorStand.getRightArmRotation().getZ();
-        baby = armorStand.isSmall();
-        arms = armorStand.getShowArms();
-        base = !armorStand.hasNoBasePlate();
+    public ArmorStandRefreshPacket(int entityId, int dimension, EntityArmorStand armorStand) {
+        this.entityId = entityId;
+        this.dimension = dimension;
+        this.rotation = (int) armorStand.rotationYaw;
+        this.headX = (int) armorStand.getHeadRotation().getX();
+        this.headY = (int) armorStand.getHeadRotation().getY();
+        this.headZ = (int) armorStand.getBodyRotation().getZ();
+        this.bodyX = (int) armorStand.getBodyRotation().getX();
+        this.bodyY = (int) armorStand.getBodyRotation().getY();
+        this.bodyZ = (int) armorStand.getBodyRotation().getZ();
+        this.leftLegX = (int) armorStand.getLeftLegRotation().getX();
+        this.leftLegY = (int) armorStand.getLeftLegRotation().getY();
+        this.leftLegZ = (int) armorStand.getLeftLegRotation().getZ();
+        this.rightLegX = (int) armorStand.getRightLegRotation().getX();
+        this.rightLegY = (int) armorStand.getRightLegRotation().getY();
+        this.rightLegZ = (int) armorStand.getRightLegRotation().getZ();
+        this.leftArmX = (int) armorStand.getLeftArmRotation().getX();
+        this.leftArmY = (int) armorStand.getLeftArmRotation().getY();
+        this.leftArmZ = (int) armorStand.getLeftArmRotation().getZ();
+        this.rightArmX = (int) armorStand.getRightArmRotation().getX();
+        this.rightArmY = (int) armorStand.getRightArmRotation().getY();
+        this.rightArmZ = (int) armorStand.getRightArmRotation().getZ();
+        this.baby = armorStand.isSmall();
+        this.arms = armorStand.getShowArms();
+        this.base = !armorStand.hasNoBasePlate();
     }
 
     @Override
@@ -122,22 +123,22 @@ public class ArmorStandPacket implements IMessage {
         buf.writeBoolean(base);
     }
 
-    public static class Handler implements IMessageHandler<ArmorStandPacket, IMessage> {
+    public static class Handler implements IMessageHandler<ArmorStandRefreshPacket, IMessage> {
         @Override
-        public IMessage onMessage(ArmorStandPacket packet, MessageContext context) {
-            EntityPlayerMP player = context.getServerHandler().player;
+        public IMessage onMessage(ArmorStandRefreshPacket packet, MessageContext context) {
+            EntityPlayerSP player = Minecraft.getMinecraft().player;
             if (player.dimension != packet.dimension) {
-                Logger.warn("Received ArmorStand packet from " + player.getName() + " for a different dimension");
+                Logger.warn("Received ArmorStand refresh packet for a different dimension");
                 return null;
             }
-            player.getServerWorld().addScheduledTask(() -> {
+            Minecraft.getMinecraft().addScheduledTask(() -> {
                 Entity entity = player.world.getEntityByID(packet.entityId);
-                if (entity == null) {
-                    Logger.warn("Received ArmorStand packet from " + player.getName() + " for non existent entity");
+                if (entity == null || entity.isDead) {
+                    Logger.warn("Received ArmorStand change packet for non existent entity");
                     return;
                 }
                 if (!(entity instanceof EntityArmorStand)) {
-                    Logger.warn("Received ArmorStand packet from " + player.getName() + " but entity is not an armorstand");
+                    Logger.warn("Received ArmorStand change packet but entity is not an armorstand");
                     return;
                 }
                 EntityArmorStand armorStand = (EntityArmorStand) entity;

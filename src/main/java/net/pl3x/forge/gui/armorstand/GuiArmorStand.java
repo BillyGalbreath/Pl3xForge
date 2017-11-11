@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.container.ContainerArmorstand;
 import net.pl3x.forge.gui.ModGuiHandler;
@@ -32,7 +33,7 @@ public class GuiArmorStand extends GuiContainer {
         this.player = player;
         this.entityId = entityId;
 
-        ySize = 212;
+        ySize = 202;
     }
 
     @Override
@@ -47,9 +48,38 @@ public class GuiArmorStand extends GuiContainer {
     }
 
     @Override
+    public void updateScreen() {
+        super.updateScreen();
+
+        if (container.armorStand == null || container.armorStand.isDead) {
+            player.closeScreen();
+            return;
+        }
+
+        if (container.inventory.getStackInSlot(0).isEmpty() && !container.armorStand.getItemStackFromSlot(EntityEquipmentSlot.FEET).isEmpty()) {
+            container.inventory.setInventorySlotContents(0, container.armorStand.getItemStackFromSlot(EntityEquipmentSlot.FEET));
+        }
+        if (container.inventory.getStackInSlot(1).isEmpty() && !container.armorStand.getItemStackFromSlot(EntityEquipmentSlot.LEGS).isEmpty()) {
+            container.inventory.setInventorySlotContents(1, container.armorStand.getItemStackFromSlot(EntityEquipmentSlot.LEGS));
+        }
+        if (container.inventory.getStackInSlot(2).isEmpty() && !container.armorStand.getItemStackFromSlot(EntityEquipmentSlot.CHEST).isEmpty()) {
+            container.inventory.setInventorySlotContents(2, container.armorStand.getItemStackFromSlot(EntityEquipmentSlot.CHEST));
+        }
+        if (container.inventory.getStackInSlot(3).isEmpty() && !container.armorStand.getItemStackFromSlot(EntityEquipmentSlot.HEAD).isEmpty()) {
+            container.inventory.setInventorySlotContents(3, container.armorStand.getItemStackFromSlot(EntityEquipmentSlot.HEAD));
+        }
+        if (container.inventory.getStackInSlot(4).isEmpty() && !container.armorStand.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND).isEmpty()) {
+            container.inventory.setInventorySlotContents(4, container.armorStand.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND));
+        }
+        if (container.inventory.getStackInSlot(5).isEmpty() && !container.armorStand.getItemStackFromSlot(EntityEquipmentSlot.OFFHAND).isEmpty()) {
+            container.inventory.setInventorySlotContents(5, container.armorStand.getItemStackFromSlot(EntityEquipmentSlot.OFFHAND));
+        }
+    }
+
+    @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         fontRenderer.drawString("ArmorStand", 110, 8, 0x404040);
-        fontRenderer.drawString("Inventory", 8, 118, 0x404040);
+        fontRenderer.drawString("Inventory", 8, 108, 0x404040);
     }
 
     @Override
@@ -57,7 +87,7 @@ public class GuiArmorStand extends GuiContainer {
         GuiUtil.drawBG(this, x, y, xSize, ySize);
         GuiUtil.drawSlots(this, inventorySlots.inventorySlots, x, y);
         GuiUtil.drawBlackWindow(this, x + 86, y + 19, 75, 90);
-        drawEntityOnScreen(x + 123, y + 90, 30, x + 51 - oldMouseX, y + 25 - oldMouseY, container.armorStand);
+        drawEntityOnScreen(x + 123, y + 90, x + 51 - oldMouseX, y + 25 - oldMouseY, container.armorStand);
     }
 
     @Override
@@ -81,14 +111,14 @@ public class GuiArmorStand extends GuiContainer {
         }
     }
 
-    public static void drawEntityOnScreen(int posX, int posY, int scale, float mouseX, float mouseY, EntityArmorStand armorstand) {
+    private static void drawEntityOnScreen(int posX, int posY, float mouseX, float mouseY, EntityArmorStand armorstand) {
         // setup GL
         GlStateManager.enableColorMaterial();
         GlStateManager.pushMatrix();
 
         // move into place and size
         GlStateManager.translate((float) posX, (float) posY, 50.0F);
-        GlStateManager.scale((float) -scale, (float) scale, (float) scale);
+        GlStateManager.scale((float) -30, (float) 30, (float) 30);
         GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
 
         // fix shadows/lighting angle
