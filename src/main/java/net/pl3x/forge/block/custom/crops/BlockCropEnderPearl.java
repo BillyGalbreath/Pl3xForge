@@ -29,8 +29,8 @@ public class BlockCropEnderPearl extends BlockCrops {
         setRegistryName("crop_enderpearl");
     }
 
-    private boolean isOnEndstone(World worldIn, BlockPos pos) {
-        return worldIn.getBlockState(pos.down()).getBlock() == ModBlocks.TILLED_END_STONE;
+    private boolean isOnEndstone(World world, BlockPos pos) {
+        return world.getBlockState(pos.down()).getBlock() == ModBlocks.TILLED_END_STONE;
     }
 
     @Override
@@ -57,12 +57,12 @@ public class BlockCropEnderPearl extends BlockCrops {
 
     @Override
     public boolean canGrow(World world, BlockPos pos, IBlockState state, boolean isClient) {
-        return state.getValue(AGE) < 7 && isOnEndstone(world, pos) && world.getLightFromNeighbors(pos.up()) <= 7;
+        return !isMaxAge(state) && canBlockStay(world, pos, state);
     }
 
     @Override
     public boolean canBlockStay(World world, BlockPos pos, IBlockState state) {
-        return isOnEndstone(world, pos);
+        return isOnEndstone(world, pos) && world.getLightFromNeighbors(pos.up()) <= 7;
     }
 
     @Override
@@ -93,7 +93,7 @@ public class BlockCropEnderPearl extends BlockCrops {
     @Override
     public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, ItemStack stack) {
         super.harvestBlock(world, player, pos, state, te, stack);
-        if (isOnEndstone(world, pos) && state.getValue(AGE) == 7 && world.rand.nextInt(20) == 0) {
+        if (isOnEndstone(world, pos) && isMaxAge(state) && world.rand.nextInt(20) == 0) {
             EntityEndermite mite = new EntityEndermite(world);
             mite.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), MathHelper.wrapDegrees(world.rand.nextFloat() * 360.0F), 0.0F);
             world.spawnEntity(mite);

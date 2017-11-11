@@ -41,7 +41,7 @@ public class BlockTilledEndStone extends BlockFarmland {
         if (!hasDarkness(world, pos)) {
             if (moisture > 0) {
                 world.setBlockState(pos, state.withProperty(MOISTURE, moisture - 1), 2);
-            } else if (!hasCrops(state, world, pos)) {
+            } else {
                 turnToEndStone(world, pos);
             }
         } else if (moisture < 7) {
@@ -53,7 +53,6 @@ public class BlockTilledEndStone extends BlockFarmland {
         if (!world.isRemote && entity.canTrample(world, this, pos, fallDistance)) {
             turnToEndStone(world, pos);
         }
-        super.onFallenUpon(world, pos, entity, fallDistance);
     }
 
     private void turnToEndStone(World world, BlockPos pos) {
@@ -76,7 +75,6 @@ public class BlockTilledEndStone extends BlockFarmland {
 
     @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos pos2) {
-        super.neighborChanged(state, world, pos, block, pos2);
         if (world.getBlockState(pos.up()).getMaterial().isSolid()) {
             turnToEndStone(world, pos);
         }
@@ -84,7 +82,6 @@ public class BlockTilledEndStone extends BlockFarmland {
 
     @Override
     public void onBlockAdded(World world, BlockPos pos, IBlockState state) {
-        super.onBlockAdded(world, pos, state);
         if (world.getBlockState(pos.up()).getMaterial().isSolid()) {
             turnToEndStone(world, pos);
         }

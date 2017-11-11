@@ -127,9 +127,9 @@ public class ArmorStandChangePacket implements IMessage {
                     armorStand.setRightArmRotation(new Rotations(rot.getX(), rot.getY(), packet.value));
                 }
 
-                PacketHandler.INSTANCE.sendToAllAround(new ArmorStandRefreshPacket(packet.entityId, packet.dimension, armorStand),
-                        new NetworkRegistry.TargetPoint(armorStand.world.provider.getDimension(),
-                                armorStand.posX, armorStand.posY, armorStand.posZ, 64));
+                //PacketHandler.INSTANCE.sendToAllAround(new ArmorStandRefreshPacket(packet.entityId, packet.dimension, armorStand),
+                //        new NetworkRegistry.TargetPoint(armorStand.world.provider.getDimension(),
+                //                armorStand.posX, armorStand.posY, armorStand.posZ, 64));
             });
             return null;
         }
