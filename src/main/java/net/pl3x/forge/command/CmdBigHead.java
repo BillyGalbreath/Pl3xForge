@@ -46,23 +46,28 @@ public class CmdBigHead extends CommandBase {
 
         EntityPlayerMP target = PlayerUtil.getPlayer(args[0]);
         UUID uuid;
+        String name;
         if (target == null) {
             uuid = PlayerUtil.getUUIDFromName(args[0]);
+            name = args[0];
             if (uuid == null) {
                 Lang.send(sender, Lang.INSTANCE.data.PLAYER_NOT_FOUND);
                 return;
             }
         } else {
             uuid = target.getUniqueID();
+            name = target.getName();
         }
 
         Set<UUID> bigHeads = BigHeadConfig.INSTANCE.data.getBigHeads();
         if (bigHeads.contains(uuid)) {
             bigHeads.remove(uuid);
-            Lang.send(sender, Lang.INSTANCE.data.BIGHEAD_DISABLED);
+            Lang.send(sender, Lang.INSTANCE.data.BIGHEAD_DISABLED
+                    .replace("{target}", name));
         } else {
             bigHeads.add(uuid);
-            Lang.send(sender, Lang.INSTANCE.data.BIGHEAD_ENABLED);
+            Lang.send(sender, Lang.INSTANCE.data.BIGHEAD_ENABLED
+                    .replace("{target}", name));
         }
 
         BigHeadConfig.INSTANCE.data.setBighead(bigHeads);
