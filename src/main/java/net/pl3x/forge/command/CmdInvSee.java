@@ -6,8 +6,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.pl3x.forge.configuration.Lang;
-import net.pl3x.forge.network.OpenInventoryPacket;
-import net.pl3x.forge.network.PacketHandler;
 import net.pl3x.forge.inventory.InventoryPlayer;
 import net.pl3x.forge.util.PlayerUtil;
 
@@ -51,7 +49,7 @@ public class CmdInvSee extends CommandBase {
         }
 
         if (target == player) {
-            PacketHandler.INSTANCE.sendTo(new OpenInventoryPacket(), player);
+            //PacketHandler.INSTANCE.sendTo(new OpenInventoryPacket(), player);
             return;
         }
 
