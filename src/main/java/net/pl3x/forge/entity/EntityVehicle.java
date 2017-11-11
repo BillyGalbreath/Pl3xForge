@@ -172,8 +172,8 @@ public abstract class EntityVehicle extends Entity {
             passenger.setRotationYawHead(passenger.getRotationYawHead() + deltaRotation);
         }
         applyYawToEntity(passenger);
-        System.out.println("Car Y: " + posY);
-        System.out.println("Plr Y: " + passenger.posY);
+        //System.out.println("Car Y: " + posY);
+        //System.out.println("Plr Y: " + passenger.posY);
     }
 
     @Override
