@@ -11,7 +11,7 @@ public class BigHeadListener {
     public static final Set<UUID> playersWithBigHeadEnabled = new HashSet<>();
 
     @SubscribeEvent
-    public void on(RenderPlayerEvent.Post event) {
+    public void on(RenderPlayerEvent.Pre event) {
         event.getRenderer().getMainModel().bigHead =
                 playersWithBigHeadEnabled.contains(event.getEntityPlayer().getUniqueID());
     }
