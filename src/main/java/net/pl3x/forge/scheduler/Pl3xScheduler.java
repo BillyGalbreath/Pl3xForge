@@ -2,7 +2,9 @@ package net.pl3x.forge.scheduler;
 
 import java.util.Iterator;
 import java.util.Map;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Pl3xScheduler {
@@ -21,8 +23,7 @@ public class Pl3xScheduler {
             delay = 0;
         }
         Pl3xTask task = new Pl3xTask(runnable, nextId(), -1L);
-        task.setNextRun(currentTick + delay);
-        tasks.put(task.getTaskId(), task);
+        handle(task, delay);
         return task;
     }
 
@@ -36,8 +37,7 @@ public class Pl3xScheduler {
             period = -1L;
         }
         Pl3xTask task = new Pl3xTask(runnable, nextId(), period);
-        task.setNextRun(currentTick + delay);
-        tasks.put(task.getTaskId(), task);
+        handle(task, delay);
         return task;
     }
 
@@ -48,6 +48,18 @@ public class Pl3xScheduler {
             task.cancel();
         }
         tasks.remove(taskId);
+    }
+
+    public <T> Future<T> callSyncMethod(Callable<T> task) {
+        Pl3xFuture<T> future = new Pl3xFuture<>(task, nextId());
+        handle(future, 0L);
+        return future;
+    }
+
+    private Pl3xTask handle(Pl3xTask task, long delay) {
+        task.setNextRun(currentTick + delay);
+        tasks.put(task.getTaskId(), task);
+        return task;
     }
 
     public void tick() {

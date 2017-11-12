@@ -7,9 +7,12 @@ buildscript {
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.1'
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'java'
 
 def mcVersion = "1.12.2"
 def forgeVersion = "14.23.0"
@@ -52,6 +55,22 @@ processResources {
         exclude 'mcmod.info'
     }
 }
+
+dependencies {
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.0.1'
+    compile group: 'org.eclipse.jetty', name: 'jetty-server', version: '9.4.7.v20170914'
+    compile group: 'io.prometheus', name: 'simpleclient_common', version: '0.1.0'
+}
+
+shadowJar {
+    relocate "javax.servlet", "deps.javax.servlet-api"
+    relocate "org.eclipse.jetty", "deps.org.eclipse.jetty"
+    relocate "io.prometheus", "deps.io.prometheus"
+}
+
+assemble.dependsOn(shadowJar)
+reobf { shadowJar { mappingType = "SEARGE" } }
+tasks.reobfShadowJar.mustRunAfter shadowJar
 
 task setupPl3xForge {
     group = "forgegradle"

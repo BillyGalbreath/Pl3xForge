@@ -17,6 +17,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.UUID;
 
@@ -39,6 +40,14 @@ public class PlayerUtil {
 
     public static Collection<String> getOnlinePlayerNames() {
         return Arrays.asList(playerList.getOnlinePlayerNames());
+    }
+
+    public static Collection<String> getOfflinePlayerNames() {
+        Collection<String> collection = new HashSet<>();
+        for (Map.Entry<UUID, String> entry : UsernameCache.getMap().entrySet()) {
+            collection.add(entry.getValue());
+        }
+        return collection;
     }
 
     public static Collection<EntityPlayerMP> getPlayers() {

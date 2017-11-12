@@ -63,6 +63,7 @@ import net.pl3x.forge.listener.ServerEventHandler;
 import net.pl3x.forge.motd.MOTDTask;
 import net.pl3x.forge.network.OpenInventoryPacket;
 import net.pl3x.forge.network.PacketHandler;
+import net.pl3x.forge.prometheus.PrometheusController;
 import net.pl3x.forge.recipe.ModRecipes;
 import net.pl3x.forge.util.task.TPSTracker;
 import net.pl3x.forge.world.ModWorldGen;
@@ -105,6 +106,8 @@ public class ServerProxy {
     public void postInit(FMLPostInitializationEvent event) {
         TPSTracker.INSTANCE.runTaskTimer(20, 20); // 1 second
         MOTDTask.INSTANCE.runTaskTimer(1, 100); // 5 seconds
+
+        PrometheusController.INSTANCE.start();
     }
 
     public void serverStarting(FMLServerStartingEvent event) {
@@ -143,7 +146,12 @@ public class ServerProxy {
     }
 
     public void serverStopping(FMLServerStoppingEvent event) {
+        PrometheusController.INSTANCE.stop();
+
         ConfigWatcher.INSTANCE.interrupt();
+
+        TPSTracker.INSTANCE.cancel();
+        MOTDTask.INSTANCE.cancel();
     }
 
     public void registerItemRenderer(Item item, int meta, String id) {
