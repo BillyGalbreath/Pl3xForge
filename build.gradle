@@ -72,7 +72,7 @@ task setupPl3xForge {
         }
         println "Checking userdev files..."
         def userdevFile = new File(userdevDir, "forge-" + (String) project.minecraft.version + "-" + forgeVersion + ".0-userdev.jar")
-        def tmpFile = new File(pl3xDir, "forge-" + mcVersion + "-" + forgeVersion + "." + pl3xVersion + "-userdev.jar")
+        def tmpFile = new File(pl3xDir, "forge-" + mcVersion + "-" + forgeVersion + "." + forgeBuild + "." + pl3xVersion + "-userdev.jar")
         if (!tmpFile.exists() || !userdevFile.exists()) {
             println "Downloading missing Pl3xForge userdev jar (build " + pl3xVersion + ")..."
             new URL("http://pl3x.net/jenkins/job/MinecraftForge/" + pl3xVersion +
