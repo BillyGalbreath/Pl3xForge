@@ -1,5 +1,7 @@
 package net.pl3x.forge.proxy;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
@@ -20,6 +22,7 @@ import net.pl3x.forge.listener.BigHeadListener;
 import net.pl3x.forge.listener.ClientEventHandler;
 import net.pl3x.forge.listener.KeyBindings;
 import net.pl3x.forge.listener.KeyInputHandler;
+import net.pl3x.forge.network.OpenInventoryPacket;
 import net.pl3x.forge.tileentity.TileEntityEnchantmentSplitter;
 import net.pl3x.forge.tileentity.TileEntityShop;
 import net.pl3x.forge.tileentity.TileEntityTrafficLight;
@@ -68,5 +71,11 @@ public class ClientProxy extends ServerProxy {
         super.registerItemRenderer(item, meta, id);
 
         ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(Pl3x.modId + ":" + id, "inventory"));
+    }
+
+    public void handleOpenPlayerInventory(OpenInventoryPacket packet) {
+        Minecraft.getMinecraft().addScheduledTask(() ->
+                Minecraft.getMinecraft().displayGuiScreen(
+                        new GuiInventory(Minecraft.getMinecraft().player)));
     }
 }

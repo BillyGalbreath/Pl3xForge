@@ -61,6 +61,7 @@ import net.pl3x.forge.listener.CapabilityHandler;
 import net.pl3x.forge.listener.ChatEventHandler;
 import net.pl3x.forge.listener.ServerEventHandler;
 import net.pl3x.forge.motd.MOTDTask;
+import net.pl3x.forge.network.OpenInventoryPacket;
 import net.pl3x.forge.network.PacketHandler;
 import net.pl3x.forge.recipe.ModRecipes;
 import net.pl3x.forge.util.task.TPSTracker;
@@ -146,6 +147,10 @@ public class ServerProxy {
     }
 
     public void registerItemRenderer(Item item, int meta, String id) {
+        //
+    }
+
+    public void handleOpenPlayerInventory(OpenInventoryPacket packet) {
         //
     }
 }
