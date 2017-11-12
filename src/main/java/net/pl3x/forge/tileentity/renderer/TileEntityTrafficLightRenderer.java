@@ -68,6 +68,7 @@ public class TileEntityTrafficLightRenderer extends TileEntitySpecialRenderer<Ti
         GL11.glEnd();
 
         // clean up GL crap
+        GL11.glColor4f(1, 1, 1, 1);
         GlStateManager.enableLighting();
         GlStateManager.enableTexture2D();
         GlStateManager.popMatrix();
