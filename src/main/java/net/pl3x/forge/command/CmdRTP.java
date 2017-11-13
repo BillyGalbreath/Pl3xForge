@@ -90,8 +90,8 @@ public class CmdRTP extends CommandBase {
     }
 
     private BlockPos calculatePos(int dimension) {
-        return new BlockPos(ThreadLocalRandom.current().nextInt(25000),
-                dimension == -1 ? 120 : 250, ThreadLocalRandom.current().nextInt(25000));
+        return new BlockPos(ThreadLocalRandom.current().nextInt(50000) - 25000,
+                dimension == -1 ? 120 : 250, ThreadLocalRandom.current().nextInt(50000) - 25000);
     }
 
     private boolean isValid(IBlockState ground, IBlockState lower, IBlockState upper) {
