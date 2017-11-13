@@ -6,6 +6,7 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.pl3x.forge.Logger;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.advancement.ModAdvancements;
 import net.pl3x.forge.color.ChatColor;
@@ -52,7 +53,7 @@ public class BankPacket implements IMessage {
                 PlayerData capability = player.getCapability(CapabilityProvider.CAPABILITY, null);
                 if (capability == null) {
                     PacketHandler.INSTANCE.sendTo(new BankFailedPacket(), player);
-                    System.out.println("No capability? (" + player.getName() + ")");
+                    Logger.error("No capability? (" + player.getName() + ")");
                     return;
                 }
 

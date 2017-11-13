@@ -9,6 +9,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.pl3x.forge.Logger;
 import net.pl3x.forge.data.CapabilityProvider;
 import net.pl3x.forge.data.PlayerData;
 import net.pl3x.forge.inventory.InventoryBanker;
@@ -29,7 +30,7 @@ public class ContainerBanker extends Container {
         playerData = player.getCapability(CapabilityProvider.CAPABILITY, null);
         IInventory bankSlots;
         if (playerData == null) {
-            System.out.println("No capability found. Creating new banker inventory");
+            Logger.warn("No capability found. Creating new banker inventory");
             bankSlots = new InventoryBanker();
         } else {
             bankSlots = playerData.getBankInventory();

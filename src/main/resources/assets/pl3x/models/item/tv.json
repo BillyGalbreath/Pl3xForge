@@ -1,0 +1,6 @@
+﻿{
+  "parent": "pl3x:block/tv",
+  "textures": {
+    "screen": "minecraft:blocks/concrete_black"
+  }
+}

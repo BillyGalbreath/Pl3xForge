@@ -17,6 +17,7 @@ import net.pl3x.forge.block.custom.decoration.BlockLamp;
 import net.pl3x.forge.block.custom.decoration.BlockMicrowave;
 import net.pl3x.forge.block.custom.decoration.BlockPole;
 import net.pl3x.forge.block.custom.decoration.BlockShop;
+import net.pl3x.forge.block.custom.decoration.BlockTV;
 import net.pl3x.forge.block.custom.decoration.BlockTable;
 import net.pl3x.forge.block.custom.decoration.BlockTrafficLight;
 import net.pl3x.forge.block.custom.decoration.BlockTrafficLightControlBox;
@@ -47,6 +48,7 @@ public class ModBlocks {
     public static final BlockLamp LAMP = new BlockLamp();
     public static final BlockTable TABLE = new BlockTable();
     public static final BlockChristmasTree CHRISTMAS_TREE = new BlockChristmasTree();
+    public static final BlockTV TV = new BlockTV();
 
     public static final BlockTrafficLight TRAFFIC_LIGHT = new BlockTrafficLight();
     public static final BlockTrafficLightControlBox TRAFFIC_LIGHT_CONTROL_BOX = new BlockTrafficLightControlBox();
@@ -147,6 +149,7 @@ public class ModBlocks {
                 LAMP,
                 TABLE,
                 CHRISTMAS_TREE,
+                TV,
 
                 TRAFFIC_LIGHT,
                 TRAFFIC_LIGHT_CONTROL_BOX,
@@ -238,6 +241,7 @@ public class ModBlocks {
         GameRegistry.registerTileEntity(SHOP.getTileEntityClass(), SHOP.getRegistryName().toString());
         GameRegistry.registerTileEntity(TRAFFIC_LIGHT.getTileEntityClass(), TRAFFIC_LIGHT.getRegistryName().toString());
         GameRegistry.registerTileEntity(TRAFFIC_LIGHT_CONTROL_BOX.getTileEntityClass(), TRAFFIC_LIGHT_CONTROL_BOX.getRegistryName().toString());
+        GameRegistry.registerTileEntity(TV.getTileEntityClass(), TV.getRegistryName().toString());
     }
 
     public static void registerItemBlocks(IForgeRegistry<Item> registry) {
@@ -254,6 +258,7 @@ public class ModBlocks {
                 LAMP.createItemBlock(),
                 TABLE.createItemBlock(),
                 CHRISTMAS_TREE.createItemBlock(),
+                TV.createItemBlock(),
 
                 TRAFFIC_LIGHT.createItemBlock(),
                 TRAFFIC_LIGHT_CONTROL_BOX.createItemBlock(),
@@ -332,6 +337,7 @@ public class ModBlocks {
         LAMP.registerItemModel(Item.getItemFromBlock(LAMP));
         TABLE.registerItemModel(Item.getItemFromBlock(TABLE));
         CHRISTMAS_TREE.registerItemModel(Item.getItemFromBlock(CHRISTMAS_TREE));
+        TV.registerItemModel(Item.getItemFromBlock(TV));
 
         TRAFFIC_LIGHT.registerItemModel(Item.getItemFromBlock(TRAFFIC_LIGHT));
         TRAFFIC_LIGHT_CONTROL_BOX.registerItemModel(Item.getItemFromBlock(TRAFFIC_LIGHT_CONTROL_BOX));

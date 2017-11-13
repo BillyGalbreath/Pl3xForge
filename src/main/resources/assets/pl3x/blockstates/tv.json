@@ -1,0 +1,25 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": { "screen": "minecraft:blocks/concrete_black" },
+    "model": "pl3x:tv"
+  },
+  "variants": {
+    "facing": {
+      "north": { "y": 0 },
+      "east": { "y": 90 },
+      "south": { "y": 180 },
+      "west": { "y": 270 }
+    },
+    "channel": {
+      "off": { "textures": { "screen": "minecraft:blocks/concrete_black" } },
+      "ch1": { "textures": { "screen": "pl3x:blocks/tv_ch1" } },
+      "ch2": { "textures": { "screen": "pl3x:blocks/tv_ch2" } },
+      "ch3": { "textures": { "screen": "pl3x:blocks/tv_ch3" } },
+      "ch4": { "textures": { "screen": "pl3x:blocks/tv_ch4" } },
+      "ch5": { "textures": { "screen": "pl3x:blocks/tv_ch5" } },
+      "ch6": { "textures": { "screen": "pl3x:blocks/tv_ch6" } },
+      "ch7": { "textures": { "screen": "pl3x:blocks/tv_ch7" } }
+    }
+  }
+}

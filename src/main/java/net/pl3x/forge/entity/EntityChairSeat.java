@@ -169,9 +169,7 @@ public class EntityChairSeat extends Entity {
         IBlockState state = getBlockState(pos);
         if (state != null) {
             EnumFacing facing = state.getValue(BlockChair.FACING);
-            System.out.println(facing + " " + pos);
             pos = pos.offset(facing.rotateAround(EnumFacing.Axis.Y));
-            System.out.println(facing + " " + pos);
             passenger.setPosition(pos.getX() + 0.5, pos.getY() + 0.25, pos.getZ() + 0.5);
         }
     }
