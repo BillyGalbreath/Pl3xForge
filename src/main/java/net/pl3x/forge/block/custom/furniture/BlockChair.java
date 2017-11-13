@@ -1,4 +1,4 @@
-package net.pl3x.forge.block.custom.decoration;
+package net.pl3x.forge.block.custom.furniture;
 
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
@@ -9,6 +9,7 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -19,36 +20,58 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.pl3x.forge.Pl3x;
-import net.pl3x.forge.block.BlockTileEntity;
-import net.pl3x.forge.color.ChatColor;
-import net.pl3x.forge.gui.ModGuiHandler;
-import net.pl3x.forge.tileentity.TileEntityTrafficLightControlBox;
+import net.pl3x.forge.block.BlockBase;
+import net.pl3x.forge.entity.EntityChairSeat;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
-public class BlockTrafficLightControlBox extends BlockTileEntity<TileEntityTrafficLightControlBox> {
-    private static final PropertyDirection FACING = BlockHorizontal.FACING;
-    private static final AxisAlignedBB X_AXIS_AABB = new AxisAlignedBB(0.0625D, 0D, 0.25D, 0.9375D, 1D, 0.75D);
-    private static final AxisAlignedBB Z_AXIS_AABB = new AxisAlignedBB(0.25D, 0D, 0.0625D, 0.75D, 1D, 0.9375D);
+public class BlockChair extends BlockBase {
+    public static final PropertyDirection FACING = BlockHorizontal.FACING;
+    private static final AxisAlignedBB AABB = new AxisAlignedBB(0.0625D, 0D, 0.0625D, 0.9375D, 1D, 0.9375D);
 
-    public BlockTrafficLightControlBox() {
-        super(Material.WOOD, "traffic_light_control_box");
+    public BlockChair() {
+        super(Material.WOOD, "chair");
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.SOUTH));
-        setSoundType(SoundType.METAL);
+        setSoundType(SoundType.WOOD);
         setHardness(1);
 
         setCreativeTab(CreativeTabs.DECORATIONS);
     }
 
     @Override
+    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState) {
+        if (!isActualState) {
+            state = getActualState(state, worldIn, pos);
+        }
+
+        AxisAlignedBB aabb;
+        switch (state.getValue(FACING)) {
+            case NORTH:
+                aabb = new AxisAlignedBB(0.0625D, 0D, 0.0625D, 0.1275D, 1.437D, 0.9375D);
+                break;
+            case SOUTH:
+                aabb = new AxisAlignedBB(0.8735D, 0D, 0.0625D, 0.9375D, 1.437D, 0.9375D);
+                break;
+            case WEST:
+                aabb = new AxisAlignedBB(0.0625D, 0D, 0.8735D, 0.9375D, 1.437D, 0.9375D);
+                break;
+            case EAST:
+            default:
+                aabb = new AxisAlignedBB(0.0625D, 0D, 0.0625D, 0.9375D, 1.437D, 0.1275D);
+                break;
+        }
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, aabb);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, new AxisAlignedBB(0.0625D, 0D, 0.0625D, 0.9375D, 0.5D, 0.9375D));
+    }
+
+    @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return state.getValue(FACING).getAxis() == EnumFacing.Axis.X ? X_AXIS_AABB : Z_AXIS_AABB;
+        return AABB;
     }
 
     @Override
@@ -100,7 +123,7 @@ public class BlockTrafficLightControlBox extends BlockTileEntity<TileEntityTraff
 
     @Override
     public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-        return MapColor.GRAY;
+        return MapColor.RED;
     }
 
     @Override
@@ -135,57 +158,32 @@ public class BlockTrafficLightControlBox extends BlockTileEntity<TileEntityTraff
 
     @Override
     public boolean canPlaceTorchOnTop(IBlockState state, IBlockAccess world, BlockPos pos) {
+        return false;
+    }
+
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+        super.breakBlock(worldIn, pos, state);
+        worldIn.removeTileEntity(pos);
+    }
+
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        sit(world, pos, player);
         return true;
     }
 
-    @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if (!worldIn.isRemote) {
-            TileEntityTrafficLightControlBox te = getTileEntity(worldIn, pos);
-            if (te != null && te.isOwner(playerIn)) {
-                playerIn.openGui(Pl3x.instance, ModGuiHandler.TRAFFIC_LIGHT_CONTROL_BOX, worldIn, pos.getX(), pos.getY(), pos.getZ());
-            }
-        }
-        return true;
-    }
-
-    @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        TileEntityTrafficLightControlBox te = getTileEntity(worldIn, pos);
-        if (te != null) {
-            te.setOwner(placer.getUniqueID());
-        }
+        super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+
+        // handle tile entity setup
     }
 
-    @Override
-    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
-        if (!world.isRemote) {
-            TileEntityTrafficLightControlBox te = getTileEntity(world, pos);
-            if (te != null) {
-                if (!te.isOwner(player)) {
-                    player.sendMessage(new TextComponentString(ChatColor.colorize("&4You cannot break this block")));
-                    return false;
-                }
-            }
-        }
-        return super.removedByPlayer(state, world, pos, player, willHarvest);
-    }
-
-    @Override
-    public Class<TileEntityTrafficLightControlBox> getTileEntityClass() {
-        return TileEntityTrafficLightControlBox.class;
-    }
-
-    @Nullable
-    @Override
-    public TileEntityTrafficLightControlBox createTileEntity(World world, IBlockState state) {
-        return new TileEntityTrafficLightControlBox();
-    }
-
-    @Override
-    public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param) {
-        super.eventReceived(state, worldIn, pos, id, param);
-        TileEntityTrafficLightControlBox te = getTileEntity(worldIn, pos);
-        return te != null && te.receiveClientEvent(id, param);
+    public void sit(World world, BlockPos pos, EntityPlayer player) {
+        EntityChairSeat entity = new EntityChairSeat(world);
+        entity.setPosition(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
+        world.spawnEntity(entity);
+        player.setPosition(entity.posX, entity.posY, entity.posZ);
+        player.rotationYaw = entity.rotationYaw;
+        player.rotationPitch = entity.rotationPitch;
+        player.startRiding(entity);
     }
 }

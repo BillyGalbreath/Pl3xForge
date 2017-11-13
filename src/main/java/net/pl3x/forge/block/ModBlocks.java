@@ -5,11 +5,6 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
-import net.pl3x.forge.block.custom.BlockEnchantmentSplitter;
-import net.pl3x.forge.block.custom.BlockFrostedObsidian;
-import net.pl3x.forge.block.custom.BlockRuby;
-import net.pl3x.forge.block.custom.BlockRubyOre;
-import net.pl3x.forge.block.custom.BlockShop;
 import net.pl3x.forge.block.custom.crops.BlockCropCorn;
 import net.pl3x.forge.block.custom.crops.BlockCropEnderPearl;
 import net.pl3x.forge.block.custom.curb.BlockCurb;
@@ -17,13 +12,19 @@ import net.pl3x.forge.block.custom.curb.BlockCurbCorner;
 import net.pl3x.forge.block.custom.decoration.BlockChristmasTree;
 import net.pl3x.forge.block.custom.decoration.BlockComputer;
 import net.pl3x.forge.block.custom.decoration.BlockDepositBox;
+import net.pl3x.forge.block.custom.decoration.BlockEnchantmentSplitter;
 import net.pl3x.forge.block.custom.decoration.BlockLamp;
 import net.pl3x.forge.block.custom.decoration.BlockMicrowave;
 import net.pl3x.forge.block.custom.decoration.BlockPole;
+import net.pl3x.forge.block.custom.decoration.BlockShop;
 import net.pl3x.forge.block.custom.decoration.BlockTable;
 import net.pl3x.forge.block.custom.decoration.BlockTrafficLight;
 import net.pl3x.forge.block.custom.decoration.BlockTrafficLightControlBox;
 import net.pl3x.forge.block.custom.farmland.BlockTilledEndStone;
+import net.pl3x.forge.block.custom.furniture.BlockChair;
+import net.pl3x.forge.block.custom.ore.BlockFrostedObsidian;
+import net.pl3x.forge.block.custom.ore.BlockRuby;
+import net.pl3x.forge.block.custom.ore.BlockRubyOre;
 import net.pl3x.forge.block.custom.slab.BlockConcreteSlabDouble;
 import net.pl3x.forge.block.custom.slab.BlockConcreteSlabHalf;
 import net.pl3x.forge.block.custom.slab.BlockCurbSlab;
@@ -39,6 +40,7 @@ public class ModBlocks {
     public static final BlockFrostedObsidian FROSTED_OBSIDIAN = new BlockFrostedObsidian();
     public static final BlockEnchantmentSplitter ENCHANTMENT_SPLITTER = new BlockEnchantmentSplitter();
     public static final BlockShop SHOP = new BlockShop();
+    public static final BlockChair CHAIR = new BlockChair();
     public static final BlockComputer COMPUTER = new BlockComputer();
     public static final BlockDepositBox DEPOSIT_BOX = new BlockDepositBox();
     public static final BlockMicrowave MICROWAVE = new BlockMicrowave();
@@ -138,6 +140,7 @@ public class ModBlocks {
                 FROSTED_OBSIDIAN,
                 ENCHANTMENT_SPLITTER,
                 SHOP,
+                CHAIR,
                 COMPUTER,
                 DEPOSIT_BOX,
                 MICROWAVE,
@@ -244,6 +247,7 @@ public class ModBlocks {
                 FROSTED_OBSIDIAN.createItemBlock(),
                 ENCHANTMENT_SPLITTER.createItemBlock(),
                 SHOP.createItemBlock(),
+                CHAIR.createItemBlock(),
                 COMPUTER.createItemBlock(),
                 DEPOSIT_BOX.createItemBlock(),
                 MICROWAVE.createItemBlock(),
@@ -321,6 +325,7 @@ public class ModBlocks {
         FROSTED_OBSIDIAN.registerItemModel(Item.getItemFromBlock(FROSTED_OBSIDIAN));
         ENCHANTMENT_SPLITTER.registerItemModel(Item.getItemFromBlock(ENCHANTMENT_SPLITTER));
         SHOP.registerItemModel(Item.getItemFromBlock(SHOP));
+        CHAIR.registerItemModel(Item.getItemFromBlock(CHAIR));
         COMPUTER.registerItemModel(Item.getItemFromBlock(COMPUTER));
         DEPOSIT_BOX.registerItemModel(Item.getItemFromBlock(DEPOSIT_BOX));
         MICROWAVE.registerItemModel(Item.getItemFromBlock(MICROWAVE));

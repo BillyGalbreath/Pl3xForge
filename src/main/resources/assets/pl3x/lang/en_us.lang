@@ -111,6 +111,7 @@ tile.curb_slab_white.name=White Curb Slab
 tile.curb_slab_yellow.name=Yellow Curb Slab
 
 tile.block_ruby.name=Block of Ruby
+tile.chair.name=Chair
 tile.christmas_tree.name=Christmas Tree
 tile.deposit_box.name=Deposit Box
 tile.dirt_slab.name=Dirt Slab

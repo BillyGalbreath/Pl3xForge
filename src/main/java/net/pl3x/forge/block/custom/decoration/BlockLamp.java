@@ -1,6 +1,7 @@
 package net.pl3x.forge.block.custom.decoration;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -38,10 +39,11 @@ public class BlockLamp extends BlockBase {
     private static final AxisAlignedBB AABB_LOWER = new AxisAlignedBB(0.25D, 0D, 0.25D, 0.75D, 2D, 0.75D);
 
     public BlockLamp() {
-        super(Material.ROCK, "lamp");
+        super(Material.WOOD, "lamp");
         setDefaultState(blockState.getBaseState()
                 .withProperty(HALF, BlockLamp.Half.UPPER)
                 .withProperty(ON, Boolean.TRUE));
+        setSoundType(SoundType.METAL);
         setHardness(1);
         setLightLevel(0);
 

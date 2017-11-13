@@ -1,6 +1,7 @@
-package net.pl3x.forge.block.custom;
+package net.pl3x.forge.block.custom.decoration;
 
 import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -42,11 +43,12 @@ public class BlockShop extends BlockTileEntity<TileEntityShop> {
     private static final AxisAlignedBB AABB = new AxisAlignedBB(0.185D, 0D, 0.185D, 0.815D, 1D, 0.815D);
 
     public BlockShop() {
-        super(Material.ROCK, "shop");
+        super(Material.WOOD, "shop");
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.EAST));
-        setResistance(6000001.0F);
+        setSoundType(SoundType.METAL);
         setHardness(1);
         setLightLevel(1);
+        setResistance(6000001.0F);
 
         setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
     }

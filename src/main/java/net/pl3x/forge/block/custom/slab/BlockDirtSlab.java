@@ -28,7 +28,7 @@ public abstract class BlockDirtSlab extends BlockSlab {
     private final String name;
 
     public BlockDirtSlab(String name) {
-        super(Material.ROCK);
+        super(Material.GROUND);
 
         this.name = name;
 

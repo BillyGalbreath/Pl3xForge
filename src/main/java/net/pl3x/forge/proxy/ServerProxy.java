@@ -3,6 +3,7 @@ package net.pl3x.forge.proxy;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -107,7 +108,9 @@ public class ServerProxy {
         TPSTracker.INSTANCE.runTaskTimer(20, 20); // 1 second
         MOTDTask.INSTANCE.runTaskTimer(1, 100); // 5 seconds
 
-        PrometheusController.INSTANCE.start();
+        if (FMLCommonHandler.instance().getSide().isServer()) {
+            PrometheusController.INSTANCE.start();
+        }
     }
 
     public void serverStarting(FMLServerStartingEvent event) {

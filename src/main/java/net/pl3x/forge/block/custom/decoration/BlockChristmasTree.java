@@ -20,9 +20,9 @@ public class BlockChristmasTree extends BlockBase {
     public BlockChristmasTree() {
         super(Material.LEAVES, "christmas_tree");
         setCreativeTab(CreativeTabs.DECORATIONS);
+        setSoundType(SoundType.PLANT);
         setHardness(1);
         setLightOpacity(1);
-        setSoundType(SoundType.PLANT);
     }
 
     @Override

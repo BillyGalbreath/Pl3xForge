@@ -32,7 +32,7 @@ public abstract class BlockGrassSlab extends BlockSlab {
     private final String name;
 
     public BlockGrassSlab(String name) {
-        super(Material.ROCK);
+        super(Material.GROUND);
 
         this.name = name;
 

@@ -1,5 +1,6 @@
-package net.pl3x.forge.block.custom;
+package net.pl3x.forge.block.custom.decoration;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
@@ -33,6 +34,7 @@ public class BlockEnchantmentSplitter extends BlockTileEntity<TileEntityEnchantm
 
     public BlockEnchantmentSplitter() {
         super(Material.ROCK, "enchantment_splitter");
+        setSoundType(SoundType.METAL);
         setHardness(6);
         setResistance(2500);
         setLightOpacity(0);

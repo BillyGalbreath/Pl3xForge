@@ -2,6 +2,7 @@ package net.pl3x.forge.block.custom.farmland;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,7 +29,7 @@ public class BlockTilledEndStone extends BlockFarmland {
         super();
         setUnlocalizedName("tilled_end_stone");
         setRegistryName("tilled_end_stone");
-
+        setSoundType(SoundType.GROUND);
         setLightOpacity(255);
         useNeighborBrightness = true;
         setHardness(0.6F);

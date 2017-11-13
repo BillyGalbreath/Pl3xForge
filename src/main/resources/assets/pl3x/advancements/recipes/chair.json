@@ -1,0 +1,93 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "pl3x:chair_l_1",
+      "pl3x:chair_l_2",
+      "pl3x:chair_r_1",
+      "pl3x:chair_r_2"
+    ]
+  },
+  "criteria": {
+    "has_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:log",
+            "data": 32767
+          }
+        ]
+      }
+    },
+    "has_log2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:log2",
+            "data": 32767
+          }
+        ]
+      }
+    },
+    "has_recipe_l_1": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "pl3x:chair_l_1"
+      }
+    },
+    "has_recipe_l_2": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "pl3x:chair_l_2"
+      }
+    },
+    "has_recipe_r_1": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "pl3x:chair_r_1"
+      }
+    },
+    "has_recipe_r_2": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "pl3x:chair_r_2"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_log",
+      "has_recipe_l_1"
+    ],
+    [
+      "has_log",
+      "has_recipe_l_2"
+    ],
+    [
+      "has_log",
+      "has_recipe_r_1"
+    ],
+    [
+      "has_log",
+      "has_recipe_r_2"
+    ],
+    [
+      "has_log2",
+      "has_recipe_l_1"
+    ],
+    [
+      "has_log2",
+      "has_recipe_l_2"
+    ],
+    [
+      "has_log2",
+      "has_recipe_r_1"
+    ],
+    [
+      "has_log2",
+      "has_recipe_r_2"
+    ]
+  ]
+}

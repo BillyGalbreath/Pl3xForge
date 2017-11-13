@@ -1,4 +1,4 @@
-package net.pl3x.forge.block.custom;
+package net.pl3x.forge.block.custom.ore;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.pl3x.forge.block.BlockOre;

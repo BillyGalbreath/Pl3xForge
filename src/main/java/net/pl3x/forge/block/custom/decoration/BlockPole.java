@@ -1,6 +1,7 @@
 package net.pl3x.forge.block.custom.decoration;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
@@ -79,14 +80,15 @@ public class BlockPole extends BlockBase {
     };
 
     public BlockPole(String name) {
-        super(Material.ROCK, name);
+        super(Material.WOOD, name);
         setDefaultState(blockState.getBaseState()
                 .withProperty(VERTICAL, false)
                 .withProperty(NORTH, false)
                 .withProperty(SOUTH, false)
                 .withProperty(EAST, false)
                 .withProperty(WEST, false));
-        setHardness(2);
+        setSoundType(SoundType.METAL);
+        setHardness(1);
 
         setCreativeTab(CreativeTabs.DECORATIONS);
     }

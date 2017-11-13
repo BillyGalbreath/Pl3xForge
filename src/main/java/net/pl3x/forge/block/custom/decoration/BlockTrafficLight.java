@@ -1,6 +1,7 @@
 package net.pl3x.forge.block.custom.decoration;
 
 import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
@@ -42,10 +43,11 @@ public class BlockTrafficLight extends BlockTileEntity<TileEntityTrafficLight> {
     private static final AxisAlignedBB AABB_VERT_WEST_VERT_POLE = new AxisAlignedBB(0.37D, 0D, 0.22D, 0.63D, 1D, 0.63D);
 
     public BlockTrafficLight() {
-        super(Material.IRON, "traffic_light");
+        super(Material.WOOD, "traffic_light");
         setDefaultState(blockState.getBaseState()
                 .withProperty(FACING, EnumFacing.SOUTH)
                 .withProperty(POLE, EnumPole.NONE));
+        setSoundType(SoundType.METAL);
         setHardness(1);
 
         setCreativeTab(CreativeTabs.DECORATIONS);

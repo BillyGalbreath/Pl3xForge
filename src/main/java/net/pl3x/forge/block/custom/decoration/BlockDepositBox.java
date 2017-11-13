@@ -1,6 +1,7 @@
 package net.pl3x.forge.block.custom.decoration;
 
 import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
@@ -29,8 +30,9 @@ public class BlockDepositBox extends BlockBase {
     private static final AxisAlignedBB AABB_WEST = new AxisAlignedBB(0D, 0D, 0.0625D, 1D, 1D, 1D);
 
     public BlockDepositBox() {
-        super(Material.ROCK, "deposit_box");
+        super(Material.WOOD, "deposit_box");
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.SOUTH));
+        setSoundType(SoundType.METAL);
         setHardness(1);
 
         setCreativeTab(CreativeTabs.DECORATIONS);
