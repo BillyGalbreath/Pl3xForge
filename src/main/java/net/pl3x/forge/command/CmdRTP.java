@@ -12,13 +12,13 @@ import net.pl3x.forge.scheduler.Pl3xRunnable;
 import net.pl3x.forge.util.Location;
 import net.pl3x.forge.util.teleport.Teleport;
 
-import java.util.Collection;
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class CmdRTP extends CommandBase {
-    private final Collection<UUID> cooldowns = new HashSet<>();
+    private final Map<UUID, Cooldown> cooldowns = new HashMap<>();
 
     public CmdRTP() {
         super("rtp", "Teleport to a random location");
@@ -37,8 +37,10 @@ public class CmdRTP extends CommandBase {
             return;
         }
 
-        if (cooldowns.contains(player.getUniqueID())) {
-            Lang.send(player, Lang.INSTANCE.data.COMMAND_ON_COOLDOWN);
+        Cooldown cooldown = cooldowns.get(player.getUniqueID());
+        if (cooldown != null) {
+            Lang.send(player, Lang.INSTANCE.data.COMMAND_ON_COOLDOWN
+                    .replace("{timeleft}", Integer.toString(cooldown.seconds)));
             return;
         }
 
@@ -52,9 +54,10 @@ public class CmdRTP extends CommandBase {
             return;
         }
 
-        cooldowns.add(player.getUniqueID());
-        new Cooldown(player.getUniqueID())
-                .runTaskLater(60 * 5 * 20); // 5 minutes
+        cooldown = new Cooldown(player.getUniqueID());
+        cooldown.runTaskTimer(20, 20);
+
+        cooldowns.put(player.getUniqueID(), cooldown);
 
         Teleport.teleport(player, destination);
         Lang.send(player, Lang.INSTANCE.data.RTP_SUCCESS);
@@ -106,14 +109,21 @@ public class CmdRTP extends CommandBase {
 
     private class Cooldown extends Pl3xRunnable {
         private final UUID uuid;
+        private int seconds;
 
         private Cooldown(UUID uuid) {
             this.uuid = uuid;
+            this.seconds = 60 * 5; // 5 minutes
         }
 
         @Override
         public void run() {
-            cooldowns.remove(uuid);
+            seconds--;
+
+            if (seconds < 0) {
+                cooldowns.remove(uuid);
+                cancel();
+            }
         }
     }
 }

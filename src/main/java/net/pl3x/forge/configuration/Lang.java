@@ -48,7 +48,7 @@ public class Lang extends ConfigLoader implements ConfigBase {
         public final String MUST_SPECIFY_MESSAGE = "&cMust specify message";
         public final String PLAYER_NOT_ONLINE = "&cPlayer is not online";
         public final String PLAYER_NOT_FOUND = "&cPlayer is not found";
-        public final String COMMAND_ON_COOLDOWN = "&cThat command is on cooldown";
+        public final String COMMAND_ON_COOLDOWN = "&cCommand on cooldown for {timeleft} seconds";
         public final String UNKNOWN_COMMAND = "&cUnknown subcommand";
 
         public final String BACK_ON_DEATH = "&aUse /back to teleport to where you died";
