@@ -5,6 +5,7 @@ import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -13,10 +14,12 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.color.ModColorManager;
+import net.pl3x.forge.entity.EntityMirror;
 import net.pl3x.forge.entity.ModEntities;
 import net.pl3x.forge.gui.TitleScreen;
 import net.pl3x.forge.listener.BigHeadListener;
@@ -50,6 +53,8 @@ public class ClientProxy extends ServerProxy {
         MinecraftForge.EVENT_BUS.register(new KeyInputHandler());
         MinecraftForge.EVENT_BUS.register(new TileEntityMirrorRenderer());
         MinecraftForge.EVENT_BUS.register(new TitleScreen());
+
+        EntityRegistry.registerModEntity(new ResourceLocation(Pl3x.modId, "mirror"), EntityMirror.class, "mirror", 2, Pl3x.instance, 48, 1, false);
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEnchantmentSplitter.class, new TileEntityEnchantmentSplitterRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMirror.class, new TileEntityMirrorRenderer());
