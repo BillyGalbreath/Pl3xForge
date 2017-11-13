@@ -15,6 +15,7 @@ import net.pl3x.forge.block.custom.decoration.BlockDepositBox;
 import net.pl3x.forge.block.custom.decoration.BlockEnchantmentSplitter;
 import net.pl3x.forge.block.custom.decoration.BlockLamp;
 import net.pl3x.forge.block.custom.decoration.BlockMicrowave;
+import net.pl3x.forge.block.custom.decoration.BlockMirror;
 import net.pl3x.forge.block.custom.decoration.BlockPole;
 import net.pl3x.forge.block.custom.decoration.BlockShop;
 import net.pl3x.forge.block.custom.decoration.BlockTV;
@@ -45,6 +46,7 @@ public class ModBlocks {
     public static final BlockComputer COMPUTER = new BlockComputer();
     public static final BlockDepositBox DEPOSIT_BOX = new BlockDepositBox();
     public static final BlockMicrowave MICROWAVE = new BlockMicrowave();
+    public static final BlockMirror MIRROR = new BlockMirror();
     public static final BlockLamp LAMP = new BlockLamp();
     public static final BlockTable TABLE = new BlockTable();
     public static final BlockChristmasTree CHRISTMAS_TREE = new BlockChristmasTree();
@@ -146,6 +148,7 @@ public class ModBlocks {
                 COMPUTER,
                 DEPOSIT_BOX,
                 MICROWAVE,
+                MIRROR,
                 LAMP,
                 TABLE,
                 CHRISTMAS_TREE,
@@ -238,6 +241,7 @@ public class ModBlocks {
         );
 
         GameRegistry.registerTileEntity(ENCHANTMENT_SPLITTER.getTileEntityClass(), ENCHANTMENT_SPLITTER.getRegistryName().toString());
+        GameRegistry.registerTileEntity(MIRROR.getTileEntityClass(), MIRROR.getRegistryName().toString());
         GameRegistry.registerTileEntity(SHOP.getTileEntityClass(), SHOP.getRegistryName().toString());
         GameRegistry.registerTileEntity(TRAFFIC_LIGHT.getTileEntityClass(), TRAFFIC_LIGHT.getRegistryName().toString());
         GameRegistry.registerTileEntity(TRAFFIC_LIGHT_CONTROL_BOX.getTileEntityClass(), TRAFFIC_LIGHT_CONTROL_BOX.getRegistryName().toString());
@@ -255,6 +259,7 @@ public class ModBlocks {
                 COMPUTER.createItemBlock(),
                 DEPOSIT_BOX.createItemBlock(),
                 MICROWAVE.createItemBlock(),
+                MIRROR.createItemBlock(),
                 LAMP.createItemBlock(),
                 TABLE.createItemBlock(),
                 CHRISTMAS_TREE.createItemBlock(),
@@ -334,6 +339,7 @@ public class ModBlocks {
         COMPUTER.registerItemModel(Item.getItemFromBlock(COMPUTER));
         DEPOSIT_BOX.registerItemModel(Item.getItemFromBlock(DEPOSIT_BOX));
         MICROWAVE.registerItemModel(Item.getItemFromBlock(MICROWAVE));
+        MIRROR.registerItemModel(Item.getItemFromBlock(MIRROR));
         LAMP.registerItemModel(Item.getItemFromBlock(LAMP));
         TABLE.registerItemModel(Item.getItemFromBlock(TABLE));
         CHRISTMAS_TREE.registerItemModel(Item.getItemFromBlock(CHRISTMAS_TREE));

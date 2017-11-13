@@ -5,10 +5,12 @@ import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.GuiRepair;
 import net.minecraft.client.gui.GuiScreenBook;
 import net.minecraft.client.gui.inventory.GuiEditSign;
+import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.pl3x.forge.claims.Selection;
 import net.pl3x.forge.color.ChatColor;
@@ -16,9 +18,24 @@ import net.pl3x.forge.configuration.ClientConfig;
 import net.pl3x.forge.gui.HUDBalance;
 import net.pl3x.forge.icons.IconManager;
 import net.pl3x.forge.item.ModItems;
+import net.pl3x.forge.tileentity.renderer.TileEntityMirrorRenderer;
 
 public class ClientEventHandler {
     private final HUDBalance hudBalance = new HUDBalance();
+
+    @SubscribeEvent
+    public void onClientWorldLoad(WorldEvent.Load event) {
+        if (event.getWorld() instanceof WorldClient) {
+            TileEntityMirrorRenderer.mirrorGlobalRenderer.setWorldAndLoadRenderers((WorldClient) event.getWorld());
+        }
+    }
+
+    @SubscribeEvent
+    public void onClientWorldUnload(WorldEvent.Unload event) {
+        if (event.getWorld() instanceof WorldClient) {
+            TileEntityMirrorRenderer.clearRegisteredMirrors();
+        }
+    }
 
     @SubscribeEvent
     public void on(RenderGameOverlayEvent.Post event) {

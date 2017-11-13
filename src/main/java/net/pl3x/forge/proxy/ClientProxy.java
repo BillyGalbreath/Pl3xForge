@@ -3,6 +3,7 @@ package net.pl3x.forge.proxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
@@ -24,22 +25,21 @@ import net.pl3x.forge.listener.KeyBindings;
 import net.pl3x.forge.listener.KeyInputHandler;
 import net.pl3x.forge.network.OpenInventoryPacket;
 import net.pl3x.forge.tileentity.TileEntityEnchantmentSplitter;
+import net.pl3x.forge.tileentity.TileEntityMirror;
 import net.pl3x.forge.tileentity.TileEntityShop;
 import net.pl3x.forge.tileentity.TileEntityTrafficLight;
+import net.pl3x.forge.tileentity.renderer.TileEntityMirrorRenderer;
 import net.pl3x.forge.tileentity.renderer.TileEntityEnchantmentSplitterRenderer;
 import net.pl3x.forge.tileentity.renderer.TileEntityShopRenderer;
 import net.pl3x.forge.tileentity.renderer.TileEntityTrafficLightRenderer;
 
 @SideOnly(Side.CLIENT)
 public class ClientProxy extends ServerProxy {
+    public static boolean rendering = false;
+    public static Entity renderEntity = null;
+
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
-
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEnchantmentSplitter.class, new TileEntityEnchantmentSplitterRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityShop.class, new TileEntityShopRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTrafficLight.class, new TileEntityTrafficLightRenderer());
-
-        ModEntities.registerRenders();
     }
 
     public void init(FMLInitializationEvent event) {
@@ -48,7 +48,15 @@ public class ClientProxy extends ServerProxy {
         MinecraftForge.EVENT_BUS.register(new BigHeadListener());
         MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
         MinecraftForge.EVENT_BUS.register(new KeyInputHandler());
+        MinecraftForge.EVENT_BUS.register(new TileEntityMirrorRenderer());
         MinecraftForge.EVENT_BUS.register(new TitleScreen());
+
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEnchantmentSplitter.class, new TileEntityEnchantmentSplitterRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMirror.class, new TileEntityMirrorRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityShop.class, new TileEntityShopRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTrafficLight.class, new TileEntityTrafficLightRenderer());
+
+        ModEntities.registerRenders();
 
         ModColorManager.registerColorHandlers();
 

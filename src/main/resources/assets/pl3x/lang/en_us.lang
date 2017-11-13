@@ -122,6 +122,7 @@ tile.grass_slab.name=Grass Slab
 tile.lamp.name=Lamp
 tile.metal_pole.name=Metal Pole
 tile.microwave.name=Microwave
+tile.mirror.name=Mirror
 tile.ore_ruby.name=Ruby Ore
 tile.shop.name=Shop
 tile.table.name=Table
