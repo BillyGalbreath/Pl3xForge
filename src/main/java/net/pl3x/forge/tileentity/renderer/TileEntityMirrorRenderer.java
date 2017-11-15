@@ -12,6 +12,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.pl3x.forge.configuration.ClientConfig;
 import net.pl3x.forge.entity.EntityMirror;
 import net.pl3x.forge.proxy.ClientProxy;
 import net.pl3x.forge.tileentity.TileEntityMirror;
@@ -27,7 +28,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class TileEntityMirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror> {
     public static RenderGlobal mirrorGlobalRenderer = new MirrorRenderGlobal();
-    private int quality = 256;
     private long renderEndNanoTime;
 
     private static Map<EntityMirror, Integer> registerMirrors = new ConcurrentHashMap<>();
@@ -44,13 +44,18 @@ public class TileEntityMirrorRenderer extends TileEntitySpecialRenderer<TileEnti
 
     @Override
     public void render(TileEntityMirror mirror, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
-        if (TileEntityRendererDispatcher.instance.entity instanceof EntityMirror)
+        if (!ClientConfig.mirrorOptions.enabled) {
             return;
+        }
+
+        if (TileEntityRendererDispatcher.instance.entity instanceof EntityMirror) {
+            return;
+        }
 
         if (!registerMirrors.containsKey(mirror.getMirror())) {
             int newTextureId = GL11.glGenTextures();
             GlStateManager.bindTexture(newTextureId);
-            GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, quality, quality, 0, GL11.GL_RGB, GL11.GL_UNSIGNED_BYTE, BufferUtils.createByteBuffer(3 * quality * quality));
+            GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, ClientConfig.mirrorOptions.quality, ClientConfig.mirrorOptions.quality, 0, GL11.GL_RGB, GL11.GL_UNSIGNED_BYTE, BufferUtils.createByteBuffer(3 * ClientConfig.mirrorOptions.quality * ClientConfig.mirrorOptions.quality));
             GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
             GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
             registerMirrors.put(mirror.getMirror(), newTextureId);
@@ -101,8 +106,13 @@ public class TileEntityMirrorRenderer extends TileEntitySpecialRenderer<TileEnti
 
     @SubscribeEvent
     public void onTick(TickEvent.RenderTickEvent event) {
-        if (event.phase.equals(TickEvent.Phase.END))
+        if (event.phase.equals(TickEvent.Phase.END)) {
             return;
+        }
+
+        if (!ClientConfig.mirrorOptions.enabled) {
+            return;
+        }
 
         if (!pendingRemoval.isEmpty()) {
             for (Integer integer : pendingRemoval) {
@@ -126,7 +136,7 @@ public class TileEntityMirrorRenderer extends TileEntitySpecialRenderer<TileEnti
                 //if (!mc.player.canEntityBeSeen(entity))
                 //continue;
 
-                if (entity.getDistance(mc.player) < 10) {
+                if (entity.getDistance(mc.player) < ClientConfig.mirrorOptions.radius) {
                     GameSettings settings = mc.gameSettings;
                     RenderGlobal renderBackup = mc.renderGlobal;
                     Entity entityBackup = mc.getRenderViewEntity();
@@ -139,12 +149,12 @@ public class TileEntityMirrorRenderer extends TileEntitySpecialRenderer<TileEnti
 
                     mc.renderGlobal = mirrorGlobalRenderer;
                     mc.setRenderViewEntity(entity);
-                    settings.fovSetting = 70F;
+                    settings.fovSetting = ClientConfig.mirrorOptions.fov;
                     settings.thirdPersonView = 0;
                     settings.hideGUI = true;
                     settings.mipmapLevels = 3;
-                    mc.displayWidth = quality;
-                    mc.displayHeight = quality;
+                    mc.displayWidth = ClientConfig.mirrorOptions.quality;
+                    mc.displayHeight = ClientConfig.mirrorOptions.quality;
 
                     ClientProxy.rendering = true;
                     ClientProxy.renderEntity = mc.player;
@@ -154,7 +164,7 @@ public class TileEntityMirrorRenderer extends TileEntitySpecialRenderer<TileEnti
                     entityRenderer.renderWorld(event.renderTickTime, renderEndNanoTime + (1000000000 / fps));
 
                     GlStateManager.bindTexture(registerMirrors.get(entity));
-                    GL11.glCopyTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, 0, 0, quality, quality, 0);
+                    GL11.glCopyTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, 0, 0, ClientConfig.mirrorOptions.quality, ClientConfig.mirrorOptions.quality, 0);
 
                     renderEndNanoTime = System.nanoTime();
 

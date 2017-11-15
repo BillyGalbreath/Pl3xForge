@@ -22,6 +22,10 @@ public class ClientConfig {
     @Comment("Control the visuals for claims")
     public static ClaimVisuals claimVisuals = new ClaimVisuals();
 
+    @Name("Mirror Options")
+    @Comment("Control render settings for mirror blocks")
+    public static MirrorOptions mirrorOptions = new MirrorOptions();
+
     public static class BalanceHUDConfig {
         @Name("Enabled")
         @Comment("Toggle the HUD on/off")
@@ -61,6 +65,24 @@ public class ClientConfig {
         @Name("5) Render Behind Blocks")
         @Comment("True to see translucent wire frame behind blocks")
         public boolean renderBehind = true;
+    }
+
+    public static class MirrorOptions {
+        @Name("1) Enabled")
+        @Comment("Toggle rendering mirrors on/off")
+        public boolean enabled = false;
+
+        @Name("2) Render Quality")
+        @Comment("Image quality for rendered reflection (CPU intensive)")
+        public int quality = 128;
+
+        @Name("3) Activation Radius")
+        @Comment("Block radius for activating mirror reflection")
+        public int radius = 5;
+
+        @Name("4) Mirror FOV (Field of View)")
+        @Comment("Reflection's FOV setting")
+        public int fov = 70;
     }
 
     @Mod.EventBusSubscriber(modid = Pl3x.modId)
