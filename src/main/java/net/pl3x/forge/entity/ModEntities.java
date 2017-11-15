@@ -6,6 +6,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -30,7 +31,11 @@ public class ModEntities {
         EntityRegistry.registerModEntity(new ResourceLocation(Pl3x.modId, "penguin"), EntityPenguin.class, "penguin", 2, Pl3x.instance, 64, 1, true, 0x000000, 0xFFFFFF);
         EntityRegistry.registerModEntity(new ResourceLocation(Pl3x.modId, "traffic_cone"), EntityTrafficCone.class, "traffic_cone", 3, Pl3x.instance, 64, 1, true);
         EntityRegistry.registerModEntity(new ResourceLocation(Pl3x.modId, "go_cart"), EntityGoCart.class, "go_cart", 4, Pl3x.instance, 64, 1, true);
-        EntityRegistry.registerModEntity(new ResourceLocation(Pl3x.modId, "mirror"), EntityMirror.class, "mirror", 5, Pl3x.instance, 48, 1, false);
+
+        // client side only entities
+        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
+            EntityRegistry.registerModEntity(new ResourceLocation(Pl3x.modId, "mirror"), EntityMirror.class, "mirror", 5, Pl3x.instance, 48, 1, false);
+        }
 
         addEntitySpawns();
     }
