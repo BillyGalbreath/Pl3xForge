@@ -2,6 +2,7 @@ package net.pl3x.forge.block.custom.furniture;
 
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
@@ -104,6 +105,11 @@ public class BlockChair extends BlockBase {
     @Override
     public BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, FACING);
+    }
+
+    @Override
+    public EnumPushReaction getMobilityFlag(IBlockState state) {
+        return EnumPushReaction.DESTROY;
     }
 
     @Override
