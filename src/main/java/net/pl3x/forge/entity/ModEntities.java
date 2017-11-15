@@ -25,11 +25,12 @@ import static net.minecraftforge.common.BiomeDictionary.Type.SNOWY;
 
 public class ModEntities {
     public static void init() {
-        EntityRegistry.registerModEntity(new ResourceLocation(Pl3x.modId, "banker"), EntityBanker.class, "banker", 0, Pl3x.instance, 48, 1, true, 0xFFFFFF, 0x000000);
-        EntityRegistry.registerModEntity(new ResourceLocation(Pl3x.modId, "chair"), EntityChairSeat.class, "chair", 1, Pl3x.instance, 48, 1, false);
-        EntityRegistry.registerModEntity(new ResourceLocation(Pl3x.modId, "penguin"), EntityPenguin.class, "penguin", 3, Pl3x.instance, 48, 1, true, 0x000000, 0xFFFFFF);
-        EntityRegistry.registerModEntity(new ResourceLocation(Pl3x.modId, "traffic_cone"), EntityTrafficCone.class, "traffic_cone", 4, Pl3x.instance, 48, 1, true);
-        EntityRegistry.registerModEntity(new ResourceLocation(Pl3x.modId, "go_cart"), EntityGoCart.class, "go_cart", 5, Pl3x.instance, 48, 1, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(Pl3x.modId, "banker"), EntityBanker.class, "banker", 0, Pl3x.instance, 64, 1, true, 0xFFFFFF, 0x000000);
+        EntityRegistry.registerModEntity(new ResourceLocation(Pl3x.modId, "chair"), EntityChairSeat.class, "chair", 1, Pl3x.instance, 64, 1, false);
+        EntityRegistry.registerModEntity(new ResourceLocation(Pl3x.modId, "penguin"), EntityPenguin.class, "penguin", 2, Pl3x.instance, 64, 1, true, 0x000000, 0xFFFFFF);
+        EntityRegistry.registerModEntity(new ResourceLocation(Pl3x.modId, "traffic_cone"), EntityTrafficCone.class, "traffic_cone", 3, Pl3x.instance, 64, 1, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(Pl3x.modId, "go_cart"), EntityGoCart.class, "go_cart", 4, Pl3x.instance, 64, 1, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(Pl3x.modId, "mirror"), EntityMirror.class, "mirror", 5, Pl3x.instance, 48, 1, false);
 
         addEntitySpawns();
     }
