@@ -17,6 +17,7 @@ import net.minecraft.util.ClassInheritanceMultiMap;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.chunk.Chunk;
+import net.pl3x.forge.configuration.ClientConfig;
 
 import java.util.List;
 
@@ -30,7 +31,9 @@ public class MirrorRenderGlobal extends RenderGlobal {
 
     @Override
     public void renderClouds(float partialTicks, int pass, double x, double y, double z) {
-        super.renderClouds(partialTicks, pass, x, y, z);
+        if (ClientConfig.mirrorOptions.clouds) {
+            super.renderClouds(partialTicks, pass, x, y, z);
+        }
     }
 
     @Override
@@ -98,7 +101,10 @@ public class MirrorRenderGlobal extends RenderGlobal {
                             boolean flag1 = mc.getRenderViewEntity() instanceof EntityLivingBase && ((EntityLivingBase) mc.getRenderViewEntity()).isPlayerSleeping();
                             if ((entity2 != mc.getRenderViewEntity() || mc.gameSettings.thirdPersonView != 0 || flag1) && (entity2.posY < 0.0D || entity2.posY >= 256.0D || world.isBlockLoaded(pos.setPos(entity2)))) {
                                 ++countEntitiesRendered;
-
+                                Entity backup = renderManager.renderViewEntity;
+                                renderManager.renderViewEntity = mc.player;
+                                renderManager.renderEntityStatic(entity2, partialTicks, false);
+                                renderManager.renderViewEntity = backup;
                                 if (isOutlineActive(entity2, entity, camera)) {
                                     list1.add(entity2);
                                 }

@@ -83,6 +83,10 @@ public class ClientConfig {
         @Name("4) Mirror FOV (Field of View)")
         @Comment("Reflection's FOV setting")
         public int fov = 70;
+
+        @Name("5) Render Clouds")
+        @Comment("Render clouds in the reflection")
+        public boolean clouds = true;
     }
 
     @Mod.EventBusSubscriber(modid = Pl3x.modId)
