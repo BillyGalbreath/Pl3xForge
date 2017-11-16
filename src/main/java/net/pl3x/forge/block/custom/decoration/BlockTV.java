@@ -185,7 +185,8 @@ public class BlockTV extends BlockTileEntity<TileEntityTV> {
         CH4("ch4"),
         CH5("ch5"),
         CH6("ch6"),
-        CH7("ch7");
+        CH7("ch7"),
+        CH8("ch8");
 
         private final String name;
 
