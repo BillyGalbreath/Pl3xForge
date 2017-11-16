@@ -20,7 +20,8 @@
       "ch5": { "textures": { "screen": "pl3x:blocks/tv_ch5" } },
       "ch6": { "textures": { "screen": "pl3x:blocks/tv_ch6" } },
       "ch7": { "textures": { "screen": "pl3x:blocks/tv_ch7" } },
-      "ch8": { "textures": { "screen": "pl3x:blocks/tv_ch8" } }
+      "ch8": { "textures": { "screen": "pl3x:blocks/tv_ch8" } },
+      "ch9": { "textures": { "screen": "pl3x:blocks/tv_ch9" } }
     }
   }
 }
