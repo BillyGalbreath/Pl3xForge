@@ -27,7 +27,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class TileEntityMirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror> {
-    public static RenderGlobal mirrorGlobalRenderer = new MirrorRenderGlobal();
+    public static RenderGlobal mirrorGlobalRenderer = new MirrorRenderGlobal(Minecraft.getMinecraft());
     private long renderEndNanoTime;
 
     private static Map<EntityMirror, Integer> registerMirrors = new ConcurrentHashMap<>();
@@ -55,7 +55,10 @@ public class TileEntityMirrorRenderer extends TileEntitySpecialRenderer<TileEnti
         if (!registerMirrors.containsKey(mirror.getMirror())) {
             int newTextureId = GL11.glGenTextures();
             GlStateManager.bindTexture(newTextureId);
-            GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, ClientConfig.mirrorOptions.quality, ClientConfig.mirrorOptions.quality, 0, GL11.GL_RGB, GL11.GL_UNSIGNED_BYTE, BufferUtils.createByteBuffer(3 * ClientConfig.mirrorOptions.quality * ClientConfig.mirrorOptions.quality));
+            GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB,
+                    ClientConfig.mirrorOptions.quality, ClientConfig.mirrorOptions.quality,
+                    0, GL11.GL_RGB, GL11.GL_UNSIGNED_BYTE,
+                    BufferUtils.createByteBuffer(3 * ClientConfig.mirrorOptions.quality * ClientConfig.mirrorOptions.quality));
             GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
             GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
             registerMirrors.put(mirror.getMirror(), newTextureId);
@@ -72,7 +75,7 @@ public class TileEntityMirrorRenderer extends TileEntitySpecialRenderer<TileEnti
 
             GlStateManager.disableLighting();
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            GlStateManager.bindTexture(registerMirrors.get(mirror.getMirror()).intValue());
+            GlStateManager.bindTexture(registerMirrors.get(mirror.getMirror()));
 
             GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
             GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);

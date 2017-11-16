@@ -75,13 +75,14 @@ public class EntityMirror extends Entity {
                 angleYaw += 360D - (facing * 90D);
             }
 
-            if (angleYaw >= 170D)
+            if (angleYaw >= 170D) {
                 angleYaw = 170D;
-            if (angleYaw <= 10D)
+            }
+            if (angleYaw <= 10D) {
                 angleYaw = 10D;
+            }
 
             this.rotationYaw = (float) (-90F + facing * 90F - angleYaw);
-
 
             double distance = getDistance(mc.player);
             double height = (mc.player.getEyeHeight() + mc.player.posY) - this.posY;
@@ -109,11 +110,9 @@ public class EntityMirror extends Entity {
 
     @Override
     protected void readEntityFromNBT(NBTTagCompound tagCompund) {
-
     }
 
     @Override
     protected void writeEntityToNBT(NBTTagCompound tagCompound) {
-
     }
 }
