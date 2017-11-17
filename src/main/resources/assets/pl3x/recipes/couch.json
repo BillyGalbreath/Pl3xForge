@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "W W",
+    "WWW",
+    "L L"
+  ],
+  "key": {
+    "L": [
+      {
+        "item": "minecraft:log",
+        "data": 32767
+      },
+      {
+        "item": "minecraft:log2",
+        "data": 32767
+      }
+    ],
+    "W": {
+      "item": "minecraft:wool",
+      "data": 32767
+    }
+  },
+  "result": {
+    "item": "pl3x:couch"
+  }
+}

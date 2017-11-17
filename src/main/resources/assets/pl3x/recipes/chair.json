@@ -14,10 +14,16 @@
       "item": "minecraft:wooden_slab",
       "data": 32767
     },
-    "L": {
-      "item": "minecraft:log2",
-      "data": 32767
-    }
+    "L": [
+      {
+        "item": "minecraft:log",
+        "data": 32767
+      },
+      {
+        "item": "minecraft:log2",
+        "data": 32767
+      }
+    ]
   },
   "result": {
     "item": "pl3x:chair"

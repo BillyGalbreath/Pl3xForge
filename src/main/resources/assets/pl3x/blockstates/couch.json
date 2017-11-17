@@ -1,0 +1,45 @@
+{
+  "variants": {
+    "normal": { "model": "pl3x:couch" },
+
+    "facing=south,shape=single": { "model": "pl3x:couch_single", "y": 0, "uvlock": true },
+    "facing=west,shape=single":  { "model": "pl3x:couch_single", "y": 90, "uvlock": true },
+    "facing=north,shape=single": { "model": "pl3x:couch_single", "y": 180, "uvlock": true },
+    "facing=east,shape=single":  { "model": "pl3x:couch_single", "y": 270, "uvlock": true },
+
+    "facing=south,shape=extension": { "model": "pl3x:couch_extension", "y": 0, "uvlock": true  },
+    "facing=west,shape=extension":  { "model": "pl3x:couch_extension", "y": 90, "uvlock": true },
+    "facing=north,shape=extension": { "model": "pl3x:couch_extension", "y": 180, "uvlock": true },
+    "facing=east,shape=extension":  { "model": "pl3x:couch_extension", "y": 270, "uvlock": true },
+
+    "facing=south,shape=corner_left": { "model": "pl3x:couch_corner", "y": 270, "uvlock": true  },
+    "facing=west,shape=corner_left":  { "model": "pl3x:couch_corner", "y": 0, "uvlock": true },
+    "facing=north,shape=corner_left": { "model": "pl3x:couch_corner", "y": 90, "uvlock": true },
+    "facing=east,shape=corner_left":  { "model": "pl3x:couch_corner", "y": 180, "uvlock": true },
+
+    "facing=east,shape=corner_right":  { "model": "pl3x:couch_corner", "y": 270, "uvlock": true  },
+    "facing=south,shape=corner_right": { "model": "pl3x:couch_corner", "y": 0, "uvlock": true },
+    "facing=west,shape=corner_right":  { "model": "pl3x:couch_corner", "y": 90, "uvlock": true },
+    "facing=north,shape=corner_right": { "model": "pl3x:couch_corner", "y": 180, "uvlock": true },
+
+    "facing=south,shape=corner_outer_left": { "model": "pl3x:couch_corner_outer", "y": 270, "uvlock": true  },
+    "facing=west,shape=corner_outer_left":  { "model": "pl3x:couch_corner_outer", "y": 0, "uvlock": true },
+    "facing=north,shape=corner_outer_left": { "model": "pl3x:couch_corner_outer", "y": 90, "uvlock": true },
+    "facing=east,shape=corner_outer_left":  { "model": "pl3x:couch_corner_outer", "y": 180, "uvlock": true },
+
+    "facing=east,shape=corner_outer_right":  { "model": "pl3x:couch_corner_outer", "y": 270, "uvlock": true  },
+    "facing=south,shape=corner_outer_right": { "model": "pl3x:couch_corner_outer", "y": 0, "uvlock": true },
+    "facing=west,shape=corner_outer_right":  { "model": "pl3x:couch_corner_outer", "y": 90, "uvlock": true },
+    "facing=north,shape=corner_outer_right": { "model": "pl3x:couch_corner_outer", "y": 180, "uvlock": true },
+
+    "facing=east,shape=end_right":  { "model": "pl3x:couch_end_right", "y": 270, "uvlock": true  },
+    "facing=south,shape=end_right": { "model": "pl3x:couch_end_right", "y": 0, "uvlock": true },
+    "facing=west,shape=end_right":  { "model": "pl3x:couch_end_right", "y": 90, "uvlock": true },
+    "facing=north,shape=end_right": { "model": "pl3x:couch_end_right", "y": 180, "uvlock": true },
+
+    "facing=east,shape=end_left":  { "model": "pl3x:couch_end_left", "y": 270, "uvlock": true  },
+    "facing=south,shape=end_left": { "model": "pl3x:couch_end_left", "y": 0, "uvlock": true },
+    "facing=west,shape=end_left":  { "model": "pl3x:couch_end_left", "y": 90, "uvlock": true },
+    "facing=north,shape=end_left": { "model": "pl3x:couch_end_left", "y": 180, "uvlock": true }
+  }
+}

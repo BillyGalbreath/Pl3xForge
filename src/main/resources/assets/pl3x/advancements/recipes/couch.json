@@ -2,27 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "pl3x:chair"
+      "pl3x:couch"
     ]
   },
   "criteria": {
-    "has_log": {
+    "has_wool": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:log",
-            "data": 32767
-          }
-        ]
-      }
-    },
-    "has_log2": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "minecraft:log2",
+            "item": "minecraft:wool",
             "data": 32767
           }
         ]
@@ -31,17 +20,13 @@
     "has_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "pl3x:chair"
+        "recipe": "pl3x:couch"
       }
     }
   },
   "requirements": [
     [
-      "has_log",
-      "has_recipe"
-    ],
-    [
-      "has_log2",
+      "has_wool",
       "has_recipe"
     ]
   ]

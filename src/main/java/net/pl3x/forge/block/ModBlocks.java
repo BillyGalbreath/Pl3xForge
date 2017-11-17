@@ -24,6 +24,7 @@ import net.pl3x.forge.block.custom.decoration.BlockTrafficLight;
 import net.pl3x.forge.block.custom.decoration.BlockTrafficLightControlBox;
 import net.pl3x.forge.block.custom.farmland.BlockTilledEndStone;
 import net.pl3x.forge.block.custom.furniture.BlockChair;
+import net.pl3x.forge.block.custom.furniture.BlockCouch;
 import net.pl3x.forge.block.custom.ore.BlockFrostedObsidian;
 import net.pl3x.forge.block.custom.ore.BlockRuby;
 import net.pl3x.forge.block.custom.ore.BlockRubyOre;
@@ -43,6 +44,7 @@ public class ModBlocks {
     public static final BlockEnchantmentSplitter ENCHANTMENT_SPLITTER = new BlockEnchantmentSplitter();
     public static final BlockShop SHOP = new BlockShop();
     public static final BlockChair CHAIR = new BlockChair();
+    public static final BlockCouch COUCH = new BlockCouch();
     public static final BlockComputer COMPUTER = new BlockComputer();
     public static final BlockDepositBox DEPOSIT_BOX = new BlockDepositBox();
     public static final BlockMicrowave MICROWAVE = new BlockMicrowave();
@@ -145,6 +147,7 @@ public class ModBlocks {
                 ENCHANTMENT_SPLITTER,
                 SHOP,
                 CHAIR,
+                COUCH,
                 COMPUTER,
                 DEPOSIT_BOX,
                 MICROWAVE,
@@ -256,6 +259,7 @@ public class ModBlocks {
                 ENCHANTMENT_SPLITTER.createItemBlock(),
                 SHOP.createItemBlock(),
                 CHAIR.createItemBlock(),
+                COUCH.createItemBlock(),
                 COMPUTER.createItemBlock(),
                 DEPOSIT_BOX.createItemBlock(),
                 MICROWAVE.createItemBlock(),
@@ -336,6 +340,7 @@ public class ModBlocks {
         ENCHANTMENT_SPLITTER.registerItemModel(Item.getItemFromBlock(ENCHANTMENT_SPLITTER));
         SHOP.registerItemModel(Item.getItemFromBlock(SHOP));
         CHAIR.registerItemModel(Item.getItemFromBlock(CHAIR));
+        COUCH.registerItemModel(Item.getItemFromBlock(COUCH));
         COMPUTER.registerItemModel(Item.getItemFromBlock(COMPUTER));
         DEPOSIT_BOX.registerItemModel(Item.getItemFromBlock(DEPOSIT_BOX));
         MICROWAVE.registerItemModel(Item.getItemFromBlock(MICROWAVE));

@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.block.ModBlocks;
-import net.pl3x.forge.block.custom.furniture.BlockChair;
+import net.pl3x.forge.block.custom.furniture.BlockSeat;
 
 import javax.annotation.Nullable;
 
@@ -33,18 +33,18 @@ public class EntityChairSeat extends Entity {
 
     private IBlockState getBlockState(BlockPos pos) {
         IBlockState state = world.getBlockState(pos);
-        return state.getBlock() != ModBlocks.CHAIR ? null : state.getActualState(world, pos);
+        return state.getBlock() instanceof BlockSeat ? state.getActualState(world, pos) : null;
     }
 
     private int getYaw(IBlockState state) {
         if (state != null) {
-            EnumFacing facing = state.getValue(BlockChair.FACING);
-            if (facing == EnumFacing.NORTH) {
-                return 270;
-            } else if (facing == EnumFacing.SOUTH) {
+            EnumFacing facing = state.getValue(BlockSeat.FACING);
+            if (facing == EnumFacing.EAST) {
                 return 90;
-            } else if (facing == EnumFacing.WEST) {
+            } else if (facing == EnumFacing.SOUTH) {
                 return 180;
+            } else if (facing == EnumFacing.WEST) {
+                return 270;
             }
         }
         return 0;
@@ -168,7 +168,7 @@ public class EntityChairSeat extends Entity {
         BlockPos pos = getPos();
         IBlockState state = getBlockState(pos);
         if (state != null) {
-            EnumFacing facing = state.getValue(BlockChair.FACING);
+            EnumFacing facing = state.getValue(BlockSeat.FACING);
             pos = pos.offset(facing.rotateAround(EnumFacing.Axis.Y));
             passenger.setPosition(pos.getX() + 0.5, pos.getY() + 0.25, pos.getZ() + 0.5);
         }
