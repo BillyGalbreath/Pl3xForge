@@ -17,6 +17,7 @@ import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -25,6 +26,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.block.BlockTileEntity;
 import net.pl3x.forge.network.PacketHandler;
 import net.pl3x.forge.network.TVUpdateChannelPacket;
@@ -160,7 +162,7 @@ public class BlockTV extends BlockTileEntity<TileEntityTV> {
         if (player.isSneaking()) {
             return true;
         }
-        te.channel = te.channel.getNext();
+        te.channel = te.channel.next();
         te.markDirty();
         world.setBlockState(pos, state.withProperty(CHANNEL, te.channel));
         if (!world.isRemote) {
@@ -199,9 +201,13 @@ public class BlockTV extends BlockTileEntity<TileEntityTV> {
         CH9("ch9");
 
         private final String name;
+        private final ResourceLocation resource;
+        private int frames = 0;
+        private int frame = 0;
 
         EnumChannel(String name) {
             this.name = name;
+            this.resource = new ResourceLocation(Pl3x.modId, "textures/blocks/tv_" + name + ".png");
         }
 
         @Override
@@ -214,7 +220,42 @@ public class BlockTV extends BlockTileEntity<TileEntityTV> {
             return this.name;
         }
 
-        public EnumChannel getNext() {
+        public ResourceLocation getResource() {
+            return resource;
+        }
+
+        @SideOnly(Side.CLIENT)
+        public int getFrames() {
+            return frames;
+        }
+
+        @SideOnly(Side.CLIENT)
+        public int getFrame() {
+            return frame;
+        }
+
+        @SideOnly(Side.CLIENT)
+        public void setFrames(int frames) {
+            if (frames == 0) {
+                this.frames = frames;
+                this.frame = 0;
+            }
+        }
+
+        @SideOnly(Side.CLIENT)
+        public static void tick() {
+            for (EnumChannel channel : values()) {
+                if (channel.frames <= 1) {
+                    continue;
+                }
+                channel.frame++;
+                if (channel.frame >= channel.frames) {
+                    channel.frame = 0;
+                }
+            }
+        }
+
+        public EnumChannel next() {
             EnumChannel[] chs = EnumChannel.values();
             int i = ordinal() + 1;
             return i >= chs.length ? chs[0] : chs[i];

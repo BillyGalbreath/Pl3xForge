@@ -9,13 +9,11 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.block.custom.decoration.BlockTV;
 import net.pl3x.forge.configuration.ClientConfig;
 import net.pl3x.forge.network.PacketHandler;
@@ -27,11 +25,8 @@ import java.io.IOException;
 public class TileEntityTV extends TileEntity implements ITickable {
     public BlockTV.EnumChannel channel;
     public BlockTV.EnumChannel prevCh;
-    public ResourceLocation resource;
     public float uvMin = 0;
     public float uvMax = 1;
-    public int frames = 1;
-    public int frame = 0;
 
     public final int rot;
     public double xOffset;
@@ -81,14 +76,9 @@ public class TileEntityTV extends TileEntity implements ITickable {
             setupTexture(channel);
         }
 
-        float step = 1F / frames;
-        uvMin = step * frame - (step / 2);
-        uvMax = step * frame - step;
-
-        frame++;
-        if (frame >= frames) {
-            frame = 0;
-        }
+        float step = 1F / channel.getFrames();
+        uvMin = step * channel.getFrame() - (step / 2);
+        uvMax = step * channel.getFrame() - step;
     }
 
     @Override
@@ -141,16 +131,12 @@ public class TileEntityTV extends TileEntity implements ITickable {
     @SideOnly(Side.CLIENT)
     private void setupTexture(BlockTV.EnumChannel channel) {
         prevCh = this.channel;
-        resource = new ResourceLocation(Pl3x.modId, "textures/blocks/tv_" + channel.getName() + ".png");
-
         try {
-            PngSizeInfo info = PngSizeInfo.makeFromResource(Minecraft.getMinecraft().getResourceManager().getResource(resource));
+            PngSizeInfo info = PngSizeInfo.makeFromResource(Minecraft.getMinecraft().getResourceManager().getResource(channel.getResource()));
             if (info.pngWidth != info.pngHeight) {
-                frames = info.pngHeight / info.pngWidth;
-                frame = 0;
+                channel.setFrames(info.pngHeight / info.pngWidth);
             } else {
-                frames = 1;
-                frame = 0;
+                channel.setFrames(1);
             }
         } catch (IOException e) {
             e.printStackTrace();

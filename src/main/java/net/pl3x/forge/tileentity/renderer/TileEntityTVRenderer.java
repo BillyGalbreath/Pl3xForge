@@ -12,8 +12,8 @@ import org.lwjgl.opengl.GL11;
 public class TileEntityTVRenderer extends TileEntitySpecialRenderer<TileEntityTV> {
     @Override
     public void render(TileEntityTV te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
-        if (!ClientConfig.tvOptions.useTESR || te.resource == null || te.channel == BlockTV.EnumChannel.OFF) {
-            return; // light is not on or resource not ready, skip drawing
+        if (!ClientConfig.tvOptions.useTESR || te.channel == BlockTV.EnumChannel.OFF) {
+            return; // tv is not on or client disabled tesr, skip drawing
         }
 
         // setup GL crap
@@ -29,7 +29,7 @@ public class TileEntityTVRenderer extends TileEntitySpecialRenderer<TileEntityTV
         GlStateManager.translate(-x, 0.1877, -z);
 
         // bind our texture
-        Minecraft.getMinecraft().getTextureManager().bindTexture(te.resource);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(te.channel.getResource());
 
         // draw the screen (using mojang's tessellator)
         /*Tessellator tessellator = Tessellator.getInstance();

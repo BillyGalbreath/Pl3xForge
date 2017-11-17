@@ -10,6 +10,8 @@ import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.pl3x.forge.block.custom.decoration.BlockTV;
 import net.pl3x.forge.color.ChatColor;
 import net.pl3x.forge.gui.HUDBalance;
 import net.pl3x.forge.icons.IconManager;
@@ -100,5 +102,14 @@ public class ClientEventHandler {
                 }
             }
         }
+    }
+
+    @SubscribeEvent
+    public void on(TickEvent.ClientTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) {
+            return; // only process at end of tick to prevent double processing each tick
+        }
+
+        BlockTV.EnumChannel.tick();
     }
 }
