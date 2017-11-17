@@ -2,6 +2,7 @@ package net.pl3x.forge.entity;
 
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.INpc;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAISwimming;
@@ -121,5 +122,10 @@ public class EntityBanker extends EntityCreature implements INpc {
     @Override
     public boolean replaceItemInInventory(int inventorySlot, ItemStack itemStackIn) {
         return false; // yeah, no inventory
+    }
+
+    @Override
+    public boolean canBeTargetedBy(EntityLivingBase entity) {
+        return false; // nothing should target/attack the banker
     }
 }

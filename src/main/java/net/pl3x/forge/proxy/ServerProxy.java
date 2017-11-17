@@ -60,6 +60,7 @@ import net.pl3x.forge.entity.ModEntities;
 import net.pl3x.forge.gui.ModGuiHandler;
 import net.pl3x.forge.listener.CapabilityHandler;
 import net.pl3x.forge.listener.ChatEventHandler;
+import net.pl3x.forge.listener.ClaimEventHandler;
 import net.pl3x.forge.listener.ServerEventHandler;
 import net.pl3x.forge.motd.MOTDTask;
 import net.pl3x.forge.network.OpenInventoryPacket;
@@ -98,6 +99,7 @@ public class ServerProxy {
         MinecraftForge.EVENT_BUS.register(new CapabilityHandler());
         MinecraftForge.EVENT_BUS.register(new ServerEventHandler());
         MinecraftForge.EVENT_BUS.register(new ChatEventHandler());
+        MinecraftForge.EVENT_BUS.register(new ClaimEventHandler());
 
         ModRecipes.init();
         ModEntities.init();

@@ -7,7 +7,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
@@ -25,6 +24,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootEntryItem;
+import net.minecraft.world.storage.loot.LootPool;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraft.world.storage.loot.functions.LootFunction;
@@ -32,7 +32,6 @@ import net.minecraftforge.event.CommandEvent;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -53,12 +52,10 @@ import net.pl3x.forge.color.ChatColor;
 import net.pl3x.forge.configuration.Lang;
 import net.pl3x.forge.data.CapabilityProvider;
 import net.pl3x.forge.data.PlayerData;
-import net.pl3x.forge.entity.EntityBanker;
 import net.pl3x.forge.gui.ModGuiHandler;
 import net.pl3x.forge.inventory.InventoryPlayer;
 import net.pl3x.forge.item.ItemMoney;
 import net.pl3x.forge.item.ModItems;
-import net.pl3x.forge.item.custom.ItemClaimTool;
 import net.pl3x.forge.motd.MOTDCache;
 import net.pl3x.forge.network.PacketHandler;
 import net.pl3x.forge.scheduler.Pl3xRunnable;
@@ -170,15 +167,6 @@ public class ServerEventHandler {
     }
 
     @SubscribeEvent
-    public void on(LivingSetAttackTargetEvent event) {
-        if (event.getTarget() instanceof EntityBanker) {
-            if (event.getEntityLiving() instanceof EntityZombie) {
-                ((EntityZombie) event.getEntityLiving()).setAttackTarget(null);
-            }
-        }
-    }
-
-    @SubscribeEvent
     public void on(PlayerSleepInBedEvent event) {
         EntityPlayer player = event.getEntityPlayer();
         PlayerData playerData = player.getCapability(CapabilityProvider.CAPABILITY, null);
@@ -189,28 +177,6 @@ public class ServerEventHandler {
         }
         playerData.addHome("bed", newLoc);
         Lang.send(player, Lang.INSTANCE.data.HOME_BED_SET);
-    }
-
-    @SubscribeEvent
-    public void on(PlayerInteractEvent.RightClickBlock event) {
-        ItemClaimTool.processClaimToolClick(event, event.getPos(), true);
-        // if cancelled, do not process anything else
-    }
-
-    @SubscribeEvent
-    public void on(PlayerInteractEvent.RightClickItem event) {
-        ItemClaimTool.processClaimToolClick(event, null, true);
-    }
-
-    @SubscribeEvent
-    public void on(PlayerInteractEvent.LeftClickBlock event) {
-        ItemClaimTool.processClaimToolClick(event, event.getPos(), false);
-        // if cancelled, do not process anything else
-    }
-
-    @SubscribeEvent
-    public void on(PlayerInteractEvent.LeftClickItem event) {
-        ItemClaimTool.processClaimToolClick(event, null, false);
     }
 
     @SubscribeEvent
@@ -262,8 +228,11 @@ public class ServerEventHandler {
                 event.getName().equals(LootTableList.CHESTS_DESERT_PYRAMID) ||
                 event.getName().equals(LootTableList.CHESTS_JUNGLE_TEMPLE) ||
                 event.getName().equals(LootTableList.CHESTS_SIMPLE_DUNGEON)) {
-            event.getTable().getPool("main").addEntry(new LootEntryItem(ModItems.ENDER_PEARL_SEEDS, 1, 0,
+            LootPool main = event.getTable().getPool("main");
+            main.addEntry(new LootEntryItem(ModItems.ENDER_PEARL_SEEDS, 1, 0,
                     new LootFunction[0], new LootCondition[0], Pl3x.modId + ":enderpearl_seeds"));
+            main.addEntry(new LootEntryItem(ModItems.CORN_SEEDS, 1, 0,
+                    new LootFunction[0], new LootCondition[0], Pl3x.modId + ":corn_seeds"));
         }
     }
 
@@ -278,7 +247,7 @@ public class ServerEventHandler {
                         event.getCommand().getName() + " " + String.join(" ", event.getParameters())),
                         ChatColor.colorize("&3Command&r")).start();
             }
-        }.runTaskLater(1);
+        }.runTaskLater(5);
     }
 
     @SubscribeEvent
@@ -343,7 +312,7 @@ public class ServerEventHandler {
     }
 
     @SubscribeEvent
-    public void tickStart(TickEvent.PlayerTickEvent event) {
+    public void on(TickEvent.PlayerTickEvent event) {
         InventoryPlayer.tickStart(event.player);
     }
 }
