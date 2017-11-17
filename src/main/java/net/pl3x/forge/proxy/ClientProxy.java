@@ -27,10 +27,12 @@ import net.pl3x.forge.network.OpenInventoryPacket;
 import net.pl3x.forge.tileentity.TileEntityEnchantmentSplitter;
 import net.pl3x.forge.tileentity.TileEntityMirror;
 import net.pl3x.forge.tileentity.TileEntityShop;
+import net.pl3x.forge.tileentity.TileEntityTV;
 import net.pl3x.forge.tileentity.TileEntityTrafficLight;
 import net.pl3x.forge.tileentity.renderer.TileEntityEnchantmentSplitterRenderer;
 import net.pl3x.forge.tileentity.renderer.TileEntityMirrorRenderer;
 import net.pl3x.forge.tileentity.renderer.TileEntityShopRenderer;
+import net.pl3x.forge.tileentity.renderer.TileEntityTVRenderer;
 import net.pl3x.forge.tileentity.renderer.TileEntityTrafficLightRenderer;
 
 @SideOnly(Side.CLIENT)
@@ -44,6 +46,7 @@ public class ClientProxy extends ServerProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEnchantmentSplitter.class, new TileEntityEnchantmentSplitterRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityShop.class, new TileEntityShopRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTrafficLight.class, new TileEntityTrafficLightRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTV.class, new TileEntityTVRenderer());
 
         ModEntities.registerRenders();
     }

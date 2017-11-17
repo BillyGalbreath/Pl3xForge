@@ -26,6 +26,10 @@ public class ClientConfig {
     @Comment("Control render settings for mirror blocks")
     public static MirrorOptions mirrorOptions = new MirrorOptions();
 
+    @Name("TV Options")
+    @Comment("Control render settings for TV blocks")
+    public static TVOptions tvOptions = new TVOptions();
+
     public static class BalanceHUDConfig {
         @Name("Enabled")
         @Comment("Toggle the HUD on/off")
@@ -87,6 +91,12 @@ public class ClientConfig {
         @Name("5) Render Clouds")
         @Comment("Render clouds in the reflection")
         public boolean clouds = true;
+    }
+
+    public static class TVOptions {
+        @Name("1) Use TESR")
+        @Comment("Use a brighter render for drawing the screens (CPU intensive)")
+        public boolean useTESR = true;
     }
 
     @Mod.EventBusSubscriber(modid = Pl3x.modId)

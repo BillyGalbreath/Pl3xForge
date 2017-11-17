@@ -1,33 +1,94 @@
 package net.pl3x.forge.tileentity;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.PngSizeInfo;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.EnumPacketDirection;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.block.custom.decoration.BlockTV;
+import net.pl3x.forge.configuration.ClientConfig;
 import net.pl3x.forge.network.PacketHandler;
 import net.pl3x.forge.network.TVUpdateChannelPacket;
 import net.pl3x.forge.scheduler.Pl3xRunnable;
 
+import java.io.IOException;
+
 public class TileEntityTV extends TileEntity implements ITickable {
     public BlockTV.EnumChannel channel;
+    public BlockTV.EnumChannel prevCh;
+    public ResourceLocation resource;
+    public float uvMin = 0;
+    public float uvMax = 1;
+    public int frames = 1;
+    public int frame = 0;
+
+    public final int rot;
+    public double xOffset;
+    public double zOffset;
 
     public TileEntityTV() {
-        this(BlockTV.EnumChannel.OFF);
+        this(BlockTV.EnumChannel.OFF, EnumFacing.SOUTH);
     }
 
-    public TileEntityTV(BlockTV.EnumChannel channel) {
+    public TileEntityTV(BlockTV.EnumChannel channel, EnumFacing facing) {
         this.channel = channel;
+        this.prevCh = channel;
+
+        switch (facing) {
+            case NORTH: // light faces to the EAST
+                rot = 90;
+                xOffset = -0.435;
+                zOffset = -1.373;
+                break;
+            case SOUTH: // light faces to the WEST
+                rot = -90;
+                xOffset = 0.565;
+                zOffset = -0.373;
+                break;
+            case WEST: // light faces to the NORTH
+                rot = 180;
+                xOffset = -0.435;
+                zOffset = -0.373;
+                break;
+            case EAST: // light faces to the SOUTH
+            default:
+                rot = 0;
+                xOffset = 0.565;
+                zOffset = -1.373;
+                break;
+        }
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public void update() {
-        //
+        if (!ClientConfig.tvOptions.useTESR) {
+            return; // TESR disabled by client
+        }
+
+        if (prevCh != channel) {
+            setupTexture(channel);
+        }
+
+        float step = 1F / frames;
+        uvMin = step * frame - (step / 2);
+        uvMax = step * frame - step;
+
+        frame++;
+        if (frame >= frames) {
+            frame = 0;
+        }
     }
 
     @Override
@@ -74,6 +135,25 @@ public class TileEntityTV extends TileEntity implements ITickable {
         if (net.getDirection() == EnumPacketDirection.CLIENTBOUND && pkt.getTileEntityType() == 1337) {
             NBTTagCompound nbt = pkt.getNbtCompound();
             deserializeNBT(nbt);
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    private void setupTexture(BlockTV.EnumChannel channel) {
+        prevCh = this.channel;
+        resource = new ResourceLocation(Pl3x.modId, "textures/blocks/tv_" + channel.getName() + ".png");
+
+        try {
+            PngSizeInfo info = PngSizeInfo.makeFromResource(Minecraft.getMinecraft().getResourceManager().getResource(resource));
+            if (info.pngWidth != info.pngHeight) {
+                frames = info.pngHeight / info.pngWidth;
+                frame = 0;
+            } else {
+                frames = 1;
+                frame = 0;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

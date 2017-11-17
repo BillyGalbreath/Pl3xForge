@@ -146,6 +146,15 @@ public class BlockTV extends BlockTileEntity<TileEntityTV> {
     }
 
     @Override
+    public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
+        return isOn(state) ? 5 : 0;
+    }
+
+    public boolean isOn(IBlockState state) {
+        return state != null && state.getValue(CHANNEL) != EnumChannel.OFF;
+    }
+
+    @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         TileEntityTV te = getTileEntity(world, pos);
         if (player.isSneaking()) {
@@ -174,7 +183,7 @@ public class BlockTV extends BlockTileEntity<TileEntityTV> {
     @Nullable
     @Override
     public TileEntityTV createTileEntity(World world, IBlockState state) {
-        return new TileEntityTV(state.getValue(CHANNEL));
+        return new TileEntityTV(state.getValue(CHANNEL), state.getValue(FACING));
     }
 
     public enum EnumChannel implements IStringSerializable {
