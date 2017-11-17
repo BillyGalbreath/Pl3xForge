@@ -46,9 +46,9 @@ public class TileEntityTVRenderer extends TileEntitySpecialRenderer<TileEntityTV
         GL11.glTexCoord2d(0, te.uvMin);
         GL11.glVertex3d(x + te.xOffset, y, z - te.zOffset);
         GL11.glTexCoord2d(1, te.uvMin);
-        GL11.glVertex3d(x + te.xOffset, y, z - te.zOffset - 1.748);
+        GL11.glVertex3d(x + te.xOffset, y, z - te.zOffset - 1.75);
         GL11.glTexCoord2d(1, te.uvMax);
-        GL11.glVertex3d(x + te.xOffset, y + 0.9375, z - te.zOffset - 1.748);
+        GL11.glVertex3d(x + te.xOffset, y + 0.9375, z - te.zOffset - 1.75);
         GL11.glTexCoord2d(0, te.uvMax);
         GL11.glVertex3d(x + te.xOffset, y + 0.9375, z - te.zOffset);
         GL11.glEnd();

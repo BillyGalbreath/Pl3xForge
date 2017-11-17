@@ -44,23 +44,23 @@ public class TileEntityTV extends TileEntity implements ITickable {
             case NORTH: // light faces to the EAST
                 rot = 90;
                 xOffset = -0.435;
-                zOffset = -1.373;
+                zOffset = -1.375;
                 break;
             case SOUTH: // light faces to the WEST
                 rot = -90;
                 xOffset = 0.565;
-                zOffset = -0.373;
+                zOffset = -0.375;
                 break;
             case WEST: // light faces to the NORTH
                 rot = 180;
                 xOffset = -0.435;
-                zOffset = -0.373;
+                zOffset = -0.375;
                 break;
             case EAST: // light faces to the SOUTH
             default:
                 rot = 0;
                 xOffset = 0.565;
-                zOffset = -1.373;
+                zOffset = -1.375;
                 break;
         }
     }
