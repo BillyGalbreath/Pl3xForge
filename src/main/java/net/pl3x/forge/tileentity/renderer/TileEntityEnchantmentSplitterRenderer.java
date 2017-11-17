@@ -19,7 +19,7 @@ public class TileEntityEnchantmentSplitterRenderer extends TileEntitySpecialRend
         GlStateManager.pushMatrix();
         GlStateManager.translate((float) x + 0.5F, (float) y + 0.75F, (float) z + 0.5F);
         float f = (float) te.tickCount + partialTicks;
-        GlStateManager.translate(0, 0.1F + MathHelper.sin(f * 0.1F) * 0.01F, 0);
+        GlStateManager.translate(0, 0F + MathHelper.sin(f * 0.1F) * 0.1F, 0);
 
         float f1 = te.bookRotation - te.bookRotationPrev;
         while (f1 >= (float) Math.PI) {
@@ -33,6 +33,7 @@ public class TileEntityEnchantmentSplitterRenderer extends TileEntitySpecialRend
         float f2 = te.bookRotationPrev + f1 * partialTicks;
         GlStateManager.rotate(-f2 * (180F / (float) Math.PI), 0, 1, 0);
         GlStateManager.rotate(80, 0, 0, 1);
+        GlStateManager.scale(0.5F, 0.5F, 0.5F);
         this.bindTexture(TEXTURE_BOOK);
         float f3 = te.pageFlipPrev + (te.pageFlip - te.pageFlipPrev) * partialTicks + 0.25F;
         float f4 = te.pageFlipPrev + (te.pageFlip - te.pageFlipPrev) * partialTicks + 0.75F;

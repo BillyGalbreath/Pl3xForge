@@ -2,7 +2,7 @@
   "forge_marker": 1,
   "variants": {
     "normal": {
-      "model": "pl3x:enchantment_splitter_base"
+      "model": "pl3x:enchantment_splitter"
     }
   }
 }

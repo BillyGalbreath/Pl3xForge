@@ -14,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -22,6 +23,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.IWorldNameable;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.block.BlockTileEntity;
 import net.pl3x.forge.gui.ModGuiHandler;
@@ -30,7 +33,7 @@ import net.pl3x.forge.tileentity.TileEntityEnchantmentSplitter;
 import javax.annotation.Nullable;
 
 public class BlockEnchantmentSplitter extends BlockTileEntity<TileEntityEnchantmentSplitter> {
-    private static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.75D, 1.0D);
+    private static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D);
 
     public BlockEnchantmentSplitter() {
         super(Material.ROCK, "enchantment_splitter");
@@ -47,6 +50,17 @@ public class BlockEnchantmentSplitter extends BlockTileEntity<TileEntityEnchantm
 
     public EnumBlockRenderType getRenderType(IBlockState state) {
         return EnumBlockRenderType.MODEL;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer() {
+        return BlockRenderLayer.CUTOUT;
+    }
+
+    public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer)
+    {
+        return getBlockLayer() == layer;
     }
 
     public boolean isFullCube(IBlockState state) {
