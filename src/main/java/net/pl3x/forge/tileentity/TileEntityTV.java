@@ -68,7 +68,7 @@ public class TileEntityTV extends TileEntity implements ITickable {
     @SideOnly(Side.CLIENT)
     @Override
     public void update() {
-        if (!ClientConfig.tvOptions.useTESR) {
+        if (!ClientConfig.tvOptions.useTESR || channel == BlockTV.EnumChannel.OFF) {
             return; // TESR disabled by client
         }
 

@@ -236,7 +236,7 @@ public class BlockTV extends BlockTileEntity<TileEntityTV> {
 
         @SideOnly(Side.CLIENT)
         public void setFrames(int frames) {
-            if (frames == 0) {
+            if (this.frames == 0) {
                 this.frames = frames;
                 this.frame = 0;
             }
