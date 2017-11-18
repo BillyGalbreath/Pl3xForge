@@ -22,6 +22,7 @@ public class GuiUtil {
     public static final ResourceLocation COIN = new ResourceLocation(Pl3x.modId, "textures/items/coin.png");
     public static final ResourceLocation ENCHANTED_BOOK = new ResourceLocation("minecraft", "textures/items/book_enchanted.png");
     public static final ResourceLocation EXP_BOTTLE = new ResourceLocation("minecraft", "textures/items/experience_bottle.png");
+    public static final ResourceLocation EMPTY_MAINHAND = new ResourceLocation(Pl3x.modId, "textures/items/empty_armor_slot_mainhand.png");
 
     public static void drawBG(GuiScreen gui, int x, int y, int width, int height) {
         gui.mc.getTextureManager().bindTexture(GuiUtil.GUI_BG);

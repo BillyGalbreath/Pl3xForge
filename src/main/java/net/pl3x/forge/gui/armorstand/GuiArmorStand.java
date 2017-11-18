@@ -88,6 +88,9 @@ public class GuiArmorStand extends GuiContainer {
         GuiUtil.drawSlots(this, inventorySlots.inventorySlots, x, y);
         GuiUtil.drawBlackWindow(this, x + 86, y + 19, 75, 90);
         drawEntityOnScreen(x + 123, y + 90, x + 51 - oldMouseX, y + 25 - oldMouseY, container.armorStand);
+        if (container.inventory.getStackInSlot(4).isEmpty()) {
+            GuiUtil.drawTexture(this, GuiUtil.EMPTY_MAINHAND, x + 15, y + 40, 0, 0, 16, 16, 16, 16);
+        }
     }
 
     @Override

@@ -68,8 +68,8 @@ public class SlotArmorStand extends Slot {
     @SideOnly(Side.CLIENT)
     public String getSlotTexture() {
         switch (slotType) {
-            case MAINHAND:
-                return "minecraft:items/empty_armor_slot_mainhand";
+            //case MAINHAND:
+            //    return "minecraft:items/empty_armor_slot_mainhand";
             case OFFHAND:
                 return "minecraft:items/empty_armor_slot_shield";
             case FEET:
