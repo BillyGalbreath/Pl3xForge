@@ -22,7 +22,6 @@ import javax.annotation.Nonnull;
 import java.util.Random;
 
 public class BlockCropEnderPearl extends BlockCrops {
-
     public BlockCropEnderPearl() {
         super();
         setUnlocalizedName("crop_enderpearl");
@@ -78,7 +77,6 @@ public class BlockCropEnderPearl extends BlockCrops {
                 }
             }
         }
-
     }
 
     @Override
