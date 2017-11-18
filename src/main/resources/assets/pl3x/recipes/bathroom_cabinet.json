@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "QQQ",
+    "Q Q",
+    "QQQ"
+  ],
+  "key": {
+    "Q": {
+      "item": "minecraft:quartz"
+    }
+  },
+  "result": {
+    "item": "pl3x:bathroom_cabinet"
+  }
+}

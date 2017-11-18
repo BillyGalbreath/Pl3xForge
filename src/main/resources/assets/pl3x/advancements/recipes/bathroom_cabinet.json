@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "pl3x:bathroom_cabinet"
+    ]
+  },
+  "criteria": {
+    "has_quartz": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:quartz"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "pl3x:bathroom_cabinet"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_quartz",
+      "has_the_recipe"
+    ]
+  ]
+}
