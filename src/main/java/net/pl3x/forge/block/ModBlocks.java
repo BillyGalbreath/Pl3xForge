@@ -9,6 +9,7 @@ import net.pl3x.forge.block.custom.crops.BlockCropCorn;
 import net.pl3x.forge.block.custom.crops.BlockCropEnderPearl;
 import net.pl3x.forge.block.custom.curb.BlockCurb;
 import net.pl3x.forge.block.custom.curb.BlockCurbCorner;
+import net.pl3x.forge.block.custom.decoration.BlockBathroomCabinet;
 import net.pl3x.forge.block.custom.decoration.BlockChristmasTree;
 import net.pl3x.forge.block.custom.decoration.BlockComputer;
 import net.pl3x.forge.block.custom.decoration.BlockDepositBox;
@@ -43,6 +44,7 @@ public class ModBlocks {
     public static final BlockFrostedObsidian FROSTED_OBSIDIAN = new BlockFrostedObsidian();
     public static final BlockEnchantmentSplitter ENCHANTMENT_SPLITTER = new BlockEnchantmentSplitter();
     public static final BlockShop SHOP = new BlockShop();
+    public static final BlockBathroomCabinet BATHROOM_CABINET = new BlockBathroomCabinet();
     public static final BlockChair CHAIR = new BlockChair();
     public static final BlockCouch COUCH = new BlockCouch();
     public static final BlockComputer COMPUTER = new BlockComputer();
@@ -146,6 +148,7 @@ public class ModBlocks {
                 FROSTED_OBSIDIAN,
                 ENCHANTMENT_SPLITTER,
                 SHOP,
+                BATHROOM_CABINET,
                 CHAIR,
                 COUCH,
                 COMPUTER,
@@ -258,6 +261,7 @@ public class ModBlocks {
                 FROSTED_OBSIDIAN.createItemBlock(),
                 ENCHANTMENT_SPLITTER.createItemBlock(),
                 SHOP.createItemBlock(),
+                BATHROOM_CABINET.createItemBlock(),
                 CHAIR.createItemBlock(),
                 COUCH.createItemBlock(),
                 COMPUTER.createItemBlock(),
@@ -339,6 +343,7 @@ public class ModBlocks {
         FROSTED_OBSIDIAN.registerItemModel(Item.getItemFromBlock(FROSTED_OBSIDIAN));
         ENCHANTMENT_SPLITTER.registerItemModel(Item.getItemFromBlock(ENCHANTMENT_SPLITTER));
         SHOP.registerItemModel(Item.getItemFromBlock(SHOP));
+        BATHROOM_CABINET.registerItemModel(Item.getItemFromBlock(BATHROOM_CABINET));
         CHAIR.registerItemModel(Item.getItemFromBlock(CHAIR));
         COUCH.registerItemModel(Item.getItemFromBlock(COUCH));
         COMPUTER.registerItemModel(Item.getItemFromBlock(COMPUTER));
