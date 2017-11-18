@@ -44,7 +44,15 @@ public class TileEntityMirrorRenderer extends TileEntitySpecialRenderer<TileEnti
 
     @Override
     public void render(TileEntityMirror mirror, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+        EnumFacing facing = EnumFacing.getHorizontal(mirror.getBlockMetadata());
+
         if (!ClientConfig.mirrorOptions.enabled) {
+            GlStateManager.pushMatrix();
+            GlStateManager.translate(x + 0.9375, y + 0.75, z + 0.12);
+            GlStateManager.rotate(-90F * facing.getHorizontalIndex() + 180F, 0, 1, 0);
+            GlStateManager.scale(0.01F, -0.01F, 0.01F);
+            getFontRenderer().drawString("Mirror Disabled", 0, 0, 0x000000);
+            GlStateManager.popMatrix();
             return;
         }
 
@@ -67,7 +75,6 @@ public class TileEntityMirrorRenderer extends TileEntitySpecialRenderer<TileEnti
 
         mirror.getMirror().rendering = true;
 
-        EnumFacing facing = EnumFacing.getHorizontal(mirror.getBlockMetadata());
         GlStateManager.pushMatrix();
         {
             GlStateManager.enableBlend();
