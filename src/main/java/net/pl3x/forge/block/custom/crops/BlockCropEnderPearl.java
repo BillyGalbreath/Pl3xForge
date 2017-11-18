@@ -85,15 +85,15 @@ public class BlockCropEnderPearl extends BlockCrops {
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         if (state.getValue(AGE) == 7) {
             Random rand = ((World) world).rand;
-            drops.add(new ItemStack(getSeed(), rand.nextInt(10) == 9 ? 2 : 1));
-            drops.add(new ItemStack(getCrop(), rand.nextInt(10) == 9 ? 2 : 1));
+            drops.add(new ItemStack(getSeed(), rand.nextInt(10) > 5 ? 2 : 1));
+            drops.add(new ItemStack(getCrop(), rand.nextInt(10) > 5 ? 2 : 1));
         }
     }
 
     @Override
     public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, ItemStack stack) {
         super.harvestBlock(world, player, pos, state, te, stack);
-        if (isOnEndstone(world, pos) && isMaxAge(state) && world.rand.nextInt(20) == 0) {
+        if (isOnEndstone(world, pos) && isMaxAge(state) && world.rand.nextInt(10) == 0) {
             EntityEndermite mite = new EntityEndermite(world);
             mite.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), MathHelper.wrapDegrees(world.rand.nextFloat() * 360.0F), 0.0F);
             world.spawnEntity(mite);
