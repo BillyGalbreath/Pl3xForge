@@ -1,9 +1,9 @@
 package net.pl3x.forge.listener;
 
-import net.minecraft.client.Minecraft;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.claims.Selection;
 import net.pl3x.forge.configuration.ClientConfig;
 import net.pl3x.forge.item.ModItems;
@@ -32,8 +32,9 @@ public class ClaimEventHandler {
         ItemClaimTool.processClaimToolClick(event, null, false);
     }
 
+    @SideOnly(Side.CLIENT)
     @SubscribeEvent
-    public void on(RenderWorldLastEvent event) {
+    public void on(net.minecraftforge.client.event.RenderWorldLastEvent event) {
         if (!ClientConfig.claimVisuals.enabled) {
             return; // claim visuals disabled
         }
@@ -43,12 +44,12 @@ public class ClaimEventHandler {
             return; // nothing selected
         }
 
-        if (selection.getDimension() != Minecraft.getMinecraft().player.dimension) {
+        if (selection.getDimension() != net.minecraft.client.Minecraft.getMinecraft().player.dimension) {
             Selection.CURRENT_SELECTION = new Selection();
             return; // in a different dimension, clear the selection
         }
 
-        if (Minecraft.getMinecraft().player.getHeldItemMainhand().getItem() != ModItems.CLAIM_TOOL) {
+        if (net.minecraft.client.Minecraft.getMinecraft().player.getHeldItemMainhand().getItem() != ModItems.CLAIM_TOOL) {
             Selection.CURRENT_SELECTION = new Selection();
             return; // not holding the claim tool anymore, clear the selection
         }

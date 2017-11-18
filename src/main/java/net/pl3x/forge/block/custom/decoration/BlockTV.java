@@ -21,6 +21,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -43,7 +44,8 @@ public class BlockTV extends BlockTileEntity<TileEntityTV> {
     public BlockTV() {
         super(Material.WOOD, "tv");
         setDefaultState(blockState.getBaseState()
-                .withProperty(FACING, EnumFacing.SOUTH));
+                .withProperty(FACING, EnumFacing.SOUTH)
+                .withProperty(CHANNEL, EnumChannel.OFF));
         setSoundType(SoundType.METAL);
         setHardness(1);
 
@@ -57,7 +59,8 @@ public class BlockTV extends BlockTileEntity<TileEntityTV> {
 
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
-        return state.withProperty(CHANNEL, getTileEntity(world, pos).channel);
+        TileEntityTV te = getTileEntity(world, pos);
+        return te == null ? state : state.withProperty(CHANNEL, te.channel);
     }
 
     @Override
@@ -104,7 +107,7 @@ public class BlockTV extends BlockTileEntity<TileEntityTV> {
     @Override
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer() {
-        return BlockRenderLayer.CUTOUT_MIPPED;
+        return BlockRenderLayer.CUTOUT;
     }
 
     @Override
@@ -149,10 +152,10 @@ public class BlockTV extends BlockTileEntity<TileEntityTV> {
 
     @Override
     public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
-        return isOn(state) ? 5 : 0;
+        return isOn(getActualState(state, world, pos)) ? 5 : 1;
     }
 
-    public boolean isOn(IBlockState state) {
+    private boolean isOn(IBlockState state) {
         return state != null && state.getValue(CHANNEL) != EnumChannel.OFF;
     }
 
@@ -165,6 +168,8 @@ public class BlockTV extends BlockTileEntity<TileEntityTV> {
         te.channel = te.channel.next();
         te.markDirty();
         world.setBlockState(pos, state.withProperty(CHANNEL, te.channel));
+        world.markBlockRangeForRenderUpdate(pos, pos);
+        world.checkLightFor(EnumSkyBlock.BLOCK, pos);
         if (!world.isRemote) {
             PacketHandler.INSTANCE.sendToAllAround(new TVUpdateChannelPacket(pos, te.channel),
                     new NetworkRegistry.TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 64));
