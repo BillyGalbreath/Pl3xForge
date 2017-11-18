@@ -7,6 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -18,6 +19,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.color.ModColorManager;
 import net.pl3x.forge.entity.ModEntities;
+import net.pl3x.forge.exception.FuckOptifine;
 import net.pl3x.forge.gui.TitleScreen;
 import net.pl3x.forge.listener.BigHeadListener;
 import net.pl3x.forge.listener.ClientEventHandler;
@@ -42,6 +44,10 @@ public class ClientProxy extends ServerProxy {
 
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
+
+        if (FMLClientHandler.instance().hasOptifine()) {
+            throw new FuckOptifine();
+        }
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEnchantmentSplitter.class, new TileEntityEnchantmentSplitterRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityShop.class, new TileEntityShopRenderer());

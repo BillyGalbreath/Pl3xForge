@@ -18,7 +18,7 @@ def mcVersion = "1.12.2"
 def forgeVersion = "14.23.0"
 def forgeBuild = "2544"
 def mappingsVersion = "20171003"
-def pl3xVersion = "79"
+def pl3xVersion = "80"
 def build = System.getenv()['BUILD_NUMBER'] ?: "SNAPSHOT"
 version = mcVersion + "-b" + build
 
