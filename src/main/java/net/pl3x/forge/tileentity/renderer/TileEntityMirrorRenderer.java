@@ -48,8 +48,9 @@ public class TileEntityMirrorRenderer extends TileEntitySpecialRenderer<TileEnti
 
         if (!ClientConfig.mirrorOptions.enabled) {
             GlStateManager.pushMatrix();
-            GlStateManager.translate(x + 0.9375, y + 0.75, z + 0.12);
+            GlStateManager.translate(x + 0.5, y, z + 0.5);
             GlStateManager.rotate(-90F * facing.getHorizontalIndex() + 180F, 0, 1, 0);
+            GlStateManager.translate(-0.38, 0.58, -0.43);
             GlStateManager.scale(0.01F, -0.01F, 0.01F);
             getFontRenderer().drawString("Mirror Disabled", 0, 0, 0x000000);
             GlStateManager.popMatrix();
