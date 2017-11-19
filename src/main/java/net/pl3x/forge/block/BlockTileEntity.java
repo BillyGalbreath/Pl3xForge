@@ -12,6 +12,8 @@ import javax.annotation.Nullable;
 public abstract class BlockTileEntity<TE extends TileEntity> extends BlockBase {
     public BlockTileEntity(Material material, String name) {
         super(material, name);
+
+        ModBlocks.blocks.add(this);
     }
 
     public abstract Class<TE> getTileEntityClass();

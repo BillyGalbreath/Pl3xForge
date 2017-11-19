@@ -12,6 +12,8 @@ public class ItemBase extends Item {
         this.name = name;
         setUnlocalizedName(name);
         setRegistryName(name);
+
+        ModItems.items.add(this);
     }
 
     public String getName() {

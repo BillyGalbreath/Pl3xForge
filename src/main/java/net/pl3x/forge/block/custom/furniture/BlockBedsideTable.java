@@ -11,6 +11,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.pl3x.forge.block.BlockDirectional;
+import net.pl3x.forge.block.ModBlocks;
 
 public class BlockBedsideTable extends BlockDirectional {
     public static final AxisAlignedBB AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.89D, 0.9375D);
@@ -21,6 +22,8 @@ public class BlockBedsideTable extends BlockDirectional {
         setHardness(1);
 
         setCreativeTab(CreativeTabs.DECORATIONS);
+
+        ModBlocks.blocks.add(this);
     }
 
     @Override

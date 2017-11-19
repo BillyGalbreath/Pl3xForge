@@ -15,6 +15,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.pl3x.forge.claims.Selection;
 import net.pl3x.forge.item.ItemBase;
+import net.pl3x.forge.item.ModItems;
 
 public class ItemClaimTool extends ItemBase {
     public ItemClaimTool() {
@@ -22,6 +23,8 @@ public class ItemClaimTool extends ItemBase {
 
         setMaxStackSize(1);
         setCreativeTab(CreativeTabs.TOOLS);
+
+        ModItems.items.add(this);
     }
 
     // Right click (block only) (fires first)

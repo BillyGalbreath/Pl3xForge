@@ -3,6 +3,7 @@ package net.pl3x.forge.item.custom.tool;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemSpade;
 import net.pl3x.forge.Pl3x;
+import net.pl3x.forge.item.ModItems;
 
 public class ItemShovel extends ItemSpade {
     private final String name;
@@ -12,6 +13,8 @@ public class ItemShovel extends ItemSpade {
         setRegistryName(name);
         setUnlocalizedName(name);
         this.name = name;
+
+        ModItems.items.add(this);
     }
 
     public void registerItemModel() {

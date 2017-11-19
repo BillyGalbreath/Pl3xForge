@@ -34,6 +34,8 @@ public class BlockTilledEndStone extends BlockFarmland {
         useNeighborBrightness = true;
         setHardness(0.6F);
         setHarvestLevel("pickaxe", 1);
+
+        ModBlocks.blocks.add(this);
     }
 
     @Override

@@ -23,6 +23,8 @@ public class BlockDirectional extends BlockBase {
     public BlockDirectional(Material material, String name) {
         super(material, name);
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.SOUTH));
+
+        ModBlocks.blocks.add(this);
     }
 
     @Override

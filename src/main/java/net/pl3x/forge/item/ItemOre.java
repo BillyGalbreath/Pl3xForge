@@ -10,6 +10,8 @@ public class ItemOre extends ItemBase {
         super(name);
 
         this.oreName = oreName;
+
+        ModItems.items.add(this);
     }
 
     public void initOreDict() {

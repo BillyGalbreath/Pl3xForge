@@ -19,6 +19,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.block.BlockBase;
+import net.pl3x.forge.block.ModBlocks;
 
 public class BlockCurbCorner extends BlockBase {
     private static final PropertyDirection FACING = BlockHorizontal.FACING;
@@ -28,6 +29,8 @@ public class BlockCurbCorner extends BlockBase {
         super(Material.ROCK, "curb_silver_corner");
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.SOUTH));
         setHardness(2);
+
+        ModBlocks.blocks.add(this);
     }
 
     @Override

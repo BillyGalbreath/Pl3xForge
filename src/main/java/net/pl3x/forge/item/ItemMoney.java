@@ -11,6 +11,8 @@ public class ItemMoney extends ItemBase {
         super(name);
 
         setMaxStackSize(1); // money does not stack
+
+        ModItems.items.add(this);
     }
 
     public static boolean isMoney(EntityItem entityItem) {

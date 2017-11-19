@@ -47,6 +47,8 @@ public abstract class BlockConcreteSlab extends BlockSlab {
             iblockstate = iblockstate.withProperty(HALF, net.minecraft.block.BlockSlab.EnumBlockHalf.BOTTOM);
         }
         setDefaultState(iblockstate);
+
+        ModBlocks.blocks.add(this);
     }
 
     public void registerItemModel(Item item) {

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " W ",
+    "W W",
+    " W "
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:planks",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "pl3x:path_wood",
+    "count": 8
+  }
+}

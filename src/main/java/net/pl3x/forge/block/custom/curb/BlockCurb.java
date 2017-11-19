@@ -40,6 +40,8 @@ public class BlockCurb extends BlockBase {
         setHardness(2);
 
         setCreativeTab(CreativeTabs.DECORATIONS);
+
+        ModBlocks.blocks.add(this);
     }
 
     @Override

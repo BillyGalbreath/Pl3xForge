@@ -31,6 +31,8 @@ public class BlockOre extends BlockBase {
         if (harvestTool != null && !harvestTool.isEmpty()) {
             setHarvestLevel(harvestTool, harvestLevel);
         }
+
+        ModBlocks.blocks.add(this);
     }
 
     public void initOreDict() {

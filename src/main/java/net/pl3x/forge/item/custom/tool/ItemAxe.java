@@ -2,6 +2,7 @@ package net.pl3x.forge.item.custom.tool;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.pl3x.forge.Pl3x;
+import net.pl3x.forge.item.ModItems;
 
 public class ItemAxe extends net.minecraft.item.ItemAxe {
     private final String name;
@@ -11,6 +12,8 @@ public class ItemAxe extends net.minecraft.item.ItemAxe {
         setRegistryName(name);
         setUnlocalizedName(name);
         this.name = name;
+
+        ModItems.items.add(this);
     }
 
     public void registerItemModel() {

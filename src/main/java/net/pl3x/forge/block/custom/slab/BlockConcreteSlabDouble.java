@@ -6,10 +6,13 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.pl3x.forge.block.ModBlocks;
 
 public class BlockConcreteSlabDouble extends BlockConcreteSlab {
     public BlockConcreteSlabDouble(EnumDyeColor color) {
         super("concrete_slab_" + color.getName() + "_double", color);
+
+        ModBlocks.blocks.add(this);
     }
 
     @Override

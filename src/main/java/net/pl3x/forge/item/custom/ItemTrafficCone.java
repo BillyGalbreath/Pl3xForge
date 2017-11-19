@@ -14,6 +14,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.pl3x.forge.entity.EntityTrafficCone;
 import net.pl3x.forge.item.ItemBase;
+import net.pl3x.forge.item.ModItems;
 
 public class ItemTrafficCone extends ItemBase {
     public ItemTrafficCone() {
@@ -21,6 +22,8 @@ public class ItemTrafficCone extends ItemBase {
 
         setMaxStackSize(64);
         setCreativeTab(CreativeTabs.MISC);
+
+        ModItems.items.add(this);
     }
 
     @Override

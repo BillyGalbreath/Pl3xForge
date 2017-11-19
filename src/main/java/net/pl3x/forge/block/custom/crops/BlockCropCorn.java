@@ -9,6 +9,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.pl3x.forge.block.ModBlocks;
 import net.pl3x.forge.item.ModItems;
 
 public class BlockCropCorn extends BlockCrops {
@@ -26,6 +27,8 @@ public class BlockCropCorn extends BlockCrops {
     public BlockCropCorn() {
         setUnlocalizedName("crop_corn");
         setRegistryName("crop_corn");
+
+        ModBlocks.blocks.add(this);
     }
 
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {

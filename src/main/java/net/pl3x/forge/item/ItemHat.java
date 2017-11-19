@@ -27,6 +27,8 @@ public class ItemHat extends ItemBase {
         setMaxStackSize(1);
         setNoRepair();
         setMaxDamage(0);
+
+        ModItems.items.add(this);
     }
 
     public void registerItemModel() {

@@ -12,6 +12,8 @@ public class ItemArmor extends net.minecraft.item.ItemArmor {
         setRegistryName(name);
         setUnlocalizedName(name);
         this.name = name;
+
+        ModItems.items.add(this);
     }
 
     public void registerItemModel() {

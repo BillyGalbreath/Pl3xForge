@@ -26,6 +26,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.block.BlockTileEntity;
+import net.pl3x.forge.block.ModBlocks;
 import net.pl3x.forge.color.ChatColor;
 import net.pl3x.forge.gui.ModGuiHandler;
 import net.pl3x.forge.tileentity.TileEntityTrafficLightControlBox;
@@ -44,6 +45,8 @@ public class BlockTrafficLightControlBox extends BlockTileEntity<TileEntityTraff
         setHardness(1);
 
         setCreativeTab(CreativeTabs.DECORATIONS);
+
+        ModBlocks.blocks.add(this);
     }
 
     @Override

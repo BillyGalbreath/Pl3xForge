@@ -3,6 +3,7 @@ package net.pl3x.forge.item.custom.food;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemFood;
 import net.pl3x.forge.Pl3x;
+import net.pl3x.forge.item.ModItems;
 
 public class ItemCorn extends ItemFood {
     public ItemCorn() {
@@ -11,6 +12,8 @@ public class ItemCorn extends ItemFood {
         setRegistryName("corn");
 
         setCreativeTab(CreativeTabs.FOOD);
+
+        ModItems.items.add(this);
     }
 
     public void registerItemModel() {

@@ -20,6 +20,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.block.ModBlocks;
+import net.pl3x.forge.item.ModItems;
 
 import java.util.List;
 
@@ -30,6 +31,8 @@ public class ItemEnderPearlSeeds extends ItemSeeds {
         setRegistryName("enderpearl_seeds");
 
         setCreativeTab(CreativeTabs.MISC);
+
+        ModItems.items.add(this);
     }
 
     public void registerItemModel() {

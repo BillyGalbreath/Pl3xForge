@@ -44,6 +44,8 @@ public abstract class BlockDirtSlab extends BlockSlab {
             iblockstate = iblockstate.withProperty(HALF, EnumBlockHalf.BOTTOM);
         }
         setDefaultState(iblockstate);
+
+        ModBlocks.blocks.add(this);
     }
 
     public void registerItemModel(Item item) {

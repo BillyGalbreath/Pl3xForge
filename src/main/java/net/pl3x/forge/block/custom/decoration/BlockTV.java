@@ -29,6 +29,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.block.BlockTileEntity;
+import net.pl3x.forge.block.ModBlocks;
 import net.pl3x.forge.network.PacketHandler;
 import net.pl3x.forge.network.TVUpdateChannelPacket;
 import net.pl3x.forge.tileentity.TileEntityTV;
@@ -50,6 +51,8 @@ public class BlockTV extends BlockTileEntity<TileEntityTV> {
         setHardness(1);
 
         setCreativeTab(CreativeTabs.DECORATIONS);
+
+        ModBlocks.blocks.add(this);
     }
 
     @Override

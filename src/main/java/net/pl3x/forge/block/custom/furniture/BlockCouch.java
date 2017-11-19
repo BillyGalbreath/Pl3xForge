@@ -14,6 +14,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.pl3x.forge.block.ModBlocks;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -31,6 +32,8 @@ public class BlockCouch extends BlockSeat {
         super(Material.WOOD, "couch");
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.SOUTH).withProperty(SHAPE, EnumShape.SINGLE));
         setSoundType(SoundType.CLOTH);
+
+        ModBlocks.blocks.add(this);
     }
 
     @Override
