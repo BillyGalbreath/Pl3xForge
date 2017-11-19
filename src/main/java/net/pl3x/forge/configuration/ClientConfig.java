@@ -49,28 +49,24 @@ public class ClientConfig {
     }
 
     public static class ClaimVisuals {
-        @Name("1) Enable Claim Visuals")
-        @Comment("Turn on/off claim visuals")
-        public boolean enabled = true;
-
-        @Name("2) Outline Color")
+        @Name("1) Outline Color")
         @Comment("Choose a hex color value")
         public String outlineColor = "#00FF0088";
 
-        @Name("3) Grid Color")
+        @Name("2) Grid Color")
         @Comment("Choose a hex color value")
         public String gridColor = "#FFFF0088";
 
-        @Name("4) Wire Thickness")
+        @Name("3) Wire Thickness")
         @Comment("Choose a value for the wire frame thickness between 1 and 7.")
         @RangeInt(min = 1, max = 7)
         public int thickness = 1;
 
-        @Name("5) Render Behind Blocks")
+        @Name("4) Render Behind Blocks")
         @Comment("True to see translucent wire frame behind blocks")
         public boolean renderBehind = true;
 
-        @Name("6) Details HUD Position")
+        @Name("5) Details HUD Position")
         @Comment("Anchor position of the HUD")
         public HUDPosition position = HUDPosition.BOTTOM_RIGHT;
     }

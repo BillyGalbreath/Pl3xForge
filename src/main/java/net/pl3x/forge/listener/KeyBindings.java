@@ -7,7 +7,7 @@ import org.lwjgl.input.Keyboard;
 public class KeyBindings {
     private final static String CATEGORY = "key.categories.pl3x";
 
-    public static KeyBinding showClaims;
+    public static KeyBinding showClaimsGUI;
     public static KeyBinding vehicleAccelerate;
     public static KeyBinding vehicleDecelerate;
     public static KeyBinding vehicleTurnLeft;
@@ -15,7 +15,7 @@ public class KeyBindings {
     public static KeyBinding vehicleAction;
 
     public static void init() {
-        ClientRegistry.registerKeyBinding(showClaims = new KeyBinding("key.showClaims", Keyboard.KEY_V, CATEGORY));
+        ClientRegistry.registerKeyBinding(showClaimsGUI = new KeyBinding("key.showClaimsGUI", Keyboard.KEY_C, CATEGORY));
         ClientRegistry.registerKeyBinding(vehicleAccelerate = new KeyBinding("key.vehicleAccelerate", Keyboard.KEY_W, CATEGORY));
         ClientRegistry.registerKeyBinding(vehicleDecelerate = new KeyBinding("key.vehicleDecelerate", Keyboard.KEY_S, CATEGORY));
         ClientRegistry.registerKeyBinding(vehicleTurnLeft = new KeyBinding("key.vehicleTurnLeft", Keyboard.KEY_A, CATEGORY));

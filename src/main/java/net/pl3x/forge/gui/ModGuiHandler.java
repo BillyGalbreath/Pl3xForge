@@ -15,6 +15,7 @@ import net.pl3x.forge.gui.armorstand.GuiArmorStand;
 import net.pl3x.forge.gui.armorstand.GuiArmorStandDisplay;
 import net.pl3x.forge.gui.banker.GuiBanker;
 import net.pl3x.forge.gui.banker.GuiBankerAction;
+import net.pl3x.forge.gui.claim.GuiClaim;
 import net.pl3x.forge.gui.shop.GuiShopCustomer;
 import net.pl3x.forge.gui.shop.GuiShopOwner;
 import net.pl3x.forge.gui.shop.GuiShopOwnerDisplay;
@@ -37,6 +38,7 @@ public class ModGuiHandler implements IGuiHandler {
     public static final int TRAFFIC_LIGHT_CONTROL_BOX = 10;
     public static final int ARMOR_STAND = 11;
     public static final int ARMOR_STAND_DISPLAY = 12;
+    public static final int CLAIM = 13;
 
     @Override
     public Container getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z, int entityId) {
@@ -92,6 +94,8 @@ public class ModGuiHandler implements IGuiHandler {
                 return new GuiArmorStand(getServerGuiElement(ID, player, world, x, y, z, entityId), player, entityId);
             case ARMOR_STAND_DISPLAY:
                 return new GuiArmorStandDisplay(getServerGuiElement(ID, player, world, x, y, z, entityId), player, entityId);
+            case CLAIM:
+                return new GuiClaim();
             default:
                 return null;
         }

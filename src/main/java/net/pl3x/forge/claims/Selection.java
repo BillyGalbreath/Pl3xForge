@@ -89,10 +89,6 @@ public class Selection {
     }
 
     public void drawDetails() {
-        if (!ClientConfig.claimVisuals.enabled) {
-            return;
-        }
-
         String minMsg = leftClickPos == null ? "n/a" : minX + "," + minZ;
         String maxMsg = rightClickPos == null ? "n/a" : maxX + "," + maxZ;
 
