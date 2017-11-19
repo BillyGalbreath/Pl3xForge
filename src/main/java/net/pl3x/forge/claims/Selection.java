@@ -1,8 +1,15 @@
 package net.pl3x.forge.claims;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.math.BlockPos;
+import net.pl3x.forge.configuration.ClientConfig;
 
 public class Selection {
+    private final Minecraft mc = Minecraft.getMinecraft();
+    private final FontRenderer fontRenderer = mc.fontRenderer;
+
     public static Selection CURRENT_SELECTION = new Selection();
 
     private int minX;
@@ -79,5 +86,62 @@ public class Selection {
 
     public Visual getVisual() {
         return visual;
+    }
+
+    public void drawDetails() {
+        if (!ClientConfig.claimVisuals.enabled) {
+            return;
+        }
+
+        String minMsg = leftClickPos == null ? "n/a" : minX + "," + minZ;
+        String maxMsg = rightClickPos == null ? "n/a" : maxX + "," + maxZ;
+
+        int minWidth = fontRenderer.getStringWidth(minMsg);
+        int maxWidth = fontRenderer.getStringWidth(maxMsg);
+        int greatestWidth = Math.max(minWidth, maxWidth);
+
+        int x, y;
+        ScaledResolution scale = new ScaledResolution(mc);
+        switch (ClientConfig.claimVisuals.position) {
+            case BOTTOM_LEFT:
+                x = 10;
+                y = scale.getScaledHeight() - 32;
+                break;
+            case BOTTOM_CENTER:
+                x = scale.getScaledWidth() / 2 - (greatestWidth / 2);
+                y = scale.getScaledHeight() - 32;
+                break;
+            case BOTTOM_RIGHT:
+                x = scale.getScaledWidth() - greatestWidth - 10;
+                y = scale.getScaledHeight() - 32;
+                break;
+            case CENTER_LEFT:
+                x = 10;
+                y = scale.getScaledHeight() / 2 - 6;
+                break;
+            case CENTER_CENTER:
+                x = scale.getScaledWidth() / 2 - (greatestWidth / 2);
+                y = scale.getScaledHeight() / 2 - 6;
+                break;
+            case CENTER_RIGHT:
+                x = scale.getScaledWidth() - greatestWidth - 10;
+                y = scale.getScaledHeight() / 2 - 6;
+                break;
+            case TOP_LEFT:
+                x = 10;
+                y = 10;
+                break;
+            case TOP_RIGHT:
+                x = scale.getScaledWidth() - greatestWidth - 10;
+                y = 10;
+                break;
+            case TOP_CENTER:
+            default:
+                x = scale.getScaledWidth() / 2 - (greatestWidth / 2);
+                y = 10;
+        }
+
+        fontRenderer.drawStringWithShadow(minMsg, x + (greatestWidth - minWidth), y, 0xffffff);
+        fontRenderer.drawStringWithShadow(maxMsg, x + (greatestWidth - maxWidth), y + 12, 0xffffff);
     }
 }

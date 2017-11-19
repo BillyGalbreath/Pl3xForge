@@ -6,6 +6,7 @@ import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import net.pl3x.forge.configuration.ClientConfig;
 import net.pl3x.forge.util.gl.GuiUtil;
+import net.pl3x.forge.util.gl.HUDPosition;
 
 import java.text.DecimalFormat;
 
@@ -73,17 +74,5 @@ public class HUDBalance {
 
         Gui.drawModalRectWithCustomSizedTexture(x, y - 5, 0, 0, 16, 16, 16, 16);
         fontRenderer.drawStringWithShadow(balanceStr, x + 18, y, 16777215);
-    }
-
-    public enum HUDPosition {
-        TOP_LEFT,
-        TOP_CENTER,
-        TOP_RIGHT,
-        BOTTOM_LEFT,
-        BOTTOM_CENTER,
-        BOTTOM_RIGHT,
-        CENTER_LEFT,
-        CENTER_CENTER,
-        CENTER_RIGHT
     }
 }

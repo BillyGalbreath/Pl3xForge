@@ -12,6 +12,7 @@ import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.pl3x.forge.block.custom.decoration.BlockTV;
+import net.pl3x.forge.claims.Selection;
 import net.pl3x.forge.color.ChatColor;
 import net.pl3x.forge.gui.HUDBalance;
 import net.pl3x.forge.icons.IconManager;
@@ -37,7 +38,10 @@ public class ClientEventHandler {
     @SubscribeEvent
     public void on(RenderGameOverlayEvent.Post event) {
         if (event.getType() == RenderGameOverlayEvent.ElementType.EXPERIENCE) {
-            hudBalance.draw(); // only render when exp HUD is showing too
+            hudBalance.draw();
+            if (Selection.CURRENT_SELECTION != null && Selection.CURRENT_SELECTION.getVisual() != null) {
+                Selection.CURRENT_SELECTION.drawDetails();
+            }
         }
     }
 

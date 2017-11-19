@@ -9,7 +9,7 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.pl3x.forge.Pl3x;
-import net.pl3x.forge.gui.HUDBalance;
+import net.pl3x.forge.util.gl.HUDPosition;
 
 @Config(modid = Pl3x.modId)
 @Config.LangKey("pl3x.config.title")
@@ -37,7 +37,7 @@ public class ClientConfig {
 
         @Name("Position")
         @Comment("Anchor position of the HUD")
-        public HUDBalance.HUDPosition position = HUDBalance.HUDPosition.TOP_CENTER;
+        public HUDPosition position = HUDPosition.TOP_CENTER;
 
         @Name("Relative X")
         @Comment("X position relative to anchor")
@@ -69,6 +69,10 @@ public class ClientConfig {
         @Name("5) Render Behind Blocks")
         @Comment("True to see translucent wire frame behind blocks")
         public boolean renderBehind = true;
+
+        @Name("6) Details HUD Position")
+        @Comment("Anchor position of the HUD")
+        public HUDPosition position = HUDPosition.BOTTOM_RIGHT;
     }
 
     public static class MirrorOptions {
