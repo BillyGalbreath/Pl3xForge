@@ -113,6 +113,7 @@ tile.curb_slab_yellow.name=Yellow Curb Slab
 tile.bathroom_cabinet.name=Bathroom Cabinet
 tile.bedside_table.name=Bedside Table
 tile.block_ruby.name=Block of Ruby
+tile.campfire.name=Campfire
 tile.chair.name=Chair
 tile.coffee_table.name=Coffee Table
 tile.couch.name=Couch

@@ -213,7 +213,7 @@ public class BlockLamp extends BlockBase {
         BlockPos posUpper = state.getValue(HALF) == BlockLamp.Half.UPPER ? pos : pos.up();
         IBlockState stateUpper = pos.equals(posUpper) ? state : worldIn.getBlockState(posUpper);
         if (stateUpper.getBlock() == this) {
-            worldIn.setBlockState(posUpper, stateUpper.cycleProperty(ON), 2);
+            worldIn.setBlockState(posUpper, stateUpper.cycleProperty(ON), 3);
             worldIn.markBlockRangeForRenderUpdate(posUpper, pos);
             playClickSound(worldIn, pos);
         }

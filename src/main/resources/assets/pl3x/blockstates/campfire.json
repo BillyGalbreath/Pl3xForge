@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "on=false": {
+      "model": "pl3x:campfire_off"
+    },
+    "on=true": {
+      "model": "pl3x:campfire_on"
+    }
+  }
+}

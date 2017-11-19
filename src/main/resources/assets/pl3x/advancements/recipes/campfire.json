@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "pl3x:campfire"
+    ]
+  },
+  "criteria": {
+    "has_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:log",
+            "data": 32767
+          }
+        ]
+      }
+    },
+    "has_log2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:log2",
+            "data": 32767
+          }
+        ]
+      }
+    },
+    "has_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "pl3x:campfire"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_log",
+      "has_recipe"
+    ],
+    [
+      "has_log2",
+      "has_recipe"
+    ]
+  ]
+}

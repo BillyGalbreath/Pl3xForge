@@ -12,6 +12,7 @@ import net.pl3x.forge.block.custom.crops.BlockCropEnderPearl;
 import net.pl3x.forge.block.custom.curb.BlockCurb;
 import net.pl3x.forge.block.custom.curb.BlockCurbCorner;
 import net.pl3x.forge.block.custom.decoration.BlockBathroomCabinet;
+import net.pl3x.forge.block.custom.decoration.BlockCampfire;
 import net.pl3x.forge.block.custom.decoration.BlockChristmasTree;
 import net.pl3x.forge.block.custom.decoration.BlockComputer;
 import net.pl3x.forge.block.custom.decoration.BlockDepositBox;
@@ -53,6 +54,7 @@ public class ModBlocks {
 
     public static final BlockBathroomCabinet BATHROOM_CABINET = new BlockBathroomCabinet();
     public static final BlockBedsideTable BEDSIDE_TABLE = new BlockBedsideTable();
+    public static final BlockCampfire CAMPFIRE = new BlockCampfire();
     public static final BlockChair CHAIR = new BlockChair();
     public static final BlockChristmasTree CHRISTMAS_TREE = new BlockChristmasTree();
     public static final BlockCoffeeTable COFFEE_TABLE = new BlockCoffeeTable();
