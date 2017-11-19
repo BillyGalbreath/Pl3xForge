@@ -154,6 +154,7 @@ public class ModBlocks {
     public static void register(IForgeRegistry<Block> registry) {
         blocks.forEach(registry::register);
 
+        GameRegistry.registerTileEntity(BEDSIDE_TABLE.getTileEntityClass(), BEDSIDE_TABLE.getRegistryName().toString());
         GameRegistry.registerTileEntity(ENCHANTMENT_SPLITTER.getTileEntityClass(), ENCHANTMENT_SPLITTER.getRegistryName().toString());
         GameRegistry.registerTileEntity(MIRROR.getTileEntityClass(), MIRROR.getRegistryName().toString());
         GameRegistry.registerTileEntity(SHOP.getTileEntityClass(), SHOP.getRegistryName().toString());

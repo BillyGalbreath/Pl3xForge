@@ -1,23 +1,42 @@
 package net.pl3x.forge.block.custom.furniture;
 
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockFaceShape;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.pl3x.forge.block.BlockDirectional;
+import net.minecraft.world.World;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.pl3x.forge.Pl3x;
+import net.pl3x.forge.block.BlockTileEntity;
 import net.pl3x.forge.block.ModBlocks;
+import net.pl3x.forge.gui.ModGuiHandler;
+import net.pl3x.forge.tileentity.TileEntityBedsideTable;
 
-public class BlockBedsideTable extends BlockDirectional {
+import javax.annotation.Nullable;
+
+public class BlockBedsideTable extends BlockTileEntity<TileEntityBedsideTable> {
+    protected static final PropertyDirection FACING = BlockHorizontal.FACING;
     public static final AxisAlignedBB AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.89D, 0.9375D);
 
     public BlockBedsideTable() {
         super(Material.WOOD, "bedside_table");
+        setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.SOUTH));
         setSoundType(SoundType.WOOD);
         setHardness(1);
 
@@ -29,6 +48,38 @@ public class BlockBedsideTable extends BlockDirectional {
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         return AABB;
+    }
+
+    @Override
+    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+        EnumFacing enumfacing = placer.getHorizontalFacing();
+        try {
+            return super.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(FACING, enumfacing);
+        } catch (IllegalArgumentException var11) {
+            return super.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, 0, placer).withProperty(FACING, enumfacing);
+        }
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta) {
+        return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta & 3));
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        int i = 0;
+        i = i | state.getValue(FACING).getHorizontalIndex();
+        return i;
+    }
+
+    @Override
+    public IBlockState withRotation(IBlockState state, Rotation rot) {
+        return state.getBlock() != this ? state : state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
+    }
+
+    @Override
+    public BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, FACING);
     }
 
     @Override
@@ -49,5 +100,45 @@ public class BlockBedsideTable extends BlockDirectional {
     @Override
     public boolean isOpaqueCube(IBlockState state) {
         return false;
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+        if (!world.isRemote) {
+            if (!player.isSneaking()) {
+                //noinspection ConstantConditions
+                double y = player.rayTrace(6, 1).hitVec.y - pos.getY();
+                if (y >= 0 && y < 0.5) {
+                    player.openGui(Pl3x.instance, ModGuiHandler.BEDSIDE_TABLE, world, pos.getX(), pos.getY(), pos.getZ(), 0);
+                } else if (y >= 0.5 && y <= 1) {
+                    player.openGui(Pl3x.instance, ModGuiHandler.BEDSIDE_TABLE, world, pos.getX(), pos.getY(), pos.getZ(), 5);
+                }
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public void breakBlock(World world, BlockPos pos, IBlockState state) {
+        TileEntityBedsideTable te = getTileEntity(world, pos);
+        IItemHandler itemHandler = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+        for (int i = 0; i < 10; i++) {
+            ItemStack stack = itemHandler.getStackInSlot(i);
+            if (!stack.isEmpty()) {
+                world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), stack));
+            }
+        }
+        super.breakBlock(world, pos, state);
+    }
+
+    @Override
+    public Class<TileEntityBedsideTable> getTileEntityClass() {
+        return TileEntityBedsideTable.class;
+    }
+
+    @Nullable
+    @Override
+    public TileEntityBedsideTable createTileEntity(World world, IBlockState state) {
+        return new TileEntityBedsideTable();
     }
 }

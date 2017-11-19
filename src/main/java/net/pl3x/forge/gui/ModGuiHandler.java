@@ -7,6 +7,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.pl3x.forge.container.ContainerArmorstand;
 import net.pl3x.forge.container.ContainerBanker;
+import net.pl3x.forge.container.ContainerBedsideTable;
 import net.pl3x.forge.container.ContainerEnchantmentSplitter;
 import net.pl3x.forge.container.ContainerShopCustomer;
 import net.pl3x.forge.container.ContainerShopOwner;
@@ -21,6 +22,7 @@ import net.pl3x.forge.gui.shop.GuiShopOwner;
 import net.pl3x.forge.gui.shop.GuiShopOwnerDisplay;
 import net.pl3x.forge.gui.shop.GuiShopOwnerFunds;
 import net.pl3x.forge.network.BankPacket;
+import net.pl3x.forge.tileentity.TileEntityBedsideTable;
 import net.pl3x.forge.tileentity.TileEntityShop;
 import net.pl3x.forge.tileentity.TileEntityTrafficLightControlBox;
 
@@ -39,6 +41,7 @@ public class ModGuiHandler implements IGuiHandler {
     public static final int ARMOR_STAND = 11;
     public static final int ARMOR_STAND_DISPLAY = 12;
     public static final int CLAIM = 13;
+    public static final int BEDSIDE_TABLE = 14;
 
     @Override
     public Container getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z, int entityId) {
@@ -60,6 +63,8 @@ public class ModGuiHandler implements IGuiHandler {
                 return new ContainerArmorstand(player, entityId, true);
             case ARMOR_STAND_DISPLAY:
                 return new ContainerArmorstand(player, entityId, false);
+            case BEDSIDE_TABLE:
+                return new ContainerBedsideTable(player.inventory, (TileEntityBedsideTable) world.getTileEntity(new BlockPos(x, y, z)), entityId);
             default:
                 return null;
         }
@@ -96,6 +101,8 @@ public class ModGuiHandler implements IGuiHandler {
                 return new GuiArmorStandDisplay(getServerGuiElement(ID, player, world, x, y, z, entityId), player, entityId);
             case CLAIM:
                 return new GuiClaim();
+            case BEDSIDE_TABLE:
+                return new GuiBedsideTable(getServerGuiElement(ID, player, world, x, y, z, entityId));
             default:
                 return null;
         }

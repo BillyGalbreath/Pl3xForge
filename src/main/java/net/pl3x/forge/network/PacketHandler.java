@@ -25,6 +25,7 @@ public class PacketHandler {
         INSTANCE.registerMessage(ArmorStandRefreshPacket.Handler.class, ArmorStandRefreshPacket.class, 11, Side.CLIENT);
         INSTANCE.registerMessage(OpenInventoryPacket.Handler.class, OpenInventoryPacket.class, 12, Side.CLIENT);
         INSTANCE.registerMessage(TVUpdateChannelPacket.Handler.class, TVUpdateChannelPacket.class, 13, Side.CLIENT);
+        INSTANCE.registerMessage(BedsideTableUpdatePacket.Handler.class, BedsideTableUpdatePacket.class, 14, Side.CLIENT);
     }
 
     public static void updatePlayerData(EntityPlayerMP player) {
