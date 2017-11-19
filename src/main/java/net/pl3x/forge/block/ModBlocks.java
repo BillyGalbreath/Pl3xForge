@@ -26,6 +26,7 @@ import net.pl3x.forge.block.custom.decoration.BlockTrafficLightControlBox;
 import net.pl3x.forge.block.custom.farmland.BlockTilledEndStone;
 import net.pl3x.forge.block.custom.furniture.BlockBedsideTable;
 import net.pl3x.forge.block.custom.furniture.BlockChair;
+import net.pl3x.forge.block.custom.furniture.BlockCoffeeTable;
 import net.pl3x.forge.block.custom.furniture.BlockCouch;
 import net.pl3x.forge.block.custom.ore.BlockFrostedObsidian;
 import net.pl3x.forge.block.custom.ore.BlockRuby;
@@ -48,6 +49,7 @@ public class ModBlocks {
     public static final BlockBathroomCabinet BATHROOM_CABINET = new BlockBathroomCabinet();
     public static final BlockBedsideTable BEDSIDE_TABLE = new BlockBedsideTable();
     public static final BlockChair CHAIR = new BlockChair();
+    public static final BlockCoffeeTable COFFEE_TABLE = new BlockCoffeeTable();
     public static final BlockCouch COUCH = new BlockCouch();
     public static final BlockComputer COMPUTER = new BlockComputer();
     public static final BlockDepositBox DEPOSIT_BOX = new BlockDepositBox();
@@ -153,6 +155,7 @@ public class ModBlocks {
                 BATHROOM_CABINET,
                 BEDSIDE_TABLE,
                 CHAIR,
+                COFFEE_TABLE,
                 COUCH,
                 COMPUTER,
                 DEPOSIT_BOX,
@@ -267,6 +270,7 @@ public class ModBlocks {
                 BATHROOM_CABINET.createItemBlock(),
                 BEDSIDE_TABLE.createItemBlock(),
                 CHAIR.createItemBlock(),
+                COFFEE_TABLE.createItemBlock(),
                 COUCH.createItemBlock(),
                 COMPUTER.createItemBlock(),
                 DEPOSIT_BOX.createItemBlock(),
@@ -350,6 +354,7 @@ public class ModBlocks {
         BATHROOM_CABINET.registerItemModel(Item.getItemFromBlock(BATHROOM_CABINET));
         BEDSIDE_TABLE.registerItemModel(Item.getItemFromBlock(BEDSIDE_TABLE));
         CHAIR.registerItemModel(Item.getItemFromBlock(CHAIR));
+        COFFEE_TABLE.registerItemModel(Item.getItemFromBlock(COFFEE_TABLE));
         COUCH.registerItemModel(Item.getItemFromBlock(COUCH));
         COMPUTER.registerItemModel(Item.getItemFromBlock(COMPUTER));
         DEPOSIT_BOX.registerItemModel(Item.getItemFromBlock(DEPOSIT_BOX));
