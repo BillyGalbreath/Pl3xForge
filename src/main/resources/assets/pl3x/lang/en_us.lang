@@ -111,6 +111,7 @@ tile.curb_slab_white.name=White Curb Slab
 tile.curb_slab_yellow.name=Yellow Curb Slab
 
 tile.bathroom_cabinet.name=Bathroom Cabinet
+tile.bedside_table.name=Bedside Table
 tile.block_ruby.name=Block of Ruby
 tile.chair.name=Chair
 tile.couch.name=Couch

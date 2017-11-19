@@ -24,6 +24,7 @@ import net.pl3x.forge.block.custom.decoration.BlockTable;
 import net.pl3x.forge.block.custom.decoration.BlockTrafficLight;
 import net.pl3x.forge.block.custom.decoration.BlockTrafficLightControlBox;
 import net.pl3x.forge.block.custom.farmland.BlockTilledEndStone;
+import net.pl3x.forge.block.custom.furniture.BlockBedsideTable;
 import net.pl3x.forge.block.custom.furniture.BlockChair;
 import net.pl3x.forge.block.custom.furniture.BlockCouch;
 import net.pl3x.forge.block.custom.ore.BlockFrostedObsidian;
@@ -45,6 +46,7 @@ public class ModBlocks {
     public static final BlockEnchantmentSplitter ENCHANTMENT_SPLITTER = new BlockEnchantmentSplitter();
     public static final BlockShop SHOP = new BlockShop();
     public static final BlockBathroomCabinet BATHROOM_CABINET = new BlockBathroomCabinet();
+    public static final BlockBedsideTable BEDSIDE_TABLE = new BlockBedsideTable();
     public static final BlockChair CHAIR = new BlockChair();
     public static final BlockCouch COUCH = new BlockCouch();
     public static final BlockComputer COMPUTER = new BlockComputer();
@@ -149,6 +151,7 @@ public class ModBlocks {
                 ENCHANTMENT_SPLITTER,
                 SHOP,
                 BATHROOM_CABINET,
+                BEDSIDE_TABLE,
                 CHAIR,
                 COUCH,
                 COMPUTER,
@@ -262,6 +265,7 @@ public class ModBlocks {
                 ENCHANTMENT_SPLITTER.createItemBlock(),
                 SHOP.createItemBlock(),
                 BATHROOM_CABINET.createItemBlock(),
+                BEDSIDE_TABLE.createItemBlock(),
                 CHAIR.createItemBlock(),
                 COUCH.createItemBlock(),
                 COMPUTER.createItemBlock(),
@@ -344,6 +348,7 @@ public class ModBlocks {
         ENCHANTMENT_SPLITTER.registerItemModel(Item.getItemFromBlock(ENCHANTMENT_SPLITTER));
         SHOP.registerItemModel(Item.getItemFromBlock(SHOP));
         BATHROOM_CABINET.registerItemModel(Item.getItemFromBlock(BATHROOM_CABINET));
+        BEDSIDE_TABLE.registerItemModel(Item.getItemFromBlock(BEDSIDE_TABLE));
         CHAIR.registerItemModel(Item.getItemFromBlock(CHAIR));
         COUCH.registerItemModel(Item.getItemFromBlock(COUCH));
         COMPUTER.registerItemModel(Item.getItemFromBlock(COMPUTER));

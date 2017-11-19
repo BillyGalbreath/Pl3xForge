@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LPL",
+    "LPL",
+    "L L"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:planks",
+      "data": 0
+    },
+    "L": {
+      "item": "minecraft:log",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "pl3x:bedside_table"
+  }
+}
