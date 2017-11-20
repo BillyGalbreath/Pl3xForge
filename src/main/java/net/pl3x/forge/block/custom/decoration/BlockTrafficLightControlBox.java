@@ -12,6 +12,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -177,6 +178,12 @@ public class BlockTrafficLightControlBox extends BlockTileEntity<TileEntityTraff
     @Override
     public Class<TileEntityTrafficLightControlBox> getTileEntityClass() {
         return TileEntityTrafficLightControlBox.class;
+    }
+
+    @Nullable
+    public TileEntityTrafficLightControlBox getTileEntity(IBlockAccess world, BlockPos pos) {
+        TileEntity te = world.getTileEntity(pos);
+        return te instanceof TileEntityTrafficLightControlBox ? (TileEntityTrafficLightControlBox) te : null;
     }
 
     @Nullable

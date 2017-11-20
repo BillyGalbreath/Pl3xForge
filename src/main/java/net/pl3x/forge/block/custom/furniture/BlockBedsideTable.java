@@ -13,6 +13,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.Rotation;
@@ -121,11 +122,13 @@ public class BlockBedsideTable extends BlockTileEntity<TileEntityBedsideTable> {
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState state) {
         TileEntityBedsideTable te = getTileEntity(world, pos);
-        IItemHandler itemHandler = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-        for (int i = 0; i < 10; i++) {
-            ItemStack stack = itemHandler.getStackInSlot(i);
-            if (!stack.isEmpty()) {
-                world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), stack));
+        if (te != null) {
+            IItemHandler itemHandler = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+            for (int i = 0; i < 10; i++) {
+                ItemStack stack = itemHandler.getStackInSlot(i);
+                if (!stack.isEmpty()) {
+                    world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), stack));
+                }
             }
         }
         super.breakBlock(world, pos, state);
@@ -134,6 +137,12 @@ public class BlockBedsideTable extends BlockTileEntity<TileEntityBedsideTable> {
     @Override
     public Class<TileEntityBedsideTable> getTileEntityClass() {
         return TileEntityBedsideTable.class;
+    }
+
+    @Nullable
+    public TileEntityBedsideTable getTileEntity(IBlockAccess world, BlockPos pos) {
+        TileEntity te = world.getTileEntity(pos);
+        return te instanceof TileEntityBedsideTable ? (TileEntityBedsideTable) te : null;
     }
 
     @Nullable

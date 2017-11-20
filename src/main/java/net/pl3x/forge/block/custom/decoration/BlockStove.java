@@ -13,6 +13,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -120,9 +121,12 @@ public class BlockStove extends BlockTileEntity<TileEntityStove> {
 
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState state) {
-        ItemStack stack = getTileEntity(world, pos).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0);
-        if (!stack.isEmpty()) {
-            world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), stack));
+        TileEntityStove te = getTileEntity(world, pos);
+        if (te != null) {
+            ItemStack stack = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0);
+            if (!stack.isEmpty()) {
+                world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), stack));
+            }
         }
         super.breakBlock(world, pos, state);
     }
@@ -130,6 +134,12 @@ public class BlockStove extends BlockTileEntity<TileEntityStove> {
     @Override
     public Class<TileEntityStove> getTileEntityClass() {
         return TileEntityStove.class;
+    }
+
+    @Nullable
+    public TileEntityStove getTileEntity(IBlockAccess world, BlockPos pos) {
+        TileEntity te = world.getTileEntity(pos);
+        return te instanceof TileEntityStove ? (TileEntityStove) te : null;
     }
 
     @Nullable

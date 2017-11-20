@@ -11,6 +11,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -220,6 +221,12 @@ public class BlockTrafficLight extends BlockTileEntity<TileEntityTrafficLight> {
     @Override
     public Class<TileEntityTrafficLight> getTileEntityClass() {
         return TileEntityTrafficLight.class;
+    }
+
+    @Nullable
+    public TileEntityTrafficLight getTileEntity(IBlockAccess world, BlockPos pos) {
+        TileEntity te = world.getTileEntity(pos);
+        return te instanceof TileEntityTrafficLight ? (TileEntityTrafficLight) te : null;
     }
 
     @Nullable

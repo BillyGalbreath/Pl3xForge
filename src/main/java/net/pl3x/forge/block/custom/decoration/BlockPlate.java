@@ -13,6 +13,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.Rotation;
@@ -106,13 +107,15 @@ public class BlockPlate extends BlockTileEntity<TileEntityPlate> {
             if (!player.isSneaking()) {
                 ItemStack heldItem = player.getHeldItem(hand);
                 TileEntityPlate te = getTileEntity(world, pos);
-                IItemHandler itemHandler = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side);
-                if (heldItem.isEmpty()) {
-                    player.setHeldItem(hand, itemHandler.extractItem(0, 64, false));
-                } else {
-                    player.setHeldItem(hand, itemHandler.insertItem(0, heldItem, false));
+                if (te != null) {
+                    IItemHandler itemHandler = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side);
+                    if (heldItem.isEmpty()) {
+                        player.setHeldItem(hand, itemHandler.extractItem(0, 64, false));
+                    } else {
+                        player.setHeldItem(hand, itemHandler.insertItem(0, heldItem, false));
+                    }
+                    te.markDirty();
                 }
-                te.markDirty();
             }
         }
         return true;
@@ -120,9 +123,12 @@ public class BlockPlate extends BlockTileEntity<TileEntityPlate> {
 
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState state) {
-        ItemStack stack = getTileEntity(world, pos).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0);
-        if (!stack.isEmpty()) {
-            world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), stack));
+        TileEntityPlate te = getTileEntity(world, pos);
+        if (te != null) {
+            ItemStack stack = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0);
+            if (!stack.isEmpty()) {
+                world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), stack));
+            }
         }
         super.breakBlock(world, pos, state);
     }
@@ -130,6 +136,12 @@ public class BlockPlate extends BlockTileEntity<TileEntityPlate> {
     @Override
     public Class<TileEntityPlate> getTileEntityClass() {
         return TileEntityPlate.class;
+    }
+
+    @Nullable
+    public TileEntityPlate getTileEntity(IBlockAccess world, BlockPos pos) {
+        TileEntity te = world.getTileEntity(pos);
+        return te instanceof TileEntityPlate ? (TileEntityPlate) te : null;
     }
 
     @Nullable

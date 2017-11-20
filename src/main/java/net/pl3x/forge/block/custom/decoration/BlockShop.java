@@ -15,6 +15,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -226,6 +227,12 @@ public class BlockShop extends BlockTileEntity<TileEntityShop> {
     @Override
     public Class<TileEntityShop> getTileEntityClass() {
         return TileEntityShop.class;
+    }
+
+    @Nullable
+    public TileEntityShop getTileEntity(IBlockAccess world, BlockPos pos) {
+        TileEntity te = world.getTileEntity(pos);
+        return te instanceof TileEntityShop ? (TileEntityShop) te : null;
     }
 
     @Nullable

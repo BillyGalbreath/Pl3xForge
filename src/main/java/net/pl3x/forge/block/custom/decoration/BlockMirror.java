@@ -11,6 +11,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -149,6 +150,12 @@ public class BlockMirror extends BlockTileEntity<TileEntityMirror> {
     @Override
     public Class<TileEntityMirror> getTileEntityClass() {
         return TileEntityMirror.class;
+    }
+
+    @Nullable
+    public TileEntityMirror getTileEntity(IBlockAccess world, BlockPos pos) {
+        TileEntity te = world.getTileEntity(pos);
+        return te instanceof TileEntityMirror ? (TileEntityMirror) te : null;
     }
 
     @Nullable

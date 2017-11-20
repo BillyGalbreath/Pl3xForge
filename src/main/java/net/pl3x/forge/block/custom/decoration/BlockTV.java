@@ -12,6 +12,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -165,7 +166,7 @@ public class BlockTV extends BlockTileEntity<TileEntityTV> {
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         TileEntityTV te = getTileEntity(world, pos);
-        if (player.isSneaking()) {
+        if (te == null || player.isSneaking()) {
             return true;
         }
         te.channel = te.channel.next();
@@ -188,6 +189,12 @@ public class BlockTV extends BlockTileEntity<TileEntityTV> {
     @Override
     public Class<TileEntityTV> getTileEntityClass() {
         return TileEntityTV.class;
+    }
+
+    @Nullable
+    public TileEntityTV getTileEntity(IBlockAccess world, BlockPos pos) {
+        TileEntity te = world.getTileEntity(pos);
+        return te instanceof TileEntityTV ? (TileEntityTV) te : null;
     }
 
     @Nullable

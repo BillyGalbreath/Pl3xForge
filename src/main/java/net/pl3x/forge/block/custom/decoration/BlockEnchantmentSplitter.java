@@ -61,8 +61,7 @@ public class BlockEnchantmentSplitter extends BlockTileEntity<TileEntityEnchantm
         return BlockRenderLayer.CUTOUT;
     }
 
-    public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer)
-    {
+    public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
         return getBlockLayer() == layer;
     }
 
@@ -99,6 +98,12 @@ public class BlockEnchantmentSplitter extends BlockTileEntity<TileEntityEnchantm
     @Override
     public Class<TileEntityEnchantmentSplitter> getTileEntityClass() {
         return TileEntityEnchantmentSplitter.class;
+    }
+
+    @Nullable
+    public TileEntityEnchantmentSplitter getTileEntity(IBlockAccess world, BlockPos pos) {
+        TileEntity te = world.getTileEntity(pos);
+        return te instanceof TileEntityEnchantmentSplitter ? (TileEntityEnchantmentSplitter) te : null;
     }
 
     @Nullable
