@@ -12,27 +12,28 @@ public class PacketHandler {
     public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(Pl3x.modId);
 
     public static void init() {
-        INSTANCE.registerMessage(PlayerDataPacket.Handler.class, PlayerDataPacket.class, 1, Side.CLIENT);
-        INSTANCE.registerMessage(BankPacket.Handler.class, BankPacket.class, 2, Side.SERVER);
-        INSTANCE.registerMessage(BankFailedPacket.Handler.class, BankFailedPacket.class, 3, Side.CLIENT);
-        INSTANCE.registerMessage(ShopChangePacket.Handler.class, ShopChangePacket.class, 4, Side.SERVER);
-        INSTANCE.registerMessage(ShopUpdateClientPacket.Handler.class, ShopUpdateClientPacket.class, 5, Side.CLIENT);
-        INSTANCE.registerMessage(ShopClientRequestPacket.Handler.class, ShopClientRequestPacket.class, 6, Side.SERVER);
-        INSTANCE.registerMessage(ShopPurchasePacket.Handler.class, ShopPurchasePacket.class, 7, Side.SERVER);
-        INSTANCE.registerMessage(TrafficLightControlBoxUpdatePacket.Handler.class, TrafficLightControlBoxUpdatePacket.class, 8, Side.CLIENT);
-        INSTANCE.registerMessage(BigHeadPacket.Handler.class, BigHeadPacket.class, 9, Side.CLIENT);
-        INSTANCE.registerMessage(ArmorStandChangePacket.Handler.class, ArmorStandChangePacket.class, 10, Side.SERVER);
-        INSTANCE.registerMessage(ArmorStandRefreshPacket.Handler.class, ArmorStandRefreshPacket.class, 11, Side.CLIENT);
-        INSTANCE.registerMessage(OpenInventoryPacket.Handler.class, OpenInventoryPacket.class, 12, Side.CLIENT);
-        INSTANCE.registerMessage(TVUpdateChannelPacket.Handler.class, TVUpdateChannelPacket.class, 13, Side.CLIENT);
-        INSTANCE.registerMessage(BedsideTableUpdatePacket.Handler.class, BedsideTableUpdatePacket.class, 14, Side.CLIENT);
-        INSTANCE.registerMessage(CuttingBoardUpdatePacket.Handler.class, CuttingBoardUpdatePacket.class, 15, Side.CLIENT);
-        INSTANCE.registerMessage(PlateUpdatePacket.Handler.class, PlateUpdatePacket.class, 16, Side.CLIENT);
-        INSTANCE.registerMessage(StoveUpdatePacket.Handler.class, StoveUpdatePacket.class, 17, Side.CLIENT);
-        INSTANCE.registerMessage(BedsideTableRequestUpdatePacket.Handler.class, BedsideTableRequestUpdatePacket.class, 18, Side.SERVER);
-        INSTANCE.registerMessage(CuttingBoardRequestUpdatePacket.Handler.class, CuttingBoardRequestUpdatePacket.class, 19, Side.SERVER);
-        INSTANCE.registerMessage(PlateRequestUpdatePacket.Handler.class, PlateRequestUpdatePacket.class, 20, Side.SERVER);
-        INSTANCE.registerMessage(StoveRequestUpdatePacket.Handler.class, StoveRequestUpdatePacket.class, 21, Side.SERVER);
+        int id = 0;
+        INSTANCE.registerMessage(ArmorStandChangePacket.Handler.class, ArmorStandChangePacket.class, ++id, Side.SERVER);
+        INSTANCE.registerMessage(ArmorStandRefreshPacket.Handler.class, ArmorStandRefreshPacket.class, ++id, Side.CLIENT);
+        INSTANCE.registerMessage(BankFailedPacket.Handler.class, BankFailedPacket.class, ++id, Side.CLIENT);
+        INSTANCE.registerMessage(BankPacket.Handler.class, BankPacket.class, ++id, Side.SERVER);
+        INSTANCE.registerMessage(BedsideTableUpdatePacket.Handler.class, BedsideTableUpdatePacket.class, ++id, Side.CLIENT);
+        INSTANCE.registerMessage(BedsideTableRequestUpdatePacket.Handler.class, BedsideTableRequestUpdatePacket.class, ++id, Side.SERVER);
+        INSTANCE.registerMessage(BigHeadPacket.Handler.class, BigHeadPacket.class, ++id, Side.CLIENT);
+        INSTANCE.registerMessage(CuttingBoardUpdatePacket.Handler.class, CuttingBoardUpdatePacket.class, ++id, Side.CLIENT);
+        INSTANCE.registerMessage(CuttingBoardRequestUpdatePacket.Handler.class, CuttingBoardRequestUpdatePacket.class, ++id, Side.SERVER);
+        INSTANCE.registerMessage(OpenInventoryPacket.Handler.class, OpenInventoryPacket.class, ++id, Side.CLIENT);
+        INSTANCE.registerMessage(PlateUpdatePacket.Handler.class, PlateUpdatePacket.class, ++id, Side.CLIENT);
+        INSTANCE.registerMessage(PlateRequestUpdatePacket.Handler.class, PlateRequestUpdatePacket.class, ++id, Side.SERVER);
+        INSTANCE.registerMessage(PlayerDataPacket.Handler.class, PlayerDataPacket.class, ++id, Side.CLIENT);
+        INSTANCE.registerMessage(ShopChangePacket.Handler.class, ShopChangePacket.class, ++id, Side.SERVER);
+        INSTANCE.registerMessage(ShopUpdateClientPacket.Handler.class, ShopUpdateClientPacket.class, ++id, Side.CLIENT);
+        INSTANCE.registerMessage(ShopClientRequestPacket.Handler.class, ShopClientRequestPacket.class, ++id, Side.SERVER);
+        INSTANCE.registerMessage(ShopPurchasePacket.Handler.class, ShopPurchasePacket.class, ++id, Side.SERVER);
+        INSTANCE.registerMessage(StoveUpdatePacket.Handler.class, StoveUpdatePacket.class, ++id, Side.CLIENT);
+        INSTANCE.registerMessage(StoveRequestUpdatePacket.Handler.class, StoveRequestUpdatePacket.class, ++id, Side.SERVER);
+        INSTANCE.registerMessage(TrafficLightControlBoxUpdatePacket.Handler.class, TrafficLightControlBoxUpdatePacket.class, ++id, Side.CLIENT);
+        INSTANCE.registerMessage(TVUpdateChannelPacket.Handler.class, TVUpdateChannelPacket.class, ++id, Side.CLIENT);
     }
 
     public static void updatePlayerData(EntityPlayerMP player) {
