@@ -7,18 +7,18 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import net.pl3x.forge.network.BedsideTableRequestUpdatePacket;
-import net.pl3x.forge.network.BedsideTableUpdatePacket;
 import net.pl3x.forge.network.PacketHandler;
+import net.pl3x.forge.network.StoveRequestUpdatePacket;
+import net.pl3x.forge.network.StoveUpdatePacket;
 
 import javax.annotation.Nullable;
 
-public class TileEntityBedsideTable extends TileEntity {
-    public ItemStackHandler inventory = new ItemStackHandler(10) {
+public class TileEntityStove extends TileEntity {
+    public ItemStackHandler inventory = new ItemStackHandler(1) {
         @Override
         protected void onContentsChanged(int slot) {
             if (!world.isRemote) {
-                PacketHandler.INSTANCE.sendToAllAround(new BedsideTableUpdatePacket(TileEntityBedsideTable.this),
+                PacketHandler.INSTANCE.sendToAllAround(new StoveUpdatePacket(TileEntityStove.this),
                         new NetworkRegistry.TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 64));
             }
         }
@@ -27,7 +27,7 @@ public class TileEntityBedsideTable extends TileEntity {
     @Override
     public void onLoad() {
         if (world.isRemote) {
-            PacketHandler.INSTANCE.sendToServer(new BedsideTableRequestUpdatePacket(this));
+            PacketHandler.INSTANCE.sendToServer(new StoveRequestUpdatePacket(this));
         }
     }
 

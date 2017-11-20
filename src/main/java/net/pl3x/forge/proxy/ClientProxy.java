@@ -26,13 +26,17 @@ import net.pl3x.forge.listener.ClientEventHandler;
 import net.pl3x.forge.listener.KeyBindings;
 import net.pl3x.forge.listener.KeyInputHandler;
 import net.pl3x.forge.network.OpenInventoryPacket;
+import net.pl3x.forge.tileentity.TileEntityCuttingBoard;
 import net.pl3x.forge.tileentity.TileEntityEnchantmentSplitter;
 import net.pl3x.forge.tileentity.TileEntityMirror;
+import net.pl3x.forge.tileentity.TileEntityPlate;
 import net.pl3x.forge.tileentity.TileEntityShop;
 import net.pl3x.forge.tileentity.TileEntityTV;
 import net.pl3x.forge.tileentity.TileEntityTrafficLight;
+import net.pl3x.forge.tileentity.renderer.TileEntityCuttingBoardRenderer;
 import net.pl3x.forge.tileentity.renderer.TileEntityEnchantmentSplitterRenderer;
 import net.pl3x.forge.tileentity.renderer.TileEntityMirrorRenderer;
+import net.pl3x.forge.tileentity.renderer.TileEntityPlateRenderer;
 import net.pl3x.forge.tileentity.renderer.TileEntityShopRenderer;
 import net.pl3x.forge.tileentity.renderer.TileEntityTVRenderer;
 import net.pl3x.forge.tileentity.renderer.TileEntityTrafficLightRenderer;
@@ -49,7 +53,9 @@ public class ClientProxy extends ServerProxy {
             throw new FuckOptifine();
         }
 
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCuttingBoard.class, new TileEntityCuttingBoardRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEnchantmentSplitter.class, new TileEntityEnchantmentSplitterRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlate.class, new TileEntityPlateRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityShop.class, new TileEntityShopRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTrafficLight.class, new TileEntityTrafficLightRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTV.class, new TileEntityTVRenderer());

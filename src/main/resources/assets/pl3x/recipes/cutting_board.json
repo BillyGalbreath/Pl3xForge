@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LPL",
+    "PPP",
+    "LPL"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:planks",
+      "data": 32767
+    },
+    "L": [
+      {
+        "item": "minecraft:log",
+        "data": 32767
+      },
+      {
+        "item": "minecraft:log2",
+        "data": 32767
+      }
+    ]
+  },
+  "result": {
+    "item": "pl3x:cutting_board"
+  }
+}

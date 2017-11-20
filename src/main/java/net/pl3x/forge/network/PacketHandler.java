@@ -26,6 +26,13 @@ public class PacketHandler {
         INSTANCE.registerMessage(OpenInventoryPacket.Handler.class, OpenInventoryPacket.class, 12, Side.CLIENT);
         INSTANCE.registerMessage(TVUpdateChannelPacket.Handler.class, TVUpdateChannelPacket.class, 13, Side.CLIENT);
         INSTANCE.registerMessage(BedsideTableUpdatePacket.Handler.class, BedsideTableUpdatePacket.class, 14, Side.CLIENT);
+        INSTANCE.registerMessage(CuttingBoardUpdatePacket.Handler.class, CuttingBoardUpdatePacket.class, 15, Side.CLIENT);
+        INSTANCE.registerMessage(PlateUpdatePacket.Handler.class, PlateUpdatePacket.class, 16, Side.CLIENT);
+        INSTANCE.registerMessage(StoveUpdatePacket.Handler.class, StoveUpdatePacket.class, 17, Side.CLIENT);
+        INSTANCE.registerMessage(BedsideTableRequestUpdatePacket.Handler.class, BedsideTableRequestUpdatePacket.class, 18, Side.SERVER);
+        INSTANCE.registerMessage(CuttingBoardRequestUpdatePacket.Handler.class, CuttingBoardRequestUpdatePacket.class, 19, Side.SERVER);
+        INSTANCE.registerMessage(PlateRequestUpdatePacket.Handler.class, PlateRequestUpdatePacket.class, 20, Side.SERVER);
+        INSTANCE.registerMessage(StoveRequestUpdatePacket.Handler.class, StoveRequestUpdatePacket.class, 21, Side.SERVER);
     }
 
     public static void updatePlayerData(EntityPlayerMP player) {

@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "normal": { "model": "pl3x:stove" },
+    "facing=south": { "model": "pl3x:stove", "y": 0 },
+    "facing=west":  { "model": "pl3x:stove", "y": 90 },
+    "facing=north": { "model": "pl3x:stove", "y": 180 },
+    "facing=east":  { "model": "pl3x:stove", "y": 270 }
+  }
+}

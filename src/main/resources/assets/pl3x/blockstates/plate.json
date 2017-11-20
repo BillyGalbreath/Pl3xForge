@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "normal": { "model": "pl3x:plate" },
+    "facing=south": { "model": "pl3x:plate", "y": 0 },
+    "facing=west":  { "model": "pl3x:plate", "y": 90 },
+    "facing=north": { "model": "pl3x:plate", "y": 180 },
+    "facing=east":  { "model": "pl3x:plate", "y": 270 }
+  }
+}
