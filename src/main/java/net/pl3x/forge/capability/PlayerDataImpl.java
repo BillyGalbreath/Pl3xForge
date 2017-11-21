@@ -1,4 +1,4 @@
-package net.pl3x.forge.data;
+package net.pl3x.forge.capability;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.nbt.NBTBase;
@@ -7,9 +7,12 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityInject;
+import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.pl3x.forge.inventory.InventoryBanker;
 import net.pl3x.forge.util.Location;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -175,6 +178,34 @@ public class PlayerDataImpl implements PlayerData {
         @Override
         public void readNBT(Capability<PlayerData> capability, PlayerData instance, EnumFacing side, NBTBase nbt) {
             instance.setDataFromNBT((NBTTagCompound) nbt);
+        }
+    }
+
+    public static class CapabilityProvider implements ICapabilitySerializable<NBTBase> {
+        @CapabilityInject(PlayerData.class)
+        public static final Capability<PlayerData> CAPABILITY = null;
+
+        private final PlayerData instance = CAPABILITY.getDefaultInstance();
+
+        @Override
+        public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
+            return capability == CAPABILITY;
+        }
+
+        @Nullable
+        @Override
+        public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+            return capability == CAPABILITY ? CAPABILITY.cast(this.instance) : null;
+        }
+
+        @Override
+        public NBTBase serializeNBT() {
+            return CAPABILITY.getStorage().writeNBT(CAPABILITY, this.instance, null);
+        }
+
+        @Override
+        public void deserializeNBT(NBTBase nbt) {
+            CAPABILITY.getStorage().readNBT(CAPABILITY, this.instance, null, nbt);
         }
     }
 }

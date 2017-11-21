@@ -28,11 +28,16 @@ public class ModItems {
     public static final Set<Item> items = new HashSet<>();
 
     // ARMORS new int[]{ boots, leggings, chestplate, helmet }
+    public static final ArmorMaterial boneArmorMaterial = EnumHelper.addArmorMaterial("BONE", Pl3x.modId + ":bone", 7, new int[]{1, 3, 5, 1}, 9, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 3);
     public static final ArmorMaterial emeraldArmorMaterial = EnumHelper.addArmorMaterial("EMERALD", Pl3x.modId + ":emerald", 35, new int[]{3, 7, 9, 3}, 25, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 3);
     public static final ArmorMaterial rubyArmorMaterial = EnumHelper.addArmorMaterial("RUBY", Pl3x.modId + ":ruby", 40, new int[]{4, 7, 10, 4}, 30, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 4);
     public static final ToolMaterial emeraldToolMaterial = EnumHelper.addToolMaterial("EMERALD", 4, 1776, 10, 4, 22);
     public static final ToolMaterial rubyToolMaterial = EnumHelper.addToolMaterial("RUBY", 5, 2038, 12, 5, 30);
 
+    public static final ItemArmor BONE_BOOTS = new ItemArmor(boneArmorMaterial, EntityEquipmentSlot.FEET, "bone_boots").setCreativeTab(CreativeTabs.COMBAT);
+    public static final ItemArmor BONE_CHESTPLATE = new ItemArmor(boneArmorMaterial, EntityEquipmentSlot.CHEST, "bone_chestplate").setCreativeTab(CreativeTabs.COMBAT);
+    public static final ItemArmor BONE_HELMET = new ItemArmor(boneArmorMaterial, EntityEquipmentSlot.HEAD, "bone_helmet").setCreativeTab(CreativeTabs.COMBAT);
+    public static final ItemArmor BONE_LEGGINGS = new ItemArmor(boneArmorMaterial, EntityEquipmentSlot.LEGS, "bone_leggings").setCreativeTab(CreativeTabs.COMBAT);
     public static final ItemClaimTool CLAIM_TOOL = new ItemClaimTool();
     public static final ItemMoney COIN = new ItemMoney("coin");
     public static final ItemCorn CORN = new ItemCorn();

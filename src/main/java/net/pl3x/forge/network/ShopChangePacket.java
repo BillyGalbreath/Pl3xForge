@@ -8,8 +8,8 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import net.pl3x.forge.data.CapabilityProvider;
-import net.pl3x.forge.data.PlayerData;
+import net.pl3x.forge.capability.PlayerDataProvider;
+import net.pl3x.forge.capability.PlayerData;
 import net.pl3x.forge.tileentity.TileEntityShop;
 import net.pl3x.forge.util.NumberUtil;
 
@@ -64,7 +64,7 @@ public class ShopChangePacket implements IMessage {
             }
             TileEntityShop shop = (TileEntityShop) te;
             player.getServerWorld().addScheduledTask(() -> {
-                PlayerData capability = player.getCapability(CapabilityProvider.CAPABILITY, null);
+                PlayerData capability = player.getCapability(PlayerDataProvider.CAPABILITY, null);
                 switch (packet.packetType) {
                     case INCREMENT_PRICE:
                         if (shop.price < 9999) {

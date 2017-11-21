@@ -13,6 +13,10 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.advancement.ModAdvancements;
+import net.pl3x.forge.capability.DeceptionTarget;
+import net.pl3x.forge.capability.DeceptionTargetImpl;
+import net.pl3x.forge.capability.PlayerData;
+import net.pl3x.forge.capability.PlayerDataImpl;
 import net.pl3x.forge.command.CmdBack;
 import net.pl3x.forge.command.CmdBigHead;
 import net.pl3x.forge.command.CmdBiomes;
@@ -54,8 +58,6 @@ import net.pl3x.forge.configuration.Lang;
 import net.pl3x.forge.configuration.MOTDConfig;
 import net.pl3x.forge.configuration.MailConfig;
 import net.pl3x.forge.configuration.PermsConfig;
-import net.pl3x.forge.data.PlayerData;
-import net.pl3x.forge.data.PlayerDataImpl;
 import net.pl3x.forge.entity.ModEntities;
 import net.pl3x.forge.gui.ModGuiHandler;
 import net.pl3x.forge.listener.CapabilityHandler;
@@ -93,6 +95,7 @@ public class ServerProxy {
     public void init(FMLInitializationEvent event) {
         GameRegistry.registerWorldGenerator(new ModWorldGen(), 0);
 
+        CapabilityManager.INSTANCE.register(DeceptionTarget.class, new DeceptionTargetImpl.DeceptionTargetStorage(), DeceptionTargetImpl.class);
         CapabilityManager.INSTANCE.register(PlayerData.class, new PlayerDataImpl.PlayerDataStorage(), PlayerDataImpl.class);
         NetworkRegistry.INSTANCE.registerGuiHandler(Pl3x.instance, new ModGuiHandler());
 

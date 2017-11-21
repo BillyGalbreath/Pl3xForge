@@ -31,6 +31,7 @@ public class EnchantmentLavaWalker extends Enchantment {
         setName("lavaWalker");
         setRegistryName(getName());
 
+        ModEnchantments.enchantments.add(this);
         MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -84,7 +85,7 @@ public class EnchantmentLavaWalker extends Enchantment {
     }
 
     @SubscribeEvent
-    public void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
+    public void on(LivingEvent.LivingUpdateEvent event) {
         if (!(event.getEntityLiving() instanceof EntityPlayerMP)) {
             return;
         }

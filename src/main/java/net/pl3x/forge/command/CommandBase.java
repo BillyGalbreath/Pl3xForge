@@ -5,8 +5,8 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.pl3x.forge.color.ChatColor;
-import net.pl3x.forge.data.CapabilityProvider;
-import net.pl3x.forge.data.PlayerData;
+import net.pl3x.forge.capability.PlayerDataProvider;
+import net.pl3x.forge.capability.PlayerData;
 import net.pl3x.forge.permissions.Permissions;
 
 import javax.annotation.Nullable;
@@ -29,7 +29,7 @@ public abstract class CommandBase extends net.minecraft.command.CommandBase {
     }
 
     PlayerData getPlayerData(EntityPlayerMP player) {
-        return player.getCapability(CapabilityProvider.CAPABILITY, null);
+        return player.getCapability(PlayerDataProvider.CAPABILITY, null);
     }
 
     public String getPermissionNode() {

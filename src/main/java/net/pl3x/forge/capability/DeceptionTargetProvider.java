@@ -1,4 +1,4 @@
-package net.pl3x.forge.data;
+package net.pl3x.forge.capability;
 
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.util.EnumFacing;
@@ -9,11 +9,11 @@ import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class CapabilityProvider implements ICapabilitySerializable<NBTBase> {
-    @CapabilityInject(PlayerData.class)
-    public static final Capability<PlayerData> CAPABILITY = null;
+public class DeceptionTargetProvider implements ICapabilitySerializable<NBTBase> {
+    @CapabilityInject(DeceptionTarget.class)
+    public static final Capability<DeceptionTarget> CAPABILITY = null;
 
-    private final PlayerData instance = CAPABILITY.getDefaultInstance();
+    private final DeceptionTarget instance = CAPABILITY.getDefaultInstance();
 
     @Override
     public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {

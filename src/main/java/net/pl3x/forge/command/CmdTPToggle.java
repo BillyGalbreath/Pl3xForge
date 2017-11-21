@@ -5,7 +5,7 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.pl3x.forge.configuration.Lang;
-import net.pl3x.forge.data.PlayerData;
+import net.pl3x.forge.capability.PlayerData;
 import org.apache.commons.lang3.BooleanUtils;
 
 public class CmdTPToggle extends CommandBase {

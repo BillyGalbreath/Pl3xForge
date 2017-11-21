@@ -3,15 +3,14 @@ package net.pl3x.forge.container;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.Logger;
-import net.pl3x.forge.data.CapabilityProvider;
-import net.pl3x.forge.data.PlayerData;
+import net.pl3x.forge.capability.PlayerDataProvider;
+import net.pl3x.forge.capability.PlayerData;
 import net.pl3x.forge.inventory.InventoryBanker;
 import net.pl3x.forge.inventory.SlotBanker;
 
@@ -27,7 +26,7 @@ public class ContainerBanker extends Container {
     public ContainerBanker(EntityPlayer player) {
         this.player = player;
 
-        playerData = player.getCapability(CapabilityProvider.CAPABILITY, null);
+        playerData = player.getCapability(PlayerDataProvider.CAPABILITY, null);
         IInventory bankSlots;
         if (playerData == null) {
             Logger.warn("No capability found. Creating new banker inventory");

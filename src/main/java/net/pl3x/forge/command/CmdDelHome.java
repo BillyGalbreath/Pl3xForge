@@ -8,7 +8,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.pl3x.forge.configuration.Lang;
-import net.pl3x.forge.data.PlayerData;
+import net.pl3x.forge.capability.PlayerData;
 
 import javax.annotation.Nullable;
 import java.util.Collections;

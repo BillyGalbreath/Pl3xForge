@@ -1,4 +1,4 @@
-package net.pl3x.forge.data;
+package net.pl3x.forge.capability;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.nbt.NBTTagCompound;

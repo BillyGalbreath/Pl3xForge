@@ -50,8 +50,8 @@ import net.pl3x.forge.advancement.ModAdvancements;
 import net.pl3x.forge.block.ModBlocks;
 import net.pl3x.forge.color.ChatColor;
 import net.pl3x.forge.configuration.Lang;
-import net.pl3x.forge.data.CapabilityProvider;
-import net.pl3x.forge.data.PlayerData;
+import net.pl3x.forge.capability.PlayerDataProvider;
+import net.pl3x.forge.capability.PlayerData;
 import net.pl3x.forge.gui.ModGuiHandler;
 import net.pl3x.forge.inventory.InventoryPlayer;
 import net.pl3x.forge.item.ItemMoney;
@@ -120,7 +120,7 @@ public class ServerEventHandler {
         entityItem.setDead();
         event.setCanceled(true);
 
-        PlayerData capability = player.getCapability(CapabilityProvider.CAPABILITY, null);
+        PlayerData capability = player.getCapability(PlayerDataProvider.CAPABILITY, null);
         capability.setCoins(capability.getCoins() + 1);
 
         ModAdvancements.PICKUP_COIN_TRIGGER.trigger(player, capability.getCoins());
@@ -142,7 +142,7 @@ public class ServerEventHandler {
             Lang.send(player, Lang.INSTANCE.data.BACK_ON_DEATH);
 
             // drop all coins
-            PlayerData capability = player.getCapability(CapabilityProvider.CAPABILITY, null);
+            PlayerData capability = player.getCapability(PlayerDataProvider.CAPABILITY, null);
             long balance = capability.getCoins();
             capability.setCoins(0);
             ItemStack coin = ModItems.COIN.getDefaultInstance();
@@ -169,7 +169,7 @@ public class ServerEventHandler {
     @SubscribeEvent
     public void on(PlayerSleepInBedEvent event) {
         EntityPlayer player = event.getEntityPlayer();
-        PlayerData playerData = player.getCapability(CapabilityProvider.CAPABILITY, null);
+        PlayerData playerData = player.getCapability(PlayerDataProvider.CAPABILITY, null);
         Location bed = playerData.getHome("bed");
         Location newLoc = new Location(player.world, event.getPos());
         if (newLoc.equals(bed)) {

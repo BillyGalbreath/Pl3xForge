@@ -8,8 +8,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import net.pl3x.forge.data.CapabilityProvider;
-import net.pl3x.forge.data.PlayerData;
+import net.pl3x.forge.capability.PlayerDataProvider;
+import net.pl3x.forge.capability.PlayerData;
 import net.pl3x.forge.tileentity.TileEntityShop;
 
 public class ShopPurchasePacket implements IMessage {
@@ -46,7 +46,7 @@ public class ShopPurchasePacket implements IMessage {
                     return;
                 }
                 if (shop.quantity > 0) {
-                    PlayerData capability = player.getCapability(CapabilityProvider.CAPABILITY, null);
+                    PlayerData capability = player.getCapability(PlayerDataProvider.CAPABILITY, null);
                     long balance = capability.getCoins();
                     if (shop.price > balance) {
                         return;

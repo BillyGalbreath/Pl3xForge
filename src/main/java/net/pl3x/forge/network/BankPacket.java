@@ -10,8 +10,8 @@ import net.pl3x.forge.Logger;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.advancement.ModAdvancements;
 import net.pl3x.forge.color.ChatColor;
-import net.pl3x.forge.data.CapabilityProvider;
-import net.pl3x.forge.data.PlayerData;
+import net.pl3x.forge.capability.PlayerDataProvider;
+import net.pl3x.forge.capability.PlayerData;
 import net.pl3x.forge.gui.ModGuiHandler;
 import net.pl3x.forge.util.ExperienceManager;
 
@@ -50,7 +50,7 @@ public class BankPacket implements IMessage {
         public IMessage onMessage(BankPacket packet, MessageContext context) {
             EntityPlayerMP player = context.getServerHandler().player;
             player.getServerWorld().addScheduledTask(() -> {
-                PlayerData capability = player.getCapability(CapabilityProvider.CAPABILITY, null);
+                PlayerData capability = player.getCapability(PlayerDataProvider.CAPABILITY, null);
                 if (capability == null) {
                     PacketHandler.INSTANCE.sendTo(new BankFailedPacket(), player);
                     Logger.error("No capability? (" + player.getName() + ")");

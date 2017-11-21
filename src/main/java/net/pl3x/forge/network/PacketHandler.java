@@ -5,8 +5,8 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.pl3x.forge.Pl3x;
-import net.pl3x.forge.data.CapabilityProvider;
-import net.pl3x.forge.data.PlayerData;
+import net.pl3x.forge.capability.PlayerDataProvider;
+import net.pl3x.forge.capability.PlayerData;
 
 public class PacketHandler {
     public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(Pl3x.modId);
@@ -37,7 +37,7 @@ public class PacketHandler {
     }
 
     public static void updatePlayerData(EntityPlayerMP player) {
-        PlayerData data = player.getCapability(CapabilityProvider.CAPABILITY, null);
+        PlayerData data = player.getCapability(PlayerDataProvider.CAPABILITY, null);
         INSTANCE.sendTo(new PlayerDataPacket(data), player);
     }
 }

@@ -7,8 +7,8 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import net.pl3x.forge.data.CapabilityProvider;
-import net.pl3x.forge.data.PlayerData;
+import net.pl3x.forge.capability.PlayerDataProvider;
+import net.pl3x.forge.capability.PlayerData;
 import net.pl3x.forge.gui.HUDBalance;
 
 public class PlayerDataPacket implements IMessage {
@@ -35,7 +35,7 @@ public class PlayerDataPacket implements IMessage {
         @Override
         public IMessage onMessage(PlayerDataPacket packet, MessageContext context) {
             Minecraft.getMinecraft().addScheduledTask(() -> {
-                PlayerData capability = Minecraft.getMinecraft().player.getCapability(CapabilityProvider.CAPABILITY, null);
+                PlayerData capability = Minecraft.getMinecraft().player.getCapability(PlayerDataProvider.CAPABILITY, null);
                 capability.setDataFromNBT(packet.nbt);
                 HUDBalance.balance = capability.getCoins();
             });

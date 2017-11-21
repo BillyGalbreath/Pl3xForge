@@ -1,0 +1,60 @@
+{
+  "display": {
+    "icon": {
+      "item": "pl3x:ruby_chestplate"
+    },
+    "title": "Jolly Green Giant",
+    "description": "Green armor is in season"
+  },
+  "parent": "pl3x:story/emerald_gear",
+  "criteria": {
+    "ruby_helmet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pl3x:ruby_helmet"
+          }
+        ]
+      }
+    },
+    "ruby_chestplate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pl3x:ruby_chestplate"
+          }
+        ]
+      }
+    },
+    "ruby_leggings": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pl3x:ruby_leggings"
+          }
+        ]
+      }
+    },
+    "ruby_boots": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pl3x:ruby_boots"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "ruby_helmet",
+      "ruby_chestplate",
+      "ruby_leggings",
+      "ruby_boots"
+    ]
+  ]
+}

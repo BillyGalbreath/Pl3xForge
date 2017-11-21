@@ -6,7 +6,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
 import net.pl3x.forge.configuration.Lang;
-import net.pl3x.forge.data.PlayerData;
+import net.pl3x.forge.capability.PlayerData;
 
 import java.util.ArrayList;
 

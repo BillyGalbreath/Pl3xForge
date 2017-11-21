@@ -1,4 +1,8 @@
 # Items
+item.bone_boots.name=Bone Boots
+item.bone_chestplate.name=Bone Chestplate
+item.bone_helmet.name=Bone Helmet
+item.bone_leggings.name=Bone Leggings
 item.ruby.name=Ruby
 item.ruby_sword.name=Ruby Sword
 item.ruby_pickaxe.name=Ruby Pickaxe
@@ -159,6 +163,7 @@ key.showClaims=Toggle Claim Visuals
 
 # Enchantments
 enchantment.lavaWalker=Lava Walker
+enchantment.funnyBones=Funny Bones
 
 # Creative Tabs
 itemGroup.Hats=Hats
