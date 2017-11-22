@@ -28,7 +28,7 @@ import net.pl3x.forge.block.ModBlocks;
 
 public class BlockCurbSlab extends BlockBase {
     private static final PropertyDirection FACING = BlockHorizontal.FACING;
-    private static final PropertyEnum<BlockCurbSlab.EnumShape> SHAPE = PropertyEnum.create("shape", BlockCurbSlab.EnumShape.class);
+    private static final PropertyEnum<EnumShape> SHAPE = PropertyEnum.create("shape", EnumShape.class);
     private static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D);
 
     private final EnumDyeColor color;
@@ -41,7 +41,7 @@ public class BlockCurbSlab extends BlockBase {
         setSoundType(SoundType.STONE);
         useNeighborBrightness = true;
 
-        setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.SOUTH).withProperty(SHAPE, BlockCurbSlab.EnumShape.STRAIGHT));
+        setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.SOUTH).withProperty(SHAPE, EnumShape.STRAIGHT));
 
         setCreativeTab(CreativeTabs.DECORATIONS);
 
@@ -49,24 +49,24 @@ public class BlockCurbSlab extends BlockBase {
     }
 
     @Override
-    public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+    public MapColor getMapColor(IBlockState state, IBlockAccess world, BlockPos pos) {
         return MapColor.getBlockColor(color);
     }
 
     @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
         return AABB;
     }
 
     @Override
-    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
         IBlockState state;
         try {
-            state = super.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
+            state = super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer);
         } catch (IllegalArgumentException var11) {
-            state = super.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, 0, placer);
+            state = super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, 0, placer);
         }
-        return state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(SHAPE, BlockCurbSlab.EnumShape.STRAIGHT);
+        return state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(SHAPE, EnumShape.STRAIGHT);
     }
 
     @Override
@@ -82,35 +82,35 @@ public class BlockCurbSlab extends BlockBase {
     }
 
     @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-        return state.withProperty(SHAPE, getCurbShape(state, worldIn, pos));
+    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
+        return state.withProperty(SHAPE, getCurbShape(state, world, pos));
     }
 
-    private static BlockCurbSlab.EnumShape getCurbShape(IBlockState state, IBlockAccess iBlockAccess, BlockPos pos) {
+    private static EnumShape getCurbShape(IBlockState state, IBlockAccess world, BlockPos pos) {
         EnumFacing facing = state.getValue(FACING);
-        IBlockState neighborState = iBlockAccess.getBlockState(pos.offset(facing));
+        IBlockState neighborState = world.getBlockState(pos.offset(facing));
         if (isBlockCurb(neighborState)) {
             EnumFacing neighborFacing = neighborState.getValue(FACING);
             if (neighborFacing.getAxis() != state.getValue(FACING).getAxis() &&
-                    isDifferentCurb(state, iBlockAccess, pos, neighborFacing.getOpposite())) {
+                    isDifferentCurb(state, world, pos, neighborFacing.getOpposite())) {
                 if (neighborFacing == facing.rotateYCCW()) {
-                    return BlockCurbSlab.EnumShape.CORNER_LEFT;
+                    return EnumShape.CORNER_LEFT;
                 }
-                return BlockCurbSlab.EnumShape.CORNER_RIGHT;
+                return EnumShape.CORNER_RIGHT;
             }
         }
-        IBlockState oppositeState = iBlockAccess.getBlockState(pos.offset(facing.getOpposite()));
+        IBlockState oppositeState = world.getBlockState(pos.offset(facing.getOpposite()));
         if (isBlockCurb(oppositeState)) {
             EnumFacing oppositeFacing = oppositeState.getValue(FACING);
             if (oppositeFacing.getAxis() != state.getValue(FACING).getAxis() &&
-                    isDifferentCurb(state, iBlockAccess, pos, oppositeFacing)) {
+                    isDifferentCurb(state, world, pos, oppositeFacing)) {
                 if (oppositeFacing == facing.rotateYCCW()) {
-                    return BlockCurbSlab.EnumShape.CORNER_LEFT;
+                    return EnumShape.CORNER_LEFT_INSIDE;
                 }
-                return BlockCurbSlab.EnumShape.CORNER_RIGHT;
+                return EnumShape.CORNER_RIGHT_INSIDE;
             }
         }
-        return BlockCurbSlab.EnumShape.STRAIGHT;
+        return EnumShape.STRAIGHT;
     }
 
     private static boolean isDifferentCurb(IBlockState state, IBlockAccess iBlockAccess, BlockPos pos, EnumFacing facing) {
@@ -145,22 +145,12 @@ public class BlockCurbSlab extends BlockBase {
     @Override
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer() {
-        return BlockRenderLayer.CUTOUT_MIPPED;
+        return BlockRenderLayer.CUTOUT_MIPPED; // needed for overlay transparencies
     }
 
     @Override
     public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
-        return false;
-    }
-
-    @Override
-    public boolean isBlockNormalCube(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    public boolean isNormalCube(IBlockState state) {
-        return false;
+        return false; // this is slab, never block rendering
     }
 
     @Override
@@ -169,17 +159,7 @@ public class BlockCurbSlab extends BlockBase {
     }
 
     @Override
-    public boolean isOpaqueCube(IBlockState state) {
-        return true;
-    }
-
-    @Override
     public boolean isFullBlock(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
         return false;
     }
 
@@ -188,15 +168,12 @@ public class BlockCurbSlab extends BlockBase {
         return false;
     }
 
-    @Override
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
-        //this.modelState.neighborChanged(worldIn, pos, Blocks.AIR, pos);
-    }
-
     public enum EnumShape implements IStringSerializable {
         STRAIGHT("straight"),
         CORNER_LEFT("corner_left"),
-        CORNER_RIGHT("corner_right");
+        CORNER_RIGHT("corner_right"),
+        CORNER_LEFT_INSIDE("corner_left_inside"),
+        CORNER_RIGHT_INSIDE("corner_right_inside");
 
         private final String name;
 

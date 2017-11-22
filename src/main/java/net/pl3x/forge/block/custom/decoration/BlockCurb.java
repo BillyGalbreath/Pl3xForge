@@ -1,4 +1,4 @@
-package net.pl3x.forge.block.custom.curb;
+package net.pl3x.forge.block.custom.decoration;
 
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.MapColor;
@@ -27,7 +27,7 @@ import net.pl3x.forge.block.ModBlocks;
 
 public class BlockCurb extends BlockBase {
     private static final PropertyDirection FACING = BlockHorizontal.FACING;
-    private static final PropertyEnum<BlockCurb.EnumShape> SHAPE = PropertyEnum.create("shape", BlockCurb.EnumShape.class);
+    private static final PropertyEnum<EnumShape> SHAPE = PropertyEnum.create("shape", EnumShape.class);
     private static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
 
     private final EnumDyeColor color;
@@ -36,7 +36,7 @@ public class BlockCurb extends BlockBase {
         super(Material.ROCK, "curb_" + color.getName());
         this.color = color;
 
-        setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.SOUTH).withProperty(SHAPE, BlockCurb.EnumShape.STRAIGHT));
+        setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.SOUTH).withProperty(SHAPE, EnumShape.STRAIGHT));
         setHardness(2);
 
         setCreativeTab(CreativeTabs.DECORATIONS);
@@ -45,24 +45,24 @@ public class BlockCurb extends BlockBase {
     }
 
     @Override
-    public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+    public MapColor getMapColor(IBlockState state, IBlockAccess world, BlockPos pos) {
         return MapColor.getBlockColor(color);
     }
 
     @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
         return AABB;
     }
 
     @Override
-    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
         IBlockState state;
         try {
-            state = super.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
+            state = super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer);
         } catch (IllegalArgumentException var11) {
-            state = super.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, 0, placer);
+            state = super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, 0, placer);
         }
-        return state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(SHAPE, BlockCurb.EnumShape.STRAIGHT);
+        return state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(SHAPE, EnumShape.STRAIGHT);
     }
 
     @Override
@@ -78,39 +78,40 @@ public class BlockCurb extends BlockBase {
     }
 
     @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-        return state.withProperty(SHAPE, getCurbShape(state, worldIn, pos));
+    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
+        return state.withProperty(SHAPE, getCurbShape(state, world, pos));
     }
 
-    private static BlockCurb.EnumShape getCurbShape(IBlockState state, IBlockAccess iBlockAccess, BlockPos pos) {
+    private static EnumShape getCurbShape(IBlockState state, IBlockAccess world, BlockPos pos) {
         EnumFacing facing = state.getValue(FACING);
-        IBlockState neighborState = iBlockAccess.getBlockState(pos.offset(facing));
+        IBlockState neighborState = world.getBlockState(pos.offset(facing));
         if (isBlockCurb(neighborState)) {
             EnumFacing neighborFacing = neighborState.getValue(FACING);
             if (neighborFacing.getAxis() != state.getValue(FACING).getAxis() &&
-                    isDifferentCurb(state, iBlockAccess, pos, neighborFacing.getOpposite())) {
+                    isDifferentCurb(state, world, pos, neighborFacing.getOpposite())) {
                 if (neighborFacing == facing.rotateYCCW()) {
-                    return BlockCurb.EnumShape.CORNER_LEFT;
+                    return EnumShape.CORNER_LEFT;
                 }
-                return BlockCurb.EnumShape.CORNER_RIGHT;
+                return EnumShape.CORNER_RIGHT;
             }
         }
-        IBlockState oppositeState = iBlockAccess.getBlockState(pos.offset(facing.getOpposite()));
+
+        IBlockState oppositeState = world.getBlockState(pos.offset(facing.getOpposite()));
         if (isBlockCurb(oppositeState)) {
             EnumFacing oppositeFacing = oppositeState.getValue(FACING);
             if (oppositeFacing.getAxis() != state.getValue(FACING).getAxis() &&
-                    isDifferentCurb(state, iBlockAccess, pos, oppositeFacing)) {
+                    isDifferentCurb(state, world, pos, oppositeFacing)) {
                 if (oppositeFacing == facing.rotateYCCW()) {
-                    return BlockCurb.EnumShape.CORNER_LEFT;
+                    return EnumShape.CORNER_LEFT_INSIDE;
                 }
-                return BlockCurb.EnumShape.CORNER_RIGHT;
+                return EnumShape.CORNER_RIGHT_INSIDE;
             }
         }
-        return BlockCurb.EnumShape.STRAIGHT;
+        return EnumShape.STRAIGHT;
     }
 
-    private static boolean isDifferentCurb(IBlockState state, IBlockAccess iBlockAccess, BlockPos pos, EnumFacing facing) {
-        IBlockState iblockstate = iBlockAccess.getBlockState(pos.offset(facing));
+    private static boolean isDifferentCurb(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing facing) {
+        IBlockState iblockstate = world.getBlockState(pos.offset(facing));
         return !isBlockCurb(iblockstate) || iblockstate.getValue(FACING) != state.getValue(FACING);
     }
 
@@ -134,31 +135,23 @@ public class BlockCurb extends BlockBase {
     }
 
     @Override
-    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
+    public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing face) {
         return BlockFaceShape.SOLID;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer() {
-        return BlockRenderLayer.CUTOUT_MIPPED;
+        return BlockRenderLayer.CUTOUT_MIPPED; // needed for overlay transparencies
     }
 
     @Override
     public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
         state = this.getActualState(state, world, pos);
-        BlockCurb.EnumShape shape = state.getValue(SHAPE);
-        return shape != EnumShape.CORNER_LEFT && shape != EnumShape.CORNER_RIGHT && face == state.getValue(FACING);
-    }
-
-    @Override
-    public boolean isBlockNormalCube(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    public boolean isNormalCube(IBlockState state) {
-        return false;
+        EnumShape shape = state.getValue(SHAPE);
+        return shape != EnumShape.CORNER_LEFT && shape != EnumShape.CORNER_RIGHT &&
+                shape != EnumShape.CORNER_LEFT_INSIDE && shape != EnumShape.CORNER_RIGHT_INSIDE &&
+                face == state.getValue(FACING);
     }
 
     @Override
@@ -167,17 +160,7 @@ public class BlockCurb extends BlockBase {
     }
 
     @Override
-    public boolean isOpaqueCube(IBlockState state) {
-        return true;
-    }
-
-    @Override
     public boolean isFullBlock(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
         return false;
     }
 
@@ -186,15 +169,12 @@ public class BlockCurb extends BlockBase {
         return false;
     }
 
-    @Override
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
-        //this.modelState.neighborChanged(worldIn, pos, Blocks.AIR, pos);
-    }
-
     public enum EnumShape implements IStringSerializable {
         STRAIGHT("straight"),
         CORNER_LEFT("corner_left"),
-        CORNER_RIGHT("corner_right");
+        CORNER_RIGHT("corner_right"),
+        CORNER_LEFT_INSIDE("corner_left_inside"),
+        CORNER_RIGHT_INSIDE("corner_right_inside");
 
         private final String name;
 
