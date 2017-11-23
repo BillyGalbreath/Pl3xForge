@@ -44,7 +44,9 @@ public class CapeManager {
                             capedata.setName("Cape Download: " + url);
                             capedata.start();
                         } else if (info != null && !info.playerTextures.containsKey(MinecraftProfileTexture.Type.CAPE)) {
-                            info.playerTextures.put(MinecraftProfileTexture.Type.CAPE, capedata.capeLocation);
+                            if (capedata != null && capedata.getCapeLocation() != null) {
+                                info.playerTextures.put(MinecraftProfileTexture.Type.CAPE, capedata.getCapeLocation());
+                            }
                         }
                     } else if (info != null) {
                         info.playerTextures.remove(MinecraftProfileTexture.Type.CAPE);
