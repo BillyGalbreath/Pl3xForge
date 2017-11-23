@@ -5,8 +5,8 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.pl3x.forge.Pl3x;
-import net.pl3x.forge.capability.PlayerDataProvider;
 import net.pl3x.forge.capability.PlayerData;
+import net.pl3x.forge.capability.PlayerDataProvider;
 
 public class PacketHandler {
     public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(Pl3x.modId);
@@ -34,6 +34,9 @@ public class PacketHandler {
         INSTANCE.registerMessage(StoveRequestUpdatePacket.Handler.class, StoveRequestUpdatePacket.class, ++id, Side.SERVER);
         INSTANCE.registerMessage(TrafficLightControlBoxUpdatePacket.Handler.class, TrafficLightControlBoxUpdatePacket.class, ++id, Side.CLIENT);
         INSTANCE.registerMessage(TVUpdateChannelPacket.Handler.class, TVUpdateChannelPacket.class, ++id, Side.CLIENT);
+        INSTANCE.registerMessage(RequestCapePacket.Handler.class, RequestCapePacket.class, ++id, Side.CLIENT);
+        INSTANCE.registerMessage(ReplyCapePacket.Handler.class, ReplyCapePacket.class, ++id, Side.SERVER);
+        INSTANCE.registerMessage(SendCapePacket.Handler.class, SendCapePacket.class, ++id, Side.CLIENT);
     }
 
     public static void updatePlayerData(EntityPlayerMP player) {

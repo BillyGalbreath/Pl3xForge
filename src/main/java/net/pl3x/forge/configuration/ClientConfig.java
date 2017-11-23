@@ -1,5 +1,6 @@
 package net.pl3x.forge.configuration;
 
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Config.Comment;
 import net.minecraftforge.common.config.Config.Name;
@@ -9,6 +10,9 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.pl3x.forge.Pl3x;
+import net.pl3x.forge.Pl3xSettings;
+import net.pl3x.forge.network.PacketHandler;
+import net.pl3x.forge.network.ReplyCapePacket;
 import net.pl3x.forge.util.gl.HUDPosition;
 
 @Config(modid = Pl3x.modId)
@@ -17,6 +21,14 @@ public class ClientConfig {
     @Name("Balance HUD")
     @Comment("Control the Balance HUD element")
     public static BalanceHUDConfig balanceHud = new BalanceHUDConfig();
+
+    @Name("Cape Manager")
+    @Comment("Control player capes")
+    public static CapeOptions capeOptions = new CapeOptions();
+
+    @Name("Chat Options")
+    @Comment("Control chat GUI")
+    public static ChatOptions chatOptions = new ChatOptions();
 
     @Name("Claim Visuals")
     @Comment("Control the visuals for claims")
@@ -46,6 +58,19 @@ public class ClientConfig {
         @Name("Relative Y")
         @Comment("Y position relative to anchor")
         public int relativeY = 0;
+    }
+
+    public static class CapeOptions {
+        @Name("Cape URL")
+        @Comment("URL to cape texture")
+        public String capeURL = "";
+    }
+
+    public static class ChatOptions {
+        @Name("1) Background Color")
+        @Comment("Chat GUI background color (0-255 RGBA)")
+        @RangeInt(min = 0, max = 255)
+        public int[] background = new int[]{0x00, 0x33, 0x66, 0x80};
     }
 
     public static class ClaimVisuals {
@@ -102,9 +127,15 @@ public class ClientConfig {
     @Mod.EventBusSubscriber(modid = Pl3x.modId)
     private static class EventHandler {
         @SubscribeEvent
-        public static void onConfigChanged(final ConfigChangedEvent.OnConfigChangedEvent event) {
+        public static void on(final ConfigChangedEvent.OnConfigChangedEvent event) {
             if (event.getModID().equals(Pl3x.modId)) {
                 ConfigManager.sync(Pl3x.modId, Config.Type.INSTANCE);
+                PacketHandler.INSTANCE.sendToServer(new ReplyCapePacket(
+                        Minecraft.getMinecraft().getSession().getUsername(), ClientConfig.capeOptions.capeURL));
+                Pl3xSettings.INSTANCE.chatBGRed = chatOptions.background[0];
+                Pl3xSettings.INSTANCE.chatBGGreen = chatOptions.background[1];
+                Pl3xSettings.INSTANCE.chatBGBlue = chatOptions.background[2];
+                Pl3xSettings.INSTANCE.chatBGAlpha = chatOptions.background[3];
             }
         }
     }

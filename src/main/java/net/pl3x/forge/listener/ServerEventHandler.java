@@ -48,15 +48,16 @@ import net.pl3x.forge.Logger;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.advancement.ModAdvancements;
 import net.pl3x.forge.block.ModBlocks;
+import net.pl3x.forge.capability.PlayerData;
+import net.pl3x.forge.capability.PlayerDataProvider;
 import net.pl3x.forge.color.ChatColor;
 import net.pl3x.forge.configuration.Lang;
-import net.pl3x.forge.capability.PlayerDataProvider;
-import net.pl3x.forge.capability.PlayerData;
 import net.pl3x.forge.gui.ModGuiHandler;
 import net.pl3x.forge.inventory.InventoryPlayer;
 import net.pl3x.forge.item.ItemMoney;
 import net.pl3x.forge.item.ModItems;
 import net.pl3x.forge.motd.MOTDCache;
+import net.pl3x.forge.network.RequestCapePacket;
 import net.pl3x.forge.network.PacketHandler;
 import net.pl3x.forge.scheduler.Pl3xRunnable;
 import net.pl3x.forge.scheduler.Pl3xScheduler;
@@ -75,6 +76,7 @@ public class ServerEventHandler {
         if (event.player instanceof EntityPlayerMP) {
             PacketHandler.updatePlayerData((EntityPlayerMP) event.player);
         }
+        PacketHandler.INSTANCE.sendToAll(new RequestCapePacket());
     }
 
     @SubscribeEvent

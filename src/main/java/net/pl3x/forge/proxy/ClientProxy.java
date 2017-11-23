@@ -1,8 +1,13 @@
 package net.pl3x.forge.proxy;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.entity.RenderPlayer;
+import net.minecraft.client.renderer.entity.layers.LayerCape;
+import net.minecraft.client.renderer.entity.layers.LayerElytra;
+import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
@@ -17,7 +22,11 @@ import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.Pl3x;
+import net.pl3x.forge.Pl3xSettings;
+import net.pl3x.forge.cape.LayerPl3xCape;
+import net.pl3x.forge.cape.LayerPl3xElytra;
 import net.pl3x.forge.color.ModColorManager;
+import net.pl3x.forge.configuration.ClientConfig;
 import net.pl3x.forge.entity.ModEntities;
 import net.pl3x.forge.exception.FuckOptifine;
 import net.pl3x.forge.gui.TitleScreen;
@@ -40,6 +49,8 @@ import net.pl3x.forge.tileentity.renderer.TileEntityPlateRenderer;
 import net.pl3x.forge.tileentity.renderer.TileEntityShopRenderer;
 import net.pl3x.forge.tileentity.renderer.TileEntityTVRenderer;
 import net.pl3x.forge.tileentity.renderer.TileEntityTrafficLightRenderer;
+
+import java.util.Iterator;
 
 @SideOnly(Side.CLIENT)
 public class ClientProxy extends ServerProxy {
@@ -78,10 +89,17 @@ public class ClientProxy extends ServerProxy {
         ModColorManager.registerColorHandlers();
 
         KeyBindings.init();
+
+        overrideVanillaLayers();
     }
 
     public void postInit(FMLPostInitializationEvent event) {
         super.postInit(event);
+
+        Pl3xSettings.INSTANCE.chatBGRed = ClientConfig.chatOptions.background[0];
+        Pl3xSettings.INSTANCE.chatBGGreen = ClientConfig.chatOptions.background[1];
+        Pl3xSettings.INSTANCE.chatBGBlue = ClientConfig.chatOptions.background[2];
+        Pl3xSettings.INSTANCE.chatBGAlpha = ClientConfig.chatOptions.background[3];
     }
 
     public void serverStarting(FMLServerStartingEvent event) {
@@ -102,5 +120,18 @@ public class ClientProxy extends ServerProxy {
         Minecraft.getMinecraft().addScheduledTask(() ->
                 Minecraft.getMinecraft().displayGuiScreen(
                         new GuiInventory(Minecraft.getMinecraft().player)));
+    }
+
+    public void overrideVanillaLayers() {
+        for (RenderPlayer renderer : Minecraft.getMinecraft().getRenderManager().getSkinMap().values()) {
+            for (Iterator<LayerRenderer<AbstractClientPlayer>> iter = renderer.layerRenderers.listIterator(); iter.hasNext(); ) {
+                Class<? extends LayerRenderer> c = iter.next().getClass();
+                if (c.equals(LayerCape.class) || c.equals(LayerElytra.class)) {
+                    iter.remove();
+                }
+            }
+            renderer.addLayer(new LayerPl3xCape(renderer));
+            renderer.addLayer(new LayerPl3xElytra(renderer));
+        }
     }
 }

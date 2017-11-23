@@ -1,6 +1,7 @@
 package net.pl3x.forge.proxy;
 
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -69,6 +70,7 @@ import net.pl3x.forge.network.OpenInventoryPacket;
 import net.pl3x.forge.network.PacketHandler;
 import net.pl3x.forge.prometheus.PrometheusController;
 import net.pl3x.forge.recipe.ModRecipes;
+import net.pl3x.forge.cape.CapeManager;
 import net.pl3x.forge.util.task.TPSTracker;
 import net.pl3x.forge.world.ModWorldGen;
 
@@ -90,6 +92,8 @@ public class ServerProxy {
         ConfigWatcher.INSTANCE.start();
 
         ModAdvancements.registerTriggers();
+
+        CapeManager.CAPE_DIR = new ResourceLocation(event.getModConfigurationDirectory() + "/" + "capes" + "/");
     }
 
     public void init(FMLInitializationEvent event) {

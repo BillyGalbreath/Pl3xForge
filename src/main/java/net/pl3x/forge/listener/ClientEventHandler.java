@@ -17,6 +17,7 @@ import net.pl3x.forge.color.ChatColor;
 import net.pl3x.forge.gui.HUDBalance;
 import net.pl3x.forge.icons.IconManager;
 import net.pl3x.forge.tileentity.renderer.TileEntityMirrorRenderer;
+import net.pl3x.forge.cape.CapeManager;
 
 public class ClientEventHandler {
     private final HUDBalance hudBalance = new HUDBalance();
@@ -115,5 +116,6 @@ public class ClientEventHandler {
         }
 
         BlockTV.EnumChannel.tick();
+        CapeManager.tick();
     }
 }
