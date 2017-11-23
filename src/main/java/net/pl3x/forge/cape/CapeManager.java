@@ -30,8 +30,8 @@ public class CapeManager {
             if (MC.world != null) {
                 for (int i = 0; i < MC.world.playerEntities.size(); i++) {
                     AbstractClientPlayer player = (AbstractClientPlayer) MC.world.playerEntities.get(i);
-
                     NetworkPlayerInfo info = player.getPlayerInfo();
+
                     String username = player.getDisplayNameString();
                     Object[] data = capeList.get(username);
                     if (data != null && data.length > 0) {
@@ -43,7 +43,8 @@ public class CapeManager {
                             capedata.setDaemon(true);
                             capedata.setName("Cape Download: " + url);
                             capedata.start();
-                        } else if (info != null && !info.playerTextures.containsKey(MinecraftProfileTexture.Type.CAPE)) {
+                        }
+                        if (info != null && !info.playerTextures.containsKey(MinecraftProfileTexture.Type.CAPE)) {
                             if (capedata != null && capedata.getCapeLocation() != null) {
                                 info.playerTextures.put(MinecraftProfileTexture.Type.CAPE, capedata.getCapeLocation());
                             }
