@@ -21,7 +21,7 @@ public class CapeManager {
     private static HashMap<String, Object[]> capeList = new HashMap<>();
 
     public static void addCape(String username, String url) {
-        //capeList.put(username, new Object[]{url, null});
+        capeList.put(username, new Object[]{url, null});
     }
 
     public static void addCape(String username, ItemStack stack) {
