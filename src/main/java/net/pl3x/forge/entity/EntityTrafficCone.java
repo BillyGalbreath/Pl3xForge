@@ -22,6 +22,7 @@ public class EntityTrafficCone extends EntityLiving {
     }
 
     protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.MAX_HEALTH);
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.MOVEMENT_SPEED);
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(16.0D);
