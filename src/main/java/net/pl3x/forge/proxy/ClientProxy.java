@@ -96,10 +96,10 @@ public class ClientProxy extends ServerProxy {
     public void postInit(FMLPostInitializationEvent event) {
         super.postInit(event);
 
-        Pl3xSettings.INSTANCE.chatBGRed = ClientConfig.chatOptions.background[0];
-        Pl3xSettings.INSTANCE.chatBGGreen = ClientConfig.chatOptions.background[1];
-        Pl3xSettings.INSTANCE.chatBGBlue = ClientConfig.chatOptions.background[2];
-        Pl3xSettings.INSTANCE.chatBGAlpha = ClientConfig.chatOptions.background[3];
+        Pl3xSettings.INSTANCE.chatBGRed = ClientConfig.chatOptions.background.red;
+        Pl3xSettings.INSTANCE.chatBGGreen = ClientConfig.chatOptions.background.green;
+        Pl3xSettings.INSTANCE.chatBGBlue = ClientConfig.chatOptions.background.blue;
+        Pl3xSettings.INSTANCE.chatBGAlpha = ClientConfig.chatOptions.background.alpha;
     }
 
     public void serverStarting(FMLServerStartingEvent event) {

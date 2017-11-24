@@ -67,10 +67,9 @@ public class ClientConfig {
     }
 
     public static class ChatOptions {
-        @Name("1) Background Color")
-        @Comment("Chat GUI background color (0-255 RGBA)")
-        @RangeInt(min = 0, max = 255)
-        public int[] background = new int[]{0x00, 0x33, 0x66, 0x80};
+        @Name("Background Color")
+        @Comment("Chat GUI background color")
+        public Color background = new Color();
     }
 
     public static class ClaimVisuals {
@@ -124,6 +123,28 @@ public class ClientConfig {
         public boolean useTESR = true;
     }
 
+    public static class Color {
+        @Name("1) Red")
+        @Comment("Red Color Value (0-255)")
+        @RangeInt(min = 0, max = 255)
+        public int red = 0x00;
+
+        @Name("2) Green")
+        @Comment("Green Color Value (0-255)")
+        @RangeInt(min = 0, max = 255)
+        public int green = 0x33;
+
+        @Name("3) Blue")
+        @Comment("Blue Color Value (0-255)")
+        @RangeInt(min = 0, max = 255)
+        public int blue = 0x66;
+
+        @Name("4) Alpha")
+        @Comment("Alpha Color Value (0-255)")
+        @RangeInt(min = 0, max = 255)
+        public int alpha = 0x80;
+    }
+
     @Mod.EventBusSubscriber(modid = Pl3x.modId)
     private static class EventHandler {
         @SubscribeEvent
@@ -132,10 +153,10 @@ public class ClientConfig {
                 ConfigManager.sync(Pl3x.modId, Config.Type.INSTANCE);
                 PacketHandler.INSTANCE.sendToServer(new ReplyCapePacket(
                         Minecraft.getMinecraft().getSession().getUsername(), ClientConfig.capeOptions.capeURL));
-                Pl3xSettings.INSTANCE.chatBGRed = chatOptions.background[0];
-                Pl3xSettings.INSTANCE.chatBGGreen = chatOptions.background[1];
-                Pl3xSettings.INSTANCE.chatBGBlue = chatOptions.background[2];
-                Pl3xSettings.INSTANCE.chatBGAlpha = chatOptions.background[3];
+                Pl3xSettings.INSTANCE.chatBGRed = ClientConfig.chatOptions.background.red;
+                Pl3xSettings.INSTANCE.chatBGGreen = ClientConfig.chatOptions.background.green;
+                Pl3xSettings.INSTANCE.chatBGBlue = ClientConfig.chatOptions.background.blue;
+                Pl3xSettings.INSTANCE.chatBGAlpha = ClientConfig.chatOptions.background.alpha;
             }
         }
     }
