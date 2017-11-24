@@ -4,9 +4,13 @@ import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.network.NetworkPlayerInfo;
+import net.minecraft.client.renderer.BannerTextures;
 import net.minecraft.client.renderer.ThreadDownloadImageData;
 import net.minecraft.client.renderer.texture.ITextureObject;
 import net.minecraft.client.renderer.texture.TextureManager;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntityBanner;
 import net.minecraft.util.ResourceLocation;
 
 import java.io.File;
@@ -18,6 +22,14 @@ public class CapeManager {
 
     public static void addCape(String username, String url) {
         //capeList.put(username, new Object[]{url, null});
+    }
+
+    public static void addCape(String username, ItemStack stack) {
+        if (stack.getItem() == Items.BANNER) {
+            capeList.put(username, new Object[]{"banner", new CapeBannerData(username, stack)});
+        } else {
+            capeList.remove(username);
+        }
     }
 
     public static Object[] getCape(String username) {
@@ -59,8 +71,38 @@ public class CapeManager {
         }
     }
 
+    public static class CapeBannerData extends CapeData {
+        private ItemStack stack;
+
+        public CapeBannerData(String username, ItemStack banner) {
+            super(username, "");
+            this.stack = banner;
+            capeLocation = null;
+        }
+
+        public void run() {
+        }
+
+        public ResourceLocation getCapeLocation() {
+            if (capeLocation == null) {
+                TileEntityBanner te = new TileEntityBanner();
+                te.setItemValues(stack, true);
+                capeLocation = BannerTextures.CAPE_DESIGNS.getResourceLocation(te.getPatternResourceLocation(), te.getPatternList(), te.getColorList());
+            }
+            return capeLocation;
+        }
+
+        public ThreadDownloadImageData getCapeImage() {
+            return null;
+        }
+
+        public String getUrl() {
+            return null;
+        }
+    }
+
     public static class CapeData extends Thread {
-        private ResourceLocation capeLocation;
+        ResourceLocation capeLocation;
         private ThreadDownloadImageData capeImage;
         private String username;
         private String url;
@@ -72,13 +114,13 @@ public class CapeManager {
 
         public void run() {
             try {
-                DownloadCape();
+                downloadCape();
             } catch (Throwable e) {
                 e.printStackTrace();
             }
         }
 
-        private void DownloadCape() {
+        private void downloadCape() {
             capeLocation = new ResourceLocation(CAPE_DIR + username);
             capeImage = CapeDownloader.DownloadImageThread(url, capeLocation);
         }

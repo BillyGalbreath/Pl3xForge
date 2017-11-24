@@ -52,13 +52,14 @@ import net.pl3x.forge.capability.PlayerData;
 import net.pl3x.forge.capability.PlayerDataProvider;
 import net.pl3x.forge.color.ChatColor;
 import net.pl3x.forge.configuration.Lang;
+import net.pl3x.forge.event.BannerSlotChangedEvent;
 import net.pl3x.forge.gui.ModGuiHandler;
 import net.pl3x.forge.inventory.InventoryPlayer;
 import net.pl3x.forge.item.ItemMoney;
 import net.pl3x.forge.item.ModItems;
 import net.pl3x.forge.motd.MOTDCache;
-import net.pl3x.forge.network.RequestCapePacket;
 import net.pl3x.forge.network.PacketHandler;
+import net.pl3x.forge.network.RequestCapePacket;
 import net.pl3x.forge.scheduler.Pl3xRunnable;
 import net.pl3x.forge.scheduler.Pl3xScheduler;
 import net.pl3x.forge.util.Location;
@@ -70,6 +71,11 @@ import java.util.Iterator;
 
 public class ServerEventHandler {
     private short tick = 0;
+
+    @SubscribeEvent
+    public void on(BannerSlotChangedEvent event) {
+        PacketHandler.INSTANCE.sendToAll(new RequestCapePacket());
+    }
 
     @SubscribeEvent
     public void on(PlayerEvent.PlayerLoggedInEvent event) {
