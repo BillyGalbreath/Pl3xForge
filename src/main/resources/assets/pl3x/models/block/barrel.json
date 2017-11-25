@@ -3,7 +3,7 @@
     "0": "pl3x:blocks/barrel_side_piece",
     "1": "pl3x:blocks/barrel_side_alt",
     "2": "pl3x:blocks/barrel_side",
-    "particle": "pl3x:blocks/barrel_side_piece"
+    "particle": "pl3x:blocks/barrel_side"
   },
   "elements": [
     {
