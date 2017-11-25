@@ -114,6 +114,7 @@ tile.curb_slab_silver.name=Light Gray Curb Slab
 tile.curb_slab_white.name=White Curb Slab
 tile.curb_slab_yellow.name=Yellow Curb Slab
 
+tile.barrel.name=Barrel
 tile.bathroom_cabinet.name=Bathroom Cabinet
 tile.bedside_table.name=Bedside Table
 tile.block_ruby.name=Block of Ruby
@@ -144,6 +145,7 @@ tile.stairs_spiral.name=Spiral Stairs
 tile.stove.name=Stove
 tile.table.name=Table
 tile.tilled_end_stone.name=Tilled End Stone
+tile.toilet.name=Toilet
 tile.traffic_light.name=Traffic Light
 tile.traffic_light_control_box.name=Traffic Light Control Box
 tile.tv.name=TV
