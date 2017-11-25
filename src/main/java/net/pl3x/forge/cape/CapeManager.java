@@ -86,8 +86,9 @@ public class CapeManager {
         public ResourceLocation getCapeLocation() {
             if (capeLocation == null) {
                 TileEntityBanner te = new TileEntityBanner();
-                te.setItemValues(stack, true);
-                capeLocation = BannerTextures.CAPE_DESIGNS.getResourceLocation(te.getPatternResourceLocation(), te.getPatternList(), te.getColorList());
+                te.setItemValues(stack, false);
+                capeLocation = BannerTextures.CAPE_DESIGNS.getResourceLocation(
+                        te.getPatternResourceLocation(), te.getPatternList(), te.getColorList());
             }
             return capeLocation;
         }
