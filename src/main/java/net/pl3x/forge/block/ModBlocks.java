@@ -9,6 +9,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.block.custom.crops.BlockCropCorn;
 import net.pl3x.forge.block.custom.crops.BlockCropEnderPearl;
+import net.pl3x.forge.block.custom.decoration.BlockBarrel;
 import net.pl3x.forge.block.custom.decoration.BlockBathroomCabinet;
 import net.pl3x.forge.block.custom.decoration.BlockCampfire;
 import net.pl3x.forge.block.custom.decoration.BlockChristmasTree;
@@ -30,6 +31,7 @@ import net.pl3x.forge.block.custom.decoration.BlockStairsSpiral;
 import net.pl3x.forge.block.custom.decoration.BlockStove;
 import net.pl3x.forge.block.custom.decoration.BlockTV;
 import net.pl3x.forge.block.custom.decoration.BlockTable;
+import net.pl3x.forge.block.custom.decoration.BlockToilet;
 import net.pl3x.forge.block.custom.decoration.BlockTrafficLight;
 import net.pl3x.forge.block.custom.decoration.BlockTrafficLightControlBox;
 import net.pl3x.forge.block.custom.farmland.BlockTilledEndStone;
@@ -55,6 +57,7 @@ import java.util.Set;
 public class ModBlocks {
     public static final Set<Block> blocks = new HashSet<>();
 
+    public static final BlockBarrel BARREL = new BlockBarrel();
     public static final BlockBathroomCabinet BATHROOM_CABINET = new BlockBathroomCabinet();
     public static final BlockBedsideTable BEDSIDE_TABLE = new BlockBedsideTable();
     public static final BlockCampfire CAMPFIRE = new BlockCampfire();
@@ -153,6 +156,7 @@ public class ModBlocks {
     public static final BlockStove STOVE = new BlockStove();
     public static final BlockTable TABLE = new BlockTable();
     public static final BlockTilledEndStone TILLED_END_STONE = new BlockTilledEndStone();
+    public static final BlockToilet TOILET = new BlockToilet();
     public static final BlockTrafficLight TRAFFIC_LIGHT = new BlockTrafficLight();
     public static final BlockTrafficLightControlBox TRAFFIC_LIGHT_CONTROL_BOX = new BlockTrafficLightControlBox();
     public static final BlockTV TV = new BlockTV();

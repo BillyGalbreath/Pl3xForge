@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "QB ",
+    "QWQ",
+    " Q "
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:stone_button"
+    },
+    "Q": {
+      "item": "minecraft:quartz_block",
+      "data": 0
+    },
+    "W": {
+      "item": "minecraft:water_bucket"
+    }
+  },
+  "result": {
+    "item": "pl3x:toilet"
+  }
+}
