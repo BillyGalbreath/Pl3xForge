@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW",
+    "LWL",
+    "SWS"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:planks",
+      "data": 32767
+    },
+    "L": [
+      {
+        "item": "minecraft:log",
+        "data": 32767
+      },
+      {
+        "item": "minecraft:log2",
+        "data": 32767
+      }
+    ],
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "pl3x:chair_lawn"
+  }
+}

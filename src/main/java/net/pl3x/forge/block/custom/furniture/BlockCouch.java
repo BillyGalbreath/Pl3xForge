@@ -6,7 +6,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
@@ -16,52 +15,24 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.pl3x.forge.block.ModBlocks;
 
-import javax.annotation.Nullable;
-import java.util.List;
-
 public class BlockCouch extends BlockSeat {
     private static final PropertyEnum<EnumShape> SHAPE = PropertyEnum.create("shape", EnumShape.class);
-    private static final AxisAlignedBB AABB = new AxisAlignedBB(0.0625D, 0D, 0.0625D, 0.9375D, 1D, 0.9375D);
-    private static final AxisAlignedBB AABB_NORTH = new AxisAlignedBB(0.0625D, 0D, 0.0625D, 0.9375D, 1D, 0.315D);
-    private static final AxisAlignedBB AABB_SOUTH = new AxisAlignedBB(0.0625D, 0D, 0.685D, 0.9375D, 1D, 0.9375D);
-    private static final AxisAlignedBB AABB_WEST = new AxisAlignedBB(0.0625D, 0D, 0.0625D, 0.315D, 1D, 0.9375D);
-    private static final AxisAlignedBB AABB_EAST = new AxisAlignedBB(0.685D, 0D, 0.0625D, 0.9375D, 1D, 0.9375D);
-    private static final AxisAlignedBB AABB_BASE = new AxisAlignedBB(0.0625D, 0D, 0.0625D, 0.9375D, 0.4375D, 0.9375D);
 
     public BlockCouch() {
         super(Material.WOOD, "couch");
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.SOUTH).withProperty(SHAPE, EnumShape.SINGLE));
         setSoundType(SoundType.CLOTH);
 
+        AABB = new AxisAlignedBB(0.0625D, 0D, 0.0625D, 0.9375D, 1D, 0.9375D);
+        AABB_NORTH = new AxisAlignedBB(0.0625D, 0D, 0.0625D, 0.9375D, 1D, 0.315D);
+        AABB_SOUTH = new AxisAlignedBB(0.0625D, 0D, 0.685D, 0.9375D, 1D, 0.9375D);
+        AABB_WEST = new AxisAlignedBB(0.0625D, 0D, 0.0625D, 0.315D, 1D, 0.9375D);
+        AABB_EAST = new AxisAlignedBB(0.685D, 0D, 0.0625D, 0.9375D, 1D, 0.9375D);
+        AABB_BASE = new AxisAlignedBB(0.0625D, 0D, 0.0625D, 0.9375D, 0.4375D, 0.9375D);
+
+        yOffset = -0.25;
+
         ModBlocks.blocks.add(this);
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState) {
-        if (!isActualState) {
-            state = getActualState(state, worldIn, pos);
-        }
-        switch (state.getValue(FACING)) {
-            case NORTH:
-                addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_NORTH);
-                break;
-            case SOUTH:
-                addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_SOUTH);
-                break;
-            case WEST:
-                addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_WEST);
-                break;
-            case EAST:
-            default:
-                addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_EAST);
-                break;
-        }
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_BASE);
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return AABB;
     }
 
     @Override

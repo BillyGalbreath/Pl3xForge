@@ -14,7 +14,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockDirectional extends BlockBase {
-    protected static final PropertyDirection FACING = BlockHorizontal.FACING;
+    public static final PropertyDirection FACING = BlockHorizontal.FACING;
     protected static AxisAlignedBB AABB_NORTH = new AxisAlignedBB(0D, 0D, 0D, 1D, 1D, 1D);
     protected static AxisAlignedBB AABB_SOUTH = new AxisAlignedBB(0D, 0D, 0D, 1D, 1D, 1D);
     protected static AxisAlignedBB AABB_EAST = new AxisAlignedBB(0D, 0D, 0D, 1D, 1D, 1D);

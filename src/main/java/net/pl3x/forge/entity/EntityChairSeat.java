@@ -15,12 +15,13 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.pl3x.forge.block.ModBlocks;
 import net.pl3x.forge.block.custom.furniture.BlockSeat;
 
 import javax.annotation.Nullable;
 
 public class EntityChairSeat extends Entity {
+    private double yOffset = -0.21D;
+
     public EntityChairSeat(World world) {
         super(world);
         setEntityInvulnerable(true);
@@ -67,7 +68,11 @@ public class EntityChairSeat extends Entity {
 
     @Override
     public double getMountedYOffset() {
-        return -0.21D;
+        return yOffset;
+    }
+
+    public void setMountedYOffset(double yOffset) {
+        this.yOffset = yOffset;
     }
 
     @Override
