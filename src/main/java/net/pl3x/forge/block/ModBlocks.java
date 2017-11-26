@@ -51,7 +51,9 @@ import net.pl3x.forge.block.custom.slab.BlockDirtSlabHalf;
 import net.pl3x.forge.block.custom.slab.BlockGrassSlabDouble;
 import net.pl3x.forge.block.custom.slab.BlockGrassSlabHalf;
 import net.pl3x.forge.block.custom.stairs.BlockStairsConcrete;
+import net.pl3x.forge.block.custom.stairs.BlockStairsDirt;
 import net.pl3x.forge.block.custom.stairs.BlockStairsGlass;
+import net.pl3x.forge.block.custom.stairs.BlockStairsGrass;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -170,7 +172,9 @@ public class ModBlocks {
     public static final BlockStairsConcrete STAIRS_CONCRETE_SILVER = new BlockStairsConcrete(EnumDyeColor.SILVER);
     public static final BlockStairsConcrete STAIRS_CONCRETE_WHITE = new BlockStairsConcrete(EnumDyeColor.WHITE);
     public static final BlockStairsConcrete STAIRS_CONCRETE_YELLOW = new BlockStairsConcrete(EnumDyeColor.YELLOW);
+    public static final BlockStairsDirt STAIRS_DIRT = new BlockStairsDirt();
     public static final BlockStairsGlass STAIRS_GLASS = new BlockStairsGlass();
+    public static final BlockStairsGrass STAIRS_GRASS = new BlockStairsGrass();
     public static final BlockStairsSpiral STAIRS_SPIRAL = new BlockStairsSpiral();
     public static final BlockStove STOVE = new BlockStove();
     public static final BlockTable TABLE = new BlockTable();
