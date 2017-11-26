@@ -1,6 +1,8 @@
 package net.pl3x.forge.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -50,6 +52,8 @@ import net.pl3x.forge.block.custom.slab.BlockDirtSlabDouble;
 import net.pl3x.forge.block.custom.slab.BlockDirtSlabHalf;
 import net.pl3x.forge.block.custom.slab.BlockGrassSlabDouble;
 import net.pl3x.forge.block.custom.slab.BlockGrassSlabHalf;
+import net.pl3x.forge.block.custom.stairs.BlockStairs;
+import net.pl3x.forge.block.custom.stairs.BlockStairsGlass;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -152,6 +156,7 @@ public class ModBlocks {
     public static final BlockRubyOre RUBY = new BlockRubyOre();
     public static final BlockRuby RUBY_BLOCK = new BlockRuby();
     public static final BlockShop SHOP = new BlockShop();
+    public static final BlockStairsGlass STAIRS_GLASS = new BlockStairsGlass();
     public static final BlockStairsSpiral STAIRS_SPIRAL = new BlockStairsSpiral();
     public static final BlockStove STOVE = new BlockStove();
     public static final BlockTable TABLE = new BlockTable();
