@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stairs_concrete",
+  "pattern": [
+    "C  ",
+    "CC ",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:concrete",
+      "data": 12
+    }
+  },
+  "result": {
+    "item": "pl3x:stairs_concrete_brown",
+    "count": 4
+  }
+}

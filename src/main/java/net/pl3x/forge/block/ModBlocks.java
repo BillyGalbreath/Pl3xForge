@@ -1,8 +1,6 @@
 package net.pl3x.forge.block;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -52,7 +50,7 @@ import net.pl3x.forge.block.custom.slab.BlockDirtSlabDouble;
 import net.pl3x.forge.block.custom.slab.BlockDirtSlabHalf;
 import net.pl3x.forge.block.custom.slab.BlockGrassSlabDouble;
 import net.pl3x.forge.block.custom.slab.BlockGrassSlabHalf;
-import net.pl3x.forge.block.custom.stairs.BlockStairs;
+import net.pl3x.forge.block.custom.stairs.BlockStairsConcrete;
 import net.pl3x.forge.block.custom.stairs.BlockStairsGlass;
 
 import java.util.HashSet;
@@ -156,6 +154,22 @@ public class ModBlocks {
     public static final BlockRubyOre RUBY = new BlockRubyOre();
     public static final BlockRuby RUBY_BLOCK = new BlockRuby();
     public static final BlockShop SHOP = new BlockShop();
+    public static final BlockStairsConcrete STAIRS_CONCRETE_BLACK = new BlockStairsConcrete(EnumDyeColor.BLACK);
+    public static final BlockStairsConcrete STAIRS_CONCRETE_BLUE = new BlockStairsConcrete(EnumDyeColor.BLUE);
+    public static final BlockStairsConcrete STAIRS_CONCRETE_BROWN = new BlockStairsConcrete(EnumDyeColor.BROWN);
+    public static final BlockStairsConcrete STAIRS_CONCRETE_CYAN = new BlockStairsConcrete(EnumDyeColor.CYAN);
+    public static final BlockStairsConcrete STAIRS_CONCRETE_GRAY = new BlockStairsConcrete(EnumDyeColor.GRAY);
+    public static final BlockStairsConcrete STAIRS_CONCRETE_GREEN = new BlockStairsConcrete(EnumDyeColor.GREEN);
+    public static final BlockStairsConcrete STAIRS_CONCRETE_LIGHT_BLUE = new BlockStairsConcrete(EnumDyeColor.LIGHT_BLUE);
+    public static final BlockStairsConcrete STAIRS_CONCRETE_LIME = new BlockStairsConcrete(EnumDyeColor.LIME);
+    public static final BlockStairsConcrete STAIRS_CONCRETE_MAGENTA = new BlockStairsConcrete(EnumDyeColor.MAGENTA);
+    public static final BlockStairsConcrete STAIRS_CONCRETE_ORANGE = new BlockStairsConcrete(EnumDyeColor.ORANGE);
+    public static final BlockStairsConcrete STAIRS_CONCRETE_PINK = new BlockStairsConcrete(EnumDyeColor.PINK);
+    public static final BlockStairsConcrete STAIRS_CONCRETE_PURPLE = new BlockStairsConcrete(EnumDyeColor.PURPLE);
+    public static final BlockStairsConcrete STAIRS_CONCRETE_RED = new BlockStairsConcrete(EnumDyeColor.RED);
+    public static final BlockStairsConcrete STAIRS_CONCRETE_SILVER = new BlockStairsConcrete(EnumDyeColor.SILVER);
+    public static final BlockStairsConcrete STAIRS_CONCRETE_WHITE = new BlockStairsConcrete(EnumDyeColor.WHITE);
+    public static final BlockStairsConcrete STAIRS_CONCRETE_YELLOW = new BlockStairsConcrete(EnumDyeColor.YELLOW);
     public static final BlockStairsGlass STAIRS_GLASS = new BlockStairsGlass();
     public static final BlockStairsSpiral STAIRS_SPIRAL = new BlockStairsSpiral();
     public static final BlockStove STOVE = new BlockStove();

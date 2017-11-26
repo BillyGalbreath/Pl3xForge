@@ -2,6 +2,7 @@ package net.pl3x.forge.block.custom.stairs;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -34,5 +35,10 @@ public class BlockStairsGlass extends BlockStairs {
     public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
         Block block = world.getBlockState(pos.offset(face)).getBlock();
         return block == this || block == Blocks.GLASS;
+    }
+
+    @Override
+    public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+        return MapColor.AIR;
     }
 }

@@ -54,6 +54,8 @@ item.hat_tophat_white_red.name=TopHat White with Red trim
 item.hat_wizard.name=Wizard Hat
 item.hat_wizard2.name=Wizard Hat 2
 
+item.hatPilgrim.name=Pilgrim Hat
+
 item.claim_tool.name=Claim Tool
 item.coin.name=Coin
 item.corn.name=Corn
@@ -114,6 +116,23 @@ tile.curb_slab_silver.name=Light Gray Curb Slab
 tile.curb_slab_white.name=White Curb Slab
 tile.curb_slab_yellow.name=Yellow Curb Slab
 
+tile.stairs_concrete_black.name=Black Concrete Stairs
+tile.stairs_concrete_blue.name=Blue Concrete Stairs
+tile.stairs_concrete_brown.name=Brown Concrete Stairs
+tile.stairs_concrete_cyan.name=Cyan Concrete Stairs
+tile.stairs_concrete_gray.name=Gray Concrete Stairs
+tile.stairs_concrete_green.name=Green Concrete Stairs
+tile.stairs_concrete_light_blue.name=Light Blue Concrete Stairs
+tile.stairs_concrete_lime.name=Lime Concrete Stairs
+tile.stairs_concrete_magenta.name=Magenta Concrete Stairs
+tile.stairs_concrete_orange.name=Orange Concrete Stairs
+tile.stairs_concrete_pink.name=Pink Concrete Stairs
+tile.stairs_concrete_purple.name=Purple Concrete Stairs
+tile.stairs_concrete_red.name=Red Concrete Stairs
+tile.stairs_concrete_silver.name=Light Gray Concrete Stairs
+tile.stairs_concrete_white.name=White Concrete Stairs
+tile.stairs_concrete_yellow.name=Yellow Concrete Stairs
+
 tile.barrel.name=Barrel
 tile.bathroom_cabinet.name=Bathroom Cabinet
 tile.bedside_table.name=Bedside Table
@@ -141,6 +160,7 @@ tile.path_stone.name=Stone Path
 tile.path_wood.name=Wooden Path
 tile.plate.name=Plate
 tile.shop.name=Shop
+tile.stairs_glass.name=Glass Stairs
 tile.stairs_spiral.name=Spiral Stairs
 tile.stove.name=Stove
 tile.table.name=Table

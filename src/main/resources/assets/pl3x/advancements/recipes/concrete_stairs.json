@@ -1,0 +1,63 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "pl3x:stairs_concrete_black",
+      "pl3x:stairs_concrete_blue",
+      "pl3x:stairs_concrete_brown",
+      "pl3x:stairs_concrete_cyan",
+      "pl3x:stairs_concrete_gray",
+      "pl3x:stairs_concrete_green",
+      "pl3x:stairs_concrete_light_blue",
+      "pl3x:stairs_concrete_lime",
+      "pl3x:stairs_concrete_magenta",
+      "pl3x:stairs_concrete_orange",
+      "pl3x:stairs_concrete_pink",
+      "pl3x:stairs_concrete_purple",
+      "pl3x:stairs_concrete_red",
+      "pl3x:stairs_concrete_silver",
+      "pl3x:stairs_concrete_white",
+      "pl3x:stairs_concrete_yellow"
+    ]
+  },
+  "criteria": {
+    "has_concrete": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:concrete",
+            "data": 32767
+          }
+        ]
+      }
+    },
+    "has_concrete_powder": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:concrete_powder",
+            "data": 32767
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "pl3x:stairs_concrete_black"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_concrete",
+      "has_the_recipe"
+    ],
+    [
+      "has_concrete_powder",
+      "has_the_recipe"
+    ]
+  ]
+}
