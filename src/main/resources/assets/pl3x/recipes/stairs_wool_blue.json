@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stairs_wool",
+  "pattern": [
+    "W  ",
+    "WW ",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:wool",
+      "data": 11
+    }
+  },
+  "result": {
+    "item": "pl3x:stairs_wool_blue",
+    "count": 4
+  }
+}

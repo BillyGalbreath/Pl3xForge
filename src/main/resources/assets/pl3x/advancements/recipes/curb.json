@@ -42,8 +42,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:concrete",
-            "data": 32767
+            "item": "minecraft:concrete"
           }
         ]
       }
@@ -53,8 +52,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:concrete_powder",
-            "data": 32767
+            "item": "minecraft:concrete_powder"
           }
         ]
       }

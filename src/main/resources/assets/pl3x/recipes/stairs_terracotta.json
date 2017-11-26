@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stairs_terracotta",
+  "pattern": [
+    "T  ",
+    "TT ",
+    "TTT"
+  ],
+  "key": {
+    "T": {
+      "item": "minecraft:hardened_clay"
+    }
+  },
+  "result": {
+    "item": "pl3x:stairs_terracotta",
+    "count": 4
+  }
+}

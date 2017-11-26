@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "G  ",
+    "GG ",
+    "GGG"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:stone",
+      "data": 1
+    }
+  },
+  "result": {
+    "item": "pl3x:stairs_granite",
+    "count": 4
+  }
+}

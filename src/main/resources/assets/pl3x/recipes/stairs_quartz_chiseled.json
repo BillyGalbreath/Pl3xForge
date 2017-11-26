@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "Q  ",
+    "QQ ",
+    "QQQ"
+  ],
+  "key": {
+    "Q": {
+      "item": "minecraft:quartz_block",
+      "data": 1
+    }
+  },
+  "result": {
+    "item": "pl3x:stairs_quartz_chiseled",
+    "count": 4
+  }
+}

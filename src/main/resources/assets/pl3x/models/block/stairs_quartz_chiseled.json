@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "blocks/quartz_block_chiseled",
+    "top": "blocks/quartz_block_chiseled_top",
+    "side": "blocks/quartz_block_chiseled"
+  }
+}

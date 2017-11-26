@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "D  ",
+    "DD ",
+    "DDD"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:dirt",
+      "data": 1
+    }
+  },
+  "result": {
+    "item": "pl3x:stairs_dirt_coarse",
+    "count": 4
+  }
+}

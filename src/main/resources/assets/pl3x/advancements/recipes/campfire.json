@@ -11,8 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:log",
-            "data": 32767
+            "item": "minecraft:log"
           }
         ]
       }
@@ -22,8 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:log2",
-            "data": 32767
+            "item": "minecraft:log2"
           }
         ]
       }

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stairs_terracotta",
+  "pattern": [
+    "T  ",
+    "TT ",
+    "TTT"
+  ],
+  "key": {
+    "T": {
+      "item": "minecraft:stained_hardened_clay",
+      "data": 13
+    }
+  },
+  "result": {
+    "item": "pl3x:stairs_terracotta_green",
+    "count": 4
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "pl3x:stairs_wool_black",
+      "pl3x:stairs_wool_blue",
+      "pl3x:stairs_wool_brown",
+      "pl3x:stairs_wool_cyan",
+      "pl3x:stairs_wool_gray",
+      "pl3x:stairs_wool_green",
+      "pl3x:stairs_wool_light_blue",
+      "pl3x:stairs_wool_lime",
+      "pl3x:stairs_wool_magenta",
+      "pl3x:stairs_wool_orange",
+      "pl3x:stairs_wool_pink",
+      "pl3x:stairs_wool_purple",
+      "pl3x:stairs_wool_red",
+      "pl3x:stairs_wool_silver",
+      "pl3x:stairs_wool_white",
+      "pl3x:stairs_wool_yellow"
+    ]
+  },
+  "criteria": {
+    "has_wool": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:wool"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "pl3x:stairs_wool_black"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_wool",
+      "has_the_recipe"
+    ]
+  ]
+}

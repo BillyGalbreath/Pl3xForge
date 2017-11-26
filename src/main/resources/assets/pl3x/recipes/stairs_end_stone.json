@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "E  ",
+    "EE ",
+    "EEE"
+  ],
+  "key": {
+    "E": {
+      "item": "minecraft:end_stone"
+    }
+  },
+  "result": {
+    "item": "pl3x:stairs_end_stone",
+    "count": 4
+  }
+}

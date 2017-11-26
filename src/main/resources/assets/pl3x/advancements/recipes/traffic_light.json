@@ -21,8 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:stained_glass",
-            "data": 32767
+            "item": "minecraft:stained_glass"
           }
         ]
       }

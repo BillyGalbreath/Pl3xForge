@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "N  ",
+    "NN ",
+    "NNN"
+  ],
+  "key": {
+    "N": {
+      "item": "minecraft:netherrack"
+    }
+  },
+  "result": {
+    "item": "pl3x:stairs_netherrack",
+    "count": 4
+  }
+}

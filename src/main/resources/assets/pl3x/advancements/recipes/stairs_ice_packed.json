@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "pl3x:stairs_ice_packed"
+    ]
+  },
+  "criteria": {
+    "has_ice_packed": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:packed_ice"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "pl3x:stairs_ice_packed"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ice_packed",
+      "has_the_recipe"
+    ]
+  ]
+}

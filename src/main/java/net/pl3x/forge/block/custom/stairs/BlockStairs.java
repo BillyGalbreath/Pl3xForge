@@ -63,6 +63,7 @@ public abstract class BlockStairs extends BlockBase {
         ModBlocks.blocks.add(this);
     }
 
+    @Override
     public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entity, boolean isActualState) {
         if (!isActualState) {
             state = this.getActualState(state, world, pos);
@@ -132,6 +133,7 @@ public abstract class BlockStairs extends BlockBase {
         }
     }
 
+    @Override
     public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing face) {
         state = getActualState(state, world, pos);
         if (face.getAxis() == EnumFacing.Axis.Y) {
@@ -156,24 +158,29 @@ public abstract class BlockStairs extends BlockBase {
         }
     }
 
+    @Override
     public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
+    @Override
     public boolean isFullCube(IBlockState state) {
         return false;
     }
 
+    @Override
     public boolean isTopSolid(IBlockState state) {
         return state.getValue(HALF) == EnumHalf.TOP;
     }
 
+    @Override
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
         IBlockState state = super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer);
         state = state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(SHAPE, EnumShape.STRAIGHT);
         return facing != EnumFacing.DOWN && (facing == EnumFacing.UP || (double) hitY <= 0.5D) ? state.withProperty(HALF, EnumHalf.BOTTOM) : state.withProperty(HALF, EnumHalf.TOP);
     }
 
+    @Override
     @Nullable
     public RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end) {
         List<RayTraceResult> list = Lists.newArrayList();
@@ -194,12 +201,14 @@ public abstract class BlockStairs extends BlockBase {
         return result;
     }
 
+    @Override
     public IBlockState getStateFromMeta(int meta) {
         IBlockState state = getDefaultState().withProperty(HALF, (meta & 4) > 0 ? EnumHalf.TOP : EnumHalf.BOTTOM);
         state = state.withProperty(FACING, EnumFacing.getFront(5 - (meta & 3)));
         return state;
     }
 
+    @Override
     public int getMetaFromState(IBlockState state) {
         int i = 0;
         if (state.getValue(HALF) == EnumHalf.TOP) {
@@ -209,6 +218,7 @@ public abstract class BlockStairs extends BlockBase {
         return i;
     }
 
+    @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
         return state.withProperty(SHAPE, getStairsShape(state, worldIn, pos));
     }
@@ -247,10 +257,12 @@ public abstract class BlockStairs extends BlockBase {
         return state.getBlock() instanceof BlockStairs;
     }
 
+    @Override
     public IBlockState withRotation(IBlockState state, Rotation rot) {
         return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
     }
 
+    @Override
     public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
         EnumFacing enumfacing = state.getValue(FACING);
         EnumShape shape = state.getValue(SHAPE);
@@ -290,8 +302,14 @@ public abstract class BlockStairs extends BlockBase {
         return super.withMirror(state, mirrorIn);
     }
 
+    @Override
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, FACING, HALF, SHAPE);
+    }
+
+    @Override
+    public boolean canEntitySpawn(IBlockState state, Entity entityIn) {
+        return false;
     }
 
     @Override
@@ -337,10 +355,12 @@ public abstract class BlockStairs extends BlockBase {
             this.name = name;
         }
 
+        @Override
         public String toString() {
             return this.name;
         }
 
+        @Override
         public String getName() {
             return this.name;
         }
@@ -359,10 +379,12 @@ public abstract class BlockStairs extends BlockBase {
             this.name = name;
         }
 
+        @Override
         public String toString() {
             return this.name;
         }
 
+        @Override
         public String getName() {
             return this.name;
         }

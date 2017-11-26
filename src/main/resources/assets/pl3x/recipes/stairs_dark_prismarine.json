@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "P  ",
+    "PP ",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:prismarine",
+      "data": 2
+    }
+  },
+  "result": {
+    "item": "pl3x:stairs_dark_prismarine",
+    "count": 4
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "N  ",
+    "NN ",
+    "NNN"
+  ],
+  "key": {
+    "N": {
+      "item": "minecraft:nether_wart_block"
+    }
+  },
+  "result": {
+    "item": "pl3x:stairs_nether_wart",
+    "count": 4
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "pl3x:stairs_dirt_coarse"
+    ]
+  },
+  "criteria": {
+    "has_dirt_coarse": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:dirt",
+            "data": 1
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "pl3x:stairs_dirt_coarse"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dirt_coarse",
+      "has_the_recipe"
+    ]
+  ]
+}

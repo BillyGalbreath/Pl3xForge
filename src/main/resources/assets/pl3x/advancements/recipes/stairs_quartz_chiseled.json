@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "pl3x:stairs_quartz_chiseled"
+    ]
+  },
+  "criteria": {
+    "has_quartz_chiseled": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:quartz_block",
+            "data": 1
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "pl3x:stairs_quartz_chiseled"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_quartz_chiseled",
+      "has_the_recipe"
+    ]
+  ]
+}

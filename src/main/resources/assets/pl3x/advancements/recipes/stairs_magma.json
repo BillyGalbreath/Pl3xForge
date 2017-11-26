@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "pl3x:stairs_magma"
+    ]
+  },
+  "criteria": {
+    "has_magma": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:magma"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "pl3x:stairs_magma"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_magma",
+      "has_the_recipe"
+    ]
+  ]
+}

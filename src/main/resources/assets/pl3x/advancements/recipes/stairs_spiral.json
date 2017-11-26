@@ -11,8 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:planks",
-            "data": 32767
+            "item": "minecraft:planks"
           }
         ]
       }
