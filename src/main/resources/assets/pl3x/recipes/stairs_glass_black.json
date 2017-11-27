@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stained_glass",
+      "data": 15
+    }
+  },
+  "result": {
+    "item": "pl3x:stairs_glass_black",
+    "count": 4
+  }
+}

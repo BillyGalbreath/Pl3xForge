@@ -131,6 +131,23 @@ tile.stairs_concrete_silver.name=Light Gray Concrete Stairs
 tile.stairs_concrete_white.name=White Concrete Stairs
 tile.stairs_concrete_yellow.name=Yellow Concrete Stairs
 
+tile.stairs_glass_black.name=Black Stained Glass Stairs
+tile.stairs_glass_blue.name=Blue Stained Glass Stairs
+tile.stairs_glass_brown.name=Brown Stained Glass Stairs
+tile.stairs_glass_cyan.name=Cyan Stained Glass Stairs
+tile.stairs_glass_gray.name=Gray Stained Glass Stairs
+tile.stairs_glass_green.name=Green Stained Glass Stairs
+tile.stairs_glass_light_blue.name=Light Blue Stained Glass Stairs
+tile.stairs_glass_lime.name=Lime Stained Glass Stairs
+tile.stairs_glass_magenta.name=Magenta Stained Glass Stairs
+tile.stairs_glass_orange.name=Orange Stained Glass Stairs
+tile.stairs_glass_pink.name=Pink Stained Glass Stairs
+tile.stairs_glass_purple.name=Purple Stained Glass Stairs
+tile.stairs_glass_red.name=Red Stained Glass Stairs
+tile.stairs_glass_silver.name=Light Gray Stained Glass Stairs
+tile.stairs_glass_white.name=White Stained Glass Stairs
+tile.stairs_glass_yellow.name=Yellow Stained Glass Stairs
+
 tile.stairs_terracotta.name=Terracotta Stairs
 tile.stairs_terracotta_black.name=Black Terracotta Stairs
 tile.stairs_terracotta_blue.name=Blue Terracotta Stairs

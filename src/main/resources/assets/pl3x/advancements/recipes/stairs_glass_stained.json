@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "pl3x:stairs_glass_black",
+      "pl3x:stairs_glass_blue",
+      "pl3x:stairs_glass_brown",
+      "pl3x:stairs_glass_cyan",
+      "pl3x:stairs_glass_gray",
+      "pl3x:stairs_glass_green",
+      "pl3x:stairs_glass_light_blue",
+      "pl3x:stairs_glass_lime",
+      "pl3x:stairs_glass_magenta",
+      "pl3x:stairs_glass_orange",
+      "pl3x:stairs_glass_pink",
+      "pl3x:stairs_glass_purple",
+      "pl3x:stairs_glass_red",
+      "pl3x:stairs_glass_silver",
+      "pl3x:stairs_glass_white",
+      "pl3x:stairs_glass_yellow"
+    ]
+  },
+  "criteria": {
+    "has_glass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:stained_glass"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "pl3x:stairs_glass_black"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_glass",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "pl3x:block/inner_stairs_clear",
+  "textures": {
+    "full": "blocks/glass_magenta",
+    "quarter": "pl3x:blocks/glass_magenta_quarter",
+    "angle_left": "pl3x:blocks/glass_magenta_angle_left",
+    "angle_right": "pl3x:blocks/glass_magenta_angle_right"
+  }
+}
