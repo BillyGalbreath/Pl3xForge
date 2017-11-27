@@ -1,7 +1,5 @@
 {
   "variants": {
-    "variant=default": {
-      "model": "dirt"
-    }
+    "variant=default": {"model": "dirt"}
   }
 }

@@ -1,5 +1,6 @@
 {
   "variants": {
+    "inventory": { "model": "pl3x:crop_ender_pearl_stage7" },
     "age=0": { "model": "pl3x:crop_ender_pearl_stage0" },
     "age=1": { "model": "pl3x:crop_ender_pearl_stage1" },
     "age=2": { "model": "pl3x:crop_ender_pearl_stage2" },

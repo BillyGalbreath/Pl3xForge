@@ -4,29 +4,14 @@
     "transform": "forge:default-block"
   },
   "variants": {
-    "moisture=0": {
-      "model": "pl3x:tilled_end_stone_dry"
-    },
-    "moisture=1": {
-      "model": "pl3x:tilled_end_stone_dry"
-    },
-    "moisture=2": {
-      "model": "pl3x:tilled_end_stone_dry"
-    },
-    "moisture=3": {
-      "model": "pl3x:tilled_end_stone_dry"
-    },
-    "moisture=4": {
-      "model": "pl3x:tilled_end_stone_dry"
-    },
-    "moisture=5": {
-      "model": "pl3x:tilled_end_stone_dry"
-    },
-    "moisture=6": {
-      "model": "pl3x:tilled_end_stone_dry"
-    },
-    "moisture=7": {
-      "model": "pl3x:tilled_end_stone_moist"
-    }
+    "inventory": {"model": "pl3x:tilled_end_stone"},
+    "moisture=0": {"model": "pl3x:tilled_end_stone_dry"},
+    "moisture=1": {"model": "pl3x:tilled_end_stone_dry"},
+    "moisture=2": {"model": "pl3x:tilled_end_stone_dry"},
+    "moisture=3": {"model": "pl3x:tilled_end_stone_dry"},
+    "moisture=4": {"model": "pl3x:tilled_end_stone_dry"},
+    "moisture=5": {"model": "pl3x:tilled_end_stone_dry"},
+    "moisture=6": {"model": "pl3x:tilled_end_stone_dry"},
+    "moisture=7": {"model": "pl3x:tilled_end_stone_moist"}
   }
 }

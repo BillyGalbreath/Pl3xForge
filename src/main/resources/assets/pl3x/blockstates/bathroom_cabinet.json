@@ -1,24 +1,10 @@
 {
   "forge_marker": 1,
   "variants": {
-    "normal": {
-      "model": "pl3x:bathroom_cabinet"
-    },
-    "facing=south": {
-      "model": "pl3x:bathroom_cabinet",
-      "y": 0
-    },
-    "facing=west": {
-      "model": "pl3x:bathroom_cabinet",
-      "y": 90
-    },
-    "facing=north": {
-      "model": "pl3x:bathroom_cabinet",
-      "y": 180
-    },
-    "facing=east": {
-      "model": "pl3x:bathroom_cabinet",
-      "y": 270
-    }
+    "inventory": {"model": "pl3x:bathroom_cabinet"},
+    "facing=south": {"model": "pl3x:bathroom_cabinet", "y": 0},
+    "facing=west": {"model": "pl3x:bathroom_cabinet", "y": 90},
+    "facing=north": {"model": "pl3x:bathroom_cabinet", "y": 180},
+    "facing=east": {"model": "pl3x:bathroom_cabinet", "y": 270}
   }
 }

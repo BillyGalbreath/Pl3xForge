@@ -1,6 +1,6 @@
 {
   "variants": {
-    "normal": { "model": "pl3x:path_wood" },
+    "inventory": { "model": "pl3x:path_wood" },
     "facing=south": { "model": "pl3x:path_wood", "y": 0 },
     "facing=west":  { "model": "pl3x:path_wood", "y": 90 },
     "facing=north": { "model": "pl3x:path_wood", "y": 180 },

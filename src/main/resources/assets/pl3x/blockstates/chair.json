@@ -1,7 +1,7 @@
 {
   "forge_marker": 1,
   "variants": {
-    "normal": {"model": "pl3x:chair"},
+    "inventory": {"model": "pl3x:chair"},
     "facing=south": {"model": "pl3x:chair", "y": 0},
     "facing=west": {"model": "pl3x:chair", "y": 90},
     "facing=north": {"model": "pl3x:chair", "y": 180},

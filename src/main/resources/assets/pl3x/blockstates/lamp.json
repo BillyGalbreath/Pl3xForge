@@ -1,17 +1,10 @@
 {
   "forge_marker": 1,
   "variants": {
-    "half=lower,on=false": {
-      "model": "pl3x:lamp"
-    },
-    "half=lower,on=true": {
-      "model": "pl3x:lamp"
-    },
-    "half=upper,on=false": {
-      "model": "pl3x:lamp_top"
-    },
-    "half=upper,on=true": {
-      "model": "pl3x:lamp_top"
-    }
+    "inventory": {"model": "pl3x:lamp"},
+    "half=lower,on=false": {"model": "pl3x:lamp"},
+    "half=lower,on=true": {"model": "pl3x:lamp"},
+    "half=upper,on=false": {"model": "pl3x:lamp_top"},
+    "half=upper,on=true": {"model": "pl3x:lamp_top"}
   }
 }

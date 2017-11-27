@@ -1,6 +1,5 @@
 {
   "variants": {
-    "normal": { "model": "pl3x:coffee_table" },
-    "inventory": { "model": "pl3x:coffee_table" }
+    "inventory": {"model": "pl3x:coffee_table"}
   }
 }

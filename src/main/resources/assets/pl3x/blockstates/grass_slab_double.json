@@ -1,7 +1,5 @@
 {
   "variants": {
-    "variant=default": {
-      "model": "pl3x:grass_slab_double"
-    }
+    "variant=default": {"model": "pl3x:grass_slab_double"}
   }
 }

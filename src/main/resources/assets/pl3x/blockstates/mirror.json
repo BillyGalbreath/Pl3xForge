@@ -1,19 +1,9 @@
 {
   "variants": {
-    "facing=north": {
-      "model": "pl3x:mirror"
-    },
-    "facing=south": {
-      "model": "pl3x:mirror",
-      "y": 180
-    },
-    "facing=east": {
-      "model": "pl3x:mirror",
-      "y": 90
-    },
-    "facing=west": {
-      "model": "pl3x:mirror",
-      "y": 270
-    }
+    "inventory": {"model": "pl3x:mirror"},
+    "facing=north": {"model": "pl3x:mirror"},
+    "facing=south": {"model": "pl3x:mirror", "y": 180},
+    "facing=east": {"model": "pl3x:mirror", "y": 90},
+    "facing=west": {"model": "pl3x:mirror", "y": 270}
   }
 }

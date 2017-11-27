@@ -1,26 +1,9 @@
 {
   "variants": {
-    "normal": {
-      "model": "pl3x:computer"
-    },
-    "facing=south": {
-      "model": "pl3x:computer",
-      "y": 270
-    },
-    "facing=west": {
-      "model": "pl3x:computer",
-      "y": 0
-    },
-    "facing=north": {
-      "model": "pl3x:computer",
-      "y": 90
-    },
-    "facing=east": {
-      "model": "pl3x:computer",
-      "y": 180
-    },
-    "inventory": {
-      "model": "pl3x:computer"
-    }
+    "inventory": {"model": "pl3x:computer"},
+    "facing=south": {"model": "pl3x:computer", "y": 270},
+    "facing=west": {"model": "pl3x:computer", "y": 0},
+    "facing=north": {"model": "pl3x:computer", "y": 90},
+    "facing=east": {"model": "pl3x:computer", "y": 180}
   }
 }

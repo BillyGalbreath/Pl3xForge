@@ -1,10 +1,7 @@
 {
   "variants": {
-    "half=bottom,variant=default": {
-      "model": "pl3x:concrete_slab_bottom_lime"
-    },
-    "half=top,variant=default": {
-      "model": "pl3x:concrete_slab_top_lime"
-    }
+    "inventory": {"model": "pl3x:/concrete_slab_bottom_lime"},
+    "half=bottom,variant=default": {"model": "pl3x:concrete_slab_bottom_lime"},
+    "half=top,variant=default": {"model": "pl3x:concrete_slab_top_lime"}
   }
 }

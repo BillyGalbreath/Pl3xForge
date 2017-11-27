@@ -1,6 +1,6 @@
 {
   "variants": {
-    "normal": { "model": "pl3x:chair_lawn" },
+    "inventory": { "model": "pl3x:chair_lawn" },
     "facing=south": { "model": "pl3x:chair_lawn", "y": 0 },
     "facing=west":  { "model": "pl3x:chair_lawn", "y": 90 },
     "facing=north": { "model": "pl3x:chair_lawn", "y": 180 },

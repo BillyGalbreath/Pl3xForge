@@ -1,24 +1,10 @@
 {
   "forge_marker": 1,
   "variants": {
-    "normal": {
-      "model": "pl3x:deposit_box"
-    },
-    "facing=south": {
-      "model": "pl3x:deposit_box",
-      "y": 270
-    },
-    "facing=west": {
-      "model": "pl3x:deposit_box",
-      "y": 0
-    },
-    "facing=north": {
-      "model": "pl3x:deposit_box",
-      "y": 90
-    },
-    "facing=east": {
-      "model": "pl3x:deposit_box",
-      "y": 180
-    }
+    "inventory": {"model": "pl3x:deposit_box"},
+    "facing=south": {"model": "pl3x:deposit_box", "y": 270},
+    "facing=west": {"model": "pl3x:deposit_box", "y": 0},
+    "facing=north": {"model": "pl3x:deposit_box", "y": 90},
+    "facing=east": {"model": "pl3x:deposit_box", "y": 180}
   }
 }

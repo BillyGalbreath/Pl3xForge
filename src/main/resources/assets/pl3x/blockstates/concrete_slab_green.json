@@ -1,10 +1,7 @@
 {
   "variants": {
-    "half=bottom,variant=default": {
-      "model": "pl3x:concrete_slab_bottom_green"
-    },
-    "half=top,variant=default": {
-      "model": "pl3x:concrete_slab_top_green"
-    }
+    "inventory": {"model": "pl3x:/concrete_slab_bottom_green"},
+    "half=bottom,variant=default": {"model": "pl3x:concrete_slab_bottom_green"},
+    "half=top,variant=default": {"model": "pl3x:concrete_slab_top_green"}
   }
 }

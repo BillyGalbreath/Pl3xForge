@@ -1,6 +1,6 @@
 {
   "variants": {
-    "normal": { "model": "pl3x:path_stone" },
+    "inventory": { "model": "pl3x:path_stone" },
     "facing=south": { "model": "pl3x:path_stone", "y": 0 },
     "facing=west":  { "model": "pl3x:path_stone", "y": 90 },
     "facing=north": { "model": "pl3x:path_stone", "y": 180 },

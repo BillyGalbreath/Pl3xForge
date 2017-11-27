@@ -1,6 +1,7 @@
 {
   "variants": {
-    "normal": {"model": "pl3x:traffic_light"},
+    "inventory": {"model": "pl3x:traffic_light"},
+
     "facing=south": {"model": "pl3x:traffic_light", "y": 270},
     "facing=west": {"model": "pl3x:traffic_light", "y": 0},
     "facing=north": {"model": "pl3x:traffic_light", "y": 90},

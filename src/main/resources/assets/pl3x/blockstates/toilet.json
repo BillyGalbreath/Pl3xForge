@@ -1,7 +1,7 @@
 {
   "forge_marker": 1,
   "variants": {
-    "normal": {"model": "pl3x:toilet"},
+    "inventory": {"model": "pl3x:toilet"},
     "facing=south": {"model": "pl3x:toilet", "y": 0},
     "facing=west": {"model": "pl3x:toilet", "y": 90},
     "facing=north": {"model": "pl3x:toilet", "y": 180},

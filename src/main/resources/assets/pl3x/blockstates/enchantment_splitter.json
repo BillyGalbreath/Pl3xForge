@@ -1,8 +1,7 @@
 {
   "forge_marker": 1,
   "variants": {
-    "normal": {
-      "model": "pl3x:enchantment_splitter"
-    }
+    "inventory": {"model": "pl3x:enchantment_splitter"},
+    "normal": {"model": "pl3x:enchantment_splitter"}
   }
 }

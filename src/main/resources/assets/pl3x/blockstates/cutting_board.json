@@ -1,6 +1,6 @@
 {
   "variants": {
-    "normal": { "model": "pl3x:cutting_board" },
+    "inventory": { "model": "pl3x:cutting_board" },
     "facing=south": { "model": "pl3x:cutting_board", "y": 90 },
     "facing=west":  { "model": "pl3x:cutting_board", "y": 180 },
     "facing=north": { "model": "pl3x:cutting_board", "y": 270 },

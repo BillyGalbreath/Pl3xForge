@@ -1,6 +1,7 @@
 {
   "forge_marker": 1,
   "variants": {
+    "inventory": { "model": "pl3x:barrel" },
     "axis=y": { "model": "pl3x:barrel" },
     "axis=z": { "model": "pl3x:barrel", "x": 90 },
     "axis=x": { "model": "pl3x:barrel", "x": 90, "y": 90 }

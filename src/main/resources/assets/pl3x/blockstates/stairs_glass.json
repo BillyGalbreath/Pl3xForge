@@ -1,5 +1,6 @@
 {
     "variants": {
+        "inventory":  { "model": "pl3x:stairs_glass" },
         "facing=east,half=bottom,shape=straight":  { "model": "pl3x:stairs_glass" },
         "facing=west,half=bottom,shape=straight":  { "model": "pl3x:stairs_glass", "y": 180 },
         "facing=south,half=bottom,shape=straight": { "model": "pl3x:stairs_glass", "y": 90 },
