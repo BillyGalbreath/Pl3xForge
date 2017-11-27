@@ -1,6 +1,6 @@
 {
   "variants": {
-    "inventory": { "model": "pl3x:couch" },
+    "inventory": { "model": "pl3x:couch_single" },
 
     "facing=south,shape=single": { "model": "pl3x:couch_single", "y": 0, "uvlock": true },
     "facing=west,shape=single":  { "model": "pl3x:couch_single", "y": 90, "uvlock": true },

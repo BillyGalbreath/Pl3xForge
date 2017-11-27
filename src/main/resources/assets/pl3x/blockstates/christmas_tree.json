@@ -1,6 +1,7 @@
 {
   "forge_marker": 1,
   "variants": {
-    "inventory": {"model": "pl3x:christmas_tree"}
+    "inventory": {"model": "pl3x:christmas_tree"},
+    "normal": {"model": "pl3x:christmas_tree"}
   }
 }

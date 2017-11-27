@@ -1,5 +1,6 @@
 {
   "variants": {
+    "inventory": {"model": "dirt"},
     "variant=default": {"model": "dirt"}
   }
 }

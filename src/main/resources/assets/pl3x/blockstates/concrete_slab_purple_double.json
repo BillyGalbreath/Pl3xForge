@@ -1,6 +1,7 @@
 {
   "forge_marker": 1,
   "variants": {
+    "inventory": {"model": "purple_concrete"},
     "variant=default": {"model": "purple_concrete"}
   }
 }

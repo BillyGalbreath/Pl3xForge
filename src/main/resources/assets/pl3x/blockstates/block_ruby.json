@@ -4,6 +4,7 @@
     "textures": { "all": "pl3x:blocks/block_ruby" }
   },
   "variants": {
-    "inventory": { "model": "cube_all" }
+    "inventory": { "model": "cube_all" },
+    "normal": { "model": "cube_all" }
   }
 }
