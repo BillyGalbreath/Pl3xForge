@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "Q  ",
+    "QQ ",
+    "QQQ"
+  ],
+  "key": {
+    "Q": {
+      "item": "minecraft:quartz_block",
+      "data": 2
+    }
+  },
+  "result": {
+    "item": "pl3x:stairs_quartz_pillar",
+    "count": 4
+  }
+}

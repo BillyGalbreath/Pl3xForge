@@ -13,7 +13,8 @@ public class BlockStairsDarkPrismarine extends BlockStairs {
     public BlockStairsDarkPrismarine() {
         super(Material.ROCK, "stairs_dark_prismarine");
         setSoundType(SoundType.STONE);
-        setHardness(1);
+        setHardness(1.5F);
+        setResistance(10);
 
         setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 

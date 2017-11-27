@@ -9,12 +9,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.pl3x.forge.block.ModBlocks;
 
-public class BlockStairsPrismarine extends BlockStairs {
-    public BlockStairsPrismarine() {
-        super(Material.ROCK, "stairs_prismarine");
+public class BlockStairsDioriteSmooth extends BlockStairs {
+    public BlockStairsDioriteSmooth() {
+        super(Material.ROCK, "stairs_diorite_smooth");
         setSoundType(SoundType.STONE);
-        setHardness(1.5F);
-        setResistance(10);
+        setHardness(1);
 
         setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 
@@ -23,6 +22,6 @@ public class BlockStairsPrismarine extends BlockStairs {
 
     @Override
     public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-        return MapColor.CYAN;
+        return MapColor.STONE;
     }
 }
