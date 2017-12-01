@@ -27,6 +27,8 @@ import net.pl3x.forge.cape.LayerPl3xCape;
 import net.pl3x.forge.cape.LayerPl3xElytra;
 import net.pl3x.forge.color.ModColorManager;
 import net.pl3x.forge.configuration.ClientConfig;
+import net.pl3x.forge.discord.Discord;
+import net.pl3x.forge.discord.PresenceManager;
 import net.pl3x.forge.entity.ModEntities;
 import net.pl3x.forge.exception.FuckOptifine;
 import net.pl3x.forge.gui.TitleScreen;
@@ -100,6 +102,10 @@ public class ClientProxy extends ServerProxy {
         Pl3xSettings.INSTANCE.chatBGGreen = ClientConfig.chatOptions.background.green;
         Pl3xSettings.INSTANCE.chatBGBlue = ClientConfig.chatOptions.background.blue;
         Pl3xSettings.INSTANCE.chatBGAlpha = ClientConfig.chatOptions.background.alpha;
+
+        Discord.loadLibs();
+        PresenceManager.INSTANCE.init();
+        PresenceManager.INSTANCE.update(false);
     }
 
     public void serverStarting(FMLServerStartingEvent event) {

@@ -18,6 +18,7 @@ import net.pl3x.forge.capability.DeceptionTarget;
 import net.pl3x.forge.capability.DeceptionTargetImpl;
 import net.pl3x.forge.capability.PlayerData;
 import net.pl3x.forge.capability.PlayerDataImpl;
+import net.pl3x.forge.cape.CapeManager;
 import net.pl3x.forge.command.CmdBack;
 import net.pl3x.forge.command.CmdBigHead;
 import net.pl3x.forge.command.CmdBiomes;
@@ -70,7 +71,6 @@ import net.pl3x.forge.network.OpenInventoryPacket;
 import net.pl3x.forge.network.PacketHandler;
 import net.pl3x.forge.prometheus.PrometheusController;
 import net.pl3x.forge.recipe.ModRecipes;
-import net.pl3x.forge.cape.CapeManager;
 import net.pl3x.forge.util.task.TPSTracker;
 import net.pl3x.forge.world.ModWorldGen;
 

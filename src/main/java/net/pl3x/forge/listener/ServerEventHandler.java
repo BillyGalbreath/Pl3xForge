@@ -68,6 +68,8 @@ import net.pl3x.forge.util.teleport.Teleport;
 import net.pl3x.forge.util.teleport.TeleportRequest;
 
 import java.util.Iterator;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ServerEventHandler {
     private short tick = 0;
@@ -82,7 +84,12 @@ public class ServerEventHandler {
         if (event.player instanceof EntityPlayerMP) {
             PacketHandler.updatePlayerData((EntityPlayerMP) event.player);
         }
-        PacketHandler.INSTANCE.sendToAll(new RequestCapePacket());
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                PacketHandler.INSTANCE.sendToAll(new RequestCapePacket());
+            }
+        }, 1000L);
     }
 
     @SubscribeEvent

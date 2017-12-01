@@ -1,5 +1,6 @@
 package net.pl3x.forge;
 
+import club.minnced.discord.rpc.DiscordRPC;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
@@ -11,6 +12,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLModDisabledEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
@@ -62,6 +64,11 @@ public class Pl3x {
     @Mod.EventHandler
     public void serverStopping(FMLServerStoppingEvent event) {
         proxy.serverStopping(event);
+    }
+
+    @Mod.EventHandler
+    public void onDisable(final FMLModDisabledEvent event) {
+        DiscordRPC.INSTANCE.Discord_Shutdown();
     }
 
     @Mod.EventBusSubscriber

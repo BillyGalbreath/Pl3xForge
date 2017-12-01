@@ -11,13 +11,18 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 import net.pl3x.forge.block.custom.decoration.BlockTV;
+import net.pl3x.forge.cape.CapeManager;
 import net.pl3x.forge.claims.Selection;
 import net.pl3x.forge.color.ChatColor;
+import net.pl3x.forge.discord.PresenceManager;
 import net.pl3x.forge.gui.HUDBalance;
 import net.pl3x.forge.icons.IconManager;
 import net.pl3x.forge.tileentity.renderer.TileEntityMirrorRenderer;
-import net.pl3x.forge.cape.CapeManager;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ClientEventHandler {
     private final HUDBalance hudBalance = new HUDBalance();
@@ -117,5 +122,20 @@ public class ClientEventHandler {
 
         BlockTV.EnumChannel.tick();
         CapeManager.tick();
+    }
+
+    @SubscribeEvent
+    public void on(final FMLNetworkEvent.ClientConnectedToServerEvent event) {
+        PresenceManager.INSTANCE.update(event.isLocal());
+    }
+
+    @SubscribeEvent
+    public void on(final FMLNetworkEvent.ClientDisconnectionFromServerEvent event) {
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                PresenceManager.INSTANCE.update(false);
+            }
+        }, 1000L);
     }
 }
