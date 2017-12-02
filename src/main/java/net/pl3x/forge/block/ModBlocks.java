@@ -43,11 +43,14 @@ import net.pl3x.forge.block.custom.furniture.BlockCouch;
 import net.pl3x.forge.block.custom.ore.BlockFrostedObsidian;
 import net.pl3x.forge.block.custom.ore.BlockRuby;
 import net.pl3x.forge.block.custom.ore.BlockRubyOre;
+import net.pl3x.forge.block.custom.slab.BlockConcreteSlab;
 import net.pl3x.forge.block.custom.slab.BlockConcreteSlabDouble;
 import net.pl3x.forge.block.custom.slab.BlockConcreteSlabHalf;
 import net.pl3x.forge.block.custom.slab.BlockCurbSlab;
+import net.pl3x.forge.block.custom.slab.BlockDirtSlab;
 import net.pl3x.forge.block.custom.slab.BlockDirtSlabDouble;
 import net.pl3x.forge.block.custom.slab.BlockDirtSlabHalf;
+import net.pl3x.forge.block.custom.slab.BlockGrassSlab;
 import net.pl3x.forge.block.custom.slab.BlockGrassSlabDouble;
 import net.pl3x.forge.block.custom.slab.BlockGrassSlabHalf;
 import net.pl3x.forge.block.custom.stairs.BlockStairsAndesite;
@@ -93,6 +96,8 @@ import net.pl3x.forge.block.custom.stairs.BlockStairsStoneBrickCracked;
 import net.pl3x.forge.block.custom.stairs.BlockStairsStoneBrickMossy;
 import net.pl3x.forge.block.custom.stairs.BlockStairsTerracotta;
 import net.pl3x.forge.block.custom.stairs.BlockStairsWool;
+import net.pl3x.forge.block.custom.wall.BlockVerticalSlabStone;
+import net.pl3x.forge.block.custom.wall.BlockVerticalSlabStoneDouble;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -307,6 +312,8 @@ public class ModBlocks {
     public static final BlockTrafficLight TRAFFIC_LIGHT = new BlockTrafficLight();
     public static final BlockTrafficLightControlBox TRAFFIC_LIGHT_CONTROL_BOX = new BlockTrafficLightControlBox();
     public static final BlockTV TV = new BlockTV();
+    public static final BlockVerticalSlabStone VERTICAL_SLAB_STONE = new BlockVerticalSlabStone();
+    public static final BlockVerticalSlabStoneDouble VERTICAL_SLAB_STONE_DOUBLE = new BlockVerticalSlabStoneDouble();
 
     public static void register(IForgeRegistry<Block> registry) {
         blocks.forEach(registry::register);
@@ -324,7 +331,19 @@ public class ModBlocks {
     }
 
     public static void registerItemBlocks(IForgeRegistry<Item> registry) {
-        blocks.forEach(block -> registry.register(new ItemBlock(block).setRegistryName(block.getRegistryName())));
+        blocks.forEach(block -> {
+            if (block instanceof BlockBase) {
+                registry.register(((BlockBase) block).createItemBlock());
+            } else if (block instanceof BlockConcreteSlabHalf) {
+                registry.register(((BlockConcreteSlab) block).createItemBlock());
+            } else if (block instanceof BlockDirtSlabHalf) {
+                registry.register(((BlockDirtSlab) block).createItemBlock());
+            } else if (block instanceof BlockGrassSlabHalf) {
+                registry.register(((BlockGrassSlab) block).createItemBlock());
+            } else {
+                registry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+            }
+        });
     }
 
     public static void registerModels() {

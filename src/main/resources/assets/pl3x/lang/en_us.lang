@@ -183,6 +183,9 @@ tile.stairs_wool_silver.name=Light Gray Wool Stairs
 tile.stairs_wool_white.name=White Wool Stairs
 tile.stairs_wool_yellow.name=Yellow Wool Stairs
 
+tile.vertical_slab_stone.name=Stone Wall
+tile.vertical_slab_stone_double.name=Stone Double Wall
+
 tile.barrel.name=Barrel
 tile.bathroom_cabinet.name=Bathroom Cabinet
 tile.bedside_table.name=Bedside Table

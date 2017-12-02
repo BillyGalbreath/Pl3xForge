@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:stone"
+  },
+  "variants": {
+    "inventory": [{ }],
+    "facing=north": [{ }],
+    "facing=east":  [{ }],
+    "facing=south": [{ }],
+    "facing=west":  [{ }]
+  }
+}
