@@ -10,10 +10,35 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class PresenceManager {
     public static final PresenceManager INSTANCE = new PresenceManager();
 
+    private Timer timer;
+
+    private ServerData data;
+    private boolean isLocal;
+    private long time;
+
+    @SideOnly(Side.CLIENT)
+    public void update(boolean isLocal) {
+        this.isLocal = isLocal;
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                update();
+            }
+        }, 0L, 30000L);
+    }
+
+    @SideOnly(Side.CLIENT)
     public void init() {
         final DiscordEventHandlers handlers = new DiscordEventHandlers();
         handlers.ready = this::ready;
@@ -45,11 +70,16 @@ public class PresenceManager {
     }
 
     @SideOnly(Side.CLIENT)
-    public void update(boolean isLocal) {
-        final DiscordRichPresence presence = new DiscordRichPresence();
+    private void update() {
+        ServerData data = Minecraft.getMinecraft().getCurrentServerData();
+        if (data != this.data) {
+            this.data = data;
+            this.time = System.currentTimeMillis() / 1000L;
+        }
+
+        DiscordRichPresence presence = new DiscordRichPresence();
         presence.largeImageKey = "minecraft";
         presence.largeImageText = "Minecraft " + ForgeVersion.mcVersion;
-        ServerData data = Minecraft.getMinecraft().getCurrentServerData();
         if (data != null) {
             if (data.serverIP.contains("pl3x")) {
                 presence.smallImageKey = "pl3x";
@@ -60,21 +90,17 @@ public class PresenceManager {
                 presence.smallImageText = data.serverName;
                 presence.details = data.serverName;
             }
-            presence.startTimestamp = System.currentTimeMillis() / 1000L;
+            presence.startTimestamp = time;
         } else {
             if (isLocal) {
                 presence.details = "Single Player";
                 presence.smallImageKey = "single_player";
                 presence.smallImageText = "Single Player";
-                presence.startTimestamp = System.currentTimeMillis() / 1000L;
+                presence.startTimestamp = time;
             } else {
                 presence.details = "AFK";
             }
         }
-        updatePresence(presence);
-    }
-
-    public static void updatePresence(final DiscordRichPresence p) {
-        DiscordRPC.INSTANCE.Discord_UpdatePresence(p);
+        DiscordRPC.INSTANCE.Discord_UpdatePresence(presence);
     }
 }

@@ -126,7 +126,12 @@ public class ClientEventHandler {
 
     @SubscribeEvent
     public void on(final FMLNetworkEvent.ClientConnectedToServerEvent event) {
-        PresenceManager.INSTANCE.update(event.isLocal());
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                PresenceManager.INSTANCE.update(event.isLocal());
+            }
+        }, 1000L);
     }
 
     @SubscribeEvent

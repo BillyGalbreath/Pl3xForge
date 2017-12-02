@@ -18,6 +18,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.block.ModBlocks;
 import net.pl3x.forge.enchantment.ModEnchantments;
 import net.pl3x.forge.item.ModItems;
@@ -66,6 +68,7 @@ public class Pl3x {
         proxy.serverStopping(event);
     }
 
+    @SideOnly(Side.CLIENT)
     @Mod.EventHandler
     public void onDisable(final FMLModDisabledEvent event) {
         DiscordRPC.INSTANCE.Discord_Shutdown();
