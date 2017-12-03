@@ -78,6 +78,12 @@ public abstract class BlockStairs extends BlockBase {
             items.add(new ItemStack(Blocks.SPRUCE_STAIRS));
             items.add(new ItemStack(Blocks.ACACIA_STAIRS));
             items.add(new ItemStack(Blocks.DARK_OAK_STAIRS));
+            items.add(new ItemStack(ModBlocks.STAIRS_LOG_OAK));
+            items.add(new ItemStack(ModBlocks.STAIRS_LOG_BIRCH));
+            items.add(new ItemStack(ModBlocks.STAIRS_LOG_JUNGLE));
+            items.add(new ItemStack(ModBlocks.STAIRS_LOG_SPRUCE));
+            items.add(new ItemStack(ModBlocks.STAIRS_LOG_ACACIA));
+            items.add(new ItemStack(ModBlocks.STAIRS_LOG_DARK_OAK));
             items.add(new ItemStack(Blocks.STONE_STAIRS));
             items.add(new ItemStack(ModBlocks.STAIRS_COBBLESTONE_MOSSY));
             items.add(new ItemStack(ModBlocks.STAIRS_STONE));
