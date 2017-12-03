@@ -1,4 +1,4 @@
-package net.pl3x.forge.block.custom.wall;
+package net.pl3x.forge.block.custom.vertical_slab;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

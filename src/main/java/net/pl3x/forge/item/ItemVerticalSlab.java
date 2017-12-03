@@ -15,8 +15,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.pl3x.forge.block.custom.wall.BlockVerticalSlab;
-import net.pl3x.forge.block.custom.wall.BlockVerticalSlabDouble;
+import net.pl3x.forge.block.custom.vertical_slab.BlockVerticalSlab;
+import net.pl3x.forge.block.custom.vertical_slab.BlockVerticalSlabDouble;
 
 public class ItemVerticalSlab extends ItemBlock {
     private final BlockVerticalSlab singleSlab;
@@ -28,7 +28,7 @@ public class ItemVerticalSlab extends ItemBlock {
         this.doubleSlab = doubleSlab;
 
         setMaxDamage(0);
-        setHasSubtypes(true);
+        setHasSubtypes(false);
     }
 
     @Override

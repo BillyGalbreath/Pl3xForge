@@ -101,8 +101,21 @@ import net.pl3x.forge.block.custom.stairs.BlockStairsStoneBrickCracked;
 import net.pl3x.forge.block.custom.stairs.BlockStairsStoneBrickMossy;
 import net.pl3x.forge.block.custom.stairs.BlockStairsTerracotta;
 import net.pl3x.forge.block.custom.stairs.BlockStairsWool;
-import net.pl3x.forge.block.custom.wall.BlockVerticalSlabStone;
-import net.pl3x.forge.block.custom.wall.BlockVerticalSlabStoneDouble;
+import net.pl3x.forge.block.custom.vertical_slab.BlockVerticalSlab;
+import net.pl3x.forge.block.custom.vertical_slab.BlockVerticalSlabAcacia;
+import net.pl3x.forge.block.custom.vertical_slab.BlockVerticalSlabAcaciaDouble;
+import net.pl3x.forge.block.custom.vertical_slab.BlockVerticalSlabBirch;
+import net.pl3x.forge.block.custom.vertical_slab.BlockVerticalSlabBirchDouble;
+import net.pl3x.forge.block.custom.vertical_slab.BlockVerticalSlabDarkOak;
+import net.pl3x.forge.block.custom.vertical_slab.BlockVerticalSlabDarkOakDouble;
+import net.pl3x.forge.block.custom.vertical_slab.BlockVerticalSlabJungle;
+import net.pl3x.forge.block.custom.vertical_slab.BlockVerticalSlabJungleDouble;
+import net.pl3x.forge.block.custom.vertical_slab.BlockVerticalSlabOak;
+import net.pl3x.forge.block.custom.vertical_slab.BlockVerticalSlabOakDouble;
+import net.pl3x.forge.block.custom.vertical_slab.BlockVerticalSlabSpruce;
+import net.pl3x.forge.block.custom.vertical_slab.BlockVerticalSlabSpruceDouble;
+import net.pl3x.forge.block.custom.vertical_slab.BlockVerticalSlabStone;
+import net.pl3x.forge.block.custom.vertical_slab.BlockVerticalSlabStoneDouble;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -322,6 +335,18 @@ public class ModBlocks {
     public static final BlockTrafficLight TRAFFIC_LIGHT = new BlockTrafficLight();
     public static final BlockTrafficLightControlBox TRAFFIC_LIGHT_CONTROL_BOX = new BlockTrafficLightControlBox();
     public static final BlockTV TV = new BlockTV();
+    public static final BlockVerticalSlabAcacia VERTICAL_SLAB_ACACIA = new BlockVerticalSlabAcacia();
+    public static final BlockVerticalSlabAcaciaDouble VERTICAL_SLAB_ACACIA_DOUBLE = new BlockVerticalSlabAcaciaDouble();
+    public static final BlockVerticalSlabBirch VERTICAL_SLAB_BIRCH = new BlockVerticalSlabBirch();
+    public static final BlockVerticalSlabBirchDouble VERTICAL_SLAB_BIRCH_DOUBLE = new BlockVerticalSlabBirchDouble();
+    public static final BlockVerticalSlabDarkOak VERTICAL_SLAB_DARK_OAK = new BlockVerticalSlabDarkOak();
+    public static final BlockVerticalSlabDarkOakDouble VERTICAL_SLAB_DARK_OAK_DOUBLE = new BlockVerticalSlabDarkOakDouble();
+    public static final BlockVerticalSlabJungle VERTICAL_SLAB_JUNGLE = new BlockVerticalSlabJungle();
+    public static final BlockVerticalSlabJungleDouble VERTICAL_SLAB_JUNGLE_DOUBLE = new BlockVerticalSlabJungleDouble();
+    public static final BlockVerticalSlabOak VERTICAL_SLAB_OAK = new BlockVerticalSlabOak();
+    public static final BlockVerticalSlabOakDouble VERTICAL_SLAB_OAK_DOUBLE = new BlockVerticalSlabOakDouble();
+    public static final BlockVerticalSlabSpruce VERTICAL_SLAB_SPRUCE = new BlockVerticalSlabSpruce();
+    public static final BlockVerticalSlabSpruceDouble VERTICAL_SLAB_SPRUCE_DOUBLE = new BlockVerticalSlabSpruceDouble();
     public static final BlockVerticalSlabStone VERTICAL_SLAB_STONE = new BlockVerticalSlabStone();
     public static final BlockVerticalSlabStoneDouble VERTICAL_SLAB_STONE_DOUBLE = new BlockVerticalSlabStoneDouble();
 
@@ -342,14 +367,16 @@ public class ModBlocks {
 
     public static void registerItemBlocks(IForgeRegistry<Item> registry) {
         blocks.forEach(block -> {
-            if (block instanceof BlockBase) {
-                registry.register(((BlockBase) block).createItemBlock());
-            } else if (block instanceof BlockConcreteSlabHalf) {
+            if (block instanceof BlockConcreteSlabHalf) {
                 registry.register(((BlockConcreteSlab) block).createItemBlock());
             } else if (block instanceof BlockDirtSlabHalf) {
                 registry.register(((BlockDirtSlab) block).createItemBlock());
             } else if (block instanceof BlockGrassSlabHalf) {
                 registry.register(((BlockGrassSlab) block).createItemBlock());
+            } else if (block instanceof BlockVerticalSlab) {
+                registry.register(((BlockVerticalSlab) block).createItemBlock());
+            } else if (block instanceof BlockBase) {
+                registry.register(((BlockBase) block).createItemBlock());
             } else {
                 registry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
             }

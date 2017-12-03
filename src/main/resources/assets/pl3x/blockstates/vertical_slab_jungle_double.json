@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:jungle_planks"
+  },
+  "variants": {
+    "inventory": [{ }],
+    "facing=north": [{ }],
+    "facing=east":  [{ }],
+    "facing=south": [{ }],
+    "facing=west":  [{ }]
+  }
+}

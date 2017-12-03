@@ -1,0 +1,7 @@
+{
+  "parent": "pl3x:block/vertical_slab",
+  "textures": {
+    "full": "blocks/planks_oak",
+    "slab": "blocks/planks_oak"
+  }
+}

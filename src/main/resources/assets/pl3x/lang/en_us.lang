@@ -183,8 +183,20 @@ tile.stairs_wool_silver.name=Light Gray Wool Stairs
 tile.stairs_wool_white.name=White Wool Stairs
 tile.stairs_wool_yellow.name=Yellow Wool Stairs
 
-tile.vertical_slab_stone.name=Stone Wall
-tile.vertical_slab_stone_double.name=Stone Double Wall
+tile.vertical_slab_acacia.name=Acacia Vertical Slab
+tile.vertical_slab_acacia_double.name=Acacia Double Vertical Slab
+tile.vertical_slab_birch.name=Birch Vertical Slab
+tile.vertical_slab_birch_double.name=Birch Double Vertical Slab
+tile.vertical_slab_dark_oak.name=Dark Oak Vertical Slab
+tile.vertical_slab_dark_oak_double.name=Dark Oak Double Vertical Slab
+tile.vertical_slab_jungle.name=Jungle Vertical Slab
+tile.vertical_slab_jungle_double.name=Jungle Double Vertical Slab
+tile.vertical_slab_oak.name=Oak Vertical Slab
+tile.vertical_slab_oak_double.name=Oak Double Vertical Slab
+tile.vertical_slab_spruce.name=Spruce Vertical Slab
+tile.vertical_slab_spruce_double.name=Spruce Double Vertical Slab
+tile.vertical_slab_stone.name=Stone Vertical Slab
+tile.vertical_slab_stone_double.name=Stone Double Vertical Slab
 
 tile.barrel.name=Barrel
 tile.bathroom_cabinet.name=Bathroom Cabinet
