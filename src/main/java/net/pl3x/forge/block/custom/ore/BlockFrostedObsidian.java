@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -21,7 +20,6 @@ public class BlockFrostedObsidian extends BlockOre {
 
     public BlockFrostedObsidian() {
         super("frosted_obsidian", "frostedObsidian", 50, 6000, 3, "pickaxe");
-        setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
         setDefaultState(blockState.getBaseState().withProperty(AGE, 0));
         setTickRandomly(true);
 
