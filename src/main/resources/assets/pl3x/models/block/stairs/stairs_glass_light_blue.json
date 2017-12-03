@@ -1,0 +1,10 @@
+{
+  "parent": "pl3x:block/stairs/stairs_clear",
+  "textures": {
+    "full": "blocks/glass_light_blue",
+    "slab": "pl3x:blocks/glass_light_blue_slab",
+    "slab_vertical": "pl3x:blocks/glass_light_blue_slab",
+    "angle_left": "pl3x:blocks/glass_light_blue_angle_left",
+    "angle_right": "pl3x:blocks/glass_light_blue_angle_right"
+  }
+}

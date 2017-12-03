@@ -1,7 +1,7 @@
 {
   "variants": {
-    "inventory": {"model": "pl3x:concrete_slab_bottom_pink"},
-    "half=bottom,variant=default": {"model": "pl3x:concrete_slab_bottom_pink"},
-    "half=top,variant=default": {"model": "pl3x:concrete_slab_top_pink"}
+    "inventory": {"model": "pl3x:slab/concrete_slab_bottom_pink"},
+    "half=bottom,variant=default": {"model": "pl3x:slab/concrete_slab_bottom_pink"},
+    "half=top,variant=default": {"model": "pl3x:slab/concrete_slab_top_pink"}
   }
 }

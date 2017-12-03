@@ -1,6 +1,0 @@
-{
-  "parent": "pl3x:block/crop_cross",
-  "textures": {
-    "crop": "pl3x:blocks/crop_ender_pearl/7"
-  }
-}

@@ -1,9 +1,9 @@
 {
   "variants": {
-    "inventory": { "model": "pl3x:stairs_spiral" },
-    "facing=south": { "model": "pl3x:stairs_spiral", "y": 180 },
-    "facing=west":  { "model": "pl3x:stairs_spiral", "y": 270 },
-    "facing=north": { "model": "pl3x:stairs_spiral", "y": 0 },
-    "facing=east":  { "model": "pl3x:stairs_spiral", "y": 90 }
+    "inventory": { "model": "pl3x:stairs/stairs_spiral" },
+    "facing=south": { "model": "pl3x:stairs/stairs_spiral", "y": 180 },
+    "facing=west":  { "model": "pl3x:stairs/stairs_spiral", "y": 270 },
+    "facing=north": { "model": "pl3x:stairs/stairs_spiral", "y": 0 },
+    "facing=east":  { "model": "pl3x:stairs/stairs_spiral", "y": 90 }
   }
 }

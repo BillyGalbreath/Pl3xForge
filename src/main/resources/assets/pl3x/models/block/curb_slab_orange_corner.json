@@ -1,6 +1,0 @@
-{
-  "parent": "pl3x:block/curb_slab_corner",
-  "textures": {
-    "color": "blocks/concrete_orange"
-  }
-}

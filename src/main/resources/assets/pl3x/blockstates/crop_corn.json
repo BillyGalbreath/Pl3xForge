@@ -1,13 +1,13 @@
 {
   "variants": {
-    "inventory": {"model": "pl3x:crop_corn_stage7"},
-    "age=0": { "model": "pl3x:crop_corn_stage0" },
-    "age=1": { "model": "pl3x:crop_corn_stage1" },
-    "age=2": { "model": "pl3x:crop_corn_stage2" },
-    "age=3": { "model": "pl3x:crop_corn_stage3" },
-    "age=4": { "model": "pl3x:crop_corn_stage4" },
-    "age=5": { "model": "pl3x:crop_corn_stage5" },
-    "age=6": { "model": "pl3x:crop_corn_stage6" },
-    "age=7": { "model": "pl3x:crop_corn_stage7" }
+    "inventory": {"model": "pl3x:crop/corn/7"},
+    "age=0": { "model": "pl3x:crop/corn/0" },
+    "age=1": { "model": "pl3x:crop/corn/1" },
+    "age=2": { "model": "pl3x:crop/corn/2" },
+    "age=3": { "model": "pl3x:crop/corn/3" },
+    "age=4": { "model": "pl3x:crop/corn/4" },
+    "age=5": { "model": "pl3x:crop/corn/5" },
+    "age=6": { "model": "pl3x:crop/corn/6" },
+    "age=7": { "model": "pl3x:crop/corn/7" }
   }
 }

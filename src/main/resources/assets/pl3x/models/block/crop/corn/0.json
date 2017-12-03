@@ -1,0 +1,6 @@
+{
+  "parent": "pl3x:block/crop/crop_cross_tall",
+  "textures": {
+    "crop": "pl3x:blocks/crop_corn/0"
+  }
+}
