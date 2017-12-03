@@ -17,7 +17,13 @@ public class Discord {
         String OS = System.getProperty("os.name").toLowerCase();
         try {
             if (OS.contains("win")) {
-                loadFile("win32-x86-64/discord-rpc.dll");
+                String wow64Arch = System.getenv("PROCESSOR_ARCHITEW6432");
+                if (System.getenv("PROCESSOR_ARCHITECTURE").endsWith("64") ||
+                        (wow64Arch != null && wow64Arch.endsWith("64"))) {
+                    loadFile("win32-x86-64/discord-rpc.dll");
+                } else {
+                    loadFile("win32-x86/discord-rpc.dll");
+                }
             }
             if (OS.contains("nix") || OS.contains("nux") || OS.indexOf("aix") > 0) {
                 loadFile("linux-x86-64/libdiscord-rpc.so");
