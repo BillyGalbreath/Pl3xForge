@@ -29,6 +29,7 @@ public class PresenceManager {
             timer.cancel();
             timer = null;
         }
+        time = System.currentTimeMillis() / 1000L;
         timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
@@ -49,7 +50,7 @@ public class PresenceManager {
             while (!Thread.currentThread().isInterrupted()) {
                 DiscordRPC.INSTANCE.Discord_RunCallbacks();
                 try {
-                    Thread.sleep(100L);
+                    Thread.sleep(500L);
                 } catch (InterruptedException ex) {
                     DiscordRPC.INSTANCE.Discord_Shutdown();
                 }
@@ -63,6 +64,8 @@ public class PresenceManager {
 
     private void disconnected(final int code, @Nullable final String text) {
         System.out.println("Disconnected from DiscordRPC, Code: " + code + " Error: " + text);
+        init(); // reconnect
+        update();
     }
 
     private void ready() {
