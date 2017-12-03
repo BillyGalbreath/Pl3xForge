@@ -9,7 +9,6 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.BlockRenderLayer;
@@ -43,7 +42,7 @@ public class BlockCurbSlab extends BlockBase {
 
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.SOUTH).withProperty(SHAPE, EnumShape.STRAIGHT));
 
-        setCreativeTab(CreativeTabs.DECORATIONS);
+        setCreativeTab(BlockDirtSlab.TAB_SLABS);
 
         ModBlocks.blocks.add(this);
     }

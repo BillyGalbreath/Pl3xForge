@@ -11,9 +11,12 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.Mirror;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -51,14 +54,158 @@ public abstract class BlockStairs extends BlockBase {
     protected static final AxisAlignedBB AABB_OCT_BOT_SW = new AxisAlignedBB(0.0D, 0.0D, 0.5D, 0.5D, 0.5D, 1.0D);
     protected static final AxisAlignedBB AABB_OCT_BOT_SE = new AxisAlignedBB(0.5D, 0.0D, 0.5D, 1.0D, 0.5D, 1.0D);
 
+    public static final CreativeTabs TAB_STAIRS = new CreativeTabs("stairs") {
+        @Override
+        public ItemStack getTabIconItem() {
+            return new ItemStack(ModBlocks.STAIRS_ICE_PACKED);
+        }
+
+        @Override
+        public void displayAllRelevantItems(NonNullList<ItemStack> items) {
+            //super.displayAllRelevantItems(items);
+
+            //TreeMap<String, ItemStack> map = new TreeMap<>();
+            //items.forEach(item -> map.put(item.getUnlocalizedName(), item));
+
+            items.clear();
+
+            items.add(new ItemStack(ModBlocks.STAIRS_DIRT));
+            items.add(new ItemStack(ModBlocks.STAIRS_DIRT_COARSE));
+            items.add(new ItemStack(ModBlocks.STAIRS_GRASS));
+            items.add(new ItemStack(Blocks.OAK_STAIRS));
+            items.add(new ItemStack(Blocks.BIRCH_STAIRS));
+            items.add(new ItemStack(Blocks.JUNGLE_STAIRS));
+            items.add(new ItemStack(Blocks.SPRUCE_STAIRS));
+            items.add(new ItemStack(Blocks.ACACIA_STAIRS));
+            items.add(new ItemStack(Blocks.DARK_OAK_STAIRS));
+            items.add(new ItemStack(Blocks.STONE_STAIRS));
+            items.add(new ItemStack(ModBlocks.STAIRS_COBBLESTONE_MOSSY));
+            items.add(new ItemStack(ModBlocks.STAIRS_STONE));
+            items.add(new ItemStack(ModBlocks.STAIRS_ANDESITE));
+            items.add(new ItemStack(ModBlocks.STAIRS_ANDESITE_SMOOTH));
+            items.add(new ItemStack(ModBlocks.STAIRS_DIORITE));
+            items.add(new ItemStack(ModBlocks.STAIRS_DIORITE_SMOOTH));
+            items.add(new ItemStack(ModBlocks.STAIRS_GRANITE));
+            items.add(new ItemStack(ModBlocks.STAIRS_GRANITE_SMOOTH));
+            items.add(new ItemStack(Blocks.STONE_BRICK_STAIRS));
+            items.add(new ItemStack(ModBlocks.STAIRS_STONE_BRICK_CHISELED));
+            items.add(new ItemStack(ModBlocks.STAIRS_STONE_BRICK_CRACKED));
+            items.add(new ItemStack(ModBlocks.STAIRS_STONE_BRICK_MOSSY));
+            items.add(new ItemStack(Blocks.BRICK_STAIRS));
+            items.add(new ItemStack(Blocks.SANDSTONE_STAIRS));
+            items.add(new ItemStack(ModBlocks.STAIRS_SANDSTONE_CHISELED));
+            items.add(new ItemStack(ModBlocks.STAIRS_SANDSTONE_SMOOTH));
+            items.add(new ItemStack(Blocks.RED_SANDSTONE_STAIRS));
+            items.add(new ItemStack(ModBlocks.STAIRS_RED_SANDSTONE_CHISELED));
+            items.add(new ItemStack(ModBlocks.STAIRS_RED_SANDSTONE_SMOOTH));
+            items.add(new ItemStack(ModBlocks.STAIRS_NETHER_WART));
+            items.add(new ItemStack(ModBlocks.STAIRS_NETHERRACK));
+            items.add(new ItemStack(Blocks.NETHER_BRICK_STAIRS));
+            items.add(new ItemStack(ModBlocks.STAIRS_RED_NETHER_BRICK));
+            items.add(new ItemStack(Blocks.QUARTZ_STAIRS));
+            items.add(new ItemStack(ModBlocks.STAIRS_QUARTZ_CHISELED));
+            items.add(new ItemStack(ModBlocks.STAIRS_QUARTZ_PILLAR));
+            items.add(new ItemStack(ModBlocks.STAIRS_GLOWSTONE));
+            items.add(new ItemStack(ModBlocks.STAIRS_MAGMA));
+            items.add(new ItemStack(ModBlocks.STAIRS_OBSIDIAN));
+            items.add(new ItemStack(ModBlocks.STAIRS_COAL));
+            items.add(new ItemStack(ModBlocks.STAIRS_IRON));
+            items.add(new ItemStack(ModBlocks.STAIRS_GOLD));
+            items.add(new ItemStack(ModBlocks.STAIRS_LAPIS));
+            items.add(new ItemStack(ModBlocks.STAIRS_REDSTONE));
+            items.add(new ItemStack(ModBlocks.STAIRS_DIAMOND));
+            items.add(new ItemStack(ModBlocks.STAIRS_EMERALD));
+            items.add(new ItemStack(ModBlocks.STAIRS_RUBY));
+            items.add(new ItemStack(ModBlocks.STAIRS_PRISMARINE));
+            items.add(new ItemStack(ModBlocks.STAIRS_PRISMARINE_BRICK));
+            items.add(new ItemStack(ModBlocks.STAIRS_DARK_PRISMARINE));
+            items.add(new ItemStack(ModBlocks.STAIRS_SEA_LANTERN));
+            items.add(new ItemStack(ModBlocks.STAIRS_END_STONE));
+            items.add(new ItemStack(ModBlocks.STAIRS_END_BRICKS));
+            items.add(new ItemStack(Blocks.PURPUR_STAIRS));
+            items.add(new ItemStack(ModBlocks.STAIRS_PURPUR_PILLAR));
+            items.add(new ItemStack(ModBlocks.STAIRS_BONE));
+            items.add(new ItemStack(ModBlocks.STAIRS_ICE_PACKED));
+            items.add(new ItemStack(ModBlocks.STAIRS_CONCRETE_BLACK));
+            items.add(new ItemStack(ModBlocks.STAIRS_CONCRETE_BLUE));
+            items.add(new ItemStack(ModBlocks.STAIRS_CONCRETE_BROWN));
+            items.add(new ItemStack(ModBlocks.STAIRS_CONCRETE_CYAN));
+            items.add(new ItemStack(ModBlocks.STAIRS_CONCRETE_GRAY));
+            items.add(new ItemStack(ModBlocks.STAIRS_CONCRETE_GREEN));
+            items.add(new ItemStack(ModBlocks.STAIRS_CONCRETE_LIGHT_BLUE));
+            items.add(new ItemStack(ModBlocks.STAIRS_CONCRETE_LIME));
+            items.add(new ItemStack(ModBlocks.STAIRS_CONCRETE_MAGENTA));
+            items.add(new ItemStack(ModBlocks.STAIRS_CONCRETE_ORANGE));
+            items.add(new ItemStack(ModBlocks.STAIRS_CONCRETE_PINK));
+            items.add(new ItemStack(ModBlocks.STAIRS_CONCRETE_PURPLE));
+            items.add(new ItemStack(ModBlocks.STAIRS_CONCRETE_RED));
+            items.add(new ItemStack(ModBlocks.STAIRS_CONCRETE_SILVER));
+            items.add(new ItemStack(ModBlocks.STAIRS_CONCRETE_WHITE));
+            items.add(new ItemStack(ModBlocks.STAIRS_CONCRETE_YELLOW));
+            items.add(new ItemStack(ModBlocks.STAIRS_GLASS));
+            items.add(new ItemStack(ModBlocks.STAIRS_GLASS_BLACK));
+            items.add(new ItemStack(ModBlocks.STAIRS_GLASS_BLUE));
+            items.add(new ItemStack(ModBlocks.STAIRS_GLASS_BROWN));
+            items.add(new ItemStack(ModBlocks.STAIRS_GLASS_CYAN));
+            items.add(new ItemStack(ModBlocks.STAIRS_GLASS_GRAY));
+            items.add(new ItemStack(ModBlocks.STAIRS_GLASS_GREEN));
+            items.add(new ItemStack(ModBlocks.STAIRS_GLASS_LIGHT_BLUE));
+            items.add(new ItemStack(ModBlocks.STAIRS_GLASS_LIME));
+            items.add(new ItemStack(ModBlocks.STAIRS_GLASS_MAGENTA));
+            items.add(new ItemStack(ModBlocks.STAIRS_GLASS_ORANGE));
+            items.add(new ItemStack(ModBlocks.STAIRS_GLASS_PINK));
+            items.add(new ItemStack(ModBlocks.STAIRS_GLASS_PURPLE));
+            items.add(new ItemStack(ModBlocks.STAIRS_GLASS_RED));
+            items.add(new ItemStack(ModBlocks.STAIRS_GLASS_SILVER));
+            items.add(new ItemStack(ModBlocks.STAIRS_GLASS_WHITE));
+            items.add(new ItemStack(ModBlocks.STAIRS_GLASS_YELLOW));
+            items.add(new ItemStack(ModBlocks.STAIRS_TERRACOTTA));
+            items.add(new ItemStack(ModBlocks.STAIRS_TERRACOTTA_BLACK));
+            items.add(new ItemStack(ModBlocks.STAIRS_TERRACOTTA_BLUE));
+            items.add(new ItemStack(ModBlocks.STAIRS_TERRACOTTA_BROWN));
+            items.add(new ItemStack(ModBlocks.STAIRS_TERRACOTTA_CYAN));
+            items.add(new ItemStack(ModBlocks.STAIRS_TERRACOTTA_GRAY));
+            items.add(new ItemStack(ModBlocks.STAIRS_TERRACOTTA_GREEN));
+            items.add(new ItemStack(ModBlocks.STAIRS_TERRACOTTA_LIGHT_BLUE));
+            items.add(new ItemStack(ModBlocks.STAIRS_TERRACOTTA_LIME));
+            items.add(new ItemStack(ModBlocks.STAIRS_TERRACOTTA_MAGENTA));
+            items.add(new ItemStack(ModBlocks.STAIRS_TERRACOTTA_ORANGE));
+            items.add(new ItemStack(ModBlocks.STAIRS_TERRACOTTA_PINK));
+            items.add(new ItemStack(ModBlocks.STAIRS_TERRACOTTA_PURPLE));
+            items.add(new ItemStack(ModBlocks.STAIRS_TERRACOTTA_RED));
+            items.add(new ItemStack(ModBlocks.STAIRS_TERRACOTTA_SILVER));
+            items.add(new ItemStack(ModBlocks.STAIRS_TERRACOTTA_WHITE));
+            items.add(new ItemStack(ModBlocks.STAIRS_TERRACOTTA_YELLOW));
+            items.add(new ItemStack(ModBlocks.STAIRS_WOOL_BLACK));
+            items.add(new ItemStack(ModBlocks.STAIRS_WOOL_BLUE));
+            items.add(new ItemStack(ModBlocks.STAIRS_WOOL_BROWN));
+            items.add(new ItemStack(ModBlocks.STAIRS_WOOL_CYAN));
+            items.add(new ItemStack(ModBlocks.STAIRS_WOOL_GRAY));
+            items.add(new ItemStack(ModBlocks.STAIRS_WOOL_GREEN));
+            items.add(new ItemStack(ModBlocks.STAIRS_WOOL_LIGHT_BLUE));
+            items.add(new ItemStack(ModBlocks.STAIRS_WOOL_LIME));
+            items.add(new ItemStack(ModBlocks.STAIRS_WOOL_MAGENTA));
+            items.add(new ItemStack(ModBlocks.STAIRS_WOOL_ORANGE));
+            items.add(new ItemStack(ModBlocks.STAIRS_WOOL_PINK));
+            items.add(new ItemStack(ModBlocks.STAIRS_WOOL_PURPLE));
+            items.add(new ItemStack(ModBlocks.STAIRS_WOOL_RED));
+            items.add(new ItemStack(ModBlocks.STAIRS_WOOL_SILVER));
+            items.add(new ItemStack(ModBlocks.STAIRS_WOOL_WHITE));
+            items.add(new ItemStack(ModBlocks.STAIRS_WOOL_YELLOW));
+
+            //map.forEach((k, v) -> {
+            //    System.out.println(k);
+            //    items.add(v);
+            //});
+        }
+    };
+
     public BlockStairs(Material material, String name) {
         super(material, name);
         setDefaultState(blockState.getBaseState()
                 .withProperty(FACING, EnumFacing.NORTH)
                 .withProperty(HALF, EnumHalf.BOTTOM)
                 .withProperty(SHAPE, EnumShape.STRAIGHT));
-
-        setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 
         ModBlocks.blocks.add(this);
     }

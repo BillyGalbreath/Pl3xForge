@@ -14,7 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.Pl3x;
 
 public class ItemHat extends ItemBase {
-    private static final CreativeTabs tabHats = new CreativeTabs("Hats") {
+    public static final CreativeTabs TAB_HATS = new CreativeTabs("hats") {
         @Override
         public ItemStack getTabIconItem() {
             return new ItemStack(ModItems.HAT_HARDHAT_ON);
@@ -23,7 +23,7 @@ public class ItemHat extends ItemBase {
 
     public ItemHat(String name) {
         super(name);
-        setCreativeTab(tabHats);
+        setCreativeTab(TAB_HATS);
         setMaxStackSize(1);
         setNoRepair();
         setMaxDamage(0);

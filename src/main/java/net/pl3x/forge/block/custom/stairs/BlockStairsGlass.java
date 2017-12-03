@@ -5,7 +5,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -21,7 +20,7 @@ public class BlockStairsGlass extends BlockStairs {
         setSoundType(SoundType.GLASS);
         setHardness(1);
 
-        setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+        setCreativeTab(TAB_STAIRS);
 
         ModBlocks.blocks.add(this);
     }

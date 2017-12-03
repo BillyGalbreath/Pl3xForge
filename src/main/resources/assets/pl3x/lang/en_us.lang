@@ -298,7 +298,10 @@ enchantment.lavaWalker=Lava Walker
 enchantment.funnyBones=Funny Bones
 
 # Creative Tabs
-itemGroup.Hats=Hats
+itemGroup.hats=Hats
+itemGroup.slabs=Slabs
+itemGroup.stairs=Stairs
+itemGroup.vertical_slabs=Vertical Slabs
 
 # GUI strings
 pl3x.config.title=Pl3xForge Config

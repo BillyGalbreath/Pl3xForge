@@ -5,9 +5,12 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Mirror;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -16,6 +19,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.block.BlockBase;
+import net.pl3x.forge.block.ModBlocks;
 
 import java.util.Random;
 
@@ -25,6 +29,26 @@ public abstract class BlockVerticalSlab extends BlockBase {
     protected static final AxisAlignedBB AABB_WEST = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 1.0, 0.5); // west
     protected static final AxisAlignedBB AABB_SOUTH = new AxisAlignedBB(0.0, 0.0, 0.0, 0.5, 1.0, 1.0); // south
     protected static final AxisAlignedBB AABB_NORTH = new AxisAlignedBB(0.5, 0.0, 0.0, 1.0, 1.0, 1.0); // north
+
+    public static final CreativeTabs TAB_VERTICAL_SLABS = new CreativeTabs("vertical_slabs") {
+        @Override
+        public ItemStack getTabIconItem() {
+            return new ItemStack(ModBlocks.VERTICAL_SLAB_OAK);
+        }
+
+        @Override
+        public void displayAllRelevantItems(NonNullList<ItemStack> items) {
+            items.clear();
+
+            items.add(new ItemStack(ModBlocks.VERTICAL_SLAB_OAK));
+            items.add(new ItemStack(ModBlocks.VERTICAL_SLAB_SPRUCE));
+            items.add(new ItemStack(ModBlocks.VERTICAL_SLAB_BIRCH));
+            items.add(new ItemStack(ModBlocks.VERTICAL_SLAB_JUNGLE));
+            items.add(new ItemStack(ModBlocks.VERTICAL_SLAB_ACACIA));
+            items.add(new ItemStack(ModBlocks.VERTICAL_SLAB_DARK_OAK));
+            items.add(new ItemStack(ModBlocks.VERTICAL_SLAB_STONE));
+        }
+    };
 
     public BlockVerticalSlab(Material material, String name) {
         super(material, name);

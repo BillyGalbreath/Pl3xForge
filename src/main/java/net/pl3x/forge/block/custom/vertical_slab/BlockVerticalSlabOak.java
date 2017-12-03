@@ -4,7 +4,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -21,7 +20,7 @@ public class BlockVerticalSlabOak extends BlockVerticalSlab {
 
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 
-        setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+        setCreativeTab(TAB_VERTICAL_SLABS);
 
         ModBlocks.blocks.add(this);
     }

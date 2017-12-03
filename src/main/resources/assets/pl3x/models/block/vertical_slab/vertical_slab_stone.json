@@ -1,5 +1,5 @@
 {
-  "parent": "pl3x:block/vertical_slab",
+  "parent": "pl3x:block/vertical_slab/vertical_slab",
   "textures": {
     "full": "blocks/stone",
     "slab": "blocks/stone"

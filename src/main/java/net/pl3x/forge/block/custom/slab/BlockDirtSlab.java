@@ -9,11 +9,13 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -24,6 +26,71 @@ import java.util.Random;
 
 public abstract class BlockDirtSlab extends BlockSlab {
     private static final PropertyEnum<BlockDirtSlab.Variant> VARIANT = PropertyEnum.create("variant", BlockDirtSlab.Variant.class);
+
+    public static final CreativeTabs TAB_SLABS = new CreativeTabs("slabs") {
+        @Override
+        public ItemStack getTabIconItem() {
+            return new ItemStack(ModBlocks.CONCRETE_SLAB_LIME);
+        }
+
+        @Override
+        public void displayAllRelevantItems(NonNullList<ItemStack> items) {
+            items.clear();
+
+            items.add(new ItemStack(ModBlocks.DIRT_SLAB));
+            items.add(new ItemStack(ModBlocks.GRASS_SLAB));
+            //items.add(new ItemStack(Blocks.STONE_SLAB, 1, 2)); // wood_old // no longer used
+            items.add(new ItemStack(Blocks.WOODEN_SLAB, 1, 0)); // oak
+            items.add(new ItemStack(Blocks.WOODEN_SLAB, 1, 1)); // spruce
+            items.add(new ItemStack(Blocks.WOODEN_SLAB, 1, 2)); // birch
+            items.add(new ItemStack(Blocks.WOODEN_SLAB, 1, 3)); // jungle
+            items.add(new ItemStack(Blocks.WOODEN_SLAB, 1, 4)); // acacia
+            items.add(new ItemStack(Blocks.WOODEN_SLAB, 1, 5)); // dark oak
+            items.add(new ItemStack(Blocks.STONE_SLAB, 1, 3)); // cobblestone
+            items.add(new ItemStack(Blocks.STONE_SLAB, 1, 0)); // stone
+            items.add(new ItemStack(Blocks.STONE_SLAB, 1, 5)); // stone_brick
+            items.add(new ItemStack(Blocks.STONE_SLAB, 1, 4)); // brick
+            items.add(new ItemStack(Blocks.STONE_SLAB, 1, 1)); // sandstone
+            items.add(new ItemStack(Blocks.STONE_SLAB2, 1, 0)); // red sandstone
+            items.add(new ItemStack(Blocks.STONE_SLAB, 1, 6)); // nether_brick
+            items.add(new ItemStack(Blocks.STONE_SLAB, 1, 7)); // quartz
+            items.add(new ItemStack(Blocks.PURPUR_SLAB, 1, 0)); // purpur
+
+            items.add(new ItemStack(ModBlocks.CONCRETE_SLAB_BLACK));
+            items.add(new ItemStack(ModBlocks.CONCRETE_SLAB_BLUE));
+            items.add(new ItemStack(ModBlocks.CONCRETE_SLAB_BROWN));
+            items.add(new ItemStack(ModBlocks.CONCRETE_SLAB_CYAN));
+            items.add(new ItemStack(ModBlocks.CONCRETE_SLAB_GRAY));
+            items.add(new ItemStack(ModBlocks.CONCRETE_SLAB_GREEN));
+            items.add(new ItemStack(ModBlocks.CONCRETE_SLAB_LIGHT_BLUE));
+            items.add(new ItemStack(ModBlocks.CONCRETE_SLAB_LIME));
+            items.add(new ItemStack(ModBlocks.CONCRETE_SLAB_MAGENTA));
+            items.add(new ItemStack(ModBlocks.CONCRETE_SLAB_ORANGE));
+            items.add(new ItemStack(ModBlocks.CONCRETE_SLAB_PINK));
+            items.add(new ItemStack(ModBlocks.CONCRETE_SLAB_PURPLE));
+            items.add(new ItemStack(ModBlocks.CONCRETE_SLAB_RED));
+            items.add(new ItemStack(ModBlocks.CONCRETE_SLAB_SILVER));
+            items.add(new ItemStack(ModBlocks.CONCRETE_SLAB_WHITE));
+            items.add(new ItemStack(ModBlocks.CONCRETE_SLAB_YELLOW));
+
+            items.add(new ItemStack(ModBlocks.CURB_SLAB_BLACK));
+            items.add(new ItemStack(ModBlocks.CURB_SLAB_BLUE));
+            items.add(new ItemStack(ModBlocks.CURB_SLAB_BROWN));
+            items.add(new ItemStack(ModBlocks.CURB_SLAB_CYAN));
+            items.add(new ItemStack(ModBlocks.CURB_SLAB_GRAY));
+            items.add(new ItemStack(ModBlocks.CURB_SLAB_GREEN));
+            items.add(new ItemStack(ModBlocks.CURB_SLAB_LIGHT_BLUE));
+            items.add(new ItemStack(ModBlocks.CURB_SLAB_LIME));
+            items.add(new ItemStack(ModBlocks.CURB_SLAB_MAGENTA));
+            items.add(new ItemStack(ModBlocks.CURB_SLAB_ORANGE));
+            items.add(new ItemStack(ModBlocks.CURB_SLAB_PINK));
+            items.add(new ItemStack(ModBlocks.CURB_SLAB_PURPLE));
+            items.add(new ItemStack(ModBlocks.CURB_SLAB_RED));
+            items.add(new ItemStack(ModBlocks.CURB_SLAB_SILVER));
+            items.add(new ItemStack(ModBlocks.CURB_SLAB_WHITE));
+            items.add(new ItemStack(ModBlocks.CURB_SLAB_YELLOW));
+        }
+    };
 
     private final String name;
 
