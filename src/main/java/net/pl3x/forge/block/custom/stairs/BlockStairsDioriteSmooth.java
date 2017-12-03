@@ -13,7 +13,8 @@ public class BlockStairsDioriteSmooth extends BlockStairs {
     public BlockStairsDioriteSmooth() {
         super(Material.ROCK, "stairs_diorite_smooth");
         setSoundType(SoundType.STONE);
-        setHardness(1);
+        setHardness(1.5F);
+        setResistance(10F);
 
         setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 

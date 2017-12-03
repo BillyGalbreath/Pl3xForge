@@ -13,7 +13,8 @@ public class BlockStairsGraniteSmooth extends BlockStairs {
     public BlockStairsGraniteSmooth() {
         super(Material.ROCK, "stairs_granite_smooth");
         setSoundType(SoundType.STONE);
-        setHardness(1);
+        setHardness(1.5F);
+        setResistance(10F);
 
         setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 

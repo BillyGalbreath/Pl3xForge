@@ -9,12 +9,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.pl3x.forge.block.ModBlocks;
 
-public class BlockStairsDiorite extends BlockStairs {
-    public BlockStairsDiorite() {
-        super(Material.ROCK, "stairs_diorite");
+public class BlockStairsRedSandstoneChiseled extends BlockStairs {
+    public BlockStairsRedSandstoneChiseled() {
+        super(Material.ROCK, "stairs_red_sandstone_chiseled");
         setSoundType(SoundType.STONE);
-        setHardness(1.5F);
-        setResistance(10F);
+        setHardness(1F);
 
         setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 
@@ -23,6 +22,6 @@ public class BlockStairsDiorite extends BlockStairs {
 
     @Override
     public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-        return MapColor.STONE;
+        return MapColor.SAND;
     }
 }
