@@ -9,14 +9,14 @@ import net.pl3x.stairs.tab.StairsTab;
 
 public class BlockStairsRubyOre extends BlockStairsBasic {
     public BlockStairsRubyOre() {
-        super(Material.IRON, "stairs_ruby_ore", MapColor.RED);
+        super(Material.ROCK, "stairs_ruby_ore", MapColor.RED);
         setHardness(20F);
         setResistance(30F);
-        setSoundType(SoundType.METAL);
+        setSoundType(SoundType.STONE);
 
         ModBlocks.__BLOCKS__.add(this);
         net.pl3x.stairs.block.ModBlocks.__BLOCKS__.remove(this);
 
-        StairsTab.LIST.add(StairsTab.LIST.indexOf(net.pl3x.stairs.block.ModBlocks.STAIRS_EMERALD) + 1, this);
+        StairsTab.LIST.add(StairsTab.LIST.indexOf(net.pl3x.stairs.block.ModBlocks.STAIRS_EMERALD_ORE) + 1, this);
     }
 }

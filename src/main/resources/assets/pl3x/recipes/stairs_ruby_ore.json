@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "R  ",
+    "RR ",
+    "RRR"
+  ],
+  "key": {
+    "R": {
+      "item": "pl3x:ore_ruby"
+    }
+  },
+  "result": {
+    "item": "pl3x:stairs_ruby_ore",
+    "count": 4
+  }
+}

@@ -28,6 +28,7 @@ import net.pl3x.forge.block.custom.decoration.BlockPlate;
 import net.pl3x.forge.block.custom.decoration.BlockPole;
 import net.pl3x.forge.block.custom.decoration.BlockShop;
 import net.pl3x.forge.block.custom.decoration.BlockStairsRuby;
+import net.pl3x.forge.block.custom.decoration.BlockStairsRubyOre;
 import net.pl3x.forge.block.custom.decoration.BlockStairsSpiral;
 import net.pl3x.forge.block.custom.decoration.BlockStove;
 import net.pl3x.forge.block.custom.decoration.BlockTV;
@@ -172,6 +173,7 @@ public class ModBlocks {
     public static final BlockRuby RUBY_BLOCK = new BlockRuby();
     public static final BlockShop SHOP = new BlockShop();
     public static final BlockStairsRuby STAIRS_RUBY = new BlockStairsRuby();
+    public static final BlockStairsRubyOre STAIRS_RUBY_ORE = new BlockStairsRubyOre();
     public static final BlockStairsSpiral STAIRS_SPIRAL = new BlockStairsSpiral();
     public static final BlockStove STOVE = new BlockStove();
     public static final BlockTable TABLE = new BlockTable();

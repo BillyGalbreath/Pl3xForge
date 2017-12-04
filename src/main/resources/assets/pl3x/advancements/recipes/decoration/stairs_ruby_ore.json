@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "pl3x:stairs_ruby_ore"
+    ]
+  },
+  "criteria": {
+    "has_ruby_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pl3x:ore_ruby"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "pl3x:stairs_ruby_ore"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ruby_ore",
+      "has_the_recipe"
+    ]
+  ]
+}
