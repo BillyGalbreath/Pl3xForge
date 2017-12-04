@@ -69,8 +69,6 @@ public class ModColorManager {
 
         blockColors.registerBlockColorHandler(grassColorHandler, ModBlocks.GRASS_SLAB);
         blockColors.registerBlockColorHandler(grassColorHandler, ModBlocks.GRASS_SLAB_DOUBLE);
-
-        blockColors.registerBlockColorHandler(grassColorHandler, ModBlocks.STAIRS_GRASS);
     }
 
     private static void registerItemColorHandlers(final BlockColors blockColors, final ItemColors itemColors) {
@@ -115,7 +113,5 @@ public class ModColorManager {
 
         itemColors.registerItemColorHandler(itemBlockColorHandler, ModBlocks.GRASS_SLAB);
         itemColors.registerItemColorHandler(itemBlockColorHandler, ModBlocks.GRASS_SLAB_DOUBLE);
-
-        itemColors.registerItemColorHandler(itemBlockColorHandler, ModBlocks.STAIRS_GRASS);
     }
 }

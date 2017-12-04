@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "blocks/glowstone",
-    "top": "blocks/glowstone",
-    "side": "blocks/glowstone"
-  }
-}

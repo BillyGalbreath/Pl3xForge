@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "blocks/netherrack",
-    "top": "blocks/netherrack",
-    "side": "blocks/netherrack"
-  }
-}
