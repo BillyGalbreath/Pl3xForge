@@ -27,7 +27,7 @@ import net.pl3x.forge.proxy.ServerProxy;
 
 import java.io.File;
 
-@Mod(modid = Pl3x.modId, name = Pl3x.name, version = Pl3x.version)
+@Mod(modid = Pl3x.modId, name = Pl3x.name, version = Pl3x.version, dependencies = "required-after:stairs")
 public class Pl3x {
     public static final String modId = "pl3x";
     public static final String name = "Pl3x";

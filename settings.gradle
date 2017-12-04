@@ -1,0 +1,2 @@
+include ':stairs'
+project(':stairs').projectDir = new File(settingsDir, '../ForgeStairs')
