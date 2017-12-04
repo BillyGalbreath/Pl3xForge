@@ -9,7 +9,7 @@ import net.pl3x.stairs.tab.StairsTab;
 
 public class BlockStairsRubyOre extends BlockStairsBasic {
     public BlockStairsRubyOre() {
-        super(Material.ROCK, "stairs_ruby_ore", MapColor.RED);
+        super(Material.ROCK, "stairs_ruby_ore", MapColor.STONE);
         setHardness(20F);
         setResistance(30F);
         setSoundType(SoundType.STONE);
