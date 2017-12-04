@@ -18,7 +18,7 @@ public class BlockBase extends Block {
         setUnlocalizedName(name);
         setRegistryName(name);
 
-        ModBlocks.blocks.add(this);
+        ModBlocks.__BLOCKS__.add(this);
     }
 
     public void registerItemModel(Item item) {

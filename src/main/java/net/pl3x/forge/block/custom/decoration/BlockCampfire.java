@@ -22,7 +22,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.block.BlockBase;
-import net.pl3x.forge.block.ModBlocks;
 
 public class BlockCampfire extends BlockBase {
     private static final PropertyBool ON = PropertyBool.create("on");
@@ -36,8 +35,6 @@ public class BlockCampfire extends BlockBase {
         setLightLevel(0);
 
         setCreativeTab(CreativeTabs.DECORATIONS);
-
-        ModBlocks.blocks.add(this);
     }
 
     @Override

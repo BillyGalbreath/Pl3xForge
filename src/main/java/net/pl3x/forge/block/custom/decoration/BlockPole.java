@@ -91,8 +91,6 @@ public class BlockPole extends BlockBase {
         setHardness(1);
 
         setCreativeTab(CreativeTabs.DECORATIONS);
-
-        ModBlocks.blocks.add(this);
     }
 
     @Override

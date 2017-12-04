@@ -13,7 +13,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.pl3x.forge.block.ModBlocks;
 
 public class BlockCouch extends BlockSeat {
     private static final PropertyEnum<EnumShape> SHAPE = PropertyEnum.create("shape", EnumShape.class);
@@ -31,8 +30,6 @@ public class BlockCouch extends BlockSeat {
         AABB_BASE = new AxisAlignedBB(0.0625D, 0D, 0.0625D, 0.9375D, 0.4375D, 0.9375D);
 
         yOffset = -0.25;
-
-        ModBlocks.blocks.add(this);
     }
 
     @Override

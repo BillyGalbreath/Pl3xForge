@@ -27,7 +27,7 @@ public class BlockCropEnderPearl extends BlockCrops {
         setUnlocalizedName("crop_enderpearl");
         setRegistryName("crop_enderpearl");
 
-        ModBlocks.blocks.add(this);
+        ModBlocks.__BLOCKS__.add(this);
     }
 
     private boolean isOnEndstone(World world, BlockPos pos) {

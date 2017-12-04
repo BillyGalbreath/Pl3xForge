@@ -35,7 +35,7 @@ public class BlockTilledEndStone extends BlockFarmland {
         setHardness(0.6F);
         setHarvestLevel("pickaxe", 1);
 
-        ModBlocks.blocks.add(this);
+        ModBlocks.__BLOCKS__.add(this);
     }
 
     @Override

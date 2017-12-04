@@ -11,7 +11,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.pl3x.forge.block.BlockDirectional;
-import net.pl3x.forge.block.ModBlocks;
 
 public class BlockBathroomCabinet extends BlockDirectional {
     public BlockBathroomCabinet() {
@@ -20,8 +19,6 @@ public class BlockBathroomCabinet extends BlockDirectional {
         setHardness(1);
 
         setCreativeTab(CreativeTabs.DECORATIONS);
-
-        ModBlocks.blocks.add(this);
 
         AABB_NORTH = new AxisAlignedBB(0.125D, 0.125D, 0.0D, 0.875D, 0.875D, 0.1875D);
         AABB_SOUTH = new AxisAlignedBB(0.875D, 0.125D, 0.8125D, 0.125D, 0.875D, 1.0D);

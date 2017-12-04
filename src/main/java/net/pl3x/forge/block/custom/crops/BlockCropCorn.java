@@ -28,7 +28,7 @@ public class BlockCropCorn extends BlockCrops {
         setUnlocalizedName("crop_corn");
         setRegistryName("crop_corn");
 
-        ModBlocks.blocks.add(this);
+        ModBlocks.__BLOCKS__.add(this);
     }
 
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {

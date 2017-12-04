@@ -6,7 +6,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.pl3x.forge.block.ModBlocks;
 
 public class BlockChair extends BlockSeat {
     public BlockChair() {
@@ -18,8 +17,6 @@ public class BlockChair extends BlockSeat {
         AABB_WEST = new AxisAlignedBB(0.0625D, 0D, 0.0625D, 0.1275D, 1.437D, 0.9375D);
         AABB_EAST = new AxisAlignedBB(0.8735D, 0D, 0.0625D, 0.9375D, 1.437D, 0.9375D);
         AABB_BASE = new AxisAlignedBB(0.0625D, 0D, 0.0625D, 0.9375D, 0.5D, 0.9375D);
-
-        ModBlocks.blocks.add(this);
     }
 
     @Override

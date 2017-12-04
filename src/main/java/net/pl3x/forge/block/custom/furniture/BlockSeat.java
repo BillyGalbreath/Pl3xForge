@@ -20,7 +20,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.block.BlockDirectional;
-import net.pl3x.forge.block.ModBlocks;
 import net.pl3x.forge.entity.EntityChairSeat;
 
 import javax.annotation.Nullable;
@@ -38,8 +37,6 @@ public abstract class BlockSeat extends BlockDirectional {
         setHardness(1);
 
         setCreativeTab(CreativeTabs.DECORATIONS);
-
-        ModBlocks.blocks.add(this);
     }
 
     @Override

@@ -11,7 +11,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.pl3x.forge.block.BlockDirectional;
-import net.pl3x.forge.block.ModBlocks;
 
 public class BlockPathWood extends BlockDirectional {
     public static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.03D, 1.0D);
@@ -22,8 +21,6 @@ public class BlockPathWood extends BlockDirectional {
         setHardness(1);
 
         setCreativeTab(CreativeTabs.DECORATIONS);
-
-        ModBlocks.blocks.add(this);
     }
 
     @Override

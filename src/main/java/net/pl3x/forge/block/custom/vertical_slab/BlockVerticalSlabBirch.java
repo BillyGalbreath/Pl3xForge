@@ -21,8 +21,6 @@ public class BlockVerticalSlabBirch extends BlockVerticalSlab {
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 
         setCreativeTab(TAB_VERTICAL_SLABS);
-
-        ModBlocks.blocks.add(this);
     }
 
     @Override

@@ -16,8 +16,6 @@ public class BlockVerticalSlabSpruceDouble extends BlockVerticalSlabDouble {
         setSoundType(SoundType.WOOD);
 
         singleSlab = ModBlocks.VERTICAL_SLAB_SPRUCE;
-
-        ModBlocks.blocks.add(this);
     }
 
     @Override

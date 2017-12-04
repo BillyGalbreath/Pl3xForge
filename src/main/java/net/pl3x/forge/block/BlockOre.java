@@ -32,7 +32,7 @@ public class BlockOre extends BlockBase {
             setHarvestLevel(harvestTool, harvestLevel);
         }
 
-        ModBlocks.blocks.add(this);
+        ModBlocks.__BLOCKS__.add(this);
     }
 
     public void initOreDict() {

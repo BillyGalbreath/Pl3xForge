@@ -43,8 +43,6 @@ public class BlockCurbSlab extends BlockBase {
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.SOUTH).withProperty(SHAPE, EnumShape.STRAIGHT));
 
         setCreativeTab(BlockDirtSlab.TAB_SLABS);
-
-        ModBlocks.blocks.add(this);
     }
 
     @Override

@@ -32,7 +32,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.block.BlockTileEntity;
-import net.pl3x.forge.block.ModBlocks;
 import net.pl3x.forge.color.ChatColor;
 import net.pl3x.forge.gui.ModGuiHandler;
 import net.pl3x.forge.item.ModItems;
@@ -53,8 +52,6 @@ public class BlockShop extends BlockTileEntity<TileEntityShop> {
         setResistance(6000001.0F);
 
         setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-
-        ModBlocks.blocks.add(this);
     }
 
     @Override

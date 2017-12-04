@@ -27,7 +27,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.block.BlockTileEntity;
-import net.pl3x.forge.block.ModBlocks;
 import net.pl3x.forge.gui.ModGuiHandler;
 import net.pl3x.forge.tileentity.TileEntityEnchantmentSplitter;
 
@@ -43,8 +42,6 @@ public class BlockEnchantmentSplitter extends BlockTileEntity<TileEntityEnchantm
         setResistance(2500);
         setLightOpacity(0);
         setCreativeTab(CreativeTabs.DECORATIONS);
-
-        ModBlocks.blocks.add(this);
     }
 
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {

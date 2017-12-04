@@ -48,8 +48,6 @@ public class BlockLamp extends BlockBase {
         setLightLevel(0);
 
         setCreativeTab(CreativeTabs.DECORATIONS);
-
-        ModBlocks.blocks.add(this);
     }
 
     @Override

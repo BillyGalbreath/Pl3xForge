@@ -11,7 +11,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.pl3x.forge.block.BlockOre;
-import net.pl3x.forge.block.ModBlocks;
 
 import java.util.Random;
 
@@ -22,8 +21,6 @@ public class BlockFrostedObsidian extends BlockOre {
         super("frosted_obsidian", "frostedObsidian", 50, 6000, 3, "pickaxe");
         setDefaultState(blockState.getBaseState().withProperty(AGE, 0));
         setTickRandomly(true);
-
-        ModBlocks.blocks.add(this);
     }
 
     public int getMetaFromState(IBlockState state) {

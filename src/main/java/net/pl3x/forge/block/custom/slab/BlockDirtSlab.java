@@ -112,7 +112,7 @@ public abstract class BlockDirtSlab extends BlockSlab {
         }
         setDefaultState(iblockstate);
 
-        ModBlocks.blocks.add(this);
+        ModBlocks.__BLOCKS__.add(this);
     }
 
     public void registerItemModel(Item item) {

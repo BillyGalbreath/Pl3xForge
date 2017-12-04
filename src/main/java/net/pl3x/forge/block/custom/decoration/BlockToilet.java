@@ -9,7 +9,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.pl3x.forge.block.ModBlocks;
 import net.pl3x.forge.block.custom.furniture.BlockSeat;
 import net.pl3x.forge.util.CollisionHelper;
 
@@ -26,8 +25,6 @@ public class BlockToilet extends BlockSeat {
         AABB_BASE = new AxisAlignedBB(0.3, 0.0, 0.3, 0.7, 0.4, 0.7);
 
         yOffset = -0.25;
-
-        ModBlocks.blocks.add(this);
     }
 
     @Override

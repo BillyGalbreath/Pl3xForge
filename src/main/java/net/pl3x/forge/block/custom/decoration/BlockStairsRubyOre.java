@@ -7,11 +7,11 @@ import net.pl3x.forge.block.ModBlocks;
 import net.pl3x.stairs.block.stairs.BlockStairsBasic;
 import net.pl3x.stairs.tab.StairsTab;
 
-public class BlockStairsRuby extends BlockStairsBasic {
-    public BlockStairsRuby() {
-        super(Material.IRON, "stairs_ruby", MapColor.RED);
-        setHardness(10F);
-        setResistance(50F);
+public class BlockStairsRubyOre extends BlockStairsBasic {
+    public BlockStairsRubyOre() {
+        super(Material.IRON, "stairs_ruby_ore", MapColor.RED);
+        setHardness(20F);
+        setResistance(30F);
         setSoundType(SoundType.METAL);
 
         ModBlocks.__BLOCKS__.add(this);

@@ -74,7 +74,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ModBlocks {
-    public static final Set<Block> blocks = new HashSet<>();
+    public static final Set<Block> __BLOCKS__ = new HashSet<>();
 
     public static final BlockBarrel BARREL = new BlockBarrel();
     public static final BlockBathroomCabinet BATHROOM_CABINET = new BlockBathroomCabinet();
@@ -196,7 +196,7 @@ public class ModBlocks {
     public static final BlockVerticalSlabStoneDouble VERTICAL_SLAB_STONE_DOUBLE = new BlockVerticalSlabStoneDouble();
 
     public static void register(IForgeRegistry<Block> registry) {
-        blocks.forEach(registry::register);
+        __BLOCKS__.forEach(registry::register);
 
         GameRegistry.registerTileEntity(BEDSIDE_TABLE.getTileEntityClass(), BEDSIDE_TABLE.getRegistryName().toString());
         GameRegistry.registerTileEntity(CUTTING_BOARD.getTileEntityClass(), CUTTING_BOARD.getRegistryName().toString());
@@ -211,7 +211,7 @@ public class ModBlocks {
     }
 
     public static void registerItemBlocks(IForgeRegistry<Item> registry) {
-        blocks.forEach(block -> {
+        __BLOCKS__.forEach(block -> {
             if (block instanceof BlockConcreteSlabHalf) {
                 registry.register(((BlockConcreteSlab) block).createItemBlock());
             } else if (block instanceof BlockDirtSlabHalf) {
@@ -229,6 +229,6 @@ public class ModBlocks {
     }
 
     public static void registerModels() {
-        blocks.forEach(block -> Pl3x.proxy.registerItemRenderer(Item.getItemFromBlock(block), 0, block.getUnlocalizedName().substring(5)));
+        __BLOCKS__.forEach(block -> Pl3x.proxy.registerItemRenderer(Item.getItemFromBlock(block), 0, block.getUnlocalizedName().substring(5)));
     }
 }

@@ -24,7 +24,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.pl3x.forge.block.BlockTileEntity;
-import net.pl3x.forge.block.ModBlocks;
 import net.pl3x.forge.tileentity.TileEntityCuttingBoard;
 
 import javax.annotation.Nullable;
@@ -41,8 +40,6 @@ public class BlockCuttingBoard extends BlockTileEntity<TileEntityCuttingBoard> {
         setHardness(1);
 
         setCreativeTab(CreativeTabs.DECORATIONS);
-
-        ModBlocks.blocks.add(this);
     }
 
     @Override

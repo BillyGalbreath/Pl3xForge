@@ -21,7 +21,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.block.BlockBase;
-import net.pl3x.forge.block.ModBlocks;
 
 public class BlockComputer extends BlockBase {
     private static final PropertyDirection FACING = BlockHorizontal.FACING;
@@ -35,8 +34,6 @@ public class BlockComputer extends BlockBase {
         setHardness(1);
 
         setCreativeTab(CreativeTabs.DECORATIONS);
-
-        ModBlocks.blocks.add(this);
     }
 
     @Override

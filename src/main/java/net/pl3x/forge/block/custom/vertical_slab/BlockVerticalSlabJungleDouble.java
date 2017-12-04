@@ -16,8 +16,6 @@ public class BlockVerticalSlabJungleDouble extends BlockVerticalSlabDouble {
         setSoundType(SoundType.WOOD);
 
         singleSlab = ModBlocks.VERTICAL_SLAB_JUNGLE;
-
-        ModBlocks.blocks.add(this);
     }
 
     @Override

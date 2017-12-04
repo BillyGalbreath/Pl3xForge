@@ -26,7 +26,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.pl3x.forge.block.BlockTileEntity;
-import net.pl3x.forge.block.ModBlocks;
 import net.pl3x.forge.tileentity.TileEntityStove;
 
 import javax.annotation.Nullable;
@@ -42,8 +41,6 @@ public class BlockStove extends BlockTileEntity<TileEntityStove> {
         setHardness(1);
 
         setCreativeTab(CreativeTabs.DECORATIONS);
-
-        ModBlocks.blocks.add(this);
     }
 
     @Override

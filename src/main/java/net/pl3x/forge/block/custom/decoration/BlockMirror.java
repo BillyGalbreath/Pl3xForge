@@ -22,7 +22,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.forge.block.BlockTileEntity;
-import net.pl3x.forge.block.ModBlocks;
 import net.pl3x.forge.tileentity.TileEntityMirror;
 import net.pl3x.forge.util.CollisionHelper;
 
@@ -44,8 +43,6 @@ public class BlockMirror extends BlockTileEntity<TileEntityMirror> {
         setHardness(1);
 
         setCreativeTab(CreativeTabs.DECORATIONS);
-
-        ModBlocks.blocks.add(this);
     }
 
     @Override

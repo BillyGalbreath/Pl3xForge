@@ -52,8 +52,6 @@ public class BlockTrafficLight extends BlockTileEntity<TileEntityTrafficLight> {
         setHardness(1);
 
         setCreativeTab(CreativeTabs.DECORATIONS);
-
-        ModBlocks.blocks.add(this);
     }
 
     @Override

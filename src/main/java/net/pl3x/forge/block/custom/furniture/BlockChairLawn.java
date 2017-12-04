@@ -6,7 +6,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.pl3x.forge.block.ModBlocks;
 import net.pl3x.forge.util.CollisionHelper;
 
 public class BlockChairLawn extends BlockSeat {
@@ -23,8 +22,6 @@ public class BlockChairLawn extends BlockSeat {
         AABB_BASE = new AxisAlignedBB(0, 0, 0, 1, 0.35, 1);
 
         yOffset = -0.35;
-
-        ModBlocks.blocks.add(this);
     }
 
     @Override

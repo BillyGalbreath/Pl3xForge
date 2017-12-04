@@ -25,7 +25,6 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.block.BlockTileEntity;
-import net.pl3x.forge.block.ModBlocks;
 import net.pl3x.forge.gui.ModGuiHandler;
 import net.pl3x.forge.tileentity.TileEntityBedsideTable;
 
@@ -42,8 +41,6 @@ public class BlockBedsideTable extends BlockTileEntity<TileEntityBedsideTable> {
         setHardness(1);
 
         setCreativeTab(CreativeTabs.DECORATIONS);
-
-        ModBlocks.blocks.add(this);
     }
 
     @Override

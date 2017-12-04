@@ -16,8 +16,6 @@ public class BlockVerticalSlabStoneDouble extends BlockVerticalSlabDouble {
         setSoundType(SoundType.STONE);
 
         singleSlab = ModBlocks.VERTICAL_SLAB_STONE;
-
-        ModBlocks.blocks.add(this);
     }
 
     @Override
