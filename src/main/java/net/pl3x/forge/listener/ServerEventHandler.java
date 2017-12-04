@@ -76,7 +76,9 @@ public class ServerEventHandler {
 
     @SubscribeEvent
     public void on(BannerSlotChangedEvent event) {
-        PacketHandler.INSTANCE.sendToAll(new RequestCapePacket());
+        if (event.getPlayer() instanceof EntityPlayerMP) {
+            PacketHandler.INSTANCE.sendToAll(new RequestCapePacket());
+        }
     }
 
     @SubscribeEvent
