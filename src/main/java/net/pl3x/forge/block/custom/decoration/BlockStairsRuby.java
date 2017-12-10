@@ -4,10 +4,10 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.pl3x.forge.block.ModBlocks;
-import net.pl3x.stairs.block.stairs.BlockStairsBasic;
+import net.pl3x.stairs.block.stairs.StairsBasic;
 import net.pl3x.stairs.tab.StairsTab;
 
-public class BlockStairsRuby extends BlockStairsBasic {
+public class BlockStairsRuby extends StairsBasic {
     public BlockStairsRuby() {
         super(Material.IRON, "stairs_ruby", MapColor.RED);
         setHardness(10F);
