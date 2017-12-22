@@ -13,8 +13,7 @@
       "item": "minecraft:obsidian"
     },
     "R": {
-      "type": "forge:ore_dict",
-      "ore": "ruby"
+      "item": "rubies:ruby"
     }
   },
   "result": {

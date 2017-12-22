@@ -11,7 +11,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.advancement.ModAdvancements;
 import net.pl3x.forge.capability.DeceptionTarget;
@@ -70,9 +69,7 @@ import net.pl3x.forge.motd.MOTDTask;
 import net.pl3x.forge.network.OpenInventoryPacket;
 import net.pl3x.forge.network.PacketHandler;
 import net.pl3x.forge.prometheus.PrometheusController;
-import net.pl3x.forge.recipe.ModRecipes;
 import net.pl3x.forge.util.task.TPSTracker;
-import net.pl3x.forge.world.ModWorldGen;
 
 import java.io.File;
 
@@ -97,8 +94,6 @@ public class ServerProxy {
     }
 
     public void init(FMLInitializationEvent event) {
-        GameRegistry.registerWorldGenerator(new ModWorldGen(), 0);
-
         CapabilityManager.INSTANCE.register(DeceptionTarget.class, new DeceptionTargetImpl.DeceptionTargetStorage(), DeceptionTargetImpl.class);
         CapabilityManager.INSTANCE.register(PlayerData.class, new PlayerDataImpl.PlayerDataStorage(), PlayerDataImpl.class);
         NetworkRegistry.INSTANCE.registerGuiHandler(Pl3x.instance, new ModGuiHandler());
@@ -108,7 +103,6 @@ public class ServerProxy {
         MinecraftForge.EVENT_BUS.register(new ChatEventHandler());
         MinecraftForge.EVENT_BUS.register(new ClaimEventHandler());
 
-        ModRecipes.init();
         ModEntities.init();
         PacketHandler.init();
     }

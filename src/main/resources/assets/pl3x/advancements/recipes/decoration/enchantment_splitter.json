@@ -17,7 +17,7 @@
       "conditions": {
         "items": [
           {
-            "item": "pl3x:ruby"
+            "item": "rubies:ruby"
           }
         ]
       }

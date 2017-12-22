@@ -1,6 +1,0 @@
-{
-  "parent": "item/handheld",
-  "textures": {
-    "layer0": "pl3x:items/emerald_hoe"
-  }
-}

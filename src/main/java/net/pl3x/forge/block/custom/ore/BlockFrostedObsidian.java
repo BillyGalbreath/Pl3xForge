@@ -18,7 +18,7 @@ public class BlockFrostedObsidian extends BlockOre {
     private static final PropertyInteger AGE = PropertyInteger.create("age", 0, 3);
 
     public BlockFrostedObsidian() {
-        super("frosted_obsidian", "frostedObsidian", 50, 6000, 3, "pickaxe");
+        super("frosted_obsidian", 50, 6000, 3, "pickaxe");
         setDefaultState(blockState.getBaseState().withProperty(AGE, 0));
         setTickRandomly(true);
     }

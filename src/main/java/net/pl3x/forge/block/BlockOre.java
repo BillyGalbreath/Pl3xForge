@@ -1,29 +1,18 @@
 package net.pl3x.forge.block;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraftforge.oredict.OreDictionary;
-import net.pl3x.forge.item.ModItems;
 
 import java.util.Random;
 
 public class BlockOre extends BlockBase {
-    private final String oreName;
-
-    public BlockOre(String name, String oreName) {
-        this(name, oreName, 0, null);
+    public BlockOre(String name, int harvestLevel, String harvestTool) {
+        this(name, 3f, 5f, harvestLevel, harvestTool);
     }
 
-    public BlockOre(String name, String oreName, int harvestLevel, String harvestTool) {
-        this(name, oreName, 3f, 5f, harvestLevel, harvestTool);
-    }
-
-    public BlockOre(String name, String oreName, float hardness, float resistance, int harvestLevel, String harvestTool) {
+    public BlockOre(String name, float hardness, float resistance, int harvestLevel, String harvestTool) {
         super(Material.ROCK, name);
-
-        this.oreName = oreName;
 
         setHardness(hardness);
         setResistance(resistance);
@@ -35,23 +24,10 @@ public class BlockOre extends BlockBase {
         ModBlocks.__BLOCKS__.add(this);
     }
 
-    public void initOreDict() {
-        OreDictionary.registerOre(oreName, this);
-    }
-
     @Override
     public BlockOre setCreativeTab(CreativeTabs tab) {
         super.setCreativeTab(tab);
         return this;
-    }
-
-    @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        if (this == ModBlocks.RUBY) {
-            return ModItems.RUBY;
-        } else {
-            return Item.getItemFromBlock(this);
-        }
     }
 
     @Override
