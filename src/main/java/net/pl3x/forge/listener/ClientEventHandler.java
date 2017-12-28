@@ -13,7 +13,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 import net.pl3x.forge.block.custom.decoration.BlockTV;
-import net.pl3x.forge.cape.CapeManager;
 import net.pl3x.forge.claims.Selection;
 import net.pl3x.forge.color.ChatColor;
 import net.pl3x.forge.discord.PresenceManager;
@@ -121,7 +120,6 @@ public class ClientEventHandler {
         }
 
         BlockTV.EnumChannel.tick();
-        CapeManager.tick();
     }
 
     @SubscribeEvent

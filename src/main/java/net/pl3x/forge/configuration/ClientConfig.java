@@ -1,6 +1,5 @@
 package net.pl3x.forge.configuration;
 
-import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Config.Comment;
 import net.minecraftforge.common.config.Config.Name;
@@ -11,8 +10,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.Pl3xSettings;
-import net.pl3x.forge.network.PacketHandler;
-import net.pl3x.forge.network.ReplyCapePacket;
 import net.pl3x.forge.util.gl.HUDPosition;
 
 @Config(modid = Pl3x.modId)
@@ -21,10 +18,6 @@ public class ClientConfig {
     @Name("Balance HUD")
     @Comment("Control the Balance HUD element")
     public static BalanceHUDConfig balanceHud = new BalanceHUDConfig();
-
-    @Name("Cape Manager")
-    @Comment("Control player capes")
-    public static CapeOptions capeOptions = new CapeOptions();
 
     @Name("Chat Options")
     @Comment("Control chat GUI")
@@ -58,12 +51,6 @@ public class ClientConfig {
         @Name("Relative Y")
         @Comment("Y position relative to anchor")
         public int relativeY = 0;
-    }
-
-    public static class CapeOptions {
-        @Name("Cape URL")
-        @Comment("URL to cape texture")
-        public String capeURL = "";
     }
 
     public static class ChatOptions {
@@ -151,8 +138,6 @@ public class ClientConfig {
         public static void on(final ConfigChangedEvent.OnConfigChangedEvent event) {
             if (event.getModID().equals(Pl3x.modId)) {
                 ConfigManager.sync(Pl3x.modId, Config.Type.INSTANCE);
-                PacketHandler.INSTANCE.sendToServer(new ReplyCapePacket(
-                        Minecraft.getMinecraft().getSession().getUsername(), ClientConfig.capeOptions.capeURL));
                 Pl3xSettings.INSTANCE.chatBGRed = ClientConfig.chatOptions.background.red;
                 Pl3xSettings.INSTANCE.chatBGGreen = ClientConfig.chatOptions.background.green;
                 Pl3xSettings.INSTANCE.chatBGBlue = ClientConfig.chatOptions.background.blue;
