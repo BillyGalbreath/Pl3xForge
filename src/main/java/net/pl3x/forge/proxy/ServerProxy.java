@@ -12,8 +12,6 @@ import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.advancement.ModAdvancements;
-import net.pl3x.forge.capability.DeceptionTarget;
-import net.pl3x.forge.capability.DeceptionTargetImpl;
 import net.pl3x.forge.capability.PlayerData;
 import net.pl3x.forge.capability.PlayerDataImpl;
 import net.pl3x.forge.command.CmdBack;
@@ -90,7 +88,6 @@ public class ServerProxy {
     }
 
     public void init(FMLInitializationEvent event) {
-        CapabilityManager.INSTANCE.register(DeceptionTarget.class, new DeceptionTargetImpl.DeceptionTargetStorage(), DeceptionTargetImpl.class);
         CapabilityManager.INSTANCE.register(PlayerData.class, new PlayerDataImpl.PlayerDataStorage(), PlayerDataImpl.class);
         NetworkRegistry.INSTANCE.registerGuiHandler(Pl3x.instance, new ModGuiHandler());
 
