@@ -1,10 +1,6 @@
 package net.pl3x.forge.item;
 
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
-import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.pl3x.forge.Pl3x;
 import net.pl3x.forge.item.custom.ItemClaimTool;
@@ -16,18 +12,9 @@ import net.pl3x.forge.item.custom.seed.ItemEnderPearlSeeds;
 import java.util.HashSet;
 import java.util.Set;
 
-import static net.minecraft.item.ItemArmor.ArmorMaterial;
-
 public class ModItems {
     public static final Set<Item> items = new HashSet<>();
 
-    // ARMORS new int[]{ boots, leggings, chestplate, helmet }
-    public static final ArmorMaterial boneArmorMaterial = EnumHelper.addArmorMaterial("BONE", Pl3x.modId + ":bone", 7, new int[]{1, 3, 5, 1}, 9, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 3);
-
-    public static final ItemArmor BONE_BOOTS = new ItemArmor(boneArmorMaterial, EntityEquipmentSlot.FEET, "bone_boots").setCreativeTab(CreativeTabs.COMBAT);
-    public static final ItemArmor BONE_CHESTPLATE = new ItemArmor(boneArmorMaterial, EntityEquipmentSlot.CHEST, "bone_chestplate").setCreativeTab(CreativeTabs.COMBAT);
-    public static final ItemArmor BONE_HELMET = new ItemArmor(boneArmorMaterial, EntityEquipmentSlot.HEAD, "bone_helmet").setCreativeTab(CreativeTabs.COMBAT);
-    public static final ItemArmor BONE_LEGGINGS = new ItemArmor(boneArmorMaterial, EntityEquipmentSlot.LEGS, "bone_leggings").setCreativeTab(CreativeTabs.COMBAT);
     public static final ItemClaimTool CLAIM_TOOL = new ItemClaimTool();
     public static final ItemMoney COIN = new ItemMoney("coin");
     public static final ItemCorn CORN = new ItemCorn();
