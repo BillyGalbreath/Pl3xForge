@@ -84,7 +84,6 @@ public class ConfigWatcher implements Runnable {
     }
 
     private enum ConfigType {
-        BIGHEAD(BigHeadConfig.INSTANCE),
         EMOJI(EmojiConfig.INSTANCE),
         ICON(IconConfig.INSTANCE),
         LANG(Lang.INSTANCE),

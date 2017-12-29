@@ -15,7 +15,6 @@ import net.pl3x.forge.advancement.ModAdvancements;
 import net.pl3x.forge.capability.PlayerData;
 import net.pl3x.forge.capability.PlayerDataImpl;
 import net.pl3x.forge.command.CmdBack;
-import net.pl3x.forge.command.CmdBigHead;
 import net.pl3x.forge.command.CmdBiomes;
 import net.pl3x.forge.command.CmdCountdown;
 import net.pl3x.forge.command.CmdDelHome;
@@ -46,7 +45,6 @@ import net.pl3x.forge.command.CmdTPS;
 import net.pl3x.forge.command.CmdTPToggle;
 import net.pl3x.forge.command.CmdTop;
 import net.pl3x.forge.command.CmdUnflip;
-import net.pl3x.forge.configuration.BigHeadConfig;
 import net.pl3x.forge.configuration.ClaimConfigs;
 import net.pl3x.forge.configuration.ConfigWatcher;
 import net.pl3x.forge.configuration.EmojiConfig;
@@ -73,7 +71,6 @@ public class ServerProxy {
     public void preInit(FMLPreInitializationEvent event) {
         Lang.INSTANCE.init();
 
-        BigHeadConfig.INSTANCE.init();
         IconConfig.INSTANCE.init();
         EmojiConfig.INSTANCE.init(); // load AFTER icons
         MailConfig.INSTANCE.init();
@@ -111,7 +108,6 @@ public class ServerProxy {
 
     public void serverStarting(FMLServerStartingEvent event) {
         event.registerServerCommand(new CmdBack());
-        event.registerServerCommand(new CmdBigHead());
         event.registerServerCommand(new CmdBiomes());
         event.registerServerCommand(new CmdCountdown());
         event.registerServerCommand(new CmdDelHome());

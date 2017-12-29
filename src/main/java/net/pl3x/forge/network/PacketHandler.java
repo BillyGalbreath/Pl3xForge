@@ -19,7 +19,6 @@ public class PacketHandler {
         INSTANCE.registerMessage(BankPacket.Handler.class, BankPacket.class, ++id, Side.SERVER);
         INSTANCE.registerMessage(BedsideTableUpdatePacket.Handler.class, BedsideTableUpdatePacket.class, ++id, Side.CLIENT);
         INSTANCE.registerMessage(BedsideTableRequestUpdatePacket.Handler.class, BedsideTableRequestUpdatePacket.class, ++id, Side.SERVER);
-        INSTANCE.registerMessage(BigHeadPacket.Handler.class, BigHeadPacket.class, ++id, Side.CLIENT);
         INSTANCE.registerMessage(CuttingBoardUpdatePacket.Handler.class, CuttingBoardUpdatePacket.class, ++id, Side.CLIENT);
         INSTANCE.registerMessage(CuttingBoardRequestUpdatePacket.Handler.class, CuttingBoardRequestUpdatePacket.class, ++id, Side.SERVER);
         INSTANCE.registerMessage(OpenInventoryPacket.Handler.class, OpenInventoryPacket.class, ++id, Side.CLIENT);

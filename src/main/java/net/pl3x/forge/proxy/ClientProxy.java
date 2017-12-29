@@ -25,7 +25,6 @@ import net.pl3x.forge.discord.PresenceManager;
 import net.pl3x.forge.entity.ModEntities;
 import net.pl3x.forge.exception.FuckOptifine;
 import net.pl3x.forge.gui.TitleScreen;
-import net.pl3x.forge.listener.BigHeadListener;
 import net.pl3x.forge.listener.ClientEventHandler;
 import net.pl3x.forge.listener.KeyBindings;
 import net.pl3x.forge.listener.KeyInputHandler;
@@ -73,7 +72,6 @@ public class ClientProxy extends ServerProxy {
         // dont bind this in pre-init, needs Minecraft instance for RenderGlobal
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMirror.class, new TileEntityMirrorRenderer());
 
-        MinecraftForge.EVENT_BUS.register(new BigHeadListener());
         MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
         MinecraftForge.EVENT_BUS.register(new KeyInputHandler());
         MinecraftForge.EVENT_BUS.register(new TileEntityMirrorRenderer());

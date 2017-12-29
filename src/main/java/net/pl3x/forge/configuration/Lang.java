@@ -55,9 +55,6 @@ public class Lang extends ConfigLoader implements ConfigBase {
         public final String BACK_NO_LOCATION = "&cNo back location set";
         public final String BACK_TO_PREVIOUS = "&aTeleported to previous location";
 
-        public final String BIGHEAD_ENABLED = "&aBigHead mode &2enabled &afor {target}";
-        public final String BIGHEAD_DISABLED = "&aBigHead mode &cdisabled &afor {target}";
-
         public final String FLY_ONLY_SURVIVAL = "&cFly only works in survival mode";
         public final String FLY_TOGGLED = "&aFly mode toggled {state}";
 
